@@ -1,0 +1,45 @@
+.app{
+    display: flex;
+    justify-content: center;
+    .container{
+        width: 1024px;
+        .link {
+            text-decoration: none;
+            color: inherit;
+        }
+        //LOGIN & REGISTER ignoring for now
+
+        // NAVBAR
+        .navbar {
+            .container {
+                padding: 10px 0px;
+                display: flex;
+                justify-content: space-between;
+                .logo{
+                    img {
+                        width:120px;
+                    }
+                }
+                .links{
+                    display: flex;
+                    gap: 10px;
+
+                    h6{
+                        font-size:16px;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        //FOOTER
+        footer{
+            margin-top:100px;
+            padding: 20px;
+            background-color: aquamarine;
+
+            img{
+                width:40px;
+            }
+        }
+    }
+}
