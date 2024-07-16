@@ -1,12 +1,16 @@
 import React from 'react'
+import Menu from '../components/Menu'
+import AuthorFooter from '../components/AuthorFooter'
 
-const Single = () => {
+const Single = (props) => {
+    const { headerImageUrl, authorImageUrl, authorName, postDate, content } = props
     return (
-        <div className='navbar'>
-            <div className='container'>
-                <div className='logo'></div>
-                <div className='links'></div>
+        <div className='single'>
+            <div className='content'>
+                <img src={headerImageUrl}></img>
+                <AuthorFooter authorImageUrl='' authorName='' postDate='' />
             </div>
+            <Menu/>
         </div>
     )
 }

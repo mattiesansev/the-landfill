@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import "./style.scss"
+import LandfillMap from './pages/posts/LandfillMap'
 
 const Layout = () => {
   return (
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
-        path:"/post/:id",
-        element: <Single/>
+        path:"/post/bay-area-landfills",
+        element: <LandfillMap/>
       },
     ]
   },

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const Home = () => {
+const Menu = () => {
     const posts = [
         {
-            id: 'bay-area-landfills',
+            id: 1,
             title: "Test title 1",
             desc: "Descriptions",
             img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
@@ -36,24 +35,16 @@ const Home = () => {
 
     ]
     return (
-        <div className='home'>
-            <div className='posts'>
-                {posts.map(post=>(
-                    <div className='post' key={post.id}>
-                    <div className="img">
-                        <img src={post.img} alt="" />
-                        </div>
-                        <div className="content">
-                        <Link className="link" to={`/post/${post.id}`}>
-                        <h1>{post.title}</h1>
-                        <p>{post.desc}</p>
-                        <button>Read more</button>
-                        </Link>
-                        </div>
-                        </div>
-                ))}
-            </div>
+        <div className='menu'>
+            <h1>Other posts</h1>
+            {posts.map(post=>(
+                <div className='post' key={post.id}>
+                    <img src={post.img}></img>
+                    <h2>{post.title}</h2>
+                    <button>Read More</button>
+                    </div>
+            ))}
         </div>
     )
 }
-export default Home
+export default Menu
