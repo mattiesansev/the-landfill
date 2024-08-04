@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import "./style.scss"
 import LandfillMap from './pages/posts/LandfillMap'
+import AboutUs from './pages/AboutUs'
 
 const Layout = () => {
   return (
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         path:"/post/bay-area-landfills",
         element: <LandfillMap/>
       },
+      {
+        path:"/about",
+        element: <AboutUs/>
+      },
+      // {
+      //   path:"/post/contact",
+      //   element: <Contact/>
+      // },
     ]
   },
 ])

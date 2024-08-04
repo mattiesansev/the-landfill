@@ -7,7 +7,6 @@ const AuthorFooter = (props) => {
             <img src={authorImageUrl}></img>
             <div className='info'>
                 <span>{authorName}</span>
-                <p>{postDate}</p>
             </div>
         </div>
     )

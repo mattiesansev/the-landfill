@@ -6,14 +6,17 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className='container'>
+                <Link className='link' to='/'>
                 <div className='logo'>
                     <img src={Logo} alt="" />
                 </div>
+                </Link>
+                <div className='title'>
+                    the bay area data dump
+                </div>
                 <div className='links'>
-                    <Link className='link' to='/?cat=art'><h6>ART</h6></Link>
-                    <Link className='link' to='/?cat=food'><h6>FOOD</h6></Link>
-                    <Link className='link' to='/?cat=maps'><h6>MAPS</h6></Link>
-                    <Link className='link' to='/?cat=trash'><h6>TRASH</h6></Link>
+                    <Link className='link' to='/about'><h6>about us</h6></Link>
+                    <Link className='link' to='/contact'><h6>contact</h6></Link>
                 </div>
             </div>
         </div>

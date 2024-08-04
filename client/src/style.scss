@@ -15,17 +15,22 @@
                 padding: 10px 0px;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 .logo{
                     img {
                         width:120px;
                     }
+                }
+                .title {
+                    font-size: 50px;
+                    font-weight: 500;
                 }
                 .links{
                     display: flex;
                     gap: 10px;
 
                     h6{
-                        font-size:16px;
+                        font-size:26px;
                         font-weight: 300;
                     }
                 }
@@ -44,24 +49,36 @@
 
         //HOME
         .home {
+            .landing {
+                max-height: 100px;
+                img {
+                    max-height: 100px;
+                }
+            }
             .posts {
                 margin-top: 50px;
                 display: flex;
-                flex-direction: column;
-                gap: 150px;
+                //flex-direction: row;
+                flex-wrap: wrap;
+                gap: 50px;
 
                 .post {
-                    display: flex;
-                    gap: 100px;
-
-                    &:nth-child(2n+1) {
-                        flex-direction: row-reverse;
+                    //display: flex;
+                    //gap: 100px;
+                    outline: #0000FF;
+                    border:#0000FF;
+                    background-color: #f4f8fb;
+                    border-radius: 1px;
+                    flex: 1 1 calc(33.333% - 20px);
+                    border-radius: 5px;
+                    &:hover {
+                        background-color: #d8eafb;
                     }
-
                     .img {
-                        flex: 2;
-
+                        //flex: 2;
+                        padding: 10px;
                         img{
+                            border-radius: 5px;
                             width: 100%;
                         }
                     }
@@ -70,7 +87,7 @@
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-
+                        padding: 10px;
                         h1 {
                             font-size: 48px;
 
@@ -96,6 +113,44 @@
             }
 
         }
+        //ABOUT
+        .about {
+            .people {
+                margin-top: 50px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 150px;
+                .person {
+                    display: flex;
+                    gap: 100px;
+
+                    &:nth-child(2n+1) {
+                        flex-direction: row-reverse;
+                    }
+
+                    .img {
+                        flex: 1;
+
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .content {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+
+                        h1 {
+                            font-size: 40px;
+
+                        }
+                        p {
+                            font-size: 18px;
+                        }
+                }
+            }
+        }
+    }
                     //SINGLE
                     .single{
                         display: flex;
@@ -104,6 +159,9 @@
                         .content{
                             flex: 5;
         
+                            .title {
+                                font-size:55px;
+                            }
                             img {
                                 width: 100%;
                                 height: 300px;
