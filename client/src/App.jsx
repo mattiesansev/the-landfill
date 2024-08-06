@@ -11,10 +11,12 @@ import Footer from "./components/Footer"
 import "./style.scss"
 import LandfillMap from './pages/posts/LandfillMap'
 import AboutUs from './pages/AboutUs'
+import TitleRow from './components/TitleRow'
 
 const Layout = () => {
   return (
     <>
+    <TitleRow />
     <Navbar />
     <Outlet />
     <Footer />
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
         element: <LandfillMap/>
       },
       {
-        path:"/about",
+        path:"/post/about",
         element: <AboutUs/>
       },
       // {
