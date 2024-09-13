@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Landing from "../img/temp_landing.png";
 
 const Home = () => {
   const posts = [
@@ -16,30 +15,27 @@ const Home = () => {
       desc: "Curious to learn about the people who put this site together?",
       img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
     },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
+    // {
+    //   id: "about",
+    //   title: "About us",
+    //   desc: "Curious to learn about the people who put this site together?",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
+    // {
+    //   id: "about",
+    //   title: "About us",
+    //   desc: "Curious to learn about the people who put this site together?",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
+    // {
+    //   id: "about",
+    //   title: "About us",
+    //   desc: "Curious to learn about the people who put this site together?",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
   ];
   return (
     <div className="home">
-      {/* <div className='landing'>
-                <img src={Landing}></img>
-            </div> */}
       <div className="posts">
         {posts.map((post) => (
           <div className="post" key={post.id}>
