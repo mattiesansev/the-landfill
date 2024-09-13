@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../img/logo_tmp.jpeg";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const TitleRow = () => {
   return (
@@ -12,6 +13,7 @@ const TitleRow = () => {
           </div>
         </Link>
         <div className="title">the bay area data dump</div>
+        <Navbar />
       </div>
     </div>
   );

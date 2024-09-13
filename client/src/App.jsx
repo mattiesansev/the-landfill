@@ -17,7 +17,6 @@ const Layout = () => {
   return (
     <>
       <TitleRow />
-      <Navbar />
       <Outlet />
       <Footer />
     </>
