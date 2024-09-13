@@ -8,30 +8,30 @@ const Menu = () => {
       desc: "Descriptions",
       img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
     },
-    {
-      id: 2,
-      title: "Test title 1",
-      desc: "Descriptions",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: 3,
-      title: "Test title 1",
-      desc: "Descriptions",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: 4,
-      title: "Test title 1",
-      desc: "Descriptions",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: 5,
-      title: "Test title 1",
-      desc: "Descriptions",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
+    // {
+    //   id: 2,
+    //   title: "Test title 1",
+    //   desc: "Descriptions",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
+    // {
+    //   id: 3,
+    //   title: "Test title 1",
+    //   desc: "Descriptions",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
+    // {
+    //   id: 4,
+    //   title: "Test title 1",
+    //   desc: "Descriptions",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Test title 1",
+    //   desc: "Descriptions",
+    //   img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+    // },
   ];
   return (
     <div className="menu">

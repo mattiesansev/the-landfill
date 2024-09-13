@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Landing from "../img/temp_landing.png";
 
 const AboutUs = () => {
   const people = [
