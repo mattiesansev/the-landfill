@@ -12,7 +12,7 @@ const TitleRow = () => {
                 </div>
                 </Link>
                 <div className='title'>
-                    the bay area data dump
+                    The Bay Area Data Dump
                 </div>
             </div>
         </div>

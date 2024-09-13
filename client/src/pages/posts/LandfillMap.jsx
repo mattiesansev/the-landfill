@@ -1,9 +1,46 @@
-import React from 'react'
+import {React, useEffect, useState} from 'react'
 import AuthorFooter from '../../components/AuthorFooter'
 import { authors } from '../../authors/authors'
+import { MapContainer, TileLayer, Polygon, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+//import 'react-pap'
+//import csvFile from './grouped_xy.csv' 
 
 const LandfillMap = () => {
     const headerImageUrl = 'https://picsum.photos/300/200'
+    //let coordinatesPerLandfill = []
+    const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
+    // Define the polygon's coordinates
+    useEffect(() => {
+        async function getData() {
+            await fetch('/grouped_xy.csv')
+                .then(response=>response.text())
+                .then(csvText => {
+                    Papa.parse(csvText, {
+                        header: true,
+                        dynamicTyping: true,
+                        complete: function(results) {
+                            setCoordinatesPerLandfill(results.data)
+                            console.log(coordinatesPerLandfill);  // Parsed CSV data as an array of objects
+                        },
+                        error: function(error) {
+                            console.error(error.message);  // Error handling
+                        }
+                    })
+            })
+        }
+        getData()
+    }, [])
+    // var baseLayers = {
+    //     "Mapbox": mapbox,
+    //     "OpenStreetMap": osm
+    // };
+    
+    // var overlays = {
+    //     "Marker": marker,
+    //     "Roads": roadsLayer
+    // };
+
     return (
         <div className='single'>
             <div className='content'>
@@ -15,7 +52,33 @@ const LandfillMap = () => {
                 <AuthorFooter authorImageUrl={authors["destiny"]["photo"]} postDate='July 15, 2024' authorName={authors["destiny"]["name"]} />
                 <p>content content content</p>
                 <div class="embed-container">
-                <small><a href="//destinyjade.maps.arcgis.com/apps/Embed/index.html?webmap=f4e1855688434760a8f7e688f3aa72db&extent=-122.5477,37.3013,-121.6695,37.7722&zoom=true&scale=true&details=true&legendlayers=true&active_panel=details&disable_scroll=false&theme=light" target="_blank">View larger map</a></small><br/><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Landfill_Test" src="//destinyjade.maps.arcgis.com/apps/Embed/index.html?webmap=f4e1855688434760a8f7e688f3aa72db&extent=-122.5477,37.3013,-121.6695,37.7722&zoom=true&previewImage=false&scale=true&details=true&legendlayers=true&active_panel=details&disable_scroll=false&theme=light"></iframe>
+                <MapContainer center={[37.774980, -122.434574]} zoom={12} style={{ height: "100vh", width: "100%" }}>
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    { coordinatesPerLandfill &&
+                    coordinatesPerLandfill.map(polyCoordinatePerLandfill => {
+                        const lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
+                        const lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
+                        console.log("lats and longs ", lats, lons)
+                        let polygonCoords = []
+                        for (let i = 0; i < lats.length; i++) {
+                            const lat = lats[i]
+                            const lon = 0 - lons[i]
+                            polygonCoords.push([lat, lon])
+                            // const id = coordinatePerLandfill.SWIS
+                            console.log("polygonCoords" ,polygonCoords)
+                        } 
+                        return <><Polygon pathOptions={{ color: 'red' }} positions={polygonCoords}>
+                            <Popup className='popup'>
+                                A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Polygon> 
+                        </>
+                    })
+                    }
+                </MapContainer>
                 </div>
             </div>
         </div>
