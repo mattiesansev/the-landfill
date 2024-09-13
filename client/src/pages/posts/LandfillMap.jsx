@@ -82,6 +82,7 @@ const LandfillMap = () => {
                 </div>
             </div>
         </div>
-    )
-}
-export default LandfillMap
+        
+  );
+};
+export default LandfillMap;
