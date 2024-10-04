@@ -13,9 +13,10 @@ const LandfillMap = () => {
     // Define the polygon's coordinates
     useEffect(() => {
         async function getData() {
-            await fetch('/grouped_xy.csv')
+            await fetch('/grouped_xy_with_info.csv')
                 .then(response=>response.text())
                 .then(csvText => {
+                  console.log("[mattie] data", csvText)
                     Papa.parse(csvText, {
                         header: true,
                         dynamicTyping: true,
@@ -59,10 +60,18 @@ const LandfillMap = () => {
                     />
                     { coordinatesPerLandfill &&
                     coordinatesPerLandfill.map(polyCoordinatePerLandfill => {
-                        const lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
-                        const lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
-                        console.log("lats and longs ", lats, lons)
+                      //console.log("coords per landfill, ", coordinatesPerLandfill)
+                      let lats = []
+                      let lons = []
+                      try {
+                        lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
+                        lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
+                      } catch(e) {
+                        console.log("invalid row ", polyCoordinatePerLandfill)
+                      }
+                        //console.log("lats and longs ", lats, lons)
                         let polygonCoords = []
+                        let text = polyCoordinatePerLandfill.LandfillName
                         for (let i = 0; i < lats.length; i++) {
                             const lat = lats[i]
                             const lon = 0 - lons[i]
@@ -72,7 +81,7 @@ const LandfillMap = () => {
                         } 
                         return <><Polygon pathOptions={{ color: 'red' }} positions={polygonCoords}>
                             <Popup className='popup'>
-                                A pretty CSS3 popup. <br /> Easily customizable.
+                                A pretty CSS3 popup. <br /> {text}
                             </Popup>
                         </Polygon> 
                         </>
