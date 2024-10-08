@@ -230,11 +230,11 @@
     //SINGLE
     .single {
       display: flex;
+      justify-content: center;
       gap: 50px;
-
+      
       .content {
-        flex: 5;
-
+        width: 80%;
         .title {
           font-size: 55px;
         }
@@ -264,8 +264,7 @@
           padding-bottom: 56.25%; // 16:9 aspect ratio
           height: 0;
           max-width: 100%;
-          margin: 0 auto; // Centers the container
-          width: 80%; 
+          margin: 0 auto; // Centers the container 
           .popup{
             .leaflet-popup-content-wrapper {
               background-color: rgb(231, 236, 231);
