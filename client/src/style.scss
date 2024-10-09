@@ -230,11 +230,11 @@
     //SINGLE
     .single {
       display: flex;
+      justify-content: center;
       gap: 50px;
 
       .content {
-        flex: 5;
-
+        width: 80%;
         .title {
           font-size: 55px;
         }
