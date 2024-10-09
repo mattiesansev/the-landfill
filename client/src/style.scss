@@ -268,7 +268,7 @@
           width: 80%;
           .popup {
             .leaflet-popup-content-wrapper {
-              background-color: rgb(231, 236, 231);
+              background-color: rgb(253, 252, 171);
               border-radius: 15px;
               box-shadow: 0 3px 14px rgba(0, 0, 0, 0.8);
               min-height: 60px;
@@ -333,4 +333,9 @@
       }
     }
   }
+}
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  background-color: antiquewhite;
 }
