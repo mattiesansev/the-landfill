@@ -39,15 +39,6 @@ const LandfillMap = () => {
     }
     getData()
   }, [])
-  // var baseLayers = {
-  //     "Mapbox": mapbox,
-  //     "OpenStreetMap": osm
-  // };
-
-  // var overlays = {
-  //     "Marker": marker,
-  //     "Roads": roadsLayer
-  // };
 
   return (
     <div className="single">
@@ -73,124 +64,107 @@ const LandfillMap = () => {
             center={[37.77498, -122.434574]}
             zoom={12}
             style={{ height: "100vh", width: "100%" }}
+            zoomControl={false}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <LayersControl position="topright" collapsed={false}>
-              <LayersControl.Overlay name="Layer 1 Polygons">
+              <LayersControl.Overlay name="Non-Hazardous Waste">
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
-                      //console.log("coords per landfill, ", coordinatesPerLandfill)
-                      let lats = []
-                      let lons = []
-                      try {
-                        lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
-                        lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
-                      } catch (e) {
-                        console.log("invalid row ", polyCoordinatePerLandfill)
+                      const { typeOfWaste, landfillName, lats, lons } =
+                        initializeLandfillVariables(polyCoordinatePerLandfill)
+
+                      if (typeOfWaste === "Non-Hazardous Waste") {
+                        let polygonCoords = generatePolyCoords(lats, lons)
+                        return (
+                          <>
+                            <Polygon
+                              pathOptions={{
+                                color: "#f2f075",
+                                fillOpacity: 0.8,
+                              }}
+                              positions={polygonCoords}
+                            >
+                              <Popup className="non-hazardous-popup">
+                                <p className="popUpTitle">{landfillName}</p>
+                                <p className="popUpText">
+                                  This is a Non-Hazardous Waste landfill!
+                                </p>
+                              </Popup>
+                            </Polygon>
+                          </>
+                        )
                       }
-                      //console.log("lats and longs ", lats, lons)
-                      let polygonCoords = []
-                      let text = polyCoordinatePerLandfill.LandfillName
-                      for (let i = 0; i < lats.length; i++) {
-                        const lat = lats[i]
-                        const lon = 0 - lons[i]
-                        polygonCoords.push([lat, lon])
-                        // const id = coordinatePerLandfill.SWIS
-                        console.log("polygonCoords", polygonCoords)
-                      }
-                      return (
-                        <>
-                          <Polygon
-                            pathOptions={{ color: "blue" }}
-                            positions={polygonCoords}
-                          >
-                            <Popup className="popup">
-                              <p className="popUpTitle">{text}</p>
-                              <p className="popUpText">
-                                This landfill has different types of waste!
-                              </p>
-                            </Popup>
-                          </Polygon>
-                        </>
-                      )
                     })}
                 </LayerGroup>
               </LayersControl.Overlay>
 
-              <LayersControl.Overlay name="Layer 2 Polygons">
+              <LayersControl.Overlay name="Hazardous Waste">
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
-                      //console.log("coords per landfill, ", coordinatesPerLandfill)
-                      let lats = []
-                      let lons = []
-                      try {
-                        lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
-                        lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
-                      } catch (e) {
-                        console.log("invalid row ", polyCoordinatePerLandfill)
+                      const { typeOfWaste, landfillName, lats, lons } =
+                        initializeLandfillVariables(polyCoordinatePerLandfill)
+
+                      if (typeOfWaste === "Hazardous Waste") {
+                        let polygonCoords = generatePolyCoords(lats, lons)
+
+                        return (
+                          <>
+                            <Polygon
+                              pathOptions={{
+                                color: "#ff845b",
+                                fillOpacity: 0.8,
+                              }}
+                              positions={polygonCoords}
+                            >
+                              <Popup className="hazardous-popup">
+                                <p className="popUpTitle">{landfillName}</p>
+                                <p className="popUpText">
+                                  This is a Hazardous Waste landfill!
+                                </p>
+                              </Popup>
+                            </Polygon>
+                          </>
+                        )
                       }
-                      //console.log("lats and longs ", lats, lons)
-                      let polygonCoords = []
-                      let text = polyCoordinatePerLandfill.LandfillName
-                      for (let i = 0; i < lats.length; i++) {
-                        const lat = lats[i]
-                        const lon = 0 - lons[i]
-                        polygonCoords.push([lat, lon])
-                        // const id = coordinatePerLandfill.SWIS
-                        console.log("polygonCoords", polygonCoords)
+                    })}
+                </LayerGroup>
+              </LayersControl.Overlay>
+
+              <LayersControl.Overlay name="Unclassified Waste">
+                <LayerGroup>
+                  {coordinatesPerLandfill &&
+                    coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
+                      const { typeOfWaste, landfillName, lats, lons } =
+                        initializeLandfillVariables(polyCoordinatePerLandfill)
+
+                      if (
+                        typeOfWaste !== "Hazardous Waste" &&
+                        typeOfWaste !== "Non-Hazardous Waste"
+                      ) {
+                        let polygonCoords = generatePolyCoords(lats, lons)
+
+                        return (
+                          <>
+                            <Polygon
+                              pathOptions={{
+                                color: "#4b90ff",
+                                fillOpacity: 0.8,
+                              }}
+                              positions={polygonCoords}
+                            >
+                              <Popup className="unclassified-popup">
+                                <p className="popUpTitle">{landfillName}</p>
+                                <p className="popUpText">
+                                  This is an unclassified waste landfill!
+                                </p>
+                              </Popup>
+                            </Polygon>
+                          </>
+                        )
                       }
-                      return (
-                        <>
-                          <Polygon
-                            pathOptions={{ color: "red" }}
-                            positions={polygonCoords}
-                          >
-                            <Popup className="popup">
-                              <p className="popUpTitle">{text}</p>
-                              <p className="popUpText">
-                                This landfill is located at {lats[0]}, {lons[0]}
-                              </p>
-                              <p className="popUpText">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Aliquam posuere ante
-                                vestibulum, tristique leo malesuada, maximus
-                                tellus. Curabitur iaculis sit amet nulla a
-                                condimentum. Phasellus sit amet eros aliquet,
-                                consequat lacus id, tristique tortor. Praesent
-                                euismod enim a gravida convallis. Mauris non
-                                elit nec felis scelerisque fermentum. Integer
-                                porttitor pulvinar dui non posuere. Praesent eu
-                                risus sed massa tincidunt lacinia ac non mauris.
-                                Cras at pellentesque massa. Donec facilisis,
-                                enim viverra gravida ultrices, leo est viverra
-                                augue, in ultrices leo dolor sit amet libero. In
-                                et libero ut quam scelerisque porta et et ipsum.
-                                Suspendisse rhoncus tellus non leo imperdiet
-                                posuere. Proin facilisis nisl sit amet ultrices
-                                venenatis. Ut sem mauris, fermentum eget
-                                vestibulum vel, mollis eget quam. In id elit
-                                dolor. Integer at eros vel sem imperdiet
-                                finibus. Cras nec vestibulum lacus.
-                                <br />
-                                <br />
-                                Vestibulum sit amet iaculis lorem, in sagittis
-                                mauris. Vestibulum vitae massa magna. Proin
-                                vitae tellus porttitor, finibus sem suscipit,
-                                luctus neque. Vivamus vitae libero quis lectus
-                                malesuada hendrerit in in diam. Mauris egestas
-                                rutrum mauris, vel luctus tortor rutrum vitae.
-                                Pellentesque vestibulum turpis non condimentum
-                                malesuada. Quisque et velit nisl. Cras non
-                                rutrum enim, at facilisis sem. Mauris sed rutrum
-                                turpis. Pellentesque nec est sollicitudin,
-                                iaculis magna id, tristique ante.
-                              </p>
-                            </Popup>
-                          </Polygon>
-                        </>
-                      )
                     })}
                 </LayerGroup>
               </LayersControl.Overlay>
@@ -202,3 +176,32 @@ const LandfillMap = () => {
   )
 }
 export default LandfillMap
+
+function generatePolyCoords(lats, lons) {
+  let polygonCoords = []
+
+  for (let i = 0; i < lats.length; i++) {
+    const lat = lats[i]
+    const lon = 0 - lons[i]
+    polygonCoords.push([lat, lon])
+  }
+  return polygonCoords
+}
+
+function initializeLandfillVariables(polyCoordinatePerLandfill) {
+  let typeOfWaste = ""
+  let landfillName = ""
+  let lats = []
+  let lons = []
+
+  try {
+    typeOfWaste = polyCoordinatePerLandfill.TypeOfWaste
+    landfillName = polyCoordinatePerLandfill.LandfillName
+    lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
+    lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
+  } catch (e) {
+    console.log("invalid row ", polyCoordinatePerLandfill)
+  }
+
+  return { typeOfWaste, landfillName, lats, lons }
+}
