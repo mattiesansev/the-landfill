@@ -235,6 +235,19 @@
 
       .content {
         width: 80%;
+        svg {
+          padding-left: 10%;
+          position: relative;
+          width: 80%;
+          .tooltip {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px;
+            pointer-events: none; /* Prevents blocking interaction with bars */
+            opacity: 0; /* Initially hidden */
+          }
+        }
         .title {
           font-size: 55px;
         }

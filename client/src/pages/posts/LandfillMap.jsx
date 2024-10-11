@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from "react"
-import AuthorFooter from "../../components/AuthorFooter"
-import { authors } from "../../authors/authors"
+import { React, useEffect, useState } from "react";
+import AuthorFooter from "../../components/AuthorFooter";
+import { authors } from "../../authors/authors";
 import {
   MapContainer,
   TileLayer,
@@ -8,37 +8,39 @@ import {
   LayerGroup,
   Polygon,
   Popup,
-} from "react-leaflet"
-import "leaflet/dist/leaflet.css"
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import OwnershipBarchart from "./OwnershipBar";
+import ClassBar from "./ClassBar";
 //import 'react-pap'
 //import csvFile from './grouped_xy.csv'
 
 const LandfillMap = () => {
-  const headerImageUrl = "https://picsum.photos/300/200"
+  const headerImageUrl = "https://picsum.photos/300/200";
   //let coordinatesPerLandfill = []
-  const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([])
+  const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
   // Define the polygon's coordinates
   useEffect(() => {
     async function getData() {
       await fetch("/grouped_xy_with_info.csv")
         .then((response) => response.text())
         .then((csvText) => {
-          console.log("[mattie] data", csvText)
+          console.log("[mattie] data", csvText);
           Papa.parse(csvText, {
             header: true,
             dynamicTyping: true,
             complete: function (results) {
-              setCoordinatesPerLandfill(results.data)
-              console.log(coordinatesPerLandfill) // Parsed CSV data as an array of objects
+              setCoordinatesPerLandfill(results.data);
+              console.log(coordinatesPerLandfill); // Parsed CSV data as an array of objects
             },
             error: function (error) {
-              console.error(error.message) // Error handling
+              console.error(error.message); // Error handling
             },
-          })
-        })
+          });
+        });
     }
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   return (
     <div className="single">
@@ -59,6 +61,8 @@ const LandfillMap = () => {
           authorName={authors["destiny"]["name"]}
         />
         <p>content content content</p>
+        <OwnershipBarchart />
+        <ClassBar />
         <div class="embed-container">
           <MapContainer
             center={[37.77498, -122.434574]}
@@ -73,10 +77,10 @@ const LandfillMap = () => {
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
                       const { typeOfWaste, landfillName, lats, lons } =
-                        initializeLandfillVariables(polyCoordinatePerLandfill)
+                        initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (typeOfWaste === "Non-Hazardous Waste") {
-                        let polygonCoords = generatePolyCoords(lats, lons)
+                        let polygonCoords = generatePolyCoords(lats, lons);
                         return (
                           <>
                             <Polygon
@@ -94,7 +98,7 @@ const LandfillMap = () => {
                               </Popup>
                             </Polygon>
                           </>
-                        )
+                        );
                       }
                     })}
                 </LayerGroup>
@@ -105,10 +109,10 @@ const LandfillMap = () => {
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
                       const { typeOfWaste, landfillName, lats, lons } =
-                        initializeLandfillVariables(polyCoordinatePerLandfill)
+                        initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (typeOfWaste === "Hazardous Waste") {
-                        let polygonCoords = generatePolyCoords(lats, lons)
+                        let polygonCoords = generatePolyCoords(lats, lons);
 
                         return (
                           <>
@@ -127,7 +131,7 @@ const LandfillMap = () => {
                               </Popup>
                             </Polygon>
                           </>
-                        )
+                        );
                       }
                     })}
                 </LayerGroup>
@@ -138,13 +142,13 @@ const LandfillMap = () => {
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
                       const { typeOfWaste, landfillName, lats, lons } =
-                        initializeLandfillVariables(polyCoordinatePerLandfill)
+                        initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (
                         typeOfWaste !== "Hazardous Waste" &&
                         typeOfWaste !== "Non-Hazardous Waste"
                       ) {
-                        let polygonCoords = generatePolyCoords(lats, lons)
+                        let polygonCoords = generatePolyCoords(lats, lons);
 
                         return (
                           <>
@@ -163,7 +167,7 @@ const LandfillMap = () => {
                               </Popup>
                             </Polygon>
                           </>
-                        )
+                        );
                       }
                     })}
                 </LayerGroup>
@@ -173,35 +177,35 @@ const LandfillMap = () => {
         </div>
       </div>
     </div>
-  )
-}
-export default LandfillMap
+  );
+};
+export default LandfillMap;
 
 function generatePolyCoords(lats, lons) {
-  let polygonCoords = []
+  let polygonCoords = [];
 
   for (let i = 0; i < lats.length; i++) {
-    const lat = lats[i]
-    const lon = 0 - lons[i]
-    polygonCoords.push([lat, lon])
+    const lat = lats[i];
+    const lon = 0 - lons[i];
+    polygonCoords.push([lat, lon]);
   }
-  return polygonCoords
+  return polygonCoords;
 }
 
 function initializeLandfillVariables(polyCoordinatePerLandfill) {
-  let typeOfWaste = ""
-  let landfillName = ""
-  let lats = []
-  let lons = []
+  let typeOfWaste = "";
+  let landfillName = "";
+  let lats = [];
+  let lons = [];
 
   try {
-    typeOfWaste = polyCoordinatePerLandfill.TypeOfWaste
-    landfillName = polyCoordinatePerLandfill.LandfillName
-    lats = JSON.parse(polyCoordinatePerLandfill.Latitude)
-    lons = JSON.parse(polyCoordinatePerLandfill.Longitude)
+    typeOfWaste = polyCoordinatePerLandfill.TypeOfWaste;
+    landfillName = polyCoordinatePerLandfill.LandfillName;
+    lats = JSON.parse(polyCoordinatePerLandfill.Latitude);
+    lons = JSON.parse(polyCoordinatePerLandfill.Longitude);
   } catch (e) {
-    console.log("invalid row ", polyCoordinatePerLandfill)
+    console.log("invalid row ", polyCoordinatePerLandfill);
   }
 
-  return { typeOfWaste, landfillName, lats, lons }
+  return { typeOfWaste, landfillName, lats, lons };
 }
