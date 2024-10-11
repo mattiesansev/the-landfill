@@ -269,10 +269,10 @@
           height: 400px;
           .non-hazardous-popup {
             .leaflet-popup-tip {
-              background-color: #d5d36d;
+              background-color: #bbf217;
             }
             .leaflet-popup-content-wrapper {
-              background-color: #f2f075;
+              background-color: #9fca1e;
               height: 100%;
               border-radius: 5px;
               box-shadow: -3px 0 14px rgba(0, 0, 0, 0.8);
@@ -397,4 +397,21 @@
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
   font-size: 14px;
+  position: absolute;
+  width: 180px;
+  top: 0;
+  right: 0;
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  display: flex;
+  opacity: 1 !important; // Force full opacity
+  visibility: visible !important; // Ensure visibility
+  transition: none !important; // Remove any transition effects
+}
+
+// If there are any hover effects, we can remove them:
+.leaflet-touch .leaflet-control-attribution:hover,
+.leaflet-touch .leaflet-control-layers:hover,
+.leaflet-touch .leaflet-bar:hover {
+  opacity: 1 !important;
 }

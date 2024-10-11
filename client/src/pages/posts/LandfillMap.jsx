@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react"
+import { React, useEffect, useState, useRef, useCallback } from "react"
 import AuthorFooter from "../../components/AuthorFooter"
 import { authors } from "../../authors/authors"
 import {
@@ -12,6 +12,28 @@ import {
 import "leaflet/dist/leaflet.css"
 //import 'react-pap'
 //import csvFile from './grouped_xy.csv'
+
+const handleViewChange = (map, center, zoom) => {
+  map.setView(center, zoom)
+}
+
+const viewSettings = {
+  sanFrancisco: {
+    lat: 37.77498,
+    lon: -122.434574,
+    zoom: 12,
+  },
+  eastBay: {
+    lat: 37.7429,
+    lon: -122.18045,
+    zoom: 11.3,
+  },
+  main: {
+    lat: 37.7429,
+    lon: -122.25045,
+    zoom: 10,
+  },
+}
 
 const LandfillMap = () => {
   const headerImageUrl = "https://picsum.photos/300/200"
@@ -39,6 +61,17 @@ const LandfillMap = () => {
     }
     getData()
   }, [])
+  const mapRef = useRef(null)
+
+  const handleExternalViewChange = useCallback((location) => {
+    if (mapRef.current) {
+      handleViewChange(
+        mapRef.current,
+        [location.lat, location.lon],
+        location.zoom
+      )
+    }
+  }, [])
 
   return (
     <div className="single">
@@ -59,13 +92,40 @@ const LandfillMap = () => {
           authorName={authors["destiny"]["name"]}
         />
         <p>content content content</p>
+        <button onClick={() => handleExternalViewChange(viewSettings.main)}>
+          Main
+        </button>
+        <button
+          onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
+        >
+          San Francisco
+        </button>
+        <button onClick={() => handleExternalViewChange(viewSettings.eastBay)}>
+          East Bay
+        </button>
         <div class="embed-container">
           <MapContainer
-            center={[37.77498, -122.434574]}
-            zoom={12}
-            style={{ height: "100vh", width: "100%" }}
+            ref={mapRef}
+            center={[viewSettings.main.lat, viewSettings.main.lon]}
+            zoom={viewSettings.main.zoom}
+            style={{ height: "80vh", width: "100%" }}
             zoomControl={false}
           >
+            {/* <button onClick={() => handleExternalViewChange(viewSettings.main)}>
+              Main
+            </button>
+            <button
+              onClick={() =>
+                handleExternalViewChange(viewSettings.sanFrancisco)
+              }
+            >
+              San Francisco
+            </button>
+            <button
+              onClick={() => handleExternalViewChange(viewSettings.eastBay)}
+            >
+              East Bay
+            </button> */}
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <LayersControl position="topright" collapsed={false}>
               <LayersControl.Overlay name="Non-Hazardous Waste">
@@ -81,7 +141,7 @@ const LandfillMap = () => {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#f2f075",
+                                color: "#bbf217",
                                 fillOpacity: 0.8,
                               }}
                               positions={polygonCoords}
