@@ -7,11 +7,6 @@ export default defineConfig({
   build: {
     outDir: "dist",
     assetsDir: "assets",
-    rollupOptions: {
-      input: {
-        main: "index.html",
-        csv: "public/grouped_xy_with_info.csv",
-      },
-    },
+    copyPublicDir: true,
   },
 })
