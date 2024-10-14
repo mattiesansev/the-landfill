@@ -1,0 +1,1 @@
+SWIS,Longitude,Latitude,LandfillName,City,LandfillOwnershipType,Owner,Class,TypeOfWaste,TypeOfWaste2,CurrentLandfillStatus,YearOpened,YearClosed,YearRange,Converted,ConversionType,SiteConversion,SiteRegulartoryStatus,DocumentationLink;
