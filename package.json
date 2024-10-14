@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "start": "webpack-dev-server --mode development",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "format": "prettier --write ."
   },
   "dependencies": {
