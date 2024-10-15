@@ -10,7 +10,7 @@ import {
   Popup,
 } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
-import csvFile from "../../../public/grouped_xy_with_info.csv"
+import csvFile from "../../../src/grouped_xy_with_info.csv"
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom)
