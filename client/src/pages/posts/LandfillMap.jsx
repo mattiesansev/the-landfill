@@ -94,20 +94,22 @@ const LandfillMap = () => {
           authorName={authors["destiny"]["name"]}
         />
         <p>content content content</p>
-        <button onClick={() => handleExternalViewChange(viewSettings.main)}>
-          Main
-        </button>
-        <button
-          onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
-        >
-          San Francisco
-        </button>
-        <button onClick={() => handleExternalViewChange(viewSettings.eastBay)}>
-          East Bay
-        </button>
-        <ClassBar />
-        <OwnershipBar />
         <div class="embed-container">
+          <ClassBar />
+          <OwnershipBar />
+          <button onClick={() => handleExternalViewChange(viewSettings.main)}>
+            Main
+          </button>
+          <button
+            onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
+          >
+            San Francisco
+          </button>
+          <button
+            onClick={() => handleExternalViewChange(viewSettings.eastBay)}
+          >
+            East Bay
+          </button>
           <MapContainer
             ref={mapRef}
             center={[viewSettings.main.lat, viewSettings.main.lon]}
