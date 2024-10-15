@@ -10,8 +10,7 @@ import {
   Popup,
 } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
-//import 'react-pap'
-//import csvFile from './grouped_xy.csv'
+import csvFile from "../../../assets/grouped_xy_with_info.csv"
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom)
@@ -41,23 +40,9 @@ const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([])
   // Define the polygon's coordinates
   useEffect(() => {
-    async function getData() {
-      await fetch("/grouped_xy_with_info.csv")
-        .then((response) => response.text())
-        .then((csvText) => {
-          console.log("[mattie] data", csvText)
-          Papa.parse(csvText, {
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-              setCoordinatesPerLandfill(results.data)
-              console.log(coordinatesPerLandfill) // Parsed CSV data as an array of objects
-            },
-            error: function (error) {
-              console.error(error.message) // Error handling
-            },
-          })
-        })
+    function getData() {
+      console.log(csvFile)
+      setCoordinatesPerLandfill(csvFile)
     }
     getData()
   }, [])
