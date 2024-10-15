@@ -234,7 +234,7 @@
       gap: 50px;
 
       .content {
-        width: 80%;
+        width: 70%;
         .title {
           font-size: 55px;
         }
@@ -259,11 +259,11 @@
             font-weight: bold;
           }
         }
-        .inner-content {
+
+        .embed-container {
           position: relative;
           max-width: 100%;
           margin: 0 auto; // Centers the container
-          width: 80%;
           .non-hazardous-popup {
             .leaflet-popup-tip {
               background-color: #bbf217;
