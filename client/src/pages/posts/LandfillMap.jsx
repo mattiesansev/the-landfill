@@ -93,8 +93,8 @@ const LandfillMap = () => {
           postDate="July 15, 2024"
           authorName={authors["destiny"]["name"]}
         />
-        <p>content content content</p>
-        <div class="embed-container">
+        <div class="inner-content">
+          <p>content content content</p>
           <ClassBar />
           <OwnershipBar />
           <button onClick={() => handleExternalViewChange(viewSettings.main)}>
