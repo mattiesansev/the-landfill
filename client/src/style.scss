@@ -259,14 +259,11 @@
             font-weight: bold;
           }
         }
-        .embed-container {
+        .inner-content {
           position: relative;
-          padding-bottom: 56.25%; // 16:9 aspect ratio
-          height: 0;
           max-width: 100%;
           margin: 0 auto; // Centers the container
           width: 80%;
-          height: 400px;
           .non-hazardous-popup {
             .leaflet-popup-tip {
               background-color: #bbf217;
