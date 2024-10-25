@@ -2,10 +2,13 @@
   "name": "vite",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://mattiesansev.github.io/the-landfill/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "start": "webpack-dev-server --mode development",
     "format": "prettier --write ."
@@ -20,6 +23,8 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
+    "d3": "^7.9.0",
+    "gh-pages": "^6.2.0",
     "leaflet": "^1.9.4",
     "prettier": "^3.3.3",
     "react-leaflet": "^4.2.1",
