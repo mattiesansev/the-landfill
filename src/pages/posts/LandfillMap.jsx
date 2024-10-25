@@ -10,7 +10,10 @@ import {
   Popup,
 } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
-import csvFile from "../../../src/grouped_xy_with_info.csv"
+import ClassBar from "./charts/ClassBar"
+import OwnershipBar from "./charts/OwnershipBar"
+//import 'react-pap'
+//import csvFile from './grouped_xy.csv'
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom)
@@ -40,9 +43,23 @@ const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([])
   // Define the polygon's coordinates
   useEffect(() => {
-    function getData() {
-      console.log(csvFile)
-      setCoordinatesPerLandfill(csvFile)
+    async function getData() {
+      await fetch("/grouped_xy_with_info.csv")
+        .then((response) => response.text())
+        .then((csvText) => {
+          console.log("[mattie] data", csvText)
+          Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true,
+            complete: function (results) {
+              setCoordinatesPerLandfill(results.data)
+              console.log(coordinatesPerLandfill) // Parsed CSV data as an array of objects
+            },
+            error: function (error) {
+              console.error(error.message) // Error handling
+            },
+          })
+        })
     }
     getData()
   }, [])
@@ -77,18 +94,22 @@ const LandfillMap = () => {
           authorName={authors["destiny"]["name"]}
         />
         <p>content content content</p>
-        <button onClick={() => handleExternalViewChange(viewSettings.main)}>
-          Main
-        </button>
-        <button
-          onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
-        >
-          San Francisco
-        </button>
-        <button onClick={() => handleExternalViewChange(viewSettings.eastBay)}>
-          East Bay
-        </button>
+        <ClassBar />
+        <OwnershipBar />
         <div class="embed-container">
+          <button onClick={() => handleExternalViewChange(viewSettings.main)}>
+            Main
+          </button>
+          <button
+            onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
+          >
+            San Francisco
+          </button>
+          <button
+            onClick={() => handleExternalViewChange(viewSettings.eastBay)}
+          >
+            East Bay
+          </button>
           <MapContainer
             ref={mapRef}
             center={[viewSettings.main.lat, viewSettings.main.lon]}
