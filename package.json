@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "./node_modules/gh-pages/bin/gh-pages-clean.js && gh-pages -d dist",
     "preview": "vite preview",
     "start": "webpack-dev-server --mode development",
     "format": "prettier --write ."
