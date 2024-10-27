@@ -41,6 +41,7 @@ const LandfillMap = () => {
   const headerImageUrl = "https://picsum.photos/300/200";
   //let coordinatesPerLandfill = []
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
+  const [censusData, setCensusData] = useState([]);
   // Define the polygon's coordinates
   useEffect(() => {
     async function getData() {
@@ -61,7 +62,25 @@ const LandfillMap = () => {
           });
         });
     }
+    async function getCensusData() {
+      await fetch("/poverty_data_full.csv")
+        .then((response) => response.text())
+        .then((csvText) => {
+          console.log("[mattie] getting poverty data")
+          Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true,
+            complete: function (results) {
+              setCensusData(results.data);
+            },
+            error: function (error) {
+              console.error(error.message); // Error handling
+            },
+          });
+        });
+    }
     getData();
+    getCensusData();
   }, []);
   const mapRef = useRef(null);
 
@@ -74,6 +93,59 @@ const LandfillMap = () => {
       );
     }
   }, []);
+
+  function getHeatmapColor(povertyLevel) {
+    const percentageString = povertyLevel;
+    const numberValue = parseFloat(percentageString) / 100;
+    // Clamp the value between 0 and 1
+    const value = Math.max(0, Math.min(1, numberValue));
+
+    // Lightness decreases as value increases (from 80% to 50%)
+    const lightness = (1 - value) * 30 + 70; // Lightness from 70% to 50%
+
+    const hue = 0; // Red hue
+    const saturation = 100; // Full saturation
+
+    // Convert HSL to RGB
+    const rgb = hslToRgb(hue, saturation, lightness);
+
+    // Convert RGB to hex
+    const hexColor = rgbToHex(rgb.r, rgb.g, rgb.b);
+
+    return hexColor;
+}
+
+function hslToRgb(h, s, l) {
+    let r, g, b;
+
+    s /= 100;
+    l /= 100;
+
+    if (s === 0) {
+        r = g = b = l; // achromatic
+    } else {
+        const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        };
+
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hue2rgb(p, q, h / 360 + 1 / 3);
+        g = hue2rgb(p, q, h / 360);
+        b = hue2rgb(p, q, h / 360 - 1 / 3);
+    }
+
+    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+}
+
+function rgbToHex(r, g, b) {
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
 
   return (
     <div className="single">
@@ -117,21 +189,6 @@ const LandfillMap = () => {
             style={{ height: "80vh", width: "100%" }}
             zoomControl={false}
           >
-            {/* <button onClick={() => handleExternalViewChange(viewSettings.main)}>
-              Main
-            </button>
-            <button
-              onClick={() =>
-                handleExternalViewChange(viewSettings.sanFrancisco)
-              }
-            >
-              San Francisco
-            </button>
-            <button
-              onClick={() => handleExternalViewChange(viewSettings.eastBay)}
-            >
-              East Bay
-            </button> */}
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <LayersControl position="topright" collapsed={false}>
               <LayersControl.Overlay name="Non-Hazardous Waste">
@@ -180,7 +237,7 @@ const LandfillMap = () => {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#ff845b",
+                                color: "#F5BD1E",
                                 fillOpacity: 0.8,
                               }}
                               positions={polygonCoords}
@@ -216,7 +273,7 @@ const LandfillMap = () => {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#4b90ff",
+                                color: "#FFE134",
                                 fillOpacity: 0.8,
                               }}
                               positions={polygonCoords}
@@ -231,6 +288,37 @@ const LandfillMap = () => {
                           </>
                         );
                       }
+                    })}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="Show poverty lines">
+                <LayerGroup>
+                  {censusData &&
+                    censusData.map((row) => {
+                      const coords = row.the_geom
+                          if (coords) {
+                            const polygonCoords = JSON.parse(coords)
+                            const povertyLevel = row.estimatedPercentBelowPovertyLevel
+              
+
+                            return (
+                              <>
+                                <Polygon
+                                  pathOptions={{
+                                    color: getHeatmapColor(povertyLevel),
+                                    fillOpacity: 1.0,
+                                  }}
+                                  positions={polygonCoords}
+                                >
+                                  <Popup className="unclassified-popup">
+                                    <p className="popUpText">
+                                      {povertyLevel} below the poverty level
+                                    </p>
+                                  </Popup>
+                                </Polygon>
+                              </>
+                           );
+                          }
                     })}
                 </LayerGroup>
               </LayersControl.Overlay>
