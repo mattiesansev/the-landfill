@@ -1,39 +1,39 @@
-import * as d3 from "d3";
-import { React, useEffect, useState, useRef } from "react";
+import * as d3 from "d3"
+import { React, useEffect, useState, useRef } from "react"
 const ClassBar = () => {
-  const ref = useRef();
-  const [data, setData] = useState([]);
+  const ref = useRef()
+  const [data, setData] = useState([])
   const [tooltip, setTooltip] = useState({
     visible: false,
     content: "",
     details: "",
     x: 0,
     y: 0,
-  });
+  })
   useEffect(() => {
     async function getData() {
-      await fetch("/class_counts.csv")
+      await fetch("class_counts.csv")
         .then((response) => response.text())
         .then((csvText) => {
           Papa.parse(csvText, {
             header: true,
             dynamicTyping: true,
             complete: function (results) {
-              setData(results.data);
+              setData(results.data)
             },
             error: function (error) {
-              console.error(error.message); // Error handling
+              console.error(error.message) // Error handling
             },
-          });
-        });
+          })
+        })
     }
-    getData();
-  }, []);
+    getData()
+  }, [])
   useEffect(() => {
     // set the dimensions and margins of the graph
     const margin = { top: 30, right: 30, bottom: 100, left: 60 },
       width = 600,
-      height = 400;
+      height = 400
     // append the svg object to the body of the page
     const svg = d3
       .select(ref.current)
@@ -41,23 +41,23 @@ const ClassBar = () => {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .attr("transform", `translate(${margin.left},${margin.top})`)
     // X axis
     const x = d3
       .scaleBand()
       .range([0, width])
       .domain(data.map((d) => d.Class))
-      .padding(0.2);
+      .padding(0.2)
     svg
       .append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
     // Add Y axis
-    const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
-    svg.append("g").call(d3.axisLeft(y));
+    const y = d3.scaleLinear().domain([0, 100]).range([height, 0])
+    svg.append("g").call(d3.axisLeft(y))
     // Bars
     svg
       .selectAll("mybar")
@@ -65,15 +65,15 @@ const ClassBar = () => {
       .join("rect")
       .attr("x", (d) => x(d.Class))
       .attr("y", function (d) {
-        return y(0);
+        return y(0)
       })
       .attr("width", x.bandwidth())
       .attr("height", function (d) {
-        return height - y(0);
+        return height - y(0)
       }) // start at 0
       .attr("fill", "#5f0f40")
       .on("mouseenter", (event, d) => {
-        console.log("hover ", d);
+        console.log("hover ", d)
         // Show the tooltip when hovering
         setTooltip({
           visible: true,
@@ -81,26 +81,26 @@ const ClassBar = () => {
           details: d.Details,
           x: event.pageX + 5,
           y: event.pageY - 28,
-        });
+        })
       })
       .on("mouseleave", () => {
         // Hide the tooltip when leaving
-        setTooltip((prev) => ({ ...prev, visible: false }));
-      });
+        setTooltip((prev) => ({ ...prev, visible: false }))
+      })
     // Animation
     svg
       .selectAll("rect")
       .transition()
       .duration(800)
       .attr("y", function (d) {
-        return y(d.Count);
+        return y(d.Count)
       })
       .attr("height", function (d) {
-        return height - y(d.Count);
+        return height - y(d.Count)
       })
       .delay(function (d, i) {
-        return i * 100;
-      });
+        return i * 100
+      })
     // Add your title text
     svg
       .append("text")
@@ -109,8 +109,8 @@ const ClassBar = () => {
       .attr("text-anchor", "middle") // Center the text horizontally
       .style("font-size", "40px") // Font size of the title
       .style("font-family", "Outfit") // Font family
-      .text("Landfills by Class"); // The text of the title
-  }, [data]);
+      .text("Landfills by Class") // The text of the title
+  }, [data])
   return (
     <div>
       <svg height={550} width={800} id="barchart" ref={ref} />
@@ -133,6 +133,6 @@ const ClassBar = () => {
         </div>
       )}
     </div>
-  );
-};
-export default ClassBar;
+  )
+}
+export default ClassBar
