@@ -41,6 +41,7 @@ const LandfillMap = () => {
   const headerImageUrl = "https://picsum.photos/300/200";
   //let coordinatesPerLandfill = []
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
+  const [censusData, setCensusData] = useState([]);
   // Define the polygon's coordinates
   useEffect(() => {
     async function getData() {
@@ -61,7 +62,24 @@ const LandfillMap = () => {
           });
         });
     }
+    async function getCensusData() {
+      await fetch("/census_data.csv")
+        .then((response) => response.text())
+        .then((csvText) => {
+          Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true,
+            complete: function (results) {
+              setCensusData(results.data);
+            },
+            error: function (error) {
+              console.error(error.message); // Error handling
+            },
+          });
+        });
+    }
     getData();
+    getCensusData();
   }, []);
   const mapRef = useRef(null);
 
@@ -117,21 +135,6 @@ const LandfillMap = () => {
             style={{ height: "80vh", width: "100%" }}
             zoomControl={false}
           >
-            {/* <button onClick={() => handleExternalViewChange(viewSettings.main)}>
-              Main
-            </button>
-            <button
-              onClick={() =>
-                handleExternalViewChange(viewSettings.sanFrancisco)
-              }
-            >
-              San Francisco
-            </button>
-            <button
-              onClick={() => handleExternalViewChange(viewSettings.eastBay)}
-            >
-              East Bay
-            </button> */}
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <LayersControl position="topright" collapsed={false}>
               <LayersControl.Overlay name="Non-Hazardous Waste">
@@ -203,6 +206,42 @@ const LandfillMap = () => {
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
+                      const { typeOfWaste, landfillName, lats, lons } =
+                        initializeLandfillVariables(polyCoordinatePerLandfill);
+
+                      if (
+                        typeOfWaste !== "Hazardous Waste" &&
+                        typeOfWaste !== "Non-Hazardous Waste"
+                      ) {
+                        let polygonCoords = generatePolyCoords(lats, lons);
+
+                        return (
+                          <>
+                            <Polygon
+                              pathOptions={{
+                                color: "#4b90ff",
+                                fillOpacity: 0.8,
+                              }}
+                              positions={polygonCoords}
+                            >
+                              <Popup className="unclassified-popup">
+                                <p className="popUpTitle">{landfillName}</p>
+                                <p className="popUpText">
+                                  This is an unclassified waste landfill!
+                                </p>
+                              </Popup>
+                            </Polygon>
+                          </>
+                        );
+                      }
+                    })}
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay name="Show poverty lines">
+                <LayerGroup>
+                  {censusData &&
+                    censusData.map((_, index) => {
+                      i % 2 !== 0;
                       const { typeOfWaste, landfillName, lats, lons } =
                         initializeLandfillVariables(polyCoordinatePerLandfill);
 
