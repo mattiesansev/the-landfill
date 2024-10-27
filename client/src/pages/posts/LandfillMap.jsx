@@ -12,8 +12,7 @@ import {
 import "leaflet/dist/leaflet.css"
 import ClassBar from "./charts/ClassBar"
 import OwnershipBar from "./charts/OwnershipBar"
-//import 'react-pap'
-//import csvFile from './grouped_xy.csv'
+import csvUrl from "/grouped_xy_with_info.csv?url"
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom)
@@ -43,25 +42,18 @@ const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([])
   // Define the polygon's coordinates
   useEffect(() => {
-    async function getData() {
-      await fetch("/grouped_xy_with_info.csv")
-        .then((response) => response.text())
-        .then((csvText) => {
-          console.log("[mattie] data", csvText)
-          Papa.parse(csvText, {
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-              setCoordinatesPerLandfill(results.data)
-              console.log(coordinatesPerLandfill) // Parsed CSV data as an array of objects
-            },
-            error: function (error) {
-              console.error(error.message) // Error handling
-            },
-          })
-        })
-    }
-    getData()
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      complete: function (results) {
+        setCoordinatesPerLandfill(results.data)
+        console.log(coordinatesPerLandfill)
+      },
+      error: function (error) {
+        console.error(error.message)
+      },
+    })
   }, [])
   const mapRef = useRef(null)
 
