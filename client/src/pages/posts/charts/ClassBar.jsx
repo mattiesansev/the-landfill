@@ -12,7 +12,7 @@ const ClassBar = () => {
   })
   useEffect(() => {
     async function getData() {
-      await fetch("class_counts.csv")
+      await fetch("/class_counts.csv")
         .then((response) => response.text())
         .then((csvText) => {
           Papa.parse(csvText, {

@@ -12,7 +12,7 @@ const OwnershipBar = () => {
   })
   useEffect(() => {
     async function getData() {
-      await fetch("/client/src/")
+      await fetch("/ownership_counts.csv")
         .then((response) => response.text())
         .then((csvText) => {
           Papa.parse(csvText, {
