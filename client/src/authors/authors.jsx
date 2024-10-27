@@ -1,4 +1,4 @@
-import MattieImg from "../img/logo_tmp.jpeg";
+import MattieImg from "/logo_tmp.jpeg"
 export const authors = {
   mattie: {
     name: "Mattie Sanseverino",
@@ -8,4 +8,4 @@ export const authors = {
     name: "Destiny Santana",
     photo: MattieImg,
   },
-};
+}
