@@ -11,9 +11,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
-import OwnershipBar from "./charts/OwnershipBar";
-//import 'react-pap'
-//import csvFile from './grouped_xy.csv'
+import headerPhoto from "/src/header.jpg"
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom);
@@ -48,7 +46,6 @@ const LandfillMap = () => {
       await fetch("/grouped_xy_with_info.csv")
         .then((response) => response.text())
         .then((csvText) => {
-          console.log("[mattie] data", csvText);
           Papa.parse(csvText, {
             header: true,
             dynamicTyping: true,
@@ -66,7 +63,6 @@ const LandfillMap = () => {
       await fetch("/poverty_data_full.csv")
         .then((response) => response.text())
         .then((csvText) => {
-          console.log("[mattie] getting poverty data")
           Papa.parse(csvText, {
             header: true,
             dynamicTyping: true,
@@ -150,7 +146,7 @@ function rgbToHex(r, g, b) {
   return (
     <div className="single">
       <div className="content">
-        <img src={headerImageUrl}></img>
+        <img src={headerPhoto}></img>
         <div className="title">
           Infrastructure across the Bay Area was built on top of landfills. What
           does that mean for you?
@@ -165,9 +161,18 @@ function rgbToHex(r, g, b) {
           postDate="July 15, 2024"
           authorName={authors["destiny"]["name"]}
         />
+        <AuthorFooter
+          authorImageUrl={authors["nick"]["photo"]}
+          postDate="July 15, 2024"
+          authorName={authors["nick"]["name"]}
+        />
+        <AuthorFooter
+          authorImageUrl={authors["maggie"]["photo"]}
+          postDate="July 15, 2024"
+          authorName={authors["maggie"]["name"]}
+        />
         <p>content content content</p>
         <ClassBar />
-        <OwnershipBar />
         <div class="embed-container">
           <button onClick={() => handleExternalViewChange(viewSettings.main)}>
             Main
