@@ -3,6 +3,7 @@
   justify-content: center;
   background-color: #ffffff;
   margin: calc(50% - 50vw);
+  font-family: "Quattrocento Sans", sans-serif;
   .container {
     //width: 90%;
     .link {
@@ -237,6 +238,9 @@
         width: 70%;
         .title {
           font-size: 55px;
+        }
+        .axis {
+          font-size: 15px;
         }
         img {
           width: 100%;

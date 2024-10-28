@@ -11,9 +11,6 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
-import OwnershipBar from "./charts/OwnershipBar";
-//import 'react-pap'
-//import csvFile from './grouped_xy.csv'
 
 const handleViewChange = (map, center, zoom) => {
   map.setView(center, zoom);
@@ -167,7 +164,6 @@ function rgbToHex(r, g, b) {
         />
         <p>content content content</p>
         <ClassBar />
-        <OwnershipBar />
         <div class="embed-container">
           <button onClick={() => handleExternalViewChange(viewSettings.main)}>
             Main
