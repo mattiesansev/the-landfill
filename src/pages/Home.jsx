@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthorFooter from "../components/AuthorFooter";
 import { authors } from "../authors/authors";
+import landfillCover from "/src/header.jpg"
 
 const Home = () => {
   const posts = [
@@ -10,32 +11,17 @@ const Home = () => {
       title:
         "An analysis and visualization of abandoned and illegal landfills across the Bay Area",
       desc: "We researched and visualized all of the abandoned landfills across the bay area.",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      img: landfillCover,
+      authors: [authors.mattie, authors.destiny, authors.nick, authors.maggie]
     },
     {
       id: "about",
       title: "About us",
       desc: "Curious to learn about the people who put this site together?",
       img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      authors: [],
     },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
-    {
-      id: "about",
-      title: "About us",
-      desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
-    },
+    
   ];
   return (
     <div className="home">
@@ -49,21 +35,13 @@ const Home = () => {
               <div className="content">
                 <div className="title">{post.title}</div>
                 <div className="authors">
-                  <AuthorFooter
-                    authorImageUrl={authors["mattie"]["photo"]}
-                    postDate="July 15, 2024"
-                    authorName={authors["mattie"]["name"]}
-                  />
-                  <AuthorFooter
-                    authorImageUrl={authors["destiny"]["photo"]}
-                    postDate="July 15, 2024"
-                    authorName={authors["destiny"]["name"]}
-                  />
-                  <AuthorFooter
-                    authorImageUrl={authors["destiny"]["photo"]}
-                    postDate="July 15, 2024"
-                    authorName={authors["destiny"]["name"]}
-                  />
+                  { post.authors.map((author) => {
+                    return <AuthorFooter
+                      authorImageUrl={author.photo}
+                      postDate="July 15, 2024"
+                      authorName={author.name}
+                    />
+                  })}
                 </div>
               </div>
             </Link>

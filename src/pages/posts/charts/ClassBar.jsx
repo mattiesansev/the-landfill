@@ -54,10 +54,13 @@ const ClassBar = () => {
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .attr("class", "axis");
     // Add Y axis
     const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
-    svg.append("g").call(d3.axisLeft(y));
+    svg.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y));
     // Bars
     svg
       .selectAll("mybar")
@@ -112,8 +115,8 @@ const ClassBar = () => {
       .text("Landfills by Class"); // The text of the title
   }, [data]);
   return (
-    <div>
-      <svg height={550} width={800} id="barchart" ref={ref} />
+    <div >
+      <svg height={550} width={800} id="barchart" className="bar" ref={ref} />
       {tooltip.visible && (
         <div
           style={{
@@ -125,10 +128,11 @@ const ClassBar = () => {
             padding: "5px",
             pointerEvents: "none",
             borderRadius: 5,
+            width: 250,
           }}
         >
           <b>{tooltip.content}</b>
-          <br></br>
+          <br/><br/>
           {tooltip.details}
         </div>
       )}

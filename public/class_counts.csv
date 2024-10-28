@@ -1,5 +1,5 @@
-Class,Count
-"Unknown",69
-"Class III",60
-"Class I",19
-"Class II",14
+Class,Count,Details
+"Class I",19,"Class I landfills accept hazardous waste that can harm human and environmental health and are operated by the Department of Toxic Substance Control (DTSC). New and existing class I landfills must meet standards set by the RCRA Subtitle C for the disposal of hazardous waste."
+"Class II",14,"Class II landfills accept non-hazardous municipal waste and hazardous waste like lead, copper, and nickel below a certain threshold limit. New and existing class II landfills must meet standards set by the RCRA Subtitle D along with new liner requirements."
+"Class III",60,"Class III landfills accept non-hazardous municipal solid waste such as household garbage, construction and demolition waste, household appliances, abandoned vehicles, and farm wastes. Class III landfills must meet the standards set by RCRA subtitle D."
+"Unknown",69,"Unclassified waste is inert waste that does not contain hazardous materials and does not contain high quantities of decomposable waste, thus is not classified."

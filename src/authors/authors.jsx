@@ -8,4 +8,12 @@ export const authors = {
     name: "Destiny Santana",
     photo: MattieImg,
   },
+  nick: {
+    name: "Nick Vargas",
+    photo: MattieImg,
+  },
+  maggie: {
+    name: "Maggie Carroll",
+    photo: MattieImg,
+  }
 };
