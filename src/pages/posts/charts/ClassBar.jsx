@@ -3,6 +3,7 @@ import { React, useEffect, useState, useRef } from "react";
 const ClassBar = () => {
   const ref = useRef();
   const [data, setData] = useState([]);
+  const [chartWidth, setWidth] = useState(window.innerWidth * 0.6);
   const [tooltip, setTooltip] = useState({
     visible: false,
     content: "",
@@ -10,6 +11,16 @@ const ClassBar = () => {
     x: 0,
     y: 0,
   });
+
+  function handleResize() {
+    const windowWidth = window.innerWidth
+    const width = windowWidth * 0.6
+    setWidth(width)
+  }
+
+  // Add event listener on component mount
+  window.addEventListener("resize", handleResize);
+
   useEffect(() => {
     async function getData() {
       await fetch("/class_counts.csv")
@@ -30,9 +41,12 @@ const ClassBar = () => {
     getData();
   }, []);
   useEffect(() => {
+    // Clear the old chart
+    d3.select(ref.current).select("svg").remove();
+
     // set the dimensions and margins of the graph
-    const margin = { top: 30, right: 30, bottom: 100, left: 60 },
-      width = 600,
+    const margin = { top: 30, right: 30, bottom: 100, left: 30 },
+      width = chartWidth,
       height = 400;
     // append the svg object to the body of the page
     const svg = d3
@@ -82,8 +96,8 @@ const ClassBar = () => {
           visible: true,
           content: `${d.Count} landfills with ${d.Class} waste`,
           details: d.Details,
-          x: event.pageX + 5,
-          y: event.pageY - 28,
+          x: event.pageX - 75,
+          y: event.pageY - 200,
         });
       })
       .on("mouseleave", () => {
@@ -107,16 +121,16 @@ const ClassBar = () => {
     // Add your title text
     svg
       .append("text")
-      .attr("x", 250) // X-coordinate of the title (center it horizontally)
-      .attr("y", 30) // Y-coordinate of the title (position it at the top)
+      .attr("x", 140) // X-coordinate of the title (center it horizontally)
+      .attr("y", 20) // Y-coordinate of the title (position it at the top)
       .attr("text-anchor", "middle") // Center the text horizontally
-      .style("font-size", "40px") // Font size of the title
+      .style("font-size", "30px") // Font size of the title
       .style("font-family", "Outfit") // Font family
       .text("Landfills by Class"); // The text of the title
-  }, [data]);
+  }, [data, chartWidth]);
   return (
     <div >
-      <svg height={550} width={800} id="barchart" className="bar" ref={ref} />
+      <svg height={550} width={chartWidth } id="barchart" className="bar" ref={ref} />
       {tooltip.visible && (
         <div
           style={{
@@ -128,7 +142,7 @@ const ClassBar = () => {
             padding: "5px",
             pointerEvents: "none",
             borderRadius: 5,
-            width: 250,
+            width: 180,
           }}
         >
           <b>{tooltip.content}</b>

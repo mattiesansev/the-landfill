@@ -27,32 +27,28 @@
         }
         // NAVBAR
         .navbar {
-          .container {
             display: flex;
             justify-content: space-between;
             height: 20px;
-            width: 100%;
             padding-right: 30px;
-            .logo {
-              img {
-                width: 120px;
+            @media (max-width: 768px) {
+              .title {
+                font-size: 20px;
               }
             }
-            .title {
-              font-size: 50px;
-              font-weight: 500;
+            gap: 10px;
+            margin-top: 10px;
+            margin-right: 10px;
+            font-size: 26px;
+            font-weight: 300;
+            @media (max-width: 768px) {
+                font-size: 12px;
+                line-height: 20px;
+                margin-right: 5px;
+                margin-top: 5px;
+                padding: 0;
+                line-height: 12px;
             }
-            .links {
-              display: flex;
-              gap: 10px;
-
-              h6 {
-                font-size: 26px;
-                font-weight: 300;
-                margin-top: 15px;
-              }
-            }
-          }
         }
         .title {
           font-size: 70px;
@@ -62,15 +58,21 @@
           max-width: 400px;
           line-height: 80px;
         }
+        @media (max-width: 768px) {
+          .title {
+            font-size: 40px;
+            line-height: 50px;
+          }
+        }
         .links {
           display: flex;
+          flex-wrap: wrap; 
           gap: 10px;
-
           h6 {
             font-size: 26px;
             font-weight: 300;
           }
-        }
+        } 
       }
     }
     //FOOTER
@@ -111,15 +113,25 @@
             border-radius: 1px;
             display: flex;
 
-            height: 300px;
+            height: auto;
+            @media (max-width: 768px) {
+              height: auto;
+            }
             .img {
-              width: 30%;
               padding: 40px;
+              height: 220px;
               img {
                 border-radius: 5px;
-                width: 80%;
-                height: 100%;
-                overflow: hidden;
+                object-fit: cover;
+                width: 300px;
+                height: 220px;
+              }
+              @media (max-width: 768px) {
+                padding: 20px;
+                img {
+                  width: 200px;
+                  height: 200px;
+                }
               }
             }
             .content {
@@ -129,12 +141,32 @@
               padding-top: 40px;
               padding-bottom: 40px;
               width: 70%;
+              @media (max-width: 768px) {
+                  width: 60%;
+                  display: flex;
+                  justify-content: center;
+                  text-align: left;
+                  align-items: center;
+                  flex-direction: column;
+              }
               .title {
-                font-size: 40px;
+                font-size: 32px;
                 font-family: "Outfit", sans-serif;
+                @media (max-width: 768px) {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                }
+              }
+              @media (max-width: 768px) {
+                .title {
+                  font-size: 24px;
+                }
               }
               .authors {
                 display: flex;
+                flex-wrap: wrap;
                 //align-items: center;
                 gap: 15px;
                 .user {
@@ -150,6 +182,9 @@
                   }
                   span {
                     font-weight: bold;
+                  }
+                  @media (max-width: 768px) {
+                    display: none;
                   }
                 }
               }
@@ -242,12 +277,18 @@
         .title {
           font-size: 55px;
           padding: 15px;
+          @media (max-width: 850px) {
+            font-size: 35px;
+          }
         }
         .axis {
+          @media (max-width: 850px) {
+            font-size: 10px;
+          }
           font-size: 15px;
         }
-        .bar {
-          
+        .text {
+          font-size: 40px;
         }
         img {
           width: 100%;
