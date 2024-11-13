@@ -13,9 +13,6 @@ import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
 import headerPhoto from "/src/header.jpg"
 
-const handleViewChange = (map, center, zoom) => {
-  map.setView(center, zoom);
-};
 
 const viewSettings = {
   sanFrancisco: {
@@ -80,16 +77,6 @@ const LandfillMap = () => {
     getCensusData();
   }, [showPovertyLines]);
   const mapRef = useRef(null);
-
-  const handleExternalViewChange = useCallback((location) => {
-    if (mapRef.current) {
-      handleViewChange(
-        mapRef.current,
-        [location.lat, location.lon],
-        location.zoom
-      );
-    }
-  }, []);
 
   function getHeatmapColor(povertyLevel) {
     const percentageString = povertyLevel;
@@ -237,8 +224,10 @@ function rgbToHex(r, g, b) {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#bbf217",
-                                fillOpacity: 0.8,
+                                fillColor: "#FFE733",
+                                fillOpacity: 1,
+                                weight: 1,
+                                color: "#FFE733"
                               }}
                               positions={polygonCoords}
                             >
@@ -270,8 +259,10 @@ function rgbToHex(r, g, b) {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#F5BD1E",
-                                fillOpacity: 0.8,
+                                fillColor: "#05D5FA",
+                                fillOpacity: 1,
+                                weight: 1,
+                                color: "#05D5FA"
                               }}
                               positions={polygonCoords}
                             >
@@ -306,8 +297,10 @@ function rgbToHex(r, g, b) {
                           <>
                             <Polygon
                               pathOptions={{
-                                color: "#FFE134",
-                                fillOpacity: 0.8,
+                                fillColor: "#8800C4",
+                                fillOpacity: 1,
+                                weight: 1,
+                                color: "#8800C4"
                               }}
                               positions={polygonCoords}
                             >

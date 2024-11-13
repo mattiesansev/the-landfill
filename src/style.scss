@@ -33,6 +33,7 @@
             justify-content: space-between;
             height: 20px;
             padding-right: 30px;
+            width: 120px;
             @media (max-width: 768px) {
               .title {
                 font-size: 20px;
@@ -41,7 +42,7 @@
             gap: 10px;
             margin-top: 10px;
             margin-right: 10px;
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 300;
             @media (max-width: 768px) {
                 font-size: 12px;
@@ -242,10 +243,10 @@
         margin-top: 50px;
         display: flex;
         flex-direction: column;
-        gap: 150px;
         .person {
           display: flex;
           gap: 100px;
+          padding: 40px;
 
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
@@ -272,6 +273,18 @@
         }
       }
     }
+    //CONTACT
+    .contact {
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      gap: 10px;
+      .contactHeader {
+        padding: 20px;
+        font-size: 40px;
+      }
+    }
     //SINGLE
     .single {
       display: flex;
@@ -287,6 +300,11 @@
             font-size: 35px;
           }
         }
+        .chartTitle {
+          font-size: 30px;
+          align-self: center;
+          padding: 0px 10px 10px 0px;
+        }
         button {
           background-color: white;
           border-radius: 5px;
@@ -298,9 +316,6 @@
             font-size: 10px;
           }
           font-size: 15px;
-        }
-        .text {
-          font-size: 40px;
         }
         img {
           width: 100%;
@@ -453,7 +468,6 @@
     }
   }
 }
-.leaflet-touch .leaflet-control-attribution,
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
