@@ -1,7 +1,7 @@
-import React from "react";
-import Logo from "../img/logo_tmp.jpeg";
-import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import React from "react"
+import Logo from "../img/logo_tmp.jpeg"
+import { Link } from "react-router-dom"
+import Navbar from "./Navbar"
 
 const TitleRow = () => {
   return (
@@ -16,6 +16,6 @@ const TitleRow = () => {
         <Navbar />
       </div>
     </div>
-  );
-};
-export default TitleRow;
+  )
+}
+export default TitleRow
