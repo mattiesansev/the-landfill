@@ -33,6 +33,7 @@
             justify-content: space-between;
             height: 20px;
             padding-right: 30px;
+            width: 120px;
             @media (max-width: 768px) {
               .title {
                 font-size: 20px;
@@ -41,7 +42,7 @@
             gap: 10px;
             margin-top: 10px;
             margin-right: 10px;
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 300;
             @media (max-width: 768px) {
                 font-size: 12px;
