@@ -11,4 +11,7 @@ export default defineConfig({
     modulePreload: true,
     target: "esnext",
   },
+  server: {
+    historyApiFallback: true,
+  },
 })
