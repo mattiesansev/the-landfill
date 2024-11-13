@@ -1,4 +1,8 @@
-import MattieImg from "../img/logo_tmp.jpeg";
+import MattieImg from "../img/mattie.jpeg"
+import DestinyImg from "../img/destiny.jpeg"
+import NickImg from "../img/nick.jpeg"
+import MaggieImg from "../img/maggie.jpeg"
+
 export const authors = {
   mattie: {
     name: "Mattie Sanseverino",
@@ -6,14 +10,14 @@ export const authors = {
   },
   destiny: {
     name: "Destiny Santana",
-    photo: MattieImg,
+    photo: DestinyImg,
   },
   nick: {
     name: "Nick Vargas",
-    photo: MattieImg,
+    photo: NickImg,
   },
   maggie: {
     name: "Maggie Carroll",
-    photo: MattieImg,
-  }
-};
+    photo: MaggieImg,
+  },
+}

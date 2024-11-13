@@ -1,24 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
+import { authors } from "../authors/authors"
 
 const AboutUs = () => {
   const people = [
     {
       name: "Mattie Sanseverino",
       desc: "Mattie is a software engineer at Figma. She loves picnics and crafting. She is so excited to be working on this blog!",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      img: authors.mattie.photo,
     },
     {
       name: "Destiny Santana",
       desc: "Mattie is a software engineer at Figma. She loves picnics and crafting. She is so excited to be working on this blog!",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      img: authors.destiny.photo,
     },
     {
       name: "Nick Vargas",
       desc: "Mattie is a software engineer at Figma. She loves picnics and crafting. She is so excited to be working on this blog!",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      img: authors.nick.photo,
     },
-  ];
+  ]
   return (
     <div className="about">
       <div className="people">
@@ -35,6 +36,6 @@ const AboutUs = () => {
         ))}
       </div>
     </div>
-  );
-};
-export default AboutUs;
+  )
+}
+export default AboutUs
