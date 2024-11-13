@@ -243,10 +243,10 @@
         margin-top: 50px;
         display: flex;
         flex-direction: column;
-        gap: 150px;
         .person {
           display: flex;
           gap: 100px;
+          padding: 40px;
 
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
