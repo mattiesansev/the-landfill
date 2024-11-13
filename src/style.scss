@@ -287,6 +287,11 @@
             font-size: 35px;
           }
         }
+        .chartTitle {
+          font-size: 30px;
+          align-self: center;
+          padding: 0px 10px 10px 0px;
+        }
         button {
           background-color: white;
           border-radius: 5px;
@@ -298,9 +303,6 @@
             font-size: 10px;
           }
           font-size: 15px;
-        }
-        .text {
-          font-size: 40px;
         }
         img {
           width: 100%;
@@ -453,7 +455,6 @@
     }
   }
 }
-.leaflet-touch .leaflet-control-attribution,
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
