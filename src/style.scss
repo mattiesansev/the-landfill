@@ -273,6 +273,18 @@
         }
       }
     }
+    //CONTACT
+    .contact {
+      max-width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      gap: 10px;
+      .contactHeader {
+        padding: 20px;
+        font-size: 40px;
+      }
+    }
     //SINGLE
     .single {
       display: flex;

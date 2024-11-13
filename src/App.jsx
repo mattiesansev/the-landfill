@@ -12,6 +12,7 @@ import "./style.scss";
 import LandfillMap from "./pages/posts/LandfillMap";
 import AboutUs from "./pages/AboutUs";
 import TitleRow from "./components/TitleRow";
+import Contact from "./pages/Contact";
 
 const Layout = () => {
   return (
@@ -39,10 +40,10 @@ const router = createBrowserRouter([
         path: "/post/about",
         element: <AboutUs />,
       },
-      // {
-      //   path:"/post/contact",
-      //   element: <Contact/>
-      // },
+      {
+        path:"/post/contact",
+        element: <Contact/>
+      },
     ],
   },
 ]);
