@@ -1,6 +1,6 @@
-import React from "react";
-import Logo from "../img/logo_tmp.jpeg";
-import { Link } from "react-router-dom";
+import React from "react"
+import Logo from "../img/logo_tmp.jpeg"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
   return (
@@ -12,6 +12,6 @@ const Navbar = () => {
             contact
           </Link>
     </div>
-  );
-};
-export default Navbar;
+  )
+}
+export default Navbar

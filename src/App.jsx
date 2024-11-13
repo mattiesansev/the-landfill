@@ -1,17 +1,12 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Outlet,
-} from "react-router-dom";
-import Single from "./pages/Single";
-import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import "./style.scss";
-import LandfillMap from "./pages/posts/LandfillMap";
-import AboutUs from "./pages/AboutUs";
-import TitleRow from "./components/TitleRow";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
+import Single from "./pages/Single"
+import Home from "./pages/Home"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import "./style.scss"
+import LandfillMap from "./pages/posts/LandfillMap"
+import AboutUs from "./pages/AboutUs"
+import TitleRow from "./components/TitleRow"
 import Contact from "./pages/Contact";
 
 const Layout = () => {
@@ -21,8 +16,8 @@ const Layout = () => {
       <Outlet />
       <Footer />
     </>
-  );
-};
+  )
+}
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +41,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+])
 function App() {
   return (
     <div className="app">
@@ -54,7 +49,7 @@ function App() {
         <RouterProvider router={router} />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
