@@ -118,18 +118,13 @@ const ClassBar = () => {
       .delay(function (d, i) {
         return i * 100;
       });
-    // Add your title text
-    svg
-      .append("text")
-      .attr("x", 140) // X-coordinate of the title (center it horizontally)
-      .attr("y", 20) // Y-coordinate of the title (position it at the top)
-      .attr("text-anchor", "middle") // Center the text horizontally
-      .style("font-size", "30px") // Font size of the title
-      .style("font-family", "Outfit") // Font family
-      .text("Landfills by Class"); // The text of the title
   }, [data, chartWidth]);
   return (
     <div >
+      <div className='chartTitle'>
+        Landfills by Class
+      </div>
+      Landfills are classified in three categories, with class III being the least dangerous and class I being the most. Click on each bar to learn more about the different classes.
       <svg height={550} width={chartWidth } id="barchart" className="bar" ref={ref} />
       {tooltip.visible && (
         <div
