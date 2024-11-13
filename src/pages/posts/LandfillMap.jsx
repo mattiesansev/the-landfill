@@ -40,6 +40,7 @@ const LandfillMap = () => {
   //let coordinatesPerLandfill = []
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
   const [censusData, setCensusData] = useState([]);
+  const [showPovertyLines, setShowPovertyLines] = useState(false);
   // Define the polygon's coordinates
   useEffect(() => {
     async function getData() {
@@ -77,7 +78,7 @@ const LandfillMap = () => {
     }
     getData();
     getCensusData();
-  }, []);
+  }, [showPovertyLines]);
   const mapRef = useRef(null);
 
   const handleExternalViewChange = useCallback((location) => {
@@ -174,18 +175,16 @@ function rgbToHex(r, g, b) {
         <p>content content content</p>
         <ClassBar />
         <div class="embed-container">
-          <button onClick={() => handleExternalViewChange(viewSettings.main)}>
-            Main
+          <button onClick={() => {
+            setCoordinatesPerLandfill([])
+            setShowPovertyLines(true);
+          }}>
+            Show poverty lines
           </button>
-          <button
-            onClick={() => handleExternalViewChange(viewSettings.sanFrancisco)}
-          >
-            San Francisco
-          </button>
-          <button
-            onClick={() => handleExternalViewChange(viewSettings.eastBay)}
-          >
-            East Bay
+          <button onClick={() => {
+            setShowPovertyLines(false);
+          }}>
+            Hide poverty lines
           </button>
           <MapContainer
             ref={mapRef}
@@ -195,6 +194,35 @@ function rgbToHex(r, g, b) {
             zoomControl={false}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {showPovertyLines && censusData &&
+              censusData.map((row) => {
+                const coords = row.the_geom
+                    if (coords) {
+                      const polygonCoords = JSON.parse(coords)
+                      const povertyLevel = row.estimatedPercentBelowPovertyLevel
+
+                      return (
+                        <>
+                          <Polygon
+                            pathOptions={{
+                              fillOpacity: 1.0,
+                              fillColor: getHeatmapColor(povertyLevel),
+                              weight: 0.5,
+                              color: "#808080",
+                            }}
+                            positions={polygonCoords}
+                          >
+                            <Popup className="unclassified-popup">
+                              <p className="popUpText">
+                                {povertyLevel} below the poverty level
+                              </p>
+                            </Popup>
+                          </Polygon>
+                        </>
+                      );
+                    }
+              })
+            }
             <LayersControl position="topright" collapsed={false}>
               <LayersControl.Overlay name="Non-Hazardous Waste">
                 <LayerGroup>
@@ -293,37 +321,6 @@ function rgbToHex(r, g, b) {
                           </>
                         );
                       }
-                    })}
-                </LayerGroup>
-              </LayersControl.Overlay>
-              <LayersControl.Overlay name="Show poverty lines">
-                <LayerGroup>
-                  {censusData &&
-                    censusData.map((row) => {
-                      const coords = row.the_geom
-                          if (coords) {
-                            const polygonCoords = JSON.parse(coords)
-                            const povertyLevel = row.estimatedPercentBelowPovertyLevel
-              
-
-                            return (
-                              <>
-                                <Polygon
-                                  pathOptions={{
-                                    color: getHeatmapColor(povertyLevel),
-                                    fillOpacity: 1.0,
-                                  }}
-                                  positions={polygonCoords}
-                                >
-                                  <Popup className="unclassified-popup">
-                                    <p className="popUpText">
-                                      {povertyLevel} below the poverty level
-                                    </p>
-                                  </Popup>
-                                </Polygon>
-                              </>
-                           );
-                          }
                     })}
                 </LayerGroup>
               </LayersControl.Overlay>

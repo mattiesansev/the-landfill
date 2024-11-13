@@ -19,10 +19,12 @@
         padding: 10px 0px;
         display: flex;
         justify-content: space-between;
-        // align-items: center;
         .logo {
           img {
             width: 120px;
+            @media (max-width: 768px) {
+                width: 45px;
+            }
           }
         }
         // NAVBAR
@@ -44,10 +46,12 @@
             @media (max-width: 768px) {
                 font-size: 12px;
                 line-height: 20px;
-                margin-right: 5px;
-                margin-top: 5px;
-                padding: 0;
+                padding: 0px 5px 5px 5px;
                 line-height: 12px;
+                width: 45px;
+                display: flex;
+                max-height: 50px;
+                flex-direction: column;
             }
         }
         .title {
@@ -116,6 +120,7 @@
             height: auto;
             @media (max-width: 768px) {
               height: auto;
+              display: grid;
             }
             .img {
               padding: 40px;
@@ -127,10 +132,12 @@
                 height: 220px;
               }
               @media (max-width: 768px) {
-                padding: 20px;
+                padding: 30px;
+                height: 150px;
                 img {
-                  width: 200px;
-                  height: 200px;
+                  width: 100%;
+                  height: 150px;
+                  align-self: center;
                 }
               }
             }
@@ -142,21 +149,20 @@
               padding-bottom: 40px;
               width: 70%;
               @media (max-width: 768px) {
-                  width: 60%;
-                  display: flex;
                   justify-content: center;
                   text-align: left;
                   align-items: center;
-                  flex-direction: column;
+                  padding: 30px;
+                  padding-top: 0px;
+                  width: auto;
               }
               .title {
                 font-size: 32px;
                 font-family: "Outfit", sans-serif;
                 @media (max-width: 768px) {
-                  display: flex;
                   justify-content: center;
                   align-items: center;
-                  flex-direction: column;
+                  width: 100%;
                 }
               }
               @media (max-width: 768px) {
@@ -280,6 +286,12 @@
           @media (max-width: 850px) {
             font-size: 35px;
           }
+        }
+        button {
+          background-color: white;
+          border-radius: 5px;
+          padding: 5px;
+          margin: 5px;
         }
         .axis {
           @media (max-width: 850px) {
