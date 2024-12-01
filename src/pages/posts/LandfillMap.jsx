@@ -131,6 +131,57 @@ function rgbToHex(r, g, b) {
     return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
 
+// Define a color and a string
+const nonHazLabelColor = "#FFA500";
+const nonHazLabelStr = "Non-Hazardous Waste ";
+
+// Embed the color square using a styled span or div
+const nonHazColorSquare = `<span style="
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: ${nonHazLabelColor};
+    margin-left: 8px;
+    vertical-align: middle;
+"></span>`;
+
+// Combine the text with the color square
+const nonHazLabel = `${nonHazLabelStr} ${nonHazColorSquare}`;
+
+// Define a color and a string
+const hazLabelColor = "#05D5FA";
+const hazLabelStr = "Hazardous Waste ";
+
+// Embed the color square using a styled span or div
+const hazColorSquare = `<span style="
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: ${hazLabelColor};
+    margin-left: 8px;
+    vertical-align: middle;
+"></span>`;
+
+// Combine the text with the color square
+const hazLabel = `${hazLabelStr} ${hazColorSquare}`
+
+// Define a color and a string
+const unclassifiedLabelColor = "#8800C4";
+const unclassifiedLabelStr = "Unclassified Waste ";
+
+// Embed the color square using a styled span or div
+const unclassifiedColorSquare = `<span style="
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: ${unclassifiedLabelColor};
+    margin-left: 8px;
+    vertical-align: middle;
+"></span>`;
+
+// Combine the text with the color square
+const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
+
   return (
     <div className="single">
       <div className="content">
@@ -211,7 +262,7 @@ function rgbToHex(r, g, b) {
               })
             }
             <LayersControl position="topright" collapsed={false}>
-              <LayersControl.Overlay name="Non-Hazardous Waste">
+              <LayersControl.Overlay name={nonHazLabel}>
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
@@ -224,10 +275,10 @@ function rgbToHex(r, g, b) {
                           <>
                             <Polygon
                               pathOptions={{
-                                fillColor: "#FFE733",
+                                fillColor: "#FFA500",
                                 fillOpacity: 1,
                                 weight: 1,
-                                color: "#FFE733"
+                                color: "#FFA500"
                               }}
                               positions={polygonCoords}
                             >
@@ -245,7 +296,7 @@ function rgbToHex(r, g, b) {
                 </LayerGroup>
               </LayersControl.Overlay>
 
-              <LayersControl.Overlay name="Hazardous Waste">
+              <LayersControl.Overlay name={hazLabel}>
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
@@ -280,7 +331,7 @@ function rgbToHex(r, g, b) {
                 </LayerGroup>
               </LayersControl.Overlay>
 
-              <LayersControl.Overlay name="Unclassified Waste">
+              <LayersControl.Overlay name={unclassifiedLabel}>
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {

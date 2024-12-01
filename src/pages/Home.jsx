@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorFooter from "../components/AuthorFooter";
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
+import aboutUsCover from "../img/group_photo.jpg"
 
 const Home = () => {
   const posts = [
@@ -18,7 +19,7 @@ const Home = () => {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
-      img: "https://fastly.picsum.photos/id/0/5000/3333.jpg?hmac=_j6ghY5fCfSD6tvtcV74zXivkJSPIfR9B8w34XeQmvU",
+      img: aboutUsCover,
       authors: [],
     },
     
