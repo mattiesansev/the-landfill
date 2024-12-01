@@ -19,6 +19,11 @@ const AboutUs = () => {
       desc: "Mattie is a software engineer at Figma. She loves picnics and crafting. She is so excited to be working on this blog!",
       img: authors.nick.photo,
     },
+    {
+      name: "Maggie Carroll",
+      desc: "Mattie is a software engineer at Figma. She loves picnics and crafting. She is so excited to be working on this blog!",
+      img: authors.maggie.photo,
+    },
   ]
   return (
     <div className="about">
