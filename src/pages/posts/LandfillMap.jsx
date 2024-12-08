@@ -266,7 +266,7 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
-                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons } =
+                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons, convertedStatus} =
                         initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (typeOfWaste === "Non-Hazardous Waste") {
@@ -287,7 +287,8 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                                   dateStart,
                                   dateEnd,
                                   landfillClass,
-                                  landfillName
+                                  landfillName,
+                                  convertedStatus
                                 )}
                             </Polygon>
                           </>
@@ -301,7 +302,7 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
-                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons } =
+                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons, convertedStatus} =
                         initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (typeOfWaste === "Hazardous Waste") {
@@ -323,7 +324,8 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                                   dateStart,
                                   dateEnd,
                                   landfillClass,
-                                  landfillName
+                                  landfillName,
+                                  convertedStatus
                                 )}
                             </Polygon>
                           </>
@@ -337,7 +339,7 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                 <LayerGroup>
                   {coordinatesPerLandfill &&
                     coordinatesPerLandfill.map((polyCoordinatePerLandfill) => {
-                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons } =
+                      const { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons, convertedStatus} =
                         initializeLandfillVariables(polyCoordinatePerLandfill);
 
                       if (
@@ -362,7 +364,8 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                                   dateStart,
                                   dateEnd,
                                   landfillClass,
-                                  landfillName
+                                  landfillName,
+                                  convertedStatus
                                 )}
                             </Polygon>
                           </>
@@ -381,7 +384,7 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
 export default LandfillMap;
 
 
-function renderPopups(typeOfWaste, dateStart, dateEnd, landfillClass, landfillName) {
+function renderPopups(typeOfWaste, dateStart, dateEnd, landfillClass, landfillName, convertedStatus) {
 
   let classAndWasteText = "";
 
@@ -398,20 +401,29 @@ function renderPopups(typeOfWaste, dateStart, dateEnd, landfillClass, landfillNa
   }
 
   let dateText = "";
-  if (dateStart && dateEnd) {
+  if (dateStart != "nan" && dateEnd != "nan") {
     dateText = `This landfill was opened in <strong>${dateStart}</strong> and closed <strong>${dateEnd}</strong>.`;
-  } else if (dateStart) {
+  } else if (dateEnd == "nan" && dateStart != "nan") {
     dateText = `This landfill opened in <strong>${dateStart}</strong>`;
-  } else if (dateEnd) {
+  } else if (dateEnd != "nan" && dateStart == "nan") {
     dateText = `This landfill closed in <strong>${dateEnd}</strong> and is no longer in operation.`;
   } 
-  
+
+  let convertedStatusText = "";
+
+  if (convertedStatus === "Converted" || convertedStatus === "Fully Converted") {
+    convertedStatusText = "This landfill has been converted to a different use.";
+  } else if (convertedStatus === "Not Converted") {
+    convertedStatusText = "This landfill has not been converted to a different use.";
+  }
+
   return (
     <Popup className="popup">
       <p className="popUpTitle"><strong>{landfillName}</strong></p>
       <p className="popUpText">
       <span dangerouslySetInnerHTML={{ __html: classAndWasteText }} /> <br/>
       <span dangerouslySetInnerHTML={{ __html: dateText }} />
+      {convertedStatusText}
       </p>
       </Popup>
   );
@@ -437,6 +449,7 @@ function initializeLandfillVariables(polyCoordinatePerLandfill) {
   let landfillClass = "";
   let typeOfWaste = "";
   let typeOfWaste2 = "";
+  let convertedStatus = "";
 
   try {
     typeOfWaste = polyCoordinatePerLandfill.TypeOfWaste;
@@ -447,9 +460,10 @@ function initializeLandfillVariables(polyCoordinatePerLandfill) {
     landfillName = polyCoordinatePerLandfill.LandfillName;
     lats = JSON.parse(polyCoordinatePerLandfill.Latitude);
     lons = JSON.parse(polyCoordinatePerLandfill.Longitude);
+    convertedStatus = polyCoordinatePerLandfill.Converted;
   } catch (e) {
     console.log("invalid row ", polyCoordinatePerLandfill);
   }
 
-  return { typeOfWaste, typeOfWaste2, dateStart, dateEnd, landfillName, landfillClass,lats, lons };
+  return { typeOfWaste, typeOfWaste2, dateStart, dateEnd, landfillName, landfillClass,lats, lons , convertedStatus };
 }
