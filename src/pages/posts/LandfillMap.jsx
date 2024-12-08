@@ -323,12 +323,13 @@ function renderPopups(typeOfWaste, dateStart, dateEnd, landfillClass, landfillNa
 
   return (
     <Popup className="popup">
-      <p className="popUpTitle"><strong>{landfillName}</strong></p>
-      <p className="popUpText">
+      <div className="popUpTitle"><strong>{landfillName}</strong></div>
+      <br></br>
+      <div className="popUpText">
       <span dangerouslySetInnerHTML={{ __html: classAndWasteText }} /> <br/>
       <span dangerouslySetInnerHTML={{ __html: dateText }} />
       {convertedStatusText}
-      </p>
+      </div>
       </Popup>
   );
 }
