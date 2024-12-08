@@ -140,6 +140,8 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
         
         
         <div class="embed-container">
+          <br></br>
+          <div className="chartTitle">Interactive Map of Closed Landfills</div>
           <MapContainer
             ref={mapRef}
             center={[viewSettings.main.lat, viewSettings.main.lon]}
