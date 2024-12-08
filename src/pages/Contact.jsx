@@ -10,8 +10,8 @@ const Contact = () => {
         </div>
         Want to get in touch?
       </div>
-      <p>email us at bayareadatadump@gmail.com </p>
-      <p>follow us on instagram at </p>
+      <a href="mailto:bayareadatadump@gmail.com">email us at bayareadatadump@gmail.com</a>
+      <p>follow us on instagram at <a href={"https://www.instagram.com/bayareadatadump/"}>bayareadatadump</a></p>
     </div>
   );
 };

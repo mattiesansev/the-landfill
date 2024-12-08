@@ -21,9 +21,9 @@
         justify-content: space-between;
         .logo {
           img {
-            width: 120px;
+            width: 170px;
             @media (max-width: 768px) {
-                width: 45px;
+                width: 60px;
             }
           }
         }
@@ -292,6 +292,7 @@
             }
             p {
               font-size: 18px;
+              line-height: 24px;
             }
           }
         }
@@ -322,12 +323,24 @@
 
       .content {
         width: 70%;
+        .footnoteNumber {
+          font-size: 10px;
+          padding-bottom: 20px;
+        }
+        .footnote {
+          font-size: 14px;
+          padding-left: 80px;
+        }
         .title {
           font-size: 55px;
           padding: 15px;
           @media (max-width: 850px) {
             font-size: 35px;
           }
+        }
+        p {
+          font-size: 20px;
+          line-height: 30px;
         }
         .chartTitle {
           font-size: 30px;
@@ -357,7 +370,7 @@
           align-items: center;
           gap: 10px;
           font-size: 14px;
-          padding-top: 5px;
+          padding: 5px;
           img {
             width: 50px;
             height: 50px;

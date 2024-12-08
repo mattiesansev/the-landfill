@@ -19,26 +19,15 @@ ReactGA.initialize('G-NR2T70PVBG');
 
 
 const viewSettings = {
-  sanFrancisco: {
-    lat: 37.77498,
-    lon: -122.434574,
-    zoom: 12,
-  },
-  eastBay: {
-    lat: 37.7429,
-    lon: -122.18045,
-    zoom: 11.3,
-  },
   main: {
-    lat: 37.7429,
-    lon: -122.25045,
-    zoom: 10,
+    lat: 37.871558, 
+    lon: -122.366000,
+    zoom: 11,
   },
 };
 
 const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
-  const [censusData, setCensusData] = useState([]);
 
   const location = useLocation();
 
@@ -148,8 +137,8 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
           postDate="July 15, 2024"
           authorName={authors["maggie"]["name"]}
         />
-        <p>content content content</p>
-        <ClassBar />
+        
+        
         <div class="embed-container">
           <MapContainer
             ref={mapRef}
@@ -275,6 +264,21 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
             </LayersControl>
           </MapContainer>
         </div>
+        <p>
+        From San Jose to parts of downtown San Francisco, many of the homes, businesses, and communities familiar to Bay Area residents would not exist if not for our long, less-than-glamorous, history with trash.
+        </p>   
+        <p>
+        The development of the Bay Area’s landmass dates back to the state’s founding. An 1850 act of Congress allowed undesirable swamp and overflow lands to be filled, ultimately shrinking the bay estuary and wetlands from 600 to only 200 square miles. These lands, once estuaries and wetlands, now house millions of people and support critical infrastructure like the San Francisco International Airport and Oakland International Airport. This now-abundant land allowed the Bay Area to boom through the 20th century, accommodating the expanding population, burgeoning industries, and the considerable amount of associated waste. 
+        </p>        
+        <p>Initially, the primary way to dispose of this waste was to dump it directly into the bay. Other disposal options included transporting and dumping the trash into the ocean or burning the trash via incinerators, though these were more expensive and thus less commonly used. Cities like Berkeley would transport their trash to unincorporated areas like Albany. Similarly, San Francisco used the shoreline in Burlingame as its dumping grounds. This was the time of uncontrolled “city dumps” and “burn dumps”, before the modern sanitary landfill was created and landfills moved away from the edges of the bay shoreline. There were no barriers, protections, or regulations to protect the Bay’s ecosystem. </p>
+        <p>Dumping waste into the Bay eventually ended with the enactment of the Resource and Recovery Act (RCRA) in 1976. The RCRA created standardized requirements for the disposal of non-hazardous and hazardous waste<span className="footnoteNumber">1</span>. While prior regulation created some requirements for the disposal and handling of waste, the RCRA further clarified and enforced standards for landfill operation and design, location restrictions, cleanup actions, and closure requirements. Additionally, the RCRA created a class system to identify what kind of waste a landfill can accept; class I landfills can accept hazardous waste, class II landfills can accept hazardous waste if it meets threshold requirements, and class III landfills accept non-hazardous waste. A ‘cradle to grave’ approach was implemented for the disposal of hazardous waste, allowing the state and federal government to have full oversight over hazardous materials’ creation, use, and disposal. </p>
+        <ClassBar />
+        <p>Since the enactment of the RCRA, landfills must meet clean closure requirements, which include creating detailed post-closure plans that provide information on the site's background, geologic and hydrogeologic information, final cover, and other important information. All closed landfills, even the ones closed before the RCRA, are inspected by CalRecycle to check methane emissions, environmental violations, and areas of concern. To date, 67 landfills have been closed since RCRA’s creation.</p>
+        <p>Closed landfills have been repurposed into golf courses, businesses, marinas, homes, and, most commonly, parks. Of the 53 closed landfills that have been converted, almost half have been turned into parks, which must be monitored for methane and leachate due to the landfill gasses building up underneath. The majority of the parks sit along the San Francisco Bay, giving Bay Area residents unfettered access to the Bay’s shoreline. One such park, the 750-acre Shoreline Park in Mountain View, hosts ample recreation space, a popular outdoor amphitheater, and acts as a key wildlife refuge for native shore birds, such as burrowing owls. Other parks host a variety of well-loved public amenities, such as biking and walking trails, picnic areas, public art installations, athletic fields, sandy bay beaches, and even a fishing pier. Many parks built on landfills, such as Berkeley’s Cesar Chavez Park, are also characterized by their grassy hills which cover the piles of waste underneath. In fact, as the shore around the bay is naturally bay-level, every small grassy hill along the bay is manmade - a byproduct of landfills of the past.</p>
+        <p>The history of the San Francisco Bay is deeply intertwined with the history of waste and waste management. While many Bay Area residents take their trash for granted, they might consider the key role that waste has played in the development of the bay’s shoreline. From undeveloped swaths of land to beloved leisure locations along the shore to critical infrastructure, repurposed landfills show how the Bay Area has been able to transform to accommodate rapid urbanization and human needs. </p>
+        <p className="footnote">1. Federal facilities were given sovereign immunity and thus not impacted by the regulations of the RCRA. Federal facilities were not subjected to regulation until 1992, when The Federal Facilities Compliance Act was enacted. </p>
+        <div className="chartTitle">About the data</div>
+        <p>All data featured on the map was sourced from <a href="https://www2.calrecycle.ca.gov/SolidWaste/Site/Search">Cal Recycles Solid Waste Facility System.</a></p>
       </div>
     </div>
   );
