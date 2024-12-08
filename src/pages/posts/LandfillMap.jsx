@@ -11,7 +11,11 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
-import headerPhoto from "/src/header.jpg"
+import headerPhoto from "/src/header.jpg";
+import { useLocation } from 'react-router-dom'; 
+import ReactGA from 'react-ga4';
+
+ReactGA.initialize('G-NR2T70PVBG'); 
 
 
 const viewSettings = {
@@ -33,11 +37,16 @@ const viewSettings = {
 };
 
 const LandfillMap = () => {
-  const headerImageUrl = "https://picsum.photos/300/200";
-  //let coordinatesPerLandfill = []
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
   const [censusData, setCensusData] = useState([]);
   const [showPovertyLines, setShowPovertyLines] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname });
+  }, [location]);
+
   // Define the polygon's coordinates
   useEffect(() => {
     async function getData() {
