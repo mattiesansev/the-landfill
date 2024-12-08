@@ -19,26 +19,15 @@ ReactGA.initialize('G-NR2T70PVBG');
 
 
 const viewSettings = {
-  sanFrancisco: {
-    lat: 37.77498,
-    lon: -122.434574,
-    zoom: 12,
-  },
-  eastBay: {
-    lat: 37.7429,
-    lon: -122.18045,
-    zoom: 11.3,
-  },
   main: {
-    lat: 37.7429,
-    lon: -122.25045,
-    zoom: 10,
+    lat: 37.871558, 
+    lon: -122.366000,
+    zoom: 11,
   },
 };
 
 const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
-  const [censusData, setCensusData] = useState([]);
 
   const location = useLocation();
 
