@@ -76,7 +76,7 @@ const nonHazColorSquare = `<span style="
 const nonHazLabel = `${nonHazLabelStr} ${nonHazColorSquare}`;
 
 // Define a color and a string
-const hazLabelColor = "#05D5FA";
+const hazLabelColor = "#FF0000";
 const hazLabelStr = "Hazardous Waste ";
 
 // Embed the color square using a styled span or div
@@ -149,7 +149,7 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
             style={{ height: "80vh", width: "100%" }}
             zoomControl={false}
           >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" className="grayscale-tiles"/>
             <LayersControl position="topright" collapsed={false}>
               <LayersControl.Overlay name={nonHazLabel}>
                 <LayerGroup>
@@ -201,10 +201,10 @@ const unclassifiedLabel = `${unclassifiedLabelStr} ${unclassifiedColorSquare}`;
                           <>
                             <Polygon
                               pathOptions={{
-                                fillColor: "#05D5FA",
+                                fillColor: "#FF0000",
                                 fillOpacity: 1,
                                 weight: 1,
-                                color: "#05D5FA"
+                                color: "#FF0000"
                               }}
                               positions={polygonCoords}
                             >

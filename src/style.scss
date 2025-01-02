@@ -538,3 +538,6 @@
 .leaflet-touch .leaflet-bar:hover {
   opacity: 1 !important;
 }
+.grayscale-tiles {
+  filter: grayscale(50%);
+}
