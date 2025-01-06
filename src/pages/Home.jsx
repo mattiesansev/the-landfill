@@ -28,6 +28,14 @@ const Home = () => {
       authors: [authors.mattie, authors.destiny, authors.nick, authors.maggie]
     },
     {
+      id: 'rent-control-analysis',
+      title:
+        "WIP rent control analysis",
+      desc: "WIP.",
+      img: landfillCover,
+      authors: [authors.mattie, authors.destiny, authors.nick]
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
