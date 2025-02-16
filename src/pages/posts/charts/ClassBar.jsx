@@ -133,6 +133,7 @@ const ClassBar = () => {
             left: `${tooltip.x}px`,
             top: `${tooltip.y}px`,
             backgroundColor: "white",
+            color: "black",
             border: "1px solid #ccc",
             padding: "5px",
             pointerEvents: "none",
