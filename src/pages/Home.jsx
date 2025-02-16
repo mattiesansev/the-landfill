@@ -47,15 +47,7 @@ const Home = () => {
               </div>
               <div className="content">
                 <div className="title">{post.title}</div>
-                <div className="authors">
-                  { post.authors.map((author) => {
-                    return <AuthorFooter
-                      authorImageUrl={author.photo}
-                      postDate="July 15, 2024"
-                      authorName={author.name}
-                    />
-                  })}
-                </div>
+                <div className="description">{post.desc}</div>
               </div>
             </Link>
           </div>
