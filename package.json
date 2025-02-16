@@ -12,9 +12,13 @@
   },
   "dependencies": {
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
+    "react-jss": "^10.10.0",
     "react-router-dom": "^6.23.1",
+    "react-scrollama": "^2.3.3",
+    "react-waypoint": "^10.3.0",
     "sass": "^1.77.6"
   },
   "devDependencies": {
