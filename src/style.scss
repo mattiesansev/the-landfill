@@ -116,7 +116,7 @@
         justify-content: space-between; /* Space between the cards */
         .post {
           flex: 1; 
-          max-width: 33%;
+          max-width: 50%;
           border-radius: 5px;
           @media (max-width: 768px) {
             max-width: 100%;
