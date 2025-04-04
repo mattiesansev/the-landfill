@@ -17,14 +17,6 @@ import ParcelScroll from "./ParcelScroll";
 
 ReactGA.initialize('G-NR2T70PVBG'); 
 
-const viewSettings = {
-    main: {
-      lat: 37.770027,
-      lon: -122.420852,
-      zoom: 11.25,
-    },
-  };
-
 
 const Parcels = () => {
   const [propInfo, setPropInfo] = useState([]);
@@ -35,141 +27,15 @@ const Parcels = () => {
     ReactGA.send({ hitType: 'pageview', page: location.pathname });
   }, [location]);
 
-  // Define the polygon's coordinates
-  useEffect(() => {
-    async function getData() {
-      await fetch("/prop_33_results.csv")
-        .then((response) => response.text())
-        .then((csvText) => {
-          Papa.parse(csvText, {
-            header: true,
-            dynamicTyping: true,
-            complete: function (results) {
-              setPropInfo(results.data);
-            },
-            error: function (error) {
-              console.error(error.message); // Error handling
-            },
-          });
-        });
-    }
-    getData();
-  }, []);
-  const mapRef = useRef(null);
-
-  // Legend
-  const Legend = () => {
-    const map = useMap();
-    // Embed the color square using a styled span or div
-    const noSquare = `<span style="
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background-color: #FFFF;
-    margin-left: 8px;
-    vertical-align: middle;
-    "></span>`;
-
-  useEffect(() => {
-    const legend = L.control({ position: 'topright' });
-
-    legend.onAdd = function () {
-      const div = L.DomUtil.create('div', 'info legend');
-      div.innerHTML = `
-      <div style="background-color: white; padding:5px; border-radius:5px">
-        <i style="background: red"></i> High Risk<br>
-        <i style="background: yellow"></i> Medium Risk<br>
-        <i style="background: green"></i> Low Risk
-      </div>
-      `;
-      return div;
-    };
-
-    legend.addTo(map);
-
-    // Cleanup on component unmount
-    return () => {
-      map.removeControl(legend);
-    };
-  }, [map]);
-}
-
-
   return (
     <div className="single">
       <div className="content">
         <img src={headerPhoto}></img>
-          <div className="chartTitle">WIP map of people who voted yes on 33</div>
-        <div className="side-by-side-maps">
-        {/* <div class="embed-container"> */}
-          <br></br>
-          <MapContainer
-            ref={mapRef}
-            center={[viewSettings.main.lat, viewSettings.main.lon]}
-            zoom={viewSettings.main.zoom}
-            style={{ height: "80vh", width: "50%" }}
-            zoomControl={false}
-          >
-            <Legend />
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {propInfo &&
-                propInfo.map((precinct_row) => {
-                const { precinct, yes, no, coords} =
-                    initializePrecinctVariables(precinct_row);
-                    return (
-                    <>
-                        <Polygon
-                        pathOptions={{
-                            fillColor: getHeatmapColor(yes),
-                            fillOpacity: 1,
-                            weight: 0.5,
-                            color: "#FFFF"
-                        }}
-                        positions={coords}
-                        >
-                        {renderPopups(
-                            precinct
-                            )}
-                        </Polygon>
-                    </>
-                    );
-                })}
-          </MapContainer>
-        {/* </div> */}
-        
-        {/* <div class="embed-container"> */}
-          <MapContainer
-            ref={mapRef}
-            center={[viewSettings.main.lat, viewSettings.main.lon]}
-            zoom={viewSettings.main.zoom}
-            style={{ height: "80vh", width: "50%" }}
-            zoomControl={false}
-          >
-            <Legend />
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {propInfo &&
-                propInfo.map((precinct_row) => {
-                const { precinct, yes, no, coords} =
-                    initializePrecinctVariables(precinct_row);
-                    return (
-                    <>
-                        <Polygon
-                        pathOptions={{
-                            fillColor: getHeatmapColor(yes),
-                            fillOpacity: 1,
-                            weight: 0.5,
-                            color: "#FFFF"
-                        }}
-                        positions={coords}
-                        >
-                        {renderPopups(
-                            precinct
-                            )}
-                        </Polygon>
-                    </>
-                    );
-                })}
-          </MapContainer>
+        <div className="title">
+          A deep dive into rent control in San Francisco
+        </div>
+        <div >
+          <p>This is the introcution to the article it's about rent control in San Francisco.</p>
         </div>
     <ParcelScroll />
     </div>

@@ -1,48 +1,7 @@
 import React, { PureComponent } from 'react';
-import injectSheet from 'react-jss';
+//import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 
-const styles = {
-  graphicContainer: {
-    padding: '40vh 2vw 20vh',
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  graphic: {
-    flexBasis: '60%',
-    position: 'sticky',
-    width: '100%',
-    height: '60vh',
-    top: '20vh',
-    backgroundColor: '#aaa',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    '& p': {
-      fontSize: '5rem',
-      fontWeight: 700,
-      textAlign: 'center',
-      color: '#fff',
-    },
-  },
-  scroller: {
-    flexBasis: '35%',
-  },
-  step: {
-    margin: '0 auto 3rem auto',
-    padding: '180px 0',
-    border: '1px solid #333',
-    '& p': {
-      textAlign: 'center',
-      padding: '1rem',
-      fontSize: '1.8rem',
-      margin: 0,
-    },
-    '&:last-child': {
-      marginBottom: 0,
-    },
-  },
-};
 
 class ParcelScroll extends PureComponent {
   state = {
@@ -72,9 +31,8 @@ class ParcelScroll extends PureComponent {
 
     return (
       <div>
-        <p className={classes.pageSubtitle}>Scroll ↓</p>
-        <div className={classes.graphicContainer}>
-          <div className={classes.scroller}>
+        <div className="graphicContainer">
+          <div className="scroller">
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
@@ -91,8 +49,7 @@ class ParcelScroll extends PureComponent {
                 const visibility = isVisible ? 'visible' : 'hidden';
                 return (
                   <Step data={value} key={value}>
-                    <div className={classes.step} style={{ background }}>
-                      <p>step value: {value}</p>
+                    <div className="step" style={{ background }}>
                       <p style={{ visibility }}>
                         {Math.round(progress * 1000) / 10 + '%'}
                       </p>
@@ -102,7 +59,7 @@ class ParcelScroll extends PureComponent {
               })}
             </Scrollama>
           </div>
-          <div className={classes.graphic}>
+          <div className="graphic">
             <p>{data}</p>
           </div>
         </div>
@@ -111,4 +68,4 @@ class ParcelScroll extends PureComponent {
   }
 }
 
-export default injectSheet(styles)(ParcelScroll);
+export default ParcelScroll;
