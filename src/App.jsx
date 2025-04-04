@@ -8,6 +8,7 @@ import LandfillMap from "./pages/posts/LandfillMap"
 import AboutUs from "./pages/AboutUs"
 import TitleRow from "./components/TitleRow"
 import Contact from "./pages/Contact";
+import Parcels from "./pages/posts/RentControl"
 
 const Layout = () => {
   return (
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path:"/post/contact",
         element: <Contact/>
+      },
+      {
+        path: "/post/rent-control-analysis",
+        element: <Parcels />
       },
     ],
   },
