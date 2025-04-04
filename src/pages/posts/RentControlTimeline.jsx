@@ -5,8 +5,13 @@ import { Scrollama, Step } from 'react-scrollama';
 class ParcelScroll extends PureComponent {
   state = {
     data: 0,
-    steps: [10, 20, 30],
+    steps: [1979, 1980, 1990],
     progress: 0,
+    timeline: {
+      1979: "This is something that happened",
+      1980: "also this",
+      1990: "this too",
+    }
   };
 
   onStepEnter = e => {
@@ -26,7 +31,6 @@ class ParcelScroll extends PureComponent {
 
   render() {
     const { data, steps, progress } = this.state;
-    const { classes } = this.props;
 
     return (
       <div className="parcelScroll">
@@ -50,7 +54,7 @@ class ParcelScroll extends PureComponent {
                   <Step data={value} key={value}>
                     <div className="step" style={{ background }}>
                       <p style={{ visibility }}>
-                        {Math.round(progress * 1000) / 10 + '%'}
+                        {data}
                       </p>
                     </div>
                   </Step>
@@ -59,10 +63,10 @@ class ParcelScroll extends PureComponent {
             </Scrollama>
           </div>
           <div className="graphic">
-            <p>{data}</p>
+            <p>{this.state.timeline[data]}</p>
           </div>
         </div>
-        </div>
+       </div>
     );
   }
 }
