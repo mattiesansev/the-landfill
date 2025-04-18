@@ -34,14 +34,6 @@ const Home = () => {
       img: aboutUsCover,
       authors: [],
     },
-    {
-      id: 'rent-control-analysis',
-      title:
-        "WIP rent control analysis",
-      desc: "WIP.",
-      img: landfillCover,
-      authors: [authors.mattie, authors.destiny, authors.nick]
-    },
     
   ];
   return (
