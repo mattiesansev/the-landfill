@@ -8,9 +8,9 @@ class ParcelScroll extends PureComponent {
     steps: [1979, 1980, 1990],
     progress: 0,
     timeline: {
-      1979: "This is something that happened",
-      1980: "also this",
-      1990: "this too",
+      1979: ["Built before 1900"],
+      1980: ["Built before 1979", "Single family homes"],
+      1990: ["Built before 1979", "Single family homes", "Special thing"],
     }
   };
 
@@ -31,6 +31,8 @@ class ParcelScroll extends PureComponent {
 
   render() {
     const { data, steps, progress } = this.state;
+
+    const currentStateOfRentControl = "At this point, housing is eligible for rent control if:"
 
     return (
       <div className="parcelScroll">
@@ -63,7 +65,12 @@ class ParcelScroll extends PureComponent {
             </Scrollama>
           </div>
           <div className="graphic">
-            <p>{this.state.timeline[data]}</p>
+            <h1>{currentStateOfRentControl}</h1>
+            <p>
+            {this.state.timeline[data]?.map((list) => {
+              return <li>{list}</li>
+            })}
+            </p>
           </div>
         </div>
        </div>
