@@ -14,6 +14,7 @@ import headerPhoto from "/src/header.jpg";
 import { useLocation } from 'react-router-dom'; 
 import ReactGA from 'react-ga4';
 import ParcelScroll from "./RentControlTimeline";
+import ParcelMap from "./ParcelsMap";
 
 ReactGA.initialize('G-NR2T70PVBG'); 
 
@@ -38,6 +39,7 @@ const Parcels = () => {
           <p>This is the introcution to the article it's about rent control in San Francisco.</p>
         </div>
     <ParcelScroll />
+    <ParcelMap />
     </div>
 </div>
   );
@@ -50,6 +52,7 @@ function renderPopups(precinct) {
     <Popup className="popup">
       {precinct}
       </Popup>
+
   );
 }
 
