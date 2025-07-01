@@ -334,6 +334,16 @@
       justify-content: center;
       gap: 50px;
 
+      // Use this if you need varied widths across content in an article
+      .complexContentContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 50px;
+        align-items: center;
+      }
+
       .content {
         width: 70%;
         .footnoteNumber {
@@ -558,11 +568,13 @@
           .step {
             margin: 0 auto 3rem auto;
             padding: 180px 0;
-            border: 1px solid #333;
-            p {
+            h2 {
+              font-size: 20px;
               text-align: center;
+            }
+            p {
               padding: 1rem;
-              font-size: 1.8rem;
+              font-size: 18px;
               margin: 0;
             }
             &:last-child {
@@ -618,6 +630,47 @@
                 padding-left: 13px;
               }
             }
+          }
+        }
+        .container {
+          display: flex;
+        }
+        
+        .left-column {
+          width: 60%;
+          padding: 20px;
+        }
+        
+        .year-section {
+          margin-bottom: 200px;
+          position: relative;
+        }
+        
+        .timeline-marker {
+          font-weight: bold;
+          font-size: 50px;
+          margin-bottom: 8px;
+        }
+        
+        .timeline-marker.active {
+          font-size: 75px;
+        }
+        
+        .right-column {
+          position: sticky;
+          top: 20px;
+          height: 100vh;
+          width: 40%;
+          padding-left: 20px;
+          border-left: 1px solid #ccc;
+          .chart-title {
+            font-size: 20px;
+            padding: 10px;
+          }
+          .chart-description {
+            font-style: italic;
+            font-size: 15px;
+            padding: 10px;
           }
         }
       }

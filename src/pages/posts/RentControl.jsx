@@ -14,9 +14,9 @@ import headerPhoto from "/src/header.jpg";
 import { useLocation } from 'react-router-dom'; 
 import ReactGA from 'react-ga4';
 import ParcelScroll from "./RentControlTimeline";
+import ScrollyTimeline from "./RentControlTimeline2";
 
 ReactGA.initialize('G-NR2T70PVBG'); 
-
 
 const Parcels = () => {
   const [propInfo, setPropInfo] = useState([]);
@@ -29,6 +29,7 @@ const Parcels = () => {
 
   return (
     <div className="single">
+    <div className="complexContentContainer">
       <div className="content">
         <img src={headerPhoto}></img>
         <div className="title">
@@ -37,7 +38,22 @@ const Parcels = () => {
         <div >
           <p>This is the introcution to the article it's about rent control in San Francisco.</p>
         </div>
-    <ParcelScroll />
+    </div>
+    <div className="content" style={{ width: "90%"}}> 
+    <ScrollyTimeline />
+    </div>
+    <div className="content">
+    <div>
+          <p>Maybe we insert some new info here.</p>
+        </div>
+        <img src={headerPhoto}></img>
+        <div >
+          <p>This is the introcution to the article it's about rent control in San Francisco.</p>
+        </div>
+    </div>
+    <div className="content" style={{ width: "90%"}}> 
+    <ScrollyTimeline />
+    </div>
     </div>
 </div>
   );
