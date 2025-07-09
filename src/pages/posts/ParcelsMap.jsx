@@ -96,7 +96,10 @@ const getRandomColor = () => {
 
 const ParcelMap = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState("Financial District");
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState({
+    name: "Financial District",
+    paragraph: "This is the paragraph for the selected neighborhood."
+  });
   const [neighborhoodColors, setNeighborhoodColors] = useState({});
 
   useEffect(() => {
@@ -148,8 +151,7 @@ const ParcelMap = () => {
   }, []);
 
   const getNeighborhoodColor = (neighborhoodName) => {
-    
-    if (selectedNeighborhood === neighborhoodName) {
+    if (selectedNeighborhood.name === neighborhoodName) {
       return {
         fill: '#ff795d',
         line: '#ff795d',
@@ -192,7 +194,10 @@ const ParcelMap = () => {
                         eventHandlers={{
                           click: (e) => {
                             console.log("selected Neighborhood ", neighborhood);
-                            setSelectedNeighborhood(neighborhood.name);
+                            setSelectedNeighborhood({
+                              name: neighborhood.name,
+                              paragraph: "This is the paragraph for " + neighborhood.name
+                            });
                           }
                         }}
                       />
@@ -210,11 +215,8 @@ const ParcelMap = () => {
       }}>
         {selectedNeighborhood && (
           <div style={{ textAlign: 'center' }}>
-            <h3>{selectedNeighborhood}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h3>{selectedNeighborhood.name}</h3>
+            <p>{selectedNeighborhood.paragraph}</p>
           </div>
         )}
       </div>
