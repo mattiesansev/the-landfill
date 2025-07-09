@@ -56,7 +56,6 @@ const Parcels = () => {
     <div className="content" style={{ width: "90%"}}> 
     <ScrollyTimeline />
     </div>
-    <ParcelScroll />
     </div>
 </div>
   );
