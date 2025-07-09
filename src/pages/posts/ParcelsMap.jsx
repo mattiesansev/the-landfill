@@ -105,7 +105,7 @@ const ParcelMap = () => {
   useEffect(() => {
     const loadCSVData = async () => {
       try {
-        const response = await fetch('/parcel_data/SF_Find_Neighborhood_Boundaries.csv');
+        const response = await fetch('/SF_Find_Neighborhood_Boundaries.csv');
         const csvText = await response.text();
         
         const rows = csvText.split('\n');
