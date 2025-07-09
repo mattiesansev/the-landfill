@@ -34,25 +34,23 @@
             height: 20px;
             padding-right: 30px;
             width: 120px;
-            @media (max-width: 768px) {
-              .title {
-                font-size: 20px;
-              }
-            }
             gap: 10px;
             margin-top: 10px;
             margin-right: 10px;
             font-size: 20px;
             font-weight: 300;
             @media (max-width: 768px) {
-                font-size: 12px;
-                line-height: 20px;
-                padding: 0px 5px 5px 5px;
-                line-height: 12px;
-                width: 45px;
-                display: flex;
-                max-height: 50px;
-                flex-direction: column;
+              .title {
+                font-size: 20px;
+              }
+              font-size: 12px;
+              line-height: 20px;
+              padding: 0px 5px 5px 5px;
+              line-height: 12px;
+              width: 45px;
+              display: flex;
+              max-height: 50px;
+              flex-direction: column;
             }
             .link {
               color: white;
@@ -385,8 +383,9 @@
         .axis {
           @media (max-width: 850px) {
             font-size: 10px;
-          }
+          } & {
           font-size: 15px;
+          }
         }
         img {
           width: 100%;
@@ -712,6 +711,8 @@
     }
   }
 }
+
+// Global styles for Leaflet
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
@@ -723,17 +724,17 @@
   margin-top: 0 !important;
   margin-right: 0 !important;
   display: flex;
-  opacity: 1 !important; // Force full opacity
-  visibility: visible !important; // Ensure visibility
-  transition: none !important; // Remove any transition effects
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
 }
 
-// If there are any hover effects, we can remove them:
 .leaflet-touch .leaflet-control-attribution:hover,
 .leaflet-touch .leaflet-control-layers:hover,
 .leaflet-touch .leaflet-bar:hover {
   opacity: 1 !important;
 }
+
 .grayscale-tiles {
   filter: grayscale(50%);
 }

@@ -15,6 +15,7 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import ParcelScroll from "./RentControlTimeline";
 import ScrollyTimeline from "./RentControlTimeline2";
+import ParcelMap from "./ParcelsMap";
 
 ReactGA.initialize('G-NR2T70PVBG'); 
 
@@ -40,6 +41,7 @@ const Parcels = () => {
         </div>
     </div>
     <div className="content" style={{ width: "90%"}}> 
+    <ParcelMap />
     <ScrollyTimeline />
     </div>
     <div className="content">
@@ -54,6 +56,7 @@ const Parcels = () => {
     <div className="content" style={{ width: "90%"}}> 
     <ScrollyTimeline />
     </div>
+    <ParcelScroll />
     </div>
 </div>
   );
@@ -66,6 +69,7 @@ function renderPopups(precinct) {
     <Popup className="popup">
       {precinct}
       </Popup>
+
   );
 }
 
