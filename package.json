@@ -15,6 +15,9 @@
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-router-dom": "^6.23.1",
+    "react-scrollama": "^2.4.0",
+    "react-waypoint": "^10.3.0",
+    "recharts": "^2.15.3",
     "sass": "^1.77.6"
   },
   "devDependencies": {
