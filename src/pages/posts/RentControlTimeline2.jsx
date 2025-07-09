@@ -50,8 +50,8 @@ export default function ScrollyTimeline() {
                 setActiveYear(year);
                 setData(getDataForYearSection1(year));
               }}
-              topOffset={"30%"}
-              bottomOffset={"70%"}
+              topOffset={"10%"}
+              bottomOffset={"80%"}
             />
             <div className={`timeline-marker ${activeYear === year ? "active" : ""}`}>
               {year}
