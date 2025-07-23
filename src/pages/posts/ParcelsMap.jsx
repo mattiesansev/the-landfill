@@ -210,16 +210,9 @@ const ParcelMap = () => {
       <div className="rent-control-map-blurb">
         {selectedNeighborhood && (
           <div style={{ textAlign: 'center' }}>
-<<<<<<< HEAD
-            <h3>{selectedNeighborhood}</h3>
-            <span className="blurb-text">Lorems ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span>
-=======
             <h3>{selectedNeighborhood.name}</h3>
             <span className="blurb-text">{selectedNeighborhood.paragraph}</span>
->>>>>>> f2f9cff8616375e690cd076be6cd5da019bac5b6
+
           </div>
         )}
       </div>
