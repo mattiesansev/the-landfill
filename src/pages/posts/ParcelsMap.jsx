@@ -98,13 +98,16 @@ const getRandomColor = () => {
 
 const ParcelMap = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState("Financial District");
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState({
+    name: "Financial District",
+    paragraph: "This is the paragraph for the selected neighborhood."
+  });
   const [neighborhoodColors, setNeighborhoodColors] = useState({});
 
   useEffect(() => {
     const loadCSVData = async () => {
       try {
-        const response = await fetch('/parcel_data/SF_Find_Neighborhood_Boundaries.csv');
+        const response = await fetch('/SF_Find_Neighborhood_Boundaries.csv');
         const csvText = await response.text();
         
         const rows = csvText.split('\n');
@@ -150,8 +153,7 @@ const ParcelMap = () => {
   }, []);
 
   const getNeighborhoodColor = (neighborhoodName) => {
-    
-    if (selectedNeighborhood === neighborhoodName) {
+    if (selectedNeighborhood.name === neighborhoodName) {
       return {
         fill: '#ff795d',
         line: '#ff795d',
@@ -192,7 +194,10 @@ const ParcelMap = () => {
                         eventHandlers={{
                           click: (e) => {
                             console.log("selected Neighborhood ", neighborhood);
-                            setSelectedNeighborhood(neighborhood.name);
+                            setSelectedNeighborhood({
+                              name: neighborhood.name,
+                              paragraph: "This is the paragraph for " + neighborhood.name
+                            });
                           }
                         }}
                       />
@@ -205,11 +210,16 @@ const ParcelMap = () => {
       <div className="rent-control-map-blurb">
         {selectedNeighborhood && (
           <div style={{ textAlign: 'center' }}>
+<<<<<<< HEAD
             <h3>{selectedNeighborhood}</h3>
             <span className="blurb-text">Lorems ipsum dolor sit amet, consectetur adipiscing elit. 
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span>
+=======
+            <h3>{selectedNeighborhood.name}</h3>
+            <span className="blurb-text">{selectedNeighborhood.paragraph}</span>
+>>>>>>> f2f9cff8616375e690cd076be6cd5da019bac5b6
           </div>
         )}
       </div>
