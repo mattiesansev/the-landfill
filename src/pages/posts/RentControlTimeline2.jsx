@@ -78,7 +78,6 @@ export default function ScrollyTimeline() {
             itemStyle={{ color: "white" }}
             formatter={(value) => [value]}
             />
-
             <Bar dataKey="value" fill="#131140"/>
           </BarChart>
         </ResponsiveContainer>

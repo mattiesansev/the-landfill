@@ -332,6 +332,48 @@
       justify-content: center;
       gap: 50px;
 
+      .rent-control-map-container {
+        display: flex;
+        .rent-map-container {
+         flex: 1.5;
+         .map {
+          height: 67vh;
+          width: 100%;
+         }
+        }
+        .rent-control-map-blurb {
+          flex: 1;
+          position: sticky;
+          top: 20px;
+          height: fit-content;
+          .blurb-text {
+            font-size: 20px;
+            line-height: 30px;
+            padding-left: 10%;
+            padding-right: 10%;
+          }
+        }
+      }
+      @media (max-width: 768px) {
+        .rent-control-map-container {
+          .rent-map-container {
+            flex: 1;
+            .map {
+              height: 40vh;
+            }
+          }
+          .rent-control-map-blurb {
+              flex: 1;
+              height: 10;
+
+            .blurb-text {
+              font-size: 14px;
+              line-height: 20px;
+            }
+          }
+        }
+      }
+
       // Use this if you need varied widths across content in an article
       .complexContentContainer {
         width: 100%;
@@ -697,7 +739,7 @@
             z-index: 10;
             padding-right: 0px;
             height: fit-content;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255);
             border-radius: 20px;
             .chart-title {
               padding-top: 10px;

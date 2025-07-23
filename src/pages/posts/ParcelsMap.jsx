@@ -11,11 +11,13 @@ import { useState, useEffect } from 'react';
 import * as d3 from 'd3';
 
 
+const isMobile = window.innerWidth < 768;
+
 const viewSettings = {
   main: {
     lat: 37.77, 
     lon: -122.445,
-    zoom: 12,
+    zoom: isMobile ? 11 : 12,
   },
 };
 
@@ -162,15 +164,13 @@ const ParcelMap = () => {
   };
 
   return (
-    <div className="single" style={{ display: 'flex', gap: '20px', position: 'relative' }}>
-      <div style={{ width: '70%' }}>
+    <div className="rent-control-map-container" style={{ display: 'flex', gap: '20px', position: 'relative' }}>
+      <div className="rent-map-container">
         <MapContainer 
           center={[viewSettings.main.lat, viewSettings.main.lon]}
           zoom={viewSettings.main.zoom}
-          style={{ height: "67vh", width: "100%" }}
-          zoomControl={false}
+          className="map"
           scrollWheelZoom={false}
-          dragging={false}
           doubleClickZoom={false}
           touchZoom={false}
         >
@@ -202,19 +202,14 @@ const ParcelMap = () => {
               </LayerGroup>
         </MapContainer>
       </div>
-      <div style={{ 
-        width: '30%',
-        position: 'sticky',
-        top: '20px',
-        height: 'fit-content'
-      }}>
+      <div className="rent-control-map-blurb">
         {selectedNeighborhood && (
           <div style={{ textAlign: 'center' }}>
             <h3>{selectedNeighborhood}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            <span className="blurb-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
           </div>
         )}
       </div>
