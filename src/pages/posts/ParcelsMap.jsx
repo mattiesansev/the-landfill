@@ -206,10 +206,10 @@ const ParcelMap = () => {
         {selectedNeighborhood && (
           <div style={{ textAlign: 'center' }}>
             <h3>{selectedNeighborhood}</h3>
-            <span className="blurb-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            <span className="blurb-text">Lorems ipsum dolor sit amet, consectetur adipiscing elit. 
             Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span>
           </div>
         )}
       </div>
