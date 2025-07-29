@@ -105,7 +105,7 @@ const ParcelMap = () => {
   useEffect(() => {
     const loadCSVData = async () => {
       try {
-        const response = await fetch('/SF_Find_Neighborhood_Boundaries.csv');
+        const response = await fetch('/Analysis_Neighborhoods.csv');
         const csvText = await response.text();
         
         const rows = csvText.split('\n');
@@ -119,7 +119,8 @@ const ParcelMap = () => {
           const remaining = row.substring(lastQuote + 1).split(',');
           return {
             the_geom: the_geom,
-            name: remaining[1]?.trim() || ''
+            name: remaining[1]?.trim() || '',
+            blurb: remaining[2]?.trim() || ''
           };
         });
         
@@ -130,7 +131,8 @@ const ParcelMap = () => {
             const coordinates = parseWKT(row.the_geom);
             return {
               coordinates,
-              name: row.name
+              name: row.name,
+              blurb: row.blurb
             };
           });
         
@@ -196,7 +198,7 @@ const ParcelMap = () => {
                             console.log("selected Neighborhood ", neighborhood);
                             setSelectedNeighborhood({
                               name: neighborhood.name,
-                              paragraph: "This is the paragraph for " + neighborhood.name
+                              paragraph: "This is the paragraph for " + neighborhood.name + "\n\n" + neighborhood.blurb
                             });
                           }
                         }}
