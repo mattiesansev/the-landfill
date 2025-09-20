@@ -5,9 +5,10 @@ import {
     Popup,
     useMap,
     LayersControl,
-    LayerGroup
+    LayerGroup,
+    CircleMarker
   } from "react-leaflet";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import * as d3 from 'd3';
 
 
@@ -24,13 +25,12 @@ const viewSettings = {
 // Function to parse WKT coordinates
 const parseWKT = (wkt) => {
   try {
-    
+    console.log('Parsing WKT:', wkt.substring(0, 100) + '...');
     
     // Extract all polygon coordinates from WKT format
     let matches = wkt.match(/\(\((.*?)\)\)/g);
     
-
-    console.log('clean wkt type: ', matches)
+    console.log('Found polygon matches:', matches ? matches.length : 0);
     
     if (!matches) {
       console.error('No coordinates found in WKT string');
@@ -38,21 +38,36 @@ const parseWKT = (wkt) => {
     }
     
     // Process each polygon
-    const polygons = matches.map(match => {
-      const coordsStr = match.match(/\(\((.*)\)\)/)[1].slice(1);
-      console.log('Extracted coordinates string:', coordsStr);
-      // const cleanCoordsStr = coordsStr.slice(1);
-      const coords = coordsStr.split(', ').map(coord => {
-        console.log('Processing coordinate:', coord);
-        const [lon, lat] = coord.split(' ').map(Number);
-        console.log('Parsed lat/lon:', lat, lon);
-        return [lat, lon];
-      });
+    const polygons = matches.map((match, matchIndex) => {
+      // Extract coordinates string from the match
+      const coordsStr = match.match(/\(\((.*)\)\)/)[1];
+      console.log(`Polygon ${matchIndex} coordinates string:`, coordsStr.substring(0, 100) + '...');
       
+      // Split by comma and space to get individual coordinate pairs
+      const coords = coordsStr.split(', ').map((coord, coordIndex) => {
+        const parts = coord.trim().split(' ');
+        if (parts.length !== 2) {
+          console.error(`Invalid coordinate format: ${coord}`);
+          return null;
+        }
+        
+        const lon = parseFloat(parts[0]);
+        const lat = parseFloat(parts[1]);
+        
+        if (isNaN(lon) || isNaN(lat)) {
+          console.error(`Invalid coordinate values: lon=${parts[0]}, lat=${parts[1]}`);
+          return null;
+        }
+        
+        console.log(`Coordinate ${coordIndex}: lon=${lon}, lat=${lat}`);
+        return [lat, lon]; // Return as [lat, lon] for Leaflet
+      }).filter(coord => coord !== null);
+      
+      console.log(`Polygon ${matchIndex} processed ${coords.length} coordinates`);
       return coords;
     });
     
-    console.log('Final coordinates array:', polygons);
+    console.log('Final polygons array:', polygons.length, 'polygons');
     return polygons;
   } catch (error) {
     console.error('Error parsing WKT:', error);
@@ -98,6 +113,7 @@ const getRandomColor = () => {
 
 const ParcelMap = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
+  const [rentControl, setRentControl] = useState([]);
   const [selectedNeighborhood, setSelectedNeighborhood] = useState({
     name: "Financial District",
     paragraph: "This is the paragraph for the selected neighborhood."
@@ -107,50 +123,129 @@ const ParcelMap = () => {
   useEffect(() => {
     const loadCSVData = async () => {
       try {
-        const response = await fetch('/SF_Find_Neighborhood_Boundaries.csv');
+        const response = await fetch('/sf_realtor_boundaries_and_blurbs_and_stats.csv');
         const csvText = await response.text();
         
         const rows = csvText.split('\n');
-
-        const data = rows.slice(1).map(row => {
-          // Find the first and last quote to extract the_geom
-          const firstQuote = row.indexOf('"');
-          const lastQuote = row.lastIndexOf('"');
-          const the_geom = row.substring(firstQuote, lastQuote + 1);
+        
+        // Helper function to parse CSV row properly handling quoted fields
+        const parseCSVRow = (row) => {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
           
-          const remaining = row.substring(lastQuote + 1).split(',');
+          for (let i = 0; i < row.length; i++) {
+            const char = row[i];
+            
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else {
+              current += char;
+            }
+          }
+          
+          // Add the last field
+          result.push(current.trim());
+          return result;
+        };
+        
+        // Find the header row to get column indices
+        const headerRow = rows[0];
+        const headers = parseCSVRow(headerRow);
+        
+        // Find the index of the Blurbs and the_geom columns
+        const blurbsIndex = headers.findIndex(header => header === 'Blurbs');
+        const geomIndex = headers.findIndex(header => header === 'the_geom');
+        console.log('Headers:', headers);
+        console.log('Blurbs column index:', blurbsIndex);
+        console.log('Geometry column index:', geomIndex);
+        
+        if (blurbsIndex === -1) {
+          console.error('Blurbs column not found in CSV');
+          return;
+        }
+        
+        if (geomIndex === -1) {
+          console.error('the_geom column not found in CSV');
+          return;
+        }
+        
+        // Extract neighborhood data from each data row
+        const extractedNeighborhoods = [];
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i].trim();
+          if (row) {
+            const columns = parseCSVRow(row);
+            if (columns[blurbsIndex] && columns[geomIndex]) {
+              extractedNeighborhoods.push({
+                neighborhood: columns[2], // nbrhood column
+                blurb: columns[blurbsIndex],
+                geometry: columns[geomIndex]
+              });
+            }
+          }
+        }
+        
+        console.log('Extracted neighborhoods:', extractedNeighborhoods);
+        
+        // Process the extracted data and parse geometry
+        const processedNeighborhoods = extractedNeighborhoods.map(item => {
+          const coordinates = parseWKT(item.geometry);
           return {
-            the_geom: the_geom,
-            name: remaining[1]?.trim() || ''
+            name: item.neighborhood,
+            neighborhood: item.neighborhood, 
+            blurb: item.blurb,
+            geometry: coordinates, // Parsed coordinates for map rendering
+            rawGeometry: item.geometry // Keep original for reference
           };
         });
         
-        const processedNeighborhoods = data
-          .filter(row => row.the_geom) // Filter out empty rows
-          .map(row => {
-            console.log('Processing row:', row);
-            const coordinates = parseWKT(row.the_geom);
-            return {
-              coordinates,
-              name: row.name
-            };
-          });
+        console.log('Processed neighborhoods:', processedNeighborhoods);
         
-        // Generate initial colors for each neighborhood
-        const initialColors = {};
+        // Generate colors for neighborhoods
+        const colors = {};
         processedNeighborhoods.forEach(neighborhood => {
-          initialColors[neighborhood.name] = getRandomColor();
+          if (!neighborhoodColors[neighborhood.neighborhood]) {
+            colors[neighborhood.neighborhood] = getRandomColor();
+          }
+        });
+        setNeighborhoodColors(prev => ({ ...prev, ...colors }));
+        
+        // Set the neighborhoods state
+        setNeighborhoods(processedNeighborhoods);
+        
+        // For now, just log the first few neighborhoods to test
+        console.log('First 3 neighborhoods:');
+        processedNeighborhoods.slice(0, 3).forEach((item, index) => {
+          console.log(`${index + 1}. ${item.neighborhood}:`);
+          console.log(`   Blurb: ${item.blurb}`);
+          console.log(`   Coordinates:`, item.geometry);
         });
         
-        setNeighborhoodColors(initialColors);
-        setNeighborhoods(processedNeighborhoods);
-      } catch (error) {
-        console.error('Error loading CSV:', error);
+      } 
+      catch (error) {
+        console.error('Error loading CSV data:', error);
       }
     };
 
     loadCSVData();
   }, []);
+
+  // Process rent control data
+  const rentControlData = useMemo(() => {
+    if (!rentControl || !neighborhoods) return [];
+    
+    return rentControl.map(d => {
+      const neighborhood = neighborhoods.find(n => n.name === d.neighborhood);
+      return {
+        ...d,
+        neighborhoodInfo: neighborhood || null
+      };
+    });
+  }, [rentControl, neighborhoods]);
 
   const getNeighborhoodColor = (neighborhoodName) => {
     if (selectedNeighborhood.name === neighborhoodName) {
@@ -179,8 +274,9 @@ const ParcelMap = () => {
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" className="grayscale-tiles"/>
               <LayerGroup>
                 {neighborhoods.map((neighborhood, index) => (
-                  neighborhood.coordinates.map((polygon, polygonIndex) => {
-                    const colors = getNeighborhoodColor(neighborhood.name);
+                  neighborhood.geometry && neighborhood.geometry.length > 0 ? 
+                  neighborhood.geometry.map((polygon, polygonIndex) => {
+                    const colors = getNeighborhoodColor(neighborhood.neighborhood);
                     return (
                       <Polygon
                         key={`${index}-${polygonIndex}`}
@@ -194,25 +290,52 @@ const ParcelMap = () => {
                         eventHandlers={{
                           click: (e) => {
                             console.log("selected Neighborhood ", neighborhood);
+                            
+                            let paragraph = neighborhood.blurb || "No description available.";
+                            
                             setSelectedNeighborhood({
-                              name: neighborhood.name,
-                              paragraph: "This is the paragraph for " + neighborhood.name
+                              name: neighborhood.neighborhood,
+                              paragraph: paragraph
                             });
                           }
                         }}
                       />
                     );
-                  })
+                  }) : null
                 ))}
               </LayerGroup>
         </MapContainer>
       </div>
-      <div className="rent-control-map-blurb">
+      <div className="rent-control-map-blurb" style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        height: '100%'
+      }}>
         {selectedNeighborhood && (
-          <div style={{ textAlign: 'center' }}>
-            <h3>{selectedNeighborhood.name}</h3>
-            <span className="blurb-text">{selectedNeighborhood.paragraph}</span>
-
+          <div style={{ 
+            paddingTop: '120px',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%'
+          }}>
+            <h3 style={{ 
+              fontSize: '2.25rem', // 50% increase from default 1.5rem
+              marginBottom: '1rem',
+              fontWeight: 'bold'
+            }}>
+              {selectedNeighborhood.name}
+            </h3>
+            <span className="blurb-text" style={{ 
+              fontSize: '1.5rem', // 50% increase from default 1rem
+              lineHeight: '1.6',
+              maxWidth: '90%'
+            }}>
+              {selectedNeighborhood.paragraph}
+            </span>
           </div>
         )}
       </div>
