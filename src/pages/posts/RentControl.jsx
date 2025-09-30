@@ -42,19 +42,40 @@ const Parcels = () => {
     </div>
     <div className="content" style={{ width: "90%"}}> 
     <ParcelMap />
-    <ScrollyTimeline />
+    <br /> <br />
+    <div className="subtitle">
+    Part 1: The Original Rent Control Debate in San Francisco
+    </div>
+    <ScrollyTimeline sectionYears={[1979]} />
     </div>
     <div className="content">
     <div>
           <p>Maybe we insert some new info here.</p>
         </div>
-        <img src={headerPhoto}></img>
         <div >
           <p>This is the introcution to the article it's about rent control in San Francisco.</p>
         </div>
     </div>
     <div className="content" style={{ width: "90%"}}> 
-    <ScrollyTimeline />
+    <br /> <br />
+    <div className="subtitle">
+    Part 2: Rent Control Throughout the 80’s - Amendments and Bans
+    </div>
+    <ScrollyTimeline sectionYears={[1980, 1984, 1988, 1992, 1994, 1995, 1998]}/>
+    </div>
+    <div className="content" style={{ width: "90%"}}> 
+    <br /> <br />
+    <div className="subtitle">
+    Part 3: The State of Rent Control in the 21st Century
+    </div>
+    <ScrollyTimeline sectionYears={[2000, 2008]}/>
+    </div>
+    <br /> <br />
+    <div className="content" style={{ width: "60%"}}> 
+    Between 2008 and 2018 no local rent control propositions or laws were passed in San Francisco or statewide. During this time the median rent in San Francisco rose from $2,041 in 2010 and $2,406 (adjusted for 2025 dollars - 84.82% increase over 8 years).
+    </div>
+    <div className="content" style={{ width: "90%"}}>
+    <ScrollyTimeline sectionYears={[2018, 2019, 2020, 2024]}/>
     </div>
     </div>
 </div>
