@@ -76,6 +76,20 @@
             line-height: 50px;
           }
         }
+        .subtitle {
+          font-size: 50px;
+          font-family: "Quattrocento", serif;
+          justify-self: center;
+          text-align: center;
+          max-width: 400px;
+          line-height: 80px;
+        }
+        @media (max-width: 768px) {
+          .subtitle {
+            font-size: 30px;
+            line-height: 50px;
+          }
+        }
         .links {
           display: flex;
           flex-wrap: wrap; 
@@ -164,6 +178,15 @@
               }
               .title {
                 font-size: 30px;
+                font-family: "Outfit", sans-serif;
+                @media (max-width: 768px) {
+                  justify-content: center;
+                  align-items: center;
+                  width: 100%;
+                }
+              } 
+              .subtitle {
+                font-size: 20px;
                 font-family: "Outfit", sans-serif;
                 @media (max-width: 768px) {
                   justify-content: center;
@@ -396,6 +419,13 @@
         }
         .title {
           font-size: 55px;
+          padding: 15px;
+          @media (max-width: 850px) {
+            font-size: 35px;
+          }
+        }
+        .subtitle {
+          font-size: 45px;
           padding: 15px;
           @media (max-width: 850px) {
             font-size: 35px;
