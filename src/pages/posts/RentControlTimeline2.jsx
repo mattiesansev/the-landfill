@@ -37,7 +37,7 @@ const getDataForYear = (year) => {
   return data
 }
 
-const getContentForYear = (year) => {
+export const getContentForYear = (year) => {
   switch (year) {
     case 1979:
       return (
@@ -216,7 +216,7 @@ export default function ScrollyTimeline({sectionYears}) {
             cursor={false}
             labelStyle={{ color: "white"}}
             itemStyle={{ color: "white" }}
-            formatter={(value) => [value]}
+            formatter={(value) => `$${[value]}`}
             />
             <Bar dataKey="value" fill="#131140"/>
           </BarChart>

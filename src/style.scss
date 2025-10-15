@@ -366,14 +366,10 @@
         }
         .rent-control-map-blurb {
           flex: 1;
-          position: sticky;
-          top: 20px;
           height: fit-content;
           .blurb-text {
             font-size: 20px;
             line-height: 30px;
-            padding-left: 10%;
-            padding-right: 10%;
           }
         }
       }
@@ -426,6 +422,7 @@
         }
         .subtitle {
           font-size: 45px;
+          line-height: 50px;
           padding: 15px;
           @media (max-width: 850px) {
             font-size: 35px;

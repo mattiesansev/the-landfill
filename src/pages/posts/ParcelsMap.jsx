@@ -115,8 +115,8 @@ const ParcelMap = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
   const [rentControl, setRentControl] = useState([]);
   const [selectedNeighborhood, setSelectedNeighborhood] = useState({
-    name: "Financial District",
-    paragraph: "This is the paragraph for the selected neighborhood."
+    name: "",
+    paragraph: "Click a neighborhood to see more information about its rent control statistics"
   });
   const [neighborhoodColors, setNeighborhoodColors] = useState({});
 
@@ -308,19 +308,14 @@ const ParcelMap = () => {
       </div>
       <div className="rent-control-map-blurb" style={{ 
         display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
         height: '100%'
       }}>
         {selectedNeighborhood && (
           <div style={{ 
-            paddingTop: '120px',
-            textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%'
+            height: '100%',
+            paddingLeft: '10%'
           }}>
             <h3 style={{ 
               fontSize: '2.25rem', // 50% increase from default 1.5rem
@@ -329,11 +324,7 @@ const ParcelMap = () => {
             }}>
               {selectedNeighborhood.name}
             </h3>
-            <span className="blurb-text" style={{ 
-              fontSize: '1.5rem', // 50% increase from default 1rem
-              lineHeight: '1.6',
-              maxWidth: '90%'
-            }}>
+            <span className="blurb-text">
               {selectedNeighborhood.paragraph}
             </span>
           </div>
