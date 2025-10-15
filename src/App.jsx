@@ -3,7 +3,6 @@ import Single from "./pages/Single"
 import Home from "./pages/Home"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-import "./style.scss"
 import LandfillMap from "./pages/posts/LandfillMap"
 import AboutUs from "./pages/AboutUs"
 import TitleRow from "./components/TitleRow"
@@ -49,10 +48,8 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-    <div className="app">
-      <div className="container">
-        <RouterProvider router={router} />
-      </div>
+    <div className="min-h-screen bg-white">
+      <RouterProvider router={router} />
     </div>
   )
 }

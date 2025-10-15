@@ -36,24 +36,60 @@ const Home = () => {
     },
     
   ];
+  
   return (
-    <div className="home">
-      <div className="posts">
-        {posts.map((post) => (
-          <div className="post" key={post.id}>
-            <Link className="link" to={`/post/${post.id}`}>
-              <div className="img">
-                <img src={post.img} alt="" />
-              </div>
-              <div className="content">
-                <div className="title">{post.title}</div>
-                <div className="description">{post.desc}</div>
-              </div>
-            </Link>
-          </div>
-        ))}
+    <main className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {posts.map((post) => (
+            <article 
+              key={post.id}
+              className="bg-white rounded-xl shadow-lg overflow-hidden card-hover group"
+            >
+              <Link to={`/post/${post.id}`} className="block">
+                {/* Image Container */}
+                <div className="relative h-64 sm:h-80 overflow-hidden">
+                  <img 
+                    src={post.img} 
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="image-overlay group-hover:opacity-100"></div>
+                </div>
+                
+                {/* Content */}
+                <div className="p-6 sm:p-8">
+                  <h2 className="text-xl sm:text-2xl font-display font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-200">
+                    {post.title}
+                  </h2>
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+                    {post.desc}
+                  </p>
+                  
+                  {/* Authors */}
+                  {post.authors && post.authors.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {post.authors.map((author, index) => (
+                        <div key={index} className="flex items-center space-x-2">
+                          <img 
+                            src={author.img} 
+                            alt={author.name}
+                            className="w-8 h-8 rounded-full object-cover border border-gray-200"
+                          />
+                          <span className="text-xs text-gray-500 font-medium">
+                            {author.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 export default Home;
