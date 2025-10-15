@@ -384,11 +384,6 @@
           .rent-control-map-blurb {
               flex: 1;
               height: 10;
-
-            .blurb-text {
-              font-size: 14px;
-              line-height: 20px;
-            }
           }
         }
       }
@@ -711,7 +706,7 @@
         }
         
         .year-section {
-          margin-bottom: 200px;
+          //margin-bottom: 200px;
           position: relative;
         }
         
@@ -749,9 +744,9 @@
             flex-direction: column;
             padding-left: 0px;
           }
-          .year-section {
-            margin-top: 500px;
-          }
+          // .year-section {
+          //   margin-top: 500px;
+          // }
 
           .left-column {
             width: 100%;

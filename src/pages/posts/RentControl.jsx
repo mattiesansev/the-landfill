@@ -19,10 +19,23 @@ import ParcelMap from "./ParcelsMap";
 
 ReactGA.initialize('G-NR2T70PVBG'); 
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
 const Parcels = () => {
   const [propInfo, setPropInfo] = useState([]);
 
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     ReactGA.send({ hitType: 'pageview', page: location.pathname });
@@ -67,12 +80,12 @@ const Parcels = () => {
     </p>
     <div className={`timeline-marker active`}>
       <p className={`timeline-marker active`}>
-              1979
-              </p>
-            </div>
-            <p>
-              { getContentForYear(1979) }
-            </p>
+        1979
+        </p>
+      </div>
+      <p>
+        { getContentForYear(1979) }
+      </p>
     </div>
     <div className="content">
     <div>
@@ -217,7 +230,6 @@ function initializePrecinctVariables(precinct_row) {
 
 function getHeatmapColor(yesVoteLevel, noVoteLevel) {
     if (!yesVoteLevel || yesVoteLevel.length === 0) {
-        console.log("[mattie] missing percent")
         return "#FFA500"
     }
     const percentageString = yesVoteLevel.replace('%', '');

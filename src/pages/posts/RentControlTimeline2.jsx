@@ -189,6 +189,50 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
+function TimelineMobileView({sectionYears}) {
+  const [data, setData] = useState(getDataForYear(sectionYears[sectionYears.length - 1]));
+  const isMobile = useIsMobile();
+
+  const tickColor = 'white'
+  const chartHeight = 300
+  const topOffset = "10%"
+  const bottomOffset = "80%"
+
+  return (
+  <div className="container">
+        <div className="chart-title">Median gross rent</div>
+        <div className="chart-description">(Adjusted for 2025 inflation)</div>
+        <ResponsiveContainer width="100%" height={chartHeight} className="chartContainer">
+      <BarChart data={data}>
+        <XAxis dataKey="label" tick={{ fill: tickColor}} />
+        <YAxis tick={{ fill: tickColor }}/>
+        <Tooltip
+        contentStyle={{
+            backgroundColor: "transparent",
+            border: "none",
+            boxShadow: "none",
+        }}
+        cursor={false}
+        labelStyle={{ color: "white"}}
+        itemStyle={{ color: "white" }}
+        formatter={(value) => `$${[value]}`}
+        />
+        <Bar dataKey="value" fill="#131140"/>
+      </BarChart>
+      </ResponsiveContainer>
+        {sectionYears.map((year) => (
+          <section key={year} className="year-section">
+            <div className={`timeline-marker active`}>
+              {year}
+            </div>
+            <p>
+              { getContentForYear(year) }
+            </p>
+          </section>
+        ))}
+    </div>
+  );
+}
 export default function ScrollyTimeline({sectionYears}) {
   const [data, setData] = useState(getDataForYear(sectionYears[0]));
   const [activeYear, setActiveYear] = useState(sectionYears[0]);
@@ -198,6 +242,10 @@ export default function ScrollyTimeline({sectionYears}) {
   const chartHeight = isMobile ? 200 : 300
   const topOffset = isMobile ? undefined : "10%"
   const bottomOffset = isMobile ? "100px" : "80%"
+
+  if (isMobile) {
+    return <TimelineMobileView sectionYears={sectionYears} />
+  }
   return (
     <div className="container">
       <div className="right-column">
