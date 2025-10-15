@@ -46,7 +46,6 @@ const LandfillMap = () => {
             dynamicTyping: true,
             complete: function (results) {
               setCoordinatesPerLandfill(results.data);
-              console.log(coordinatesPerLandfill); // Parsed CSV data as an array of objects
             },
             error: function (error) {
               console.error(error.message); // Error handling

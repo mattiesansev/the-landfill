@@ -18,19 +18,27 @@ const viewSettings = {
   main: {
     lat: 37.77, 
     lon: -122.445,
-    zoom: isMobile ? 11 : 12,
+    zoom: isMobile ? 10.75 : 12,
   },
 };
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+}
 
 // Function to parse WKT coordinates
 const parseWKT = (wkt) => {
   try {
-    console.log('Parsing WKT:', wkt.substring(0, 100) + '...');
-    
     // Extract all polygon coordinates from WKT format
     let matches = wkt.match(/\(\((.*?)\)\)/g);
-    
-    console.log('Found polygon matches:', matches ? matches.length : 0);
     
     if (!matches) {
       console.error('No coordinates found in WKT string');
@@ -41,7 +49,6 @@ const parseWKT = (wkt) => {
     const polygons = matches.map((match, matchIndex) => {
       // Extract coordinates string from the match
       const coordsStr = match.match(/\(\((.*)\)\)/)[1];
-      console.log(`Polygon ${matchIndex} coordinates string:`, coordsStr.substring(0, 100) + '...');
       
       // Split by comma and space to get individual coordinate pairs
       const coords = coordsStr.split(', ').map((coord, coordIndex) => {
@@ -59,15 +66,12 @@ const parseWKT = (wkt) => {
           return null;
         }
         
-        console.log(`Coordinate ${coordIndex}: lon=${lon}, lat=${lat}`);
         return [lat, lon]; // Return as [lat, lon] for Leaflet
       }).filter(coord => coord !== null);
       
-      console.log(`Polygon ${matchIndex} processed ${coords.length} coordinates`);
       return coords;
     });
     
-    console.log('Final polygons array:', polygons.length, 'polygons');
     return polygons;
   } catch (error) {
     console.error('Error parsing WKT:', error);
@@ -115,10 +119,11 @@ const ParcelMap = () => {
   const [neighborhoods, setNeighborhoods] = useState([]);
   const [rentControl, setRentControl] = useState([]);
   const [selectedNeighborhood, setSelectedNeighborhood] = useState({
-    name: "Financial District",
-    paragraph: "This is the paragraph for the selected neighborhood."
+    name: "",
+    paragraph: "Click a neighborhood to see more information about its rent control statistics"
   });
   const [neighborhoodColors, setNeighborhoodColors] = useState({});
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const loadCSVData = async () => {
@@ -159,9 +164,6 @@ const ParcelMap = () => {
         // Find the index of the Blurbs and the_geom columns
         const blurbsIndex = headers.findIndex(header => header === 'Blurbs');
         const geomIndex = headers.findIndex(header => header === 'the_geom');
-        console.log('Headers:', headers);
-        console.log('Blurbs column index:', blurbsIndex);
-        console.log('Geometry column index:', geomIndex);
         
         if (blurbsIndex === -1) {
           console.error('Blurbs column not found in CSV');
@@ -189,8 +191,6 @@ const ParcelMap = () => {
           }
         }
         
-        console.log('Extracted neighborhoods:', extractedNeighborhoods);
-        
         // Process the extracted data and parse geometry
         const processedNeighborhoods = extractedNeighborhoods.map(item => {
           const coordinates = parseWKT(item.geometry);
@@ -203,8 +203,6 @@ const ParcelMap = () => {
           };
         });
         
-        console.log('Processed neighborhoods:', processedNeighborhoods);
-        
         // Generate colors for neighborhoods
         const colors = {};
         processedNeighborhoods.forEach(neighborhood => {
@@ -216,14 +214,6 @@ const ParcelMap = () => {
         
         // Set the neighborhoods state
         setNeighborhoods(processedNeighborhoods);
-        
-        // For now, just log the first few neighborhoods to test
-        console.log('First 3 neighborhoods:');
-        processedNeighborhoods.slice(0, 3).forEach((item, index) => {
-          console.log(`${index + 1}. ${item.neighborhood}:`);
-          console.log(`   Blurb: ${item.blurb}`);
-          console.log(`   Coordinates:`, item.geometry);
-        });
         
       } 
       catch (error) {
@@ -261,7 +251,7 @@ const ParcelMap = () => {
   };
 
   return (
-    <div className="rent-control-map-container" style={{ display: 'flex', gap: '20px', position: 'relative' }}>
+    <div className="rent-control-map-container" style={{ display: 'flex', gap: '20px', position: 'relative', flexDirection: `${isMobile ? 'column' : 'row'}`}}>
       <div className="rent-map-container">
         <MapContainer 
           center={[viewSettings.main.lat, viewSettings.main.lon]}
@@ -308,19 +298,14 @@ const ParcelMap = () => {
       </div>
       <div className="rent-control-map-blurb" style={{ 
         display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
         height: '100%'
       }}>
         {selectedNeighborhood && (
           <div style={{ 
-            paddingTop: '120px',
-            textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%'
+            height: '100%',
+            paddingLeft: '10%'
           }}>
             <h3 style={{ 
               fontSize: '2.25rem', // 50% increase from default 1.5rem
@@ -329,11 +314,7 @@ const ParcelMap = () => {
             }}>
               {selectedNeighborhood.name}
             </h3>
-            <span className="blurb-text" style={{ 
-              fontSize: '1.5rem', // 50% increase from default 1rem
-              lineHeight: '1.6',
-              maxWidth: '90%'
-            }}>
+            <span className="blurb-text">
               {selectedNeighborhood.paragraph}
             </span>
           </div>

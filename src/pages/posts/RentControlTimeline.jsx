@@ -57,12 +57,10 @@ class ParcelScroll extends PureComponent {
 
   onStepEnter = e => {
     const { data, entry, direction} = e;
-    console.log("[mattie] on step enter ", data, entry, direction)
     this.setState({ data });
   };
 
   onStepExit = ({ direction, data }) => {
-    console.log("[mattie] on step exit", direction, data, this.state.steps[0].year)
     if (direction === 'up' && data.year === this.state.steps[0].year) {
       this.setState({ data: {} });
     }
@@ -89,7 +87,6 @@ class ParcelScroll extends PureComponent {
             >
               {steps.map(value => {
                 const isVisible = value.year === data.year;
-                console.log("[mattie] value ", value.year, " is visible ", isVisible)
                 const background = isVisible
                   ? `rgba(44,127,184)`//, ${progress})`
                   : '#1A7750';

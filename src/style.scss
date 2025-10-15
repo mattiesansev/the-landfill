@@ -366,14 +366,10 @@
         }
         .rent-control-map-blurb {
           flex: 1;
-          position: sticky;
-          top: 20px;
           height: fit-content;
           .blurb-text {
             font-size: 20px;
             line-height: 30px;
-            padding-left: 10%;
-            padding-right: 10%;
           }
         }
       }
@@ -388,11 +384,6 @@
           .rent-control-map-blurb {
               flex: 1;
               height: 10;
-
-            .blurb-text {
-              font-size: 14px;
-              line-height: 20px;
-            }
           }
         }
       }
@@ -426,6 +417,7 @@
         }
         .subtitle {
           font-size: 45px;
+          line-height: 50px;
           padding: 15px;
           @media (max-width: 850px) {
             font-size: 35px;
@@ -714,7 +706,7 @@
         }
         
         .year-section {
-          margin-bottom: 200px;
+          //margin-bottom: 200px;
           position: relative;
         }
         
@@ -752,9 +744,9 @@
             flex-direction: column;
             padding-left: 0px;
           }
-          .year-section {
-            margin-top: 500px;
-          }
+          // .year-section {
+          //   margin-top: 500px;
+          // }
 
           .left-column {
             width: 100%;
