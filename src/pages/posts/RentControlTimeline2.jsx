@@ -191,12 +191,9 @@ function useIsMobile(breakpoint = 768) {
 
 function TimelineMobileView({sectionYears}) {
   const [data, setData] = useState(getDataForYear(sectionYears[sectionYears.length - 1]));
-  const isMobile = useIsMobile();
 
-  const tickColor = 'white'
+  const tickColor = 'black'
   const chartHeight = 300
-  const topOffset = "10%"
-  const bottomOffset = "80%"
 
   return (
   <div className="container">
@@ -208,13 +205,13 @@ function TimelineMobileView({sectionYears}) {
         <YAxis tick={{ fill: tickColor }}/>
         <Tooltip
         contentStyle={{
-            backgroundColor: "transparent",
-            border: "none",
-            boxShadow: "none",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
         }}
         cursor={false}
-        labelStyle={{ color: "white"}}
-        itemStyle={{ color: "white" }}
+        labelStyle={{ color: "black"}}
+        itemStyle={{ color: "black" }}
         formatter={(value) => `$${[value]}`}
         />
         <Bar dataKey="value" fill="#131140"/>
@@ -238,7 +235,7 @@ export default function ScrollyTimeline({sectionYears}) {
   const [activeYear, setActiveYear] = useState(sectionYears[0]);
   const isMobile = useIsMobile();
 
-  const tickColor = isMobile ? 'black' : 'white'
+  const tickColor = 'black'
   const chartHeight = isMobile ? 200 : 300
   const topOffset = isMobile ? undefined : "10%"
   const bottomOffset = isMobile ? "100px" : "80%"
@@ -257,13 +254,13 @@ export default function ScrollyTimeline({sectionYears}) {
             <YAxis tick={{ fill: tickColor }}/>
             <Tooltip
             contentStyle={{
-                backgroundColor: "transparent",
-                border: "none",
-                boxShadow: "none",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
             }}
             cursor={false}
-            labelStyle={{ color: "white"}}
-            itemStyle={{ color: "white" }}
+            labelStyle={{ color: "black"}}
+            itemStyle={{ color: "black" }}
             formatter={(value) => `$${[value]}`}
             />
             <Bar dataKey="value" fill="#131140"/>

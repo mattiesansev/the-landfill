@@ -425,6 +425,8 @@
       justify-content: center;
       gap: 50px;
       padding: 40px 20px;
+      box-sizing: border-box;
+      max-width: 100%;
 
       .rent-control-map-container {
         display: flex;
@@ -461,16 +463,14 @@
 
       // Use this if you need varied widths across content in an article
       .complexContentContainer {
-        width: 100%;
+        width: 70%;
+        max-width: 100%;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 50px;
+        gap: 30px;
         align-items: center;
-      }
-
-      .content {
-        width: 70%;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(10px);
         border-radius: 20px;
@@ -482,6 +482,37 @@
           width: 95%;
           padding: 20px;
         }
+      }
+
+      // Direct child .content gets the white box styling
+      > .content {
+        width: 70%;
+        max-width: 100%;
+        box-sizing: border-box;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        border: 2px solid #3d9e85;
+        padding: 40px;
+        margin: 0 auto;
+        @media (max-width: 850px) {
+          width: 95%;
+          padding: 20px;
+        }
+      }
+
+      // .content inside .complexContentContainer inherits the container's styling
+      .complexContentContainer .content {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .content {
+        word-wrap: break-word;
+        // Note: overflow-x hidden breaks position:sticky in child elements
+        // Only apply overflow hidden to specific children if needed
         .footnoteNumber {
           font-size: 10px;
           padding-bottom: 20px;
@@ -786,40 +817,46 @@
         }
         .container {
           display: flex;
+          flex-direction: row;
           padding-top: 20px;
+          align-items: flex-start;
+          width: 100%;
         }
-        
+
         .left-column {
           width: 60%;
           padding: 20px;
+          flex-shrink: 0;
         }
-        
+
         .year-section {
-          //margin-bottom: 200px;
+          margin-bottom: 150px;
           position: relative;
         }
-        
+
         .timeline-marker {
           font-weight: bold;
           font-size: 50px;
           margin-bottom: 8px;
         }
-        
+
         .timeline-marker.active {
           font-size: 75px;
         }
-        
+
+        // Chart column - sticks to top while scrolling through timeline
         .right-column {
           position: sticky;
-          top: 20px;
-          height: 100vh;
+          top: 100px;
           width: 40%;
           padding-right: 20px;
           border-right: 1px solid #ccc;
+          align-self: flex-start;
+          flex-shrink: 0;
           .chart-title {
             font-size: 20px;
             padding: 10px;
-            padding-top: 40%;
+            padding-top: 20px;
           }
           .chart-description {
             font-style: italic;
@@ -833,9 +870,6 @@
             flex-direction: column;
             padding-left: 0px;
           }
-          // .year-section {
-          //   margin-top: 500px;
-          // }
 
           .left-column {
             width: 100%;
@@ -844,14 +878,13 @@
 
           .right-column {
             position: sticky;
-            top: 10;
+            top: 80px;
             width: 100%;
-            border-left: none;
+            border-right: none;
             z-index: 10;
             padding-right: 0px;
-            height: fit-content;
-            background-color: rgba(255, 255, 255);
-            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
             .chart-title {
               padding-top: 10px;
               color: black;
@@ -864,7 +897,6 @@
             height: 160px;
             width: 80%;
           }
-          
         }
       }
       .menu {
