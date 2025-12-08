@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
-import headerPhoto from "/src/header.jpg";
+import headerPhoto from "/src/rent_control.jpeg";
 import { useLocation } from 'react-router-dom'; 
 import ReactGA from 'react-ga4';
 import ParcelScroll from "./RentControlTimeline";
