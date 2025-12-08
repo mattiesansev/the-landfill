@@ -38,6 +38,10 @@ const Home = () => {
   ];
   return (
     <div className="home">
+      <div className="section-header">
+        <h1 className="section-heading">Latest from the Bay</h1>
+        <p className="section-subheading">Take a look at our team's data-driven stories and passion projects</p>
+      </div>
       <div className="posts">
         {posts.map((post) => (
           <div className="post" key={post.id}>
