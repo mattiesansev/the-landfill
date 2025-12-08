@@ -1,10 +1,10 @@
 .app {
   justify-content: center;
-  background-color: #ffffff;
   margin: calc(50% - 50vw);
   font-family: "Quattrocento Sans", sans-serif;
-  background-color: #1A7750;
-  color: white;
+  background: linear-gradient(135deg, #e8f4f0 0%, #d4ece5 50%, #e0f2f0 100%);
+  min-height: 100vh;
+  color: #2d3748;
   .container {
     .link {
       text-decoration: none;
@@ -13,68 +13,65 @@
 
     // TITLE ROW
     .title_row {
-      padding-left: 5%;
-      padding-right: 5%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+      display: flex;
+      justify-content: center;
       .container {
-        padding: 10px 0px;
+        width: 90%;
+        padding: 15px 0px;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
         .logo {
           img {
-            width: 170px;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
             @media (max-width: 768px) {
-                width: 60px;
+                width: 40px;
+                height: 40px;
             }
+          }
+        }
+        .title {
+          font-size: 24px;
+          font-family: "Quattrocento", serif;
+          text-align: left;
+          line-height: 1.2;
+          color: #1a1a1a;
+          white-space: nowrap;
+          @media (max-width: 768px) {
+            font-size: 18px;
           }
         }
         // NAVBAR
         .navbar {
             display: flex;
-            justify-content: space-between;
-            height: 20px;
-            padding-right: 30px;
-            width: 120px;
-            gap: 10px;
-            margin-top: 10px;
-            margin-right: 10px;
-            font-size: 20px;
-            font-weight: 300;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+            font-size: 16px;
+            font-weight: 400;
             @media (max-width: 768px) {
-              .title {
-                font-size: 20px;
-              }
-              font-size: 12px;
-              line-height: 20px;
-              padding: 0px 5px 5px 5px;
-              line-height: 12px;
-              width: 45px;
-              display: flex;
-              max-height: 50px;
-              flex-direction: column;
+              font-size: 14px;
+              gap: 10px;
             }
             .link {
-              color: white;
-              padding: 5px;
-              border-radius: 5px;
-              height: 20px;
+              color: #1a5a4a;
+              padding: 8px 12px;
+              border-radius: 8px;
+              transition: all 0.3s ease;
               &:hover {
-                outline: 3px solid #6eb545cd;
+                color: #2d8a6e;
+                background-color: rgba(26, 90, 74, 0.1);
               }
             }
-        }
-        .title {
-          font-size: 70px;
-          font-family: "Quattrocento", serif;
-          justify-self: center;
-          text-align: center;
-          max-width: 400px;
-          line-height: 80px;
-        }
-        @media (max-width: 768px) {
-          .title {
-            font-size: 40px;
-            line-height: 50px;
-          }
         }
         .subtitle {
           font-size: 50px;
@@ -92,72 +89,126 @@
         }
         .links {
           display: flex;
-          flex-wrap: wrap; 
+          flex-wrap: wrap;
           gap: 10px;
           h6 {
             font-size: 26px;
             font-weight: 300;
           }
-        } 
+        }
       }
     }
     //FOOTER
     footer {
       margin-top: 100px;
-      padding: 20px;
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid #3d9e85;
 
       img {
         width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+
+      span {
+        font-size: 16px;
+        color: #1a5a4a;
+        font-weight: 500;
       }
     }
 
     //HOME
     .home {
       display: flex;
-      justify-items: center;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      padding: 40px 0;
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+        .section-heading {
+          font-size: 36px;
+          font-family: "Outfit", sans-serif;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 12px;
+          @media (max-width: 768px) {
+            font-size: 28px;
+          }
+        }
+        .section-subheading {
+          font-size: 18px;
+          font-family: "Outfit", sans-serif;
+          color: #718096;
+          line-height: 1.5;
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
+      }
       .posts {
         margin-top: 10px;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 30px;
         width: 90%;
-        justify-content: space-between; /* Space between the cards */
+        justify-content: center;
         .post {
-          flex: 1; 
-          max-width: 50%;
-          border-radius: 5px;
+          flex: 1;
+          max-width: 45%;
+          min-width: 350px;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(10px);
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           @media (max-width: 768px) {
-            min-width: 60%;
+            min-width: 280px;
             max-width: 100%;
           }
           &:hover {
-            outline: 3px solid #6eb545cd;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(26, 90, 74, 0.15);
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #3d9e85;
+            .img img {
+              transform: scale(1.05);
+            }
           }
           .link {
             display: flex;
             flex-direction: column;
             height: auto;
-            gap: 10px;
+            gap: 0;
             @media (max-width: 768px) {
               height: auto;
               display: grid;
             }
             .img {
-              padding: 10px;
-              height: 250px;
+              padding: 0;
+              height: 220px;
+              overflow: hidden;
               img {
-                border-radius: 5px;
+                border-radius: 0;
                 object-fit: cover;
                 width: 100%;
-                height: 250px;
+                height: 220px;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }
               @media (max-width: 768px) {
-                padding: 30px;
-                height: 200px;
+                padding: 0;
+                height: 180px;
                 img {
                   width: 100%;
-                  height: 200px;
+                  height: 180px;
                   align-self: center;
                 }
               }
@@ -167,41 +218,46 @@
               display: flex;
               flex-direction: column;
               justify-content: space-between;
-              padding: 10px;
+              padding: 24px;
               @media (max-width: 768px) {
                   justify-content: center;
                   text-align: left;
-                  align-items: center;
-                  padding: 30px;
-                  padding-top: 0px;
+                  align-items: flex-start;
+                  padding: 20px;
                   width: auto;
               }
               .title {
-                font-size: 30px;
+                font-size: 24px;
                 font-family: "Outfit", sans-serif;
+                font-weight: 600;
+                color: #1a1a1a;
+                line-height: 1.3;
                 @media (max-width: 768px) {
                   justify-content: center;
                   align-items: center;
                   width: 100%;
                 }
-              } 
+              }
               .subtitle {
-                font-size: 20px;
+                font-size: 18px;
                 font-family: "Outfit", sans-serif;
+                color: #4a5568;
                 @media (max-width: 768px) {
                   justify-content: center;
                   align-items: center;
                   width: 100%;
                 }
-              } 
+              }
               .description {
-                font-size: 20px;
+                font-size: 16px;
                 font-family: "Outfit", sans-serif;
-                padding-top: 10px;
+                padding-top: 12px;
+                color: #718096;
+                line-height: 1.5;
               }
               @media (max-width: 768px) {
                 .title {
-                  font-size: 24px;
+                  font-size: 20px;
                 }
               }
               .authors {
@@ -276,27 +332,38 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 40px 20px;
       @media (max-width: 850px) {
         max-width: fit-content;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
       }
-      
+
       .people {
         margin-top: 50px;
         flex-direction: column;
         display: flex;
         width: 65%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        border: 2px solid #3d9e85;
+        padding: 40px;
+        @media (max-width: 850px) {
+          width: 95%;
+          padding: 20px;
+        }
         .person {
           display: flex;
           gap: 25px;
           padding-top: 40px;
-          
+
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
           }
-          
+
           @media (max-width: 850px) {
             flex-direction: column;
             &:nth-child(2n + 1) {
@@ -309,6 +376,7 @@
               height: 350px;
               width: 300px;
               object-fit: cover;
+              border-radius: 12px;
               @media (max-width: 850px) {
                 width: 150px;
                 height: 150px;
@@ -320,6 +388,7 @@
             flex-direction: column;
             h1 {
               font-size: 40px;
+              color: #1a5a4a;
               @media (max-width: 850px) {
                 font-size: 25px;
               }
@@ -327,6 +396,7 @@
             p {
               font-size: 18px;
               line-height: 24px;
+              color: #2d3748;
             }
           }
         }
@@ -354,6 +424,7 @@
       display: flex;
       justify-content: center;
       gap: 50px;
+      padding: 40px 20px;
 
       .rent-control-map-container {
         display: flex;
@@ -400,17 +471,32 @@
 
       .content {
         width: 70%;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        border: 2px solid #3d9e85;
+        padding: 40px;
+        margin: 0 auto;
+        @media (max-width: 850px) {
+          width: 95%;
+          padding: 20px;
+        }
         .footnoteNumber {
           font-size: 10px;
           padding-bottom: 20px;
+          color: #4a5568;
         }
         .footnote {
           font-size: 14px;
           padding-left: 80px;
+          color: #718096;
         }
         .title {
           font-size: 55px;
           padding: 15px;
+          color: #1a1a1a;
+          font-weight: 600;
           @media (max-width: 850px) {
             font-size: 35px;
           }
@@ -419,6 +505,7 @@
           font-size: 45px;
           line-height: 50px;
           padding: 15px;
+          color: #1a1a1a;
           @media (max-width: 850px) {
             font-size: 35px;
           }
@@ -426,6 +513,7 @@
         p {
           font-size: 20px;
           line-height: 30px;
+          color: #2d3748;
           padding-left: 10%;
           padding-right: 10%;
         }
