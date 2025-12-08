@@ -453,8 +453,9 @@
         }
         img {
           width: 100%;
-          height: 350px;
+          height: clamp(350px, 30vw, 600px);
           object-fit: cover;
+          border-radius: 12px;
         }
 
         .user {

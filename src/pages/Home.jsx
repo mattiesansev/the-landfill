@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import rentControlCover from "/src/rent_control.png"
+import rentControlCover from "/src/rent_control.jpeg"
 import AuthorFooter from "../components/AuthorFooter";
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
