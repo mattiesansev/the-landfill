@@ -12,13 +12,13 @@ import { useState, useEffect, useMemo } from 'react';
 import * as d3 from 'd3';
 
 
-const isMobile = window.innerWidth < 768;
+const initialIsMobile = window.innerWidth < 768;
 
 const viewSettings = {
   main: {
-    lat: 37.77, 
+    lat: 37.77,
     lon: -122.445,
-    zoom: isMobile ? 10.75 : 12,
+    zoom: initialIsMobile ? 10.75 : 12,
   },
 };
 

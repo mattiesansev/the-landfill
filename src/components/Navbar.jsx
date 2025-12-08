@@ -1,5 +1,4 @@
 import React from "react"
-import Logo from "../img/logo_tmp.jpeg"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {

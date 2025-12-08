@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useRef, useCallback } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import AuthorFooter from "../../components/AuthorFooter";
 import { authors } from "../../authors/authors";
 import {
@@ -352,12 +352,10 @@ function initializeLandfillVariables(polyCoordinatePerLandfill) {
   let dateEnd = "";
   let landfillClass = "";
   let typeOfWaste = "";
-  let typeOfWaste2 = "";
   let convertedStatus = "";
 
   try {
     typeOfWaste = polyCoordinatePerLandfill.TypeOfWaste;
-    typeOfWaste2 = polyCoordinatePerLandfill.TypeOfWaste2;
     landfillClass = polyCoordinatePerLandfill.Class;
     dateEnd = polyCoordinatePerLandfill.YearClosed;
     dateStart = polyCoordinatePerLandfill.YearOpened;
@@ -369,5 +367,5 @@ function initializeLandfillVariables(polyCoordinatePerLandfill) {
     console.log("invalid row ", polyCoordinatePerLandfill);
   }
 
-  return { typeOfWaste, typeOfWaste2, dateStart, dateEnd, landfillName, landfillClass,lats, lons , convertedStatus };
+  return { typeOfWaste, dateStart, dateEnd, landfillName, landfillClass, lats, lons, convertedStatus };
 }
