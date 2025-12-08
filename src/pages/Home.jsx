@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import rentControlCover from "/src/rent_control.png"
 import AuthorFooter from "../components/AuthorFooter";
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
@@ -21,10 +22,17 @@ const Home = () => {
   const posts = [
     {
       id: "bay-area-landfills",
-      title:
+      title:                                                                           
         "An analysis and visualization of abandoned and illegal landfills across the Bay Area",
       desc: "We researched and visualized all of the abandoned landfills across the bay area.",
       img: landfillCover,
+      authors: [authors.mattie, authors.destiny, authors.nick, authors.maggie]
+    },
+    {
+      id: "rent-control-analysis",
+      title: "Rent control, taxes, and community uproar in San Francisco",
+      desc: "A timeline and history of rent control since the 1970s.",
+      img: rentControlCover,
       authors: [authors.mattie, authors.destiny, authors.nick, authors.maggie]
     },
     {
