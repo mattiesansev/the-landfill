@@ -153,9 +153,13 @@
           font-size: 18px;
           font-family: "Outfit", sans-serif;
           color: #718096;
-          line-height: 1.5;
+          line-height: 1.6;
+          max-width: 700px;
+          margin: 0 auto;
+          padding: 0 20px;
           @media (max-width: 768px) {
             font-size: 16px;
+            max-width: 90%;
           }
         }
       }
@@ -201,6 +205,22 @@
         gap: 30px;
         width: 90%;
         justify-content: center;
+        .no-posts {
+          text-align: center;
+          padding: 60px 40px;
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(10px);
+          border-radius: 16px;
+          border: 2px dashed #8ac4d4;
+          width: 100%;
+          max-width: 500px;
+          p {
+            font-size: 20px;
+            font-family: "Outfit", sans-serif;
+            color: #5a8ab8;
+            padding: 0;
+          }
+        }
         .post {
           flex: 1;
           max-width: 45%;

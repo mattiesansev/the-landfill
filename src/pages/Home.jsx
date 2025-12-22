@@ -67,22 +67,28 @@ const Home = () => {
           <img src={Logo} alt="The Bay Area Data Dump" className="home-logo" />
         </Link>
         <h1 className="section-heading">The Bay Area Data Dump</h1>
-        <p className="section-subheading">Data-driven stories and passion projects from the Bay</p>
+        <p className="section-subheading">The Bay Area Data Dump is a local news blog run by four San Francisco residents and enthusiasts. Come hang out with us while we write about anything and everything that we find interesting about the Bay Area, from abandoned landfills to scenic bus routes!</p>
       </div>
       <div className="posts">
-        {filteredPosts.map((post) => (
-          <div className="post" key={post.id}>
-            <Link className="link" to={`/post/${post.id}`}>
-              <div className="img">
-                <img src={post.img} alt="" />
-              </div>
-              <div className="content">
-                <div className="title">{post.title}</div>
-                <div className="description">{post.desc}</div>
-              </div>
-            </Link>
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
+            <div className="post" key={post.id}>
+              <Link className="link" to={`/post/${post.id}`}>
+                <div className="img">
+                  <img src={post.img} alt="" />
+                </div>
+                <div className="content">
+                  <div className="title">{post.title}</div>
+                  <div className="description">{post.desc}</div>
+                </div>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <div className="no-posts">
+            <p>We're hard at work here! Come back soon :)</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
