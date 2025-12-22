@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 import Home from "./pages/Home"
-import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import "./style.scss"
 import LandfillMap from "./pages/posts/LandfillMap"
