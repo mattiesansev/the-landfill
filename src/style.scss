@@ -34,6 +34,18 @@
           gap: 15px;
           padding: 15px 0px;
         }
+        .nav-logo {
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+          img {
+            height: 40px;
+            width: auto;
+            @media (max-width: 768px) {
+              height: 35px;
+            }
+          }
+        }
         .nav-links {
           display: flex;
           align-items: center;
