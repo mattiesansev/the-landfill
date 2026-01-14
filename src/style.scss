@@ -672,6 +672,51 @@
           }
         }
 
+        // Week cards for supervisor updates
+        .week-cards {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 30px;
+          padding: 0 10%;
+
+          .week-card {
+            display: block;
+            padding: 24px 32px;
+            background: rgba(138, 196, 212, 0.1);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.95);
+              border-color: #8ac4d4;
+              transform: translateX(8px);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .week-date {
+              font-family: "Outfit", sans-serif;
+              font-size: 20px;
+              font-weight: 600;
+              color: #1a1a1a;
+            }
+          }
+
+          @media (max-width: 768px) {
+            padding: 0 5%;
+
+            .week-card {
+              padding: 18px 24px;
+
+              .week-date {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+
         .embed-container {
           position: relative;
           max-width: 100%;

@@ -47,6 +47,14 @@ const Home = () => {
       category: CATEGORIES.HISTORICAL
     },
     {
+      id: "supervisor-updates",
+      title: "What is my district supervisor up to?",
+      desc: "Weekly recaps of SF Board of Supervisors meetings - votes, debates, and decisions that affect your neighborhood.",
+      img: null,
+      authors: [authors.mattie],
+      category: CATEGORIES.POLITICS
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
