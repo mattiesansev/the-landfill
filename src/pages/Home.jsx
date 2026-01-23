@@ -47,6 +47,14 @@ const Home = () => {
       category: CATEGORIES.HISTORICAL
     },
     {
+      id: "sf-parks-bracket",
+      title: "SF Parks Bracket: Vote for the Best Park in San Francisco",
+      desc: "An interactive tournament bracket comparing 16 of SF's most beloved parks. Compare stats and pick your winners!",
+      img: landfillCover,
+      authors: [authors.mattie],
+      category: CATEGORIES.FIELD_NOTES
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",

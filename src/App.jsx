@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs"
 import TitleRow from "./components/TitleRow"
 import Contact from "./pages/Contact";
 import Parcels from "./pages/posts/RentControl"
+import ParksBracket from "./pages/posts/ParksBracket"
 
 const Layout = () => {
   return (
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/post/rent-control-analysis",
         element: <Parcels />
+      },
+      {
+        path: "/post/sf-parks-bracket",
+        element: <ParksBracket />
       },
     ],
   },

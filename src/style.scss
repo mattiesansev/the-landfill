@@ -1024,3 +1024,576 @@
 .grayscale-tiles {
   filter: grayscale(50%);
 }
+
+// Parks Bracket Styles
+.bracket-section {
+  margin: 40px 0;
+
+  .bracket-title {
+    font-size: 28px;
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    font-family: "Outfit", sans-serif;
+  }
+}
+
+.bracket-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &.mobile {
+    .bracket-mobile {
+      width: 100%;
+    }
+  }
+}
+
+.bracket-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.bracket-side {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &.left {
+    flex-direction: row;
+  }
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &.round-16 {
+    gap: 10px;
+  }
+
+  &.quarterfinals {
+    gap: 55px;
+  }
+
+  &.semifinals {
+    gap: 130px;
+  }
+}
+
+.bracket-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 180px;
+
+  .finals-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a8ab8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.matchup-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 160px;
+  transition: all 0.3s ease;
+  perspective: 1000px;
+
+  &.interactive {
+    cursor: pointer;
+
+    &:hover {
+      border-color: #8ac4d4;
+      box-shadow: 0 4px 15px rgba(138, 196, 212, 0.25);
+      transform: translateY(-2px);
+    }
+  }
+
+  &.waiting {
+    opacity: 0.7;
+    border-style: dashed;
+  }
+
+  &.finals {
+    border-color: #7a9ec4;
+    border-width: 3px;
+  }
+
+  // Flip animation structure
+  .matchup-card-inner {
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  &.flipped .matchup-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .matchup-card-front {
+    backface-visibility: hidden;
+  }
+
+  .matchup-divider {
+    text-align: center;
+    font-size: 11px;
+    color: #a0aec0;
+    padding: 2px 0;
+    font-weight: 500;
+  }
+
+  .view-stats-hint {
+    font-size: 10px;
+    color: #a0aec0;
+    text-align: center;
+    margin-top: 4px;
+    font-style: italic;
+  }
+}
+
+.park-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(138, 196, 212, 0.15);
+  }
+
+  .park-image {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &.winner {
+    background-color: rgba(72, 187, 120, 0.2);
+    border-left: 3px solid #48bb78;
+  }
+
+  &.loser {
+    opacity: 0.5;
+  }
+
+  &.champion {
+    background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+    border: 2px solid #f59e0b;
+    padding: 12px 16px;
+    border-radius: 8px;
+
+    .park-name {
+      font-size: 16px;
+    }
+  }
+
+  &.empty {
+    color: #a0aec0;
+    font-style: italic;
+    justify-content: center;
+  }
+
+  .seed {
+    font-size: 11px;
+    color: #718096;
+    font-weight: 600;
+    min-width: 18px;
+  }
+
+  .park-name {
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 13px;
+    flex: 1;
+
+    &:hover {
+      color: #5a8ab8;
+      text-decoration: underline;
+    }
+  }
+
+  .winner-indicator {
+    color: #48bb78;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+.champion-display {
+  text-align: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
+  border-radius: 12px;
+  border: 3px solid #eab308;
+
+  .champion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #854d0e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+}
+
+.reset-bracket-btn {
+  padding: 10px 24px;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  background: white;
+  color: #718096;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #fc8181;
+    color: #e53e3e;
+    background-color: rgba(254, 178, 178, 0.1);
+  }
+}
+
+// Stats Comparison Modal
+.stats-comparison-overlay,
+.park-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0) scale(1);
+  }
+}
+
+.stats-comparison-modal,
+.park-detail-modal {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: flipIn 0.4s ease;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    max-width: 95%;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #718096;
+    line-height: 1;
+
+    &:hover {
+      color: #2d3748;
+    }
+  }
+
+  h2 {
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    padding-right: 30px;
+  }
+}
+
+.comparison-chart {
+  margin: 20px 0;
+  background: rgba(247, 250, 252, 0.8);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.amenities-comparison {
+  display: flex;
+  gap: 30px;
+  margin: 25px 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .park-amenities {
+    flex: 1;
+
+    h4 {
+      color: #5a8ab8;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 12px;
+
+      li {
+        padding: 3px 0;
+        color: #4a5568;
+        font-size: 14px;
+      }
+    }
+
+    .park-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+
+      .feature {
+        font-size: 11px;
+        padding: 4px 10px;
+        background: rgba(72, 187, 120, 0.15);
+        color: #276749;
+        border-radius: 12px;
+
+        &.no {
+          background: rgba(245, 101, 101, 0.15);
+          color: #c53030;
+        }
+      }
+    }
+  }
+}
+
+.selection-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+  flex-wrap: wrap;
+
+  .select-btn {
+    padding: 12px 20px;
+    border: 2px solid #7a9ec4;
+    border-radius: 25px;
+    background: white;
+    color: #5a8ab8;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(122, 158, 196, 0.1);
+    }
+
+    &.selected {
+      background: #7a9ec4;
+      color: white;
+    }
+  }
+}
+
+// Park Detail Modal
+.park-detail-modal {
+  .park-seed-badge {
+    text-align: center;
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 15px;
+  }
+
+  .park-description {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 !important;
+  }
+
+  .park-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+
+    .stat {
+      text-align: center;
+      padding: 12px;
+      background: rgba(138, 196, 212, 0.1);
+      border-radius: 8px;
+
+      .stat-label {
+        display: block;
+        font-size: 11px;
+        color: #718096;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+
+      .stat-value {
+        display: block;
+        font-size: 20px;
+        font-weight: 600;
+        color: #2d3748;
+      }
+    }
+  }
+
+  .park-amenities-full {
+    margin: 20px 0;
+
+    h4 {
+      color: #5a8ab8;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 13px;
+        padding: 6px 12px;
+        background: rgba(138, 196, 212, 0.15);
+        color: #2d3748;
+        border-radius: 15px;
+      }
+    }
+  }
+
+  .park-features-full {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+    justify-content: center;
+
+    .feature {
+      font-size: 12px;
+      padding: 6px 14px;
+      background: rgba(72, 187, 120, 0.15);
+      color: #276749;
+      border-radius: 15px;
+
+      &.no {
+        background: rgba(245, 101, 101, 0.15);
+        color: #c53030;
+      }
+    }
+  }
+
+  .fun-fact {
+    background: rgba(254, 243, 199, 0.6);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+    margin-top: 20px;
+
+    h4 {
+      color: #92400e;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    p {
+      color: #78350f;
+      font-style: italic;
+      font-size: 15px;
+      padding: 0 !important;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Mobile Bracket Layout
+.bracket-mobile {
+  width: 100%;
+
+  .mobile-round {
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: 18px;
+      color: #5a8ab8;
+      margin-bottom: 15px;
+      padding-left: 10px;
+      border-left: 3px solid #8ac4d4;
+    }
+
+    .mobile-matchups {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  .mobile-champion {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
+    border-radius: 12px;
+    border: 3px solid #eab308;
+
+    h3 {
+      color: #854d0e;
+      margin-bottom: 10px;
+    }
+  }
+}
