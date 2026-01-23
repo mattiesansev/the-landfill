@@ -47,9 +47,21 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
           &times;
         </button>
 
-        <h2>
-          {parkA.name} vs {parkB.name}
-        </h2>
+        <div className="comparison-header">
+          <div className="comparison-park">
+            {parkA.image && (
+              <img className="comparison-park-image" src={parkA.image} alt={parkA.name} />
+            )}
+            <span className="comparison-park-name">{parkA.name}</span>
+          </div>
+          <span className="vs-divider">vs</span>
+          <div className="comparison-park">
+            {parkB.image && (
+              <img className="comparison-park-image" src={parkB.image} alt={parkB.name} />
+            )}
+            <span className="comparison-park-name">{parkB.name}</span>
+          </div>
+        </div>
 
         <div className="comparison-chart">
           <ResponsiveContainer width="100%" height={250}>

@@ -27,13 +27,6 @@ const ParkCard = ({
       className={`park-card ${isWinner ? "winner" : ""} ${isLoser ? "loser" : ""} ${isChampion ? "champion" : ""}`}
       onClick={onSelect}
     >
-      {park.image && (
-        <img
-          className="park-image"
-          src={park.image}
-          alt={park.name}
-        />
-      )}
       <span className="seed">{park.seed}</span>
       <span className="park-name" onClick={handleNameClick}>
         {park.name}
