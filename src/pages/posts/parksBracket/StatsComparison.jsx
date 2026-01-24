@@ -1,13 +1,4 @@
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
 import { PARKS, findMatchup } from "./bracketData";
 
 const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
@@ -17,27 +8,11 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
   const parkA = PARKS[matchup.parkA];
   const parkB = PARKS[matchup.parkB];
 
-  const comparisonData = [
-    {
-      category: "Acreage",
-      [parkA.name]: parkA.stats.acreage,
-      [parkB.name]: parkB.stats.acreage,
-    },
-    {
-      category: "Playgrounds",
-      [parkA.name]: parkA.stats.playgrounds,
-      [parkB.name]: parkB.stats.playgrounds,
-    },
-    {
-      category: "Sports Fields",
-      [parkA.name]: parkA.stats.sportsFields,
-      [parkB.name]: parkB.stats.sportsFields,
-    },
-    {
-      category: "Year Est.",
-      [parkA.name]: parkA.stats.yearEstablished,
-      [parkB.name]: parkB.stats.yearEstablished,
-    },
+  const stats = [
+    { label: "Acreage", valueA: parkA.stats.acreage, valueB: parkB.stats.acreage },
+    { label: "Playgrounds", valueA: parkA.stats.playgrounds, valueB: parkB.stats.playgrounds },
+    { label: "Sports Fields", valueA: parkA.stats.sportsFields, valueB: parkB.stats.sportsFields },
+    { label: "Year Est.", valueA: parkA.stats.yearEstablished, valueB: parkB.stats.yearEstablished },
   ];
 
   return (
@@ -47,77 +22,60 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
           &times;
         </button>
 
-        <div className="comparison-header">
-          <div className="comparison-park">
+        <div className="comparison-main">
+          {/* Left park image */}
+          <div className="comparison-side left">
             {parkA.image && (
               <img className="comparison-park-image" src={parkA.image} alt={parkA.name} />
             )}
-            <span className="comparison-park-name">{parkA.name}</span>
+            <button
+              className={`select-btn ${matchup.winner === matchup.parkA ? "selected" : ""}`}
+              onClick={() => onSelectWinner(matchupId, matchup.parkA)}
+            >
+              Select
+            </button>
           </div>
-          <span className="vs-divider">vs</span>
-          <div className="comparison-park">
+
+          {/* Center stats table */}
+          <div className="comparison-stats">
+            {stats.map((stat) => (
+              <div key={stat.label} className="stat-row">
+                <div className="stat-label">{stat.label}</div>
+                <div className="stat-values">
+                  <span className="stat-value">{stat.valueA}</span>
+                  <span className="stat-divider">|</span>
+                  <span className="stat-value">{stat.valueB}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right park image */}
+          <div className="comparison-side right">
             {parkB.image && (
               <img className="comparison-park-image" src={parkB.image} alt={parkB.name} />
             )}
-            <span className="comparison-park-name">{parkB.name}</span>
+            <button
+              className={`select-btn ${matchup.winner === matchup.parkB ? "selected" : ""}`}
+              onClick={() => onSelectWinner(matchupId, matchup.parkB)}
+            >
+              Select
+            </button>
           </div>
         </div>
 
-        <div className="comparison-chart">
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={comparisonData} layout="vertical">
-              <XAxis type="number" />
-              <YAxis dataKey="category" type="category" width={100} />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey={parkA.name} fill="#7a9ec4" />
-              <Bar dataKey={parkB.name} fill="#8ac4d4" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="amenities-comparison">
-          <div className="park-amenities">
+        {/* Blurbs / fun facts below */}
+        <div className="comparison-blurbs">
+          <div className="park-blurb">
             <h4>{parkA.name}</h4>
-            <ul>
-              {parkA.stats.amenities.slice(0, 5).map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
-            <div className="park-features">
-              {parkA.stats.dogFriendly && <span className="feature">Dog Friendly</span>}
-              {parkA.stats.hasRestrooms && <span className="feature">Restrooms</span>}
-              {parkA.stats.hasParking && <span className="feature">Parking</span>}
-            </div>
+            <p>{parkA.description}</p>
+            {parkA.funFact && <p className="fun-fact">{parkA.funFact}</p>}
           </div>
-          <div className="park-amenities">
+          <div className="park-blurb">
             <h4>{parkB.name}</h4>
-            <ul>
-              {parkB.stats.amenities.slice(0, 5).map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
-            <div className="park-features">
-              {parkB.stats.dogFriendly && <span className="feature">Dog Friendly</span>}
-              {parkB.stats.hasRestrooms && <span className="feature">Restrooms</span>}
-              {parkB.stats.hasParking && <span className="feature">Parking</span>}
-            </div>
+            <p>{parkB.description}</p>
+            {parkB.funFact && <p className="fun-fact">{parkB.funFact}</p>}
           </div>
-        </div>
-
-        <div className="selection-buttons">
-          <button
-            className={`select-btn ${matchup.winner === matchup.parkA ? "selected" : ""}`}
-            onClick={() => onSelectWinner(matchupId, matchup.parkA)}
-          >
-            Select {parkA.name}
-          </button>
-          <button
-            className={`select-btn ${matchup.winner === matchup.parkB ? "selected" : ""}`}
-            onClick={() => onSelectWinner(matchupId, matchup.parkB)}
-          >
-            Select {parkB.name}
-          </button>
         </div>
       </div>
     </div>
