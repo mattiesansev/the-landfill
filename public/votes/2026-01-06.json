@@ -1,0 +1,66 @@
+{
+  "meeting": {
+    "date": "2026-01-06",
+    "display_date": "January 6, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "251271",
+      "title": "Naming a Street 'Claude the Alligator Way'",
+      "description": "Resolution urging the Recreation and Parks Commission to commemoratively name a street in Golden Gate Park 'Claude the Alligator Way' in honor of the beloved alligator who lived at the California Academy of Sciences.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": "Melgar",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251272",
+      "title": "Supporting Ban on Disposable Vapes (AB 762)",
+      "description": "Resolution supporting California State Assembly Bill No. 762, which would prohibit the sale of disposable, battery-embedded vapor inhalation devices and authorize State departments to enforce this prohibition.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": "Sherrill",
+        "co_sponsors": ["Mahmood", "Walton", "Sauter"]
+      }
+    },
+    {
+      "file_number": "250881",
+      "title": "Liquor License Denial - Unimart (1201 Howard St)",
+      "description": "Resolution determining that the transfer of an off-sale liquor license to Unimart at 1201 Howard Street will NOT serve the public convenience or necessity, requesting that the California Department of Alcoholic Beverage Control deny the license.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    }
+  ]
+}

@@ -10,9 +10,9 @@ import {
 import "leaflet/dist/leaflet.css";
 
 const MEETING_DATES = [
+  { date: "2026-01-13", display: "January 13, 2026" },
+  { date: "2026-01-06", display: "January 6, 2026" },
   { date: "2025-12-16", display: "December 16, 2025" },
-  { date: "2025-12-09", display: "December 9, 2025" },
-  { date: "2025-12-02", display: "December 2, 2025" },
 ];
 
 const DISTRICT_COLORS = [

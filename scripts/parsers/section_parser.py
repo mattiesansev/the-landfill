@@ -102,6 +102,10 @@ def split_sections(text: str) -> Dict[str, str]:
         # Get simplified section name
         section_key = SECTION_MAP.get(header, header.lower().replace(" ", "_"))
 
+        # Handle committee headers specially
+        if header.startswith("Committee:"):
+            section_key = "committee:" + header.replace("Committee:", "").strip().lower().replace(" ", "_")
+
         # Extract content (skip the header line itself)
         content = text[start:end]
 
@@ -111,7 +115,11 @@ def split_sections(text: str) -> Dict[str, str]:
             # Skip first line (the header)
             content = '\n'.join(lines[1:]).strip()
 
-        sections[section_key] = content
+        # If section already exists, concatenate content (handles duplicate section headers)
+        if section_key in sections:
+            sections[section_key] = sections[section_key] + "\n\n" + content
+        else:
+            sections[section_key] = content
 
     return sections
 
