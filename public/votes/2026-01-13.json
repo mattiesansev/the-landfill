@@ -1,0 +1,291 @@
+{
+  "meeting": {
+    "date": "2026-01-13",
+    "display_date": "January 13, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "250719",
+      "title": "Redefining 'Family' in Planning Code",
+      "description": "Ordinance amending the Planning Code to define 'Family' as 'Household,' eliminating numeric limits on unrelated family members and requirements that family members share meals. Classifies Residential Care Facilities serving six or fewer persons as Residential Uses.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": ["Sauter", "Sherrill", "Melgar", "Dorsey", "Chen"]
+      }
+    },
+    {
+      "file_number": "250824",
+      "title": "Fire Department Training Facility - Street Vacation",
+      "description": "Ordinance ordering the vacation of portions of Hawes Street, Griffith Street, and Bancroft Avenue for the development of the San Francisco Fire Department Training Facility at 1236 Carroll Avenue.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Walton",
+        "co_sponsors": ["Mandelman", "Chan"]
+      }
+    },
+    {
+      "file_number": "250823",
+      "title": "Fire Department Training Facility - Zoning Change",
+      "description": "Ordinance amending the Zoning Map to change the zoning use district designation for multiple parcels to P (Public) Use District for the San Francisco Fire Department Training Facility at 1236 Carroll Avenue.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Walton",
+        "co_sponsors": ["Mandelman", "Chan"]
+      }
+    },
+    {
+      "file_number": "251273",
+      "title": "Reappointment - City Administrator Carmen Chu",
+      "description": "Motion confirming the Mayoral reappointment of Carmen Chu as City Administrator for a five-year term.",
+      "action": "APPROVED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251170",
+      "title": "Airport Food & Beverage Rent Reduction",
+      "description": "Resolution approving a program to lower minimum annual guarantees for 18 of 69 food & beverage leases at SFO Airport, lower percentage rent for seven pre-security leases, and alter adjustment methodology for all food and beverage leases.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251168",
+      "title": "DOE Heat Pump Water Heater Grant - Phase 1",
+      "description": "Resolution retroactively authorizing the Department of Environment to accept and expend a $400,000 prize from the US Department of Energy to develop a pilot plan to upgrade up to 200 San Francisco homes with electric heat pump water heaters.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251169",
+      "title": "DOE Heat Pump Water Heater Grant - Phase 2",
+      "description": "Resolution retroactively authorizing the Department of Environment to accept and expend a $400,000 prize from the US Department of Energy to upgrade 20 San Francisco homes with electric heat pump water heaters and energy efficiency measures.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251186",
+      "title": "SF General Hospital Foundation Grant - $6.7M",
+      "description": "Resolution authorizing the Department of Public Health to accept and expend a $6,755,486 grant from the SF General Hospital Foundation for 'ZPCQI Round 3: Optimizing Epic to Drive True North' for 2026-2029.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251188",
+      "title": "Disease Intervention Specialist Grant",
+      "description": "Resolution retroactively authorizing the Department of Public Health to accept and expend a $1,123,180 grant from California Department of Health for Disease Intervention Specialist Workforce Development.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251257",
+      "title": "Blue Cross Housing Grant - $268,000",
+      "description": "Resolution authorizing the Human Services Agency to accept and expend a $268,000 grant from Blue Cross of California for the Housing and Homelessness Incentive Program for 2026-2030.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251258",
+      "title": "SF Health Plan Housing Grant - $1.07M",
+      "description": "Resolution authorizing the Human Services Agency to accept and expend a $1,072,000 grant from the San Francisco Health Plan for the Housing and Homelessness Incentive Program for 2026-2030.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251259",
+      "title": "Behavioral Health Facility Grant - 887 Potrero",
+      "description": "Resolution authorizing DPH to enter into a Grant Agreement with California DHCS for $21,347,760 for the BHCIP Round 1 behavioral health facility at 887 Potrero Avenue through 2030.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Mandelman"]
+      }
+    },
+    {
+      "file_number": "251260",
+      "title": "Behavioral Health Facility Grant - $6.3M",
+      "description": "Resolution authorizing DPH to enter into a Grant Agreement with California DHCS for $6,337,140 for the BHCIP Round 1 behavioral health facility through 2030.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Dorsey", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "251263",
+      "title": "Permanent Supportive Housing Subsidy - 78 Haight",
+      "description": "Resolution approving a grant agreement with RSU Associates, L.P. for up to $15,369,361 over 20 years to provide operating subsidies for affordable housing for low-income and formerly homeless households at 78 Haight Street and 120 Octavia Street.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251264",
+      "title": "Affordable Housing Revenue Notes - 967 Mission",
+      "description": "Resolution authorizing multifamily housing revenue notes up to $41,750,000 for financing construction of a 95-unit affordable rental housing development at 967 Mission Street.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251265",
+      "title": "Ground Lease - 967 Mission Affordable Housing",
+      "description": "Resolution approving a 75-year ground lease with 967 Mission, LP for city-owned property at 967 Mission Street at $15,000 annual rent, and a loan up to $44,318,000 to construct 95 affordable housing units.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251166",
+      "title": "Board and Care Contract - $32.6M",
+      "description": "Resolution approving Amendment No. 1 to the agreement with A&A Health Services, Inc. to provide rehabilitative board and care residential services, extending the term by three years through 2029 with a total not to exceed $32,654,875.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251276",
+      "title": "Inclusionary Housing Committee Appointments",
+      "description": "Motion appointing Saki Baily (residency waiver) and Tiffany Bohee to the Inclusionary Housing Technical Advisory Committee for unlimited terms.",
+      "action": "APPROVED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    }
+  ]
+}

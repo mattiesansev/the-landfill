@@ -22,6 +22,9 @@ ACTION_PATTERNS = [
     r'(PASSED, ON FIRST READING)\s*(?:AS AMENDED\s*)?by the following vote:',
     r'(ADOPTED)\s*(?:AS AMENDED\s*)?by the following vote:',
     r'(APPROVED)\s*(?:AS AMENDED\s*)?by the following vote:',
+    r'be (APPROVED)\.\s*The motion carried by the following vote:',
+    r'be (TABLED)\.\s*The motion carried by the following vote:',
+    r'(FAILED)\s*by the following vote:',
     r'(CONTINUED)\s*(?:OPEN\s*)?to the Board',
     r'(HEARD AND FILED)',
 ]
