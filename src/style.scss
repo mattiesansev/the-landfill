@@ -1054,27 +1054,29 @@
 .view-toggle {
   display: flex;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
   .view-toggle-btn {
-    padding: 6px 14px;
-    border: 2px solid #e2e8f0;
-    border-radius: 16px;
+    padding: 8px 16px;
+    border: 2px solid #cbd5e0;
+    border-radius: 20px;
     background: white;
-    color: #718096;
-    font-size: 13px;
-    font-weight: 500;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-family: inherit;
 
     &:hover {
-      border-color: #8ac4d4;
+      border-color: #7a9ec4;
       color: #5a8ab8;
+      background: rgba(122, 158, 196, 0.05);
     }
 
     &.active {
-      background: #7a9ec4;
-      border-color: #7a9ec4;
+      background: #5a8ab8 !important;
+      border-color: #5a8ab8;
       color: white;
     }
   }

@@ -153,18 +153,21 @@ const BracketContainer = () => {
           </div>
         )}
 
-        {/* Right side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) - reversed */}
+        {/* Right side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) - flows toward center */}
         {showEast && (
           <div className="bracket-side right">
-            <div className="bracket-round semifinals">
-              <MatchupCard
-                matchup={bracket.semifinals[1]}
-                roundClass="sf"
-                isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
-                onSelectWinner={selectWinner}
-                onMatchupClick={openStatsComparison}
-                onParkClick={openParkDetail}
-              />
+            <div className="bracket-round round-16">
+              {bracket.round16.slice(4, 8).map((matchup) => (
+                <MatchupCard
+                  key={matchup.id}
+                  matchup={matchup}
+                  roundClass="r16"
+                  isFlipped={isMatchupFlipped(matchup.id)}
+                  onSelectWinner={selectWinner}
+                  onMatchupClick={openStatsComparison}
+                  onParkClick={openParkDetail}
+                />
+              ))}
             </div>
             <div className="bracket-round quarterfinals">
               {bracket.quarterfinals.slice(2, 4).map((matchup) => (
@@ -179,18 +182,15 @@ const BracketContainer = () => {
                 />
               ))}
             </div>
-            <div className="bracket-round round-16">
-              {bracket.round16.slice(4, 8).map((matchup) => (
-                <MatchupCard
-                  key={matchup.id}
-                  matchup={matchup}
-                  roundClass="r16"
-                  isFlipped={isMatchupFlipped(matchup.id)}
-                  onSelectWinner={selectWinner}
-                  onMatchupClick={openStatsComparison}
-                  onParkClick={openParkDetail}
-                />
-              ))}
+            <div className="bracket-round semifinals">
+              <MatchupCard
+                matchup={bracket.semifinals[1]}
+                roundClass="sf"
+                isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
+                onSelectWinner={selectWinner}
+                onMatchupClick={openStatsComparison}
+                onParkClick={openParkDetail}
+              />
             </div>
           </div>
         )}

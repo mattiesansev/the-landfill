@@ -6,7 +6,7 @@ export const PARKS = {
     id: "golden-gate",
     name: "Golden Gate Park",
     seed: 1,
-    image: "https://placehold.co/60x60/7a9ec4/white?text=GG",
+    image: "/park_pictures/ggp.jpg",
     stats: {
       acreage: 1017,
       amenities: ["Japanese Tea Garden", "Conservatory of Flowers", "De Young Museum", "California Academy of Sciences", "Bison Paddock"],
@@ -24,7 +24,7 @@ export const PARKS = {
     id: "dolores-park",
     name: "Dolores Park",
     seed: 2,
-    image: "https://placehold.co/60x60/8ac4d4/white?text=DP",
+    image: "https://placehold.co/200x200/8ac4d4/white?text=DP",
     stats: {
       acreage: 16,
       amenities: ["Tennis Courts", "Basketball Courts", "Soccer Field", "Playground", "Off-leash Dog Area"],
@@ -42,7 +42,7 @@ export const PARKS = {
     id: "presidio-tunnel-tops",
     name: "Presidio Tunnel Tops",
     seed: 3,
-    image: "https://placehold.co/60x60/48bb78/white?text=PT",
+    image: "https://placehold.co/200x200/48bb78/white?text=PT",
     stats: {
       acreage: 14,
       amenities: ["Outpost Playground", "Campfire Circle", "Field Station", "Picnic Meadow", "Crissy Marsh Overlook"],
@@ -60,7 +60,7 @@ export const PARKS = {
     id: "alamo-square",
     name: "Alamo Square",
     seed: 4,
-    image: "https://placehold.co/60x60/f59e0b/white?text=AS",
+    image: "https://placehold.co/200x200/f59e0b/white?text=AS",
     stats: {
       acreage: 12.7,
       amenities: ["Dog Play Area", "Tennis Court", "Playground", "Picnic Areas"],
@@ -78,7 +78,7 @@ export const PARKS = {
     id: "buena-vista-park",
     name: "Buena Vista Park",
     seed: 5,
-    image: "https://placehold.co/60x60/6366f1/white?text=BV",
+    image: "https://placehold.co/200x200/6366f1/white?text=BV",
     stats: {
       acreage: 36.5,
       amenities: ["Hiking Trails", "Tennis Courts", "Off-leash Dog Area", "Historic Trees"],
@@ -96,7 +96,7 @@ export const PARKS = {
     id: "twin-peaks",
     name: "Twin Peaks",
     seed: 6,
-    image: "https://placehold.co/60x60/ec4899/white?text=TP",
+    image: "https://placehold.co/200x200/ec4899/white?text=TP",
     stats: {
       acreage: 64,
       amenities: ["Hiking Trails", "Observation Point", "Wildlife Viewing"],
@@ -114,7 +114,7 @@ export const PARKS = {
     id: "lake-merced",
     name: "Lake Merced",
     seed: 7,
-    image: "https://placehold.co/60x60/14b8a6/white?text=LM",
+    image: "https://placehold.co/200x200/14b8a6/white?text=LM",
     stats: {
       acreage: 614,
       amenities: ["Fishing", "Boating", "Golf Course", "Running Trail", "Archery Range"],
@@ -132,7 +132,7 @@ export const PARKS = {
     id: "corona-heights",
     name: "Corona Heights Park",
     seed: 8,
-    image: "https://placehold.co/60x60/ef4444/white?text=CH",
+    image: "https://placehold.co/200x200/ef4444/white?text=CH",
     stats: {
       acreage: 15,
       amenities: ["Randall Museum", "Off-leash Dog Area", "Hiking Trails", "Rock Outcroppings"],
@@ -150,7 +150,7 @@ export const PARKS = {
     id: "the-panhandle",
     name: "The Panhandle",
     seed: 9,
-    image: "https://placehold.co/60x60/84cc16/white?text=PH",
+    image: "https://placehold.co/200x200/84cc16/white?text=PH",
     stats: {
       acreage: 29,
       amenities: ["Cycling Path", "Running Trail", "Playground", "Basketball Courts", "Historic Trees"],
@@ -168,7 +168,7 @@ export const PARKS = {
     id: "marina-green",
     name: "Marina Green",
     seed: 10,
-    image: "https://placehold.co/60x60/0ea5e9/white?text=MG",
+    image: "https://placehold.co/200x200/0ea5e9/white?text=MG",
     stats: {
       acreage: 74,
       amenities: ["Kite Flying", "Jogging Path", "Yacht Harbor Views", "Fitness Course", "Great Meadow"],
@@ -186,7 +186,7 @@ export const PARKS = {
     id: "ocean-beach",
     name: "Ocean Beach",
     seed: 11,
-    image: "https://placehold.co/60x60/06b6d4/white?text=OB",
+    image: "https://placehold.co/200x200/06b6d4/white?text=OB",
     stats: {
       acreage: 120,
       amenities: ["Beach Access", "Surfing", "Fire Pits", "Running Path", "Sunset Views"],
@@ -204,7 +204,7 @@ export const PARKS = {
     id: "stern-grove",
     name: "Sigmund Stern Recreation Grove",
     seed: 12,
-    image: "https://placehold.co/60x60/22c55e/white?text=SG",
+    image: "https://placehold.co/200x200/22c55e/white?text=SG",
     stats: {
       acreage: 33,
       amenities: ["Amphitheater", "Concert Meadow", "Dog Play Area", "Hiking Trails", "Croquet Lawn"],
@@ -222,7 +222,7 @@ export const PARKS = {
     id: "alta-plaza",
     name: "Alta Plaza",
     seed: 13,
-    image: "https://placehold.co/60x60/a855f7/white?text=AP",
+    image: "https://placehold.co/200x200/a855f7/white?text=AP",
     stats: {
       acreage: 11.8,
       amenities: ["Tennis Courts", "Playground", "Dog Play Area", "Terraced Steps"],
@@ -240,7 +240,7 @@ export const PARKS = {
     id: "balboa-park",
     name: "Balboa Park",
     seed: 14,
-    image: "https://placehold.co/60x60/f97316/white?text=BP",
+    image: "https://placehold.co/200x200/f97316/white?text=BP",
     stats: {
       acreage: 17,
       amenities: ["Pool", "Soccer Fields", "Baseball Diamond", "Playground", "Community Garden"],
@@ -258,7 +258,7 @@ export const PARKS = {
     id: "duboce-park",
     name: "Duboce Park",
     seed: 15,
-    image: "https://placehold.co/60x60/eab308/white?text=DB",
+    image: "https://placehold.co/200x200/eab308/white?text=DB",
     stats: {
       acreage: 4.4,
       amenities: ["Off-leash Dog Area", "Playground", "Basketball Court", "N-Judah Mural"],
@@ -276,7 +276,7 @@ export const PARKS = {
     id: "sunset-dunes",
     name: "Sunset Dunes",
     seed: 16,
-    image: "https://placehold.co/60x60/78716c/white?text=SD",
+    image: "https://placehold.co/200x200/78716c/white?text=SD",
     stats: {
       acreage: 8,
       amenities: ["Native Dune Habitat", "Walking Paths", "Wildlife Viewing", "Beach Access"],
