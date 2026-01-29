@@ -10,6 +10,7 @@ import {
 import "leaflet/dist/leaflet.css";
 
 const MEETING_DATES = [
+  { date: "2026-01-27", display: "January 27, 2026" },
   { date: "2026-01-13", display: "January 13, 2026" },
   { date: "2026-01-06", display: "January 6, 2026" },
   { date: "2025-12-16", display: "December 16, 2025" },
@@ -82,9 +83,8 @@ const SupervisorUpdates = () => {
         <div className="title">What is my district supervisor up to?</div>
         <p>
           Every week, the San Francisco Board of Supervisors meets to vote on
-          legislation that affects your neighborhood. Here you'll find recaps
-          of each meeting - the votes, debates, and decisions that shape our
-          city.
+          legislation that affects your neighborhood. Take a look at our weekly 
+          recaps where we lay out some of the important votes that took place.
         </p>
 
         <div className="embed-container">

@@ -1,0 +1,783 @@
+{
+  "meeting": {
+    "date": "2026-01-27",
+    "day_of_week": "Tuesday",
+    "start_time": null,
+    "end_time": "5:27 PM",
+    "location": "Legislative Chamber, Room 250, City Hall",
+    "type": "Regular Meeting"
+  },
+  "members": {
+    "present": [
+      "Chan",
+      "Chen",
+      "Dorsey",
+      "Fielder",
+      "Mahmood",
+      "Mandelman",
+      "Melgar",
+      "Sauter",
+      "Sherrill",
+      "Walton",
+      "Wong"
+    ],
+    "absent": [],
+    "president": null
+  },
+  "votes": [
+    {
+      "file_number": "260042",
+      "title": "Condemning ICE for Loss of Life, Urging Accountability Measures and Corrective\n Action to Prevent Further Loss of Life and Reaffirming Commitment to Sanctuary\n \n City",
+      "description": "Resolution condemning Immigration and Customs Enforcement (ICE) for actions that have led to loss of life; urging state and federal partners to call for a third-party investigation on all deaths that have occurred as a result of actions taken by ICE officers; calling for a moratorium on ICE detention until a third-party investigation be conducted and corrective action be implemented; and reaffirming San Francisco’s commitment to upholding Sanctuary City policies. Supervisors Sauter, Mandelman, a...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Chen",
+        "co_sponsors": [
+          "Walton",
+          "Fielder",
+          "Mahmood",
+          "Chan",
+          "Melgar",
+          "Sauter",
+          "Mandelman",
+          "Sherrill"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false
+    },
+    {
+      "file_number": "251163",
+      "title": "Settlement of Lawsuit - Stephanie York, James Edward Brown, and Kayla Briers -\n $6,030,000",
+      "description": "Ordinance authorizing settlement of the lawsuit filed by Stephanie York, James Edward Brown, and Kayla Briers against the City and County of San Francisco for $6,030,000; the lawsuit was filed on August 4, 2023, in San Francisco Superior Court, Case No. CGC-23-608132; entitled Stephanie York, et al. v. City and County of San Francisco, et al.; the lawsuit involves alleged personal injury and wrongful death caused by a City tree. (City Attorney)",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_government_audit_and_oversight"
+    },
+    {
+      "file_number": "251164",
+      "title": "Settlement of Lawsuit - General Motors Company - $71,125,000",
+      "description": "Ordinance authorizing settlement of the lawsuit filed by General Motors Company against the City and County of San Francisco for $71,125,000; the lawsuit was filed on November 21, 2022, in San Francisco Superior Court, Case No. CGC-22-602951; entitled General Motors Company v. City and County of San Francisco; the lawsuit involves a claim for refund of gross receipts taxes, homelessness gross receipts taxes, overpaid executive gross receipts taxes, penalties, and interest; other material terms o...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_government_audit_and_oversight"
+    },
+    {
+      "file_number": "251179",
+      "title": "Settlement of Lawsuits - Microsoft Corporation and Subsidiaries - $6,500,000",
+      "description": "Ordinance authorizing settlement of the lawsuits filed by Microsoft Corporation and Subsidiaries against the City and County of San Francisco for $6,500,000; the lawsuits were filed on February 26, 2021, April 23, 2021, and June 3, 2025, in San Francisco Superior Court, Case Nos. CGC-21-590032, CGC-21-591004, and CGC-25-625880; entitled Microsoft Corporation and Subsidiaries. v. City and County of San Francisco et al.; the lawsuits involve a refund of gross receipts and homelessness gross receip...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Wong"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_government_audit_and_oversight"
+    },
+    {
+      "file_number": "251231",
+      "title": "Management Agreement - Owners' Association for Administration/Management of\n Ocean Avenue Community Benefit District",
+      "description": "Resolution approving a management agreement with the nonprofit Owners' Association for administration/management of the established property-based Community Benefit District known as the “Ocean Avenue Community Benefit District,” pursuant to California Streets and Highways Code, Section 36651, for a period commencing upon Board approval, through December 31, 2040.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Melgar",
+        "co_sponsors": [
+          "Chen"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Wong"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_government_audit_and_oversight"
+    },
+    {
+      "file_number": "251180",
+      "title": "Appropriation - Revenue Bonds Proceeds - Capital Improvement Projects -\n Airport Commission - $9,016,051,176 - FY2025-2026",
+      "description": "Ordinance appropriating $9,016,051,176 of proceeds from the sale of revenue bonds or commercial paper for capital improvement projects to the Airport Commission for FY2025-2026; and placing $9,016,051,176 on Controller's Reserve pending receipt of proceeds of indebtedness. (Airport Commission) (Fiscal Impact)",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251215",
+      "title": "Amending 10-Year Capital Expenditure Plan - FYs 2026-2035",
+      "description": "Resolution amending the City’s 10-year capital expenditure plan for Fiscal Years (FYs) 2026-2035 to amend the proposed government obligation bond program and consolidate funding for transportation projects. Supervisor Mandelman requested to be added as a co-sponsor.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Dorsey",
+          "Wong",
+          "Chen",
+          "Chan",
+          "Sauter",
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251217",
+      "title": "General Obligation Bonds - Earthquake Safety and Emergency Response - Not to\n Exceed $535,000,000",
+      "description": "Melgar Resolution determining and declaring that the public interest and necessity demand the construction, acquisition, improvement, rehabilitation, expansion, renovation, and seismic retrofitting of the Emergency Firefighting Water System, Firefighting Facilities and Infrastructure, Police Facilities and Infrastructure, transportation facilities for the Municipal Railway Bus Storage and Maintenance Facility at Potrero Yard, and other Public Safety Facilities and Infrastructure for earthquake a...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Mandelman",
+          "Dorsey",
+          "Wong",
+          "Mahmood",
+          "Sauter",
+          "Chen",
+          "Chan",
+          "Sherrill"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251225",
+      "title": "Administrative Code - Film Commission Programs",
+      "description": "Ordinance amending the Administrative Code to expand the definition of tax exempt entities for use fees, updating the process for notification guidelines concerning film production activities that may cause parking or traffic obstructions, updating definitions for the film rebate program, updating the film rebate amounts, and authorizing the Executive Director to enter into licensing agreements for the use of the Film SF logo and other Film Commission trademarks on merchandise. (Fiscal Impact) S...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": [
+          "Chan",
+          "Walton",
+          "Dorsey",
+          "Sauter",
+          "Sherrill",
+          "Chen"
+        ]
+      },
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251185",
+      "title": "Accept and Expend Gift - Retroactive - Epic Systems Corporation - 2024 Epic for\n Federally Qualified Health Centers - $77,000",
+      "description": "Resolution retroactively authorizing the Department of Public Health to accept and expend a monetary gift, entitled “2024 Epic for Federally Qualified Health Centers,” in the amount of $77,000 from the Epic Systems Corporation to help support Federally Qualified Health Centers and their underserved patient populations, for the period of July 1, 2024, through June 30, 2025. (Public Health Department)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251227",
+      "title": "Accept and Expend In-Kind Gift - Retroactive - Administration for Strategic\n Preparedness and Response - California Department of Public Health - COVID-19\n Test Kits - $527,664 FY2024-2025",
+      "description": "Resolution retroactively authorizing the Department of Public Health to accept and expend an in-kind gift of COVID-19 test kits in the total amount of $527,664 for Fiscal Year (FY) 2024-2025, from the Administration for Strategic Preparedness and Response through the California Department of Public Health in support of the Department of Public Health clinic patients and staff.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251189",
+      "title": "Grant Application - Retroactive - Health Resources Services Administration - Ryan\n White Act HIV/AIDS Emergency Relief Grant Program - $15,552,315",
+      "description": "Resolution retroactively authorizing the Department of Public Health to submit an application to continue to receive funding for the Ryan White Act HIV/AIDS Emergency Relief Grant Program grant from the Health Resources Services Administration; and requesting $15,552,315 in HIV Emergency Relief Program funding for the San Francisco Eligible Metropolitan Area for the period of March 1, 2026, through February 28, 2027. (Public Health Department)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Mandelman",
+          "Chan",
+          "Dorsey"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251256",
+      "title": "Accept and Expend Grant Amendment - Retroactive - National Institutes of Health\n - Short Trainings on Methods for Recruiting, Sampling, and Counting \n Hard-to-Reach Populations: The H2R Training Program - $102,464.72",
+      "description": "Resolution retroactively authorizing the Department of Public Health to accept and expend a grant increase from the National Institutes of Health through The Regents of the University of California, San Francisco for participation in a program, entitled “Short Trainings on Methods for Recruiting, Sampling, and Counting Hard-to-Reach Populations: The H2R Training Program,” in the amount of $23,687.72 for a total amount of $102,464.72 from June 1, 2025, for the total period of October 1, 2022, thr...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251187",
+      "title": "Accept and Expend Grant - Trust for Public Land and Theodore & Frances\n Geballe Philanthropic Fund of the Jewish Federation Bay Area - Koshland Park\n \n Improvement Project - $1,625,000",
+      "description": "Resolution authorizing the Recreation and Park Department to accept and expend cash and in-kind grants from Trust for Public Land and the Theodore & Frances Geballe Philanthropic Fund of the Jewish Federation Bay Area, valued at approximately $1,625,000 for the design, installation, repair and construction of improvements to Koshland Park; to approve the associated grant agreement, effective upon approval of this Resolution; and to authorize the General Manager of RPD to enter into modifications...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251262",
+      "title": "Infrastructure Financing Plan and Related Documents and Actions - San Francisco\n Enhanced Infrastructure Financing District No. 2 (Stonestown)",
+      "description": "Resolution approving the Infrastructure Financing Plan for the San Francisco Enhanced Infrastructure Financing (EIFD) District No. 2 (Stonestown), including the division of taxes set forth therein, an EIFD Acquisition and Financing Agreement, and documents and actions related thereto, as defined herein; and authorizing the filing of a judicial validation action. (Fiscal Impact) Supervisor Mandelman requested to be added as a co-sponsor.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Melgar",
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251261",
+      "title": "Infrastructure Financing Plan and Related Documents and Actions - San Francisco\n Enhanced Infrastructure Financing District No. 3 (3333/3700 California Street)",
+      "description": "Resolution approving the Infrastructure Financing Plan for the San Francisco Enhanced Infrastructure Financing (EIFD) District No. 3 (3333/3700 California Street), including the division of taxes set forth therein, an EIFD Acquisition and Financing Agreement, and documents and actions related thereto, as defined herein; and authorizing the filing of a judicial validation action. (Fiscal Impact) Supervisor Mandelman requested to be added as a co-sponsor.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Sherrill",
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251267",
+      "title": "Accept and Expend Grant - Retroactive - California Office of Traffic Safety -\n Alcohol and Drug Impaired Driver Vertical Prosecution Program - $420,000",
+      "description": "Resolution retroactively authorizing the Office of the District Attorney to accept and expend a grant in the amount of $420,000 from the California Office of Traffic Safety, for the grant period of October 1, 2025, through September 30, 2026, to support the Alcohol and Drug Impaired Driver Vertical Prosecution Program activities and services. (District Attorney) Supervisor Mandelman requested to be added as a co-sponsor.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "250875",
+      "title": "Annual Surveillance Report - Human Services Agency - Call Recording \n Technology",
+      "description": "Resolution approving the Human Services Agency’s Annual Surveillance Report for call recording technology. (Human Services Agency)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_rules"
+    },
+    {
+      "file_number": "251275",
+      "title": "Reappointment, Small Business Commission - Dimitri Thierry Cornet",
+      "description": "Motion reappointing Dimitri Thierry Cornet, term ending January 6, 2030, to the Small Business Commission. (Rules Committee) Motion No. M26-004",
+      "type": "Motion",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "APPROVED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_rules"
+    },
+    {
+      "file_number": "251245",
+      "title": "Charter Amendment - Lifetime Term Limits for Mayor and Members of the Board\n of Supervisors",
+      "description": "Charter Amendment (First Draft) to amend the Charter of the City and County of San Francisco to change the current two-term limits for the office of Mayor and the office of Member of the Board of Supervisors from consecutive term limits to lifetime term limits; at an election to be held on June 2, 2026. Supervisor Walton, seconded by Supervisor Fielder, moved that this Charter Amendment be AMENDED to also impose the lifetime two-term limit on the offices of the Assessor-Recorder, City Attorney, ...",
+      "type": "Motion",
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": [
+          "Melgar",
+          "Sherrill",
+          "Dorsey",
+          "Sauter",
+          "Wong"
+        ]
+      },
+      "action": "FAILED",
+      "vote": {
+        "ayes": 4,
+        "noes": 7,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Fielder",
+          "Walton"
+        ],
+        "noes_names": [
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Wong"
+        ],
+        "excused": []
+      },
+      "is_unanimous": false,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false
+    }
+  ],
+  "consent_agenda": {
+    "items": [],
+    "vote": null
+  },
+  "grouped_votes": [],
+  "severed_items": [
+    {
+      "file_number": "260042",
+      "severed_by": "Chen"
+    }
+  ],
+  "notable_events": {
+    "commendations": [],
+    "mayors_appearance": null,
+    "appeals": [],
+    "amendments": []
+  },
+  "public_comment_summary": []
+}
