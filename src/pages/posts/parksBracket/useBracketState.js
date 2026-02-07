@@ -70,10 +70,15 @@ export function useBracketState() {
     const progression = BRACKET_PROGRESSION[matchupId];
     if (!progression) return;
 
-    const clearMatchup = (id) => {
+    // sourceMatchupId tracks which matchup feeds into the current one
+    const clearMatchup = (id, sourceMatchupId) => {
+      const prog = BRACKET_PROGRESSION[sourceMatchupId];
+
       if (id === "f-1") {
-        bracket.finals.parkA = null;
-        bracket.finals.parkB = null;
+        // Only clear the slot that came from the affected side
+        if (prog) {
+          bracket.finals[prog.slot] = null;
+        }
         bracket.finals.winner = null;
         bracket.champion = null;
         return;
@@ -82,28 +87,109 @@ export function useBracketState() {
       const roundKey = id.startsWith("qf") ? "quarterfinals" : "semifinals";
       const matchup = bracket[roundKey].find((m) => m.id === id);
       if (matchup) {
-        // Only clear the slot that was fed from the changed matchup
-        const prog = BRACKET_PROGRESSION[matchupId];
+        // Only clear the slot that was fed from the source matchup
         if (prog && prog.nextRound === id) {
           matchup[prog.slot] = null;
         }
         matchup.winner = null;
 
-        // Recursively clear downstream
+        // Recursively clear downstream, passing current matchup as the new source
         const nextProg = BRACKET_PROGRESSION[id];
         if (nextProg) {
-          clearMatchup(nextProg.nextRound);
+          clearMatchup(nextProg.nextRound, id);
         }
       }
     };
 
-    clearMatchup(progression.nextRound);
+    clearMatchup(progression.nextRound, matchupId);
   };
 
   const resetBracket = useCallback(() => {
     setBracket(JSON.parse(JSON.stringify(INITIAL_BRACKET)));
     setSelectedMatchup(null);
     setSelectedPark(null);
+  }, []);
+
+  // Reconstruct bracket state from a picks object (for loading persisted picks)
+  const loadFromPicks = useCallback((picks) => {
+    setBracket((prevBracket) => {
+      // Start fresh
+      const newBracket = JSON.parse(JSON.stringify(INITIAL_BRACKET));
+
+      // If no picks, just reset to initial state
+      if (!picks || Object.keys(picks).length === 0) {
+        // Only update if different from current
+        if (JSON.stringify(prevBracket) === JSON.stringify(newBracket)) {
+          return prevBracket;
+        }
+        return newBracket;
+      }
+
+      // Helper to apply a single pick
+      const applyPick = (matchupId, winnerParkId) => {
+        // Find the matchup
+        let matchup = null;
+        if (matchupId === "f-1") {
+          matchup = newBracket.finals;
+        } else {
+          for (const roundKey of ["round16", "quarterfinals", "semifinals"]) {
+            const found = newBracket[roundKey].find((m) => m.id === matchupId);
+            if (found) {
+              matchup = found;
+              break;
+            }
+          }
+        }
+
+        if (!matchup) return;
+
+        // Set winner
+        matchup.winner = winnerParkId;
+
+        // Propagate to next round
+        const progression = BRACKET_PROGRESSION[matchupId];
+        if (progression) {
+          if (progression.nextRound === "f-1") {
+            newBracket.finals[progression.slot] = winnerParkId;
+          } else {
+            const nextRoundKey = progression.nextRound.startsWith("qf")
+              ? "quarterfinals"
+              : "semifinals";
+            const nextMatchup = newBracket[nextRoundKey].find(
+              (m) => m.id === progression.nextRound
+            );
+            if (nextMatchup) {
+              nextMatchup[progression.slot] = winnerParkId;
+            }
+          }
+        }
+
+        // Set champion if finals winner selected
+        if (matchupId === "f-1") {
+          newBracket.champion = winnerParkId;
+        }
+      };
+
+      // Apply picks in order: r16 -> qf -> sf -> finals
+      const orderedMatchups = [
+        "r16-1", "r16-2", "r16-3", "r16-4", "r16-5", "r16-6", "r16-7", "r16-8",
+        "qf-1", "qf-2", "qf-3", "qf-4",
+        "sf-1", "sf-2",
+        "f-1",
+      ];
+
+      orderedMatchups.forEach((matchupId) => {
+        if (picks[matchupId]) {
+          applyPick(matchupId, picks[matchupId]);
+        }
+      });
+
+      // Only update if different from current
+      if (JSON.stringify(prevBracket) === JSON.stringify(newBracket)) {
+        return prevBracket;
+      }
+      return newBracket;
+    });
   }, []);
 
   const openStatsComparison = useCallback((matchupId) => {
@@ -128,6 +214,7 @@ export function useBracketState() {
     selectedPark,
     selectWinner,
     resetBracket,
+    loadFromPicks,
     openStatsComparison,
     closeStatsComparison,
     openParkDetail,

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useBracketState } from "./useBracketState";
+import { useBracketVoting } from "./useBracketVoting";
 import { PARKS } from "./bracketData";
 import MatchupCard from "./MatchupCard";
 import ParkCard from "./ParkCard";
 import StatsComparison from "./StatsComparison";
 import ParkDetailModal from "./ParkDetailModal";
+import BracketSubmitPanel from "./BracketSubmitPanel";
+import AdminPanel from "./AdminPanel";
+import DebugVoteStats from "./DebugVoteStats";
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
@@ -48,16 +52,83 @@ const BracketContainer = () => {
     bracket,
     selectedMatchup,
     selectedPark,
-    selectWinner,
-    resetBracket,
+    selectWinner: selectWinnerBase,
+    resetBracket: resetBracketBase,
+    loadFromPicks,
     openStatsComparison,
     closeStatsComparison,
     openParkDetail,
     closeParkDetail,
   } = useBracketState();
 
+  const {
+    userPicks,
+    isSubmitted,
+    submittedAt,
+    updatePick,
+    submitUserBracket,
+    resetPicks,
+    bracketValidation,
+    completedPicksCount,
+    totalMatchups,
+    actualWinners,
+    refreshVotingData,
+    viewMode,
+    setViewMode,
+    getDisplayWinner,
+    doesUserPickMatch,
+    getVotesForMatchup,
+    shouldShowVotes,
+    // Editing state
+    isEditing,
+    isLocked,
+    editingAllowed,
+    startEditing,
+    cancelEditing,
+  } = useBracketVoting();
+
+  // Sync visual bracket state from persisted picks whenever userPicks changes
+  useEffect(() => {
+    loadFromPicks(userPicks);
+  }, [userPicks, loadFromPicks]);
+
+  // Wrap selectWinner to also update voting picks
+  const selectWinner = (matchupId, parkId) => {
+    // Allow selection if not locked
+    if (isLocked) return;
+    selectWinnerBase(matchupId, parkId);
+    updatePick(matchupId, parkId);
+  };
+
+  // Wrap resetBracket to also clear picks
+  const resetBracket = () => {
+    if (isLocked) return; // Can't reset when locked
+    resetBracketBase();
+    resetPicks();
+  };
+
+  // Results are available when bracket is locked
+  const hasResults = isLocked;
+
   // Helper to check if a specific matchup is flipped (selected for comparison)
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
+
+  // Determine if user can interact with matchups
+  // Can interact anytime round16 is still open
+  const canInteractWithBracket = !isLocked;
+
+  // When locked, always show results overlay
+  const effectiveViewMode = isLocked ? "results" : viewMode;
+
+  // Get voting props for a matchup
+  const getMatchupVotingProps = (matchupId) => ({
+    displayMode: effectiveViewMode,
+    isLocked: !canInteractWithBracket,
+    votes: getVotesForMatchup(matchupId),
+    actualWinner: actualWinners[matchupId],
+    userPick: userPicks[matchupId],
+    userPickMatches: doesUserPickMatch(matchupId),
+  });
 
   if (isMobile) {
     return (
@@ -73,6 +144,24 @@ const BracketContainer = () => {
         closeParkDetail={closeParkDetail}
         activeView={activeView}
         onViewChange={setActiveView}
+        // Voting props
+        getMatchupVotingProps={getMatchupVotingProps}
+        viewMode={effectiveViewMode}
+        setViewMode={setViewMode}
+        hasResults={hasResults}
+        isSubmitted={isSubmitted}
+        submittedAt={submittedAt}
+        completedPicksCount={completedPicksCount}
+        totalMatchups={totalMatchups}
+        bracketValidation={bracketValidation}
+        submitUserBracket={submitUserBracket}
+        refreshVotingData={refreshVotingData}
+        // Editing state
+        isEditing={isEditing}
+        isLocked={isLocked}
+        editingAllowed={editingAllowed}
+        startEditing={startEditing}
+        cancelEditing={cancelEditing}
       />
     );
   }
@@ -83,7 +172,9 @@ const BracketContainer = () => {
 
   return (
     <div className="bracket-wrapper">
-      <ViewToggle activeView={activeView} onViewChange={setActiveView} />
+      <div className="bracket-controls">
+        <ViewToggle activeView={activeView} onViewChange={setActiveView} />
+      </div>
 
       <div className={`bracket-container ${activeView !== "full" ? "region-view" : ""}`}>
         {/* Left side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) */}
@@ -99,6 +190,7 @@ const BracketContainer = () => {
                   onSelectWinner={selectWinner}
                   onMatchupClick={openStatsComparison}
                   onParkClick={openParkDetail}
+                  {...getMatchupVotingProps(matchup.id)}
                 />
               ))}
             </div>
@@ -112,6 +204,7 @@ const BracketContainer = () => {
                   onSelectWinner={selectWinner}
                   onMatchupClick={openStatsComparison}
                   onParkClick={openParkDetail}
+                  {...getMatchupVotingProps(matchup.id)}
                 />
               ))}
             </div>
@@ -123,6 +216,7 @@ const BracketContainer = () => {
                 onSelectWinner={selectWinner}
                 onMatchupClick={openStatsComparison}
                 onParkClick={openParkDetail}
+                {...getMatchupVotingProps(bracket.semifinals[0].id)}
               />
             </div>
           </div>
@@ -139,17 +233,8 @@ const BracketContainer = () => {
               onSelectWinner={selectWinner}
               onMatchupClick={openStatsComparison}
               onParkClick={openParkDetail}
+              {...getMatchupVotingProps(bracket.finals.id)}
             />
-            {bracket.champion && (
-              <div className="champion-display">
-                <div className="champion-label">CHAMPION</div>
-                <ParkCard
-                  parkId={bracket.champion}
-                  isChampion={true}
-                  onParkNameClick={openParkDetail}
-                />
-              </div>
-            )}
           </div>
         )}
 
@@ -166,6 +251,7 @@ const BracketContainer = () => {
                   onSelectWinner={selectWinner}
                   onMatchupClick={openStatsComparison}
                   onParkClick={openParkDetail}
+                  {...getMatchupVotingProps(matchup.id)}
                 />
               ))}
             </div>
@@ -179,6 +265,7 @@ const BracketContainer = () => {
                   onSelectWinner={selectWinner}
                   onMatchupClick={openStatsComparison}
                   onParkClick={openParkDetail}
+                  {...getMatchupVotingProps(matchup.id)}
                 />
               ))}
             </div>
@@ -190,15 +277,37 @@ const BracketContainer = () => {
                 onSelectWinner={selectWinner}
                 onMatchupClick={openStatsComparison}
                 onParkClick={openParkDetail}
+                {...getMatchupVotingProps(bracket.semifinals[1].id)}
               />
             </div>
           </div>
         )}
       </div>
 
-      <button className="reset-bracket-btn" onClick={resetBracket}>
-        Reset Bracket
-      </button>
+      {!isLocked && (
+        <div className="bracket-action-buttons">
+          <button className="reset-bracket-btn" onClick={resetBracket}>
+            Reset
+          </button>
+          <button
+            className="save-bracket-btn"
+            onClick={() => {
+              const result = submitUserBracket();
+              if (result.success) {
+                alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
+              } else {
+                alert(result.error);
+              }
+            }}
+            disabled={!bracketValidation.isComplete}
+          >
+            Save
+          </button>
+        </div>
+      )}
+
+      <AdminPanel onRefresh={refreshVotingData} />
+      <DebugVoteStats />
 
       {/* Modals */}
       {selectedMatchup && (
@@ -229,6 +338,24 @@ const MobileBracket = ({
   closeParkDetail,
   activeView,
   onViewChange,
+  // Voting props
+  getMatchupVotingProps,
+  viewMode,
+  setViewMode,
+  hasResults,
+  isSubmitted,
+  submittedAt,
+  completedPicksCount,
+  totalMatchups,
+  bracketValidation,
+  submitUserBracket,
+  refreshVotingData,
+  // Editing state
+  isEditing,
+  isLocked,
+  editingAllowed,
+  startEditing,
+  cancelEditing,
 }) => {
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
 
@@ -244,7 +371,29 @@ const MobileBracket = ({
 
   return (
     <div className="bracket-wrapper mobile">
-      <ViewToggle activeView={activeView} onViewChange={onViewChange} />
+      <div className="bracket-controls">
+        <ViewToggle activeView={activeView} onViewChange={onViewChange} />
+        <DisplayModeToggle
+          displayMode={viewMode}
+          onDisplayModeChange={setViewMode}
+          hasResults={hasResults}
+          isLocked={isLocked}
+        />
+      </div>
+
+      <BracketSubmitPanel
+        isSubmitted={isSubmitted}
+        submittedAt={submittedAt}
+        completedPicksCount={completedPicksCount}
+        totalMatchups={totalMatchups}
+        bracketValidation={bracketValidation}
+        onSubmit={submitUserBracket}
+        isEditing={isEditing}
+        isLocked={isLocked}
+        editingAllowed={editingAllowed}
+        onStartEditing={startEditing}
+        onCancelEditing={cancelEditing}
+      />
 
       <div className="bracket-mobile">
         <div className="mobile-round">
@@ -259,6 +408,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(matchup.id)}
               />
             ))}
             {showEast && eastR16.map((matchup) => (
@@ -270,6 +420,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(matchup.id)}
               />
             ))}
           </div>
@@ -287,6 +438,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(matchup.id)}
               />
             ))}
             {showEast && eastQF.map((matchup) => (
@@ -298,6 +450,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(matchup.id)}
               />
             ))}
           </div>
@@ -314,6 +467,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(bracket.semifinals[0].id)}
               />
             )}
             {showEast && (
@@ -324,6 +478,7 @@ const MobileBracket = ({
                 onSelectWinner={onSelectWinner}
                 onMatchupClick={onMatchupClick}
                 onParkClick={onParkClick}
+                {...getMatchupVotingProps(bracket.semifinals[1].id)}
               />
             )}
           </div>
@@ -341,27 +496,38 @@ const MobileBracket = ({
                   onSelectWinner={onSelectWinner}
                   onMatchupClick={onMatchupClick}
                   onParkClick={onParkClick}
+                  {...getMatchupVotingProps(bracket.finals.id)}
                 />
               </div>
             </div>
-
-            {bracket.champion && (
-              <div className="mobile-champion">
-                <h3>Champion</h3>
-                <ParkCard
-                  parkId={bracket.champion}
-                  isChampion={true}
-                  onParkNameClick={onParkClick}
-                />
-              </div>
-            )}
           </>
         )}
       </div>
 
-      <button className="reset-bracket-btn" onClick={onReset}>
-        Reset Bracket
-      </button>
+      {!isLocked && (
+        <div className="bracket-action-buttons">
+          <button className="reset-bracket-btn" onClick={onReset}>
+            Reset
+          </button>
+          <button
+            className="save-bracket-btn"
+            onClick={() => {
+              const result = submitUserBracket();
+              if (result.success) {
+                alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
+              } else {
+                alert(result.error);
+              }
+            }}
+            disabled={!bracketValidation.isComplete}
+          >
+            Save
+          </button>
+        </div>
+      )}
+
+      <AdminPanel onRefresh={refreshVotingData} />
+      <DebugVoteStats />
 
       {selectedMatchup && (
         <StatsComparison
