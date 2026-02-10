@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useBracketState } from "./useBracketState";
 import { useBracketVoting } from "./useBracketVoting";
 import { PARKS } from "./bracketData";
@@ -9,6 +9,7 @@ import ParkDetailModal from "./ParkDetailModal";
 import BracketSubmitPanel from "./BracketSubmitPanel";
 import AdminPanel from "./AdminPanel";
 import DebugVoteStats from "./DebugVoteStats";
+import RoundVoting from "./RoundVoting";
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
@@ -20,24 +21,43 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-const ViewToggle = ({ activeView, onViewChange }) => {
+const MainViewToggle = ({ topView, onTopViewChange }) => {
   return (
     <div className="view-toggle">
       <button
-        className={`view-toggle-btn ${activeView === "full" ? "active" : ""}`}
-        onClick={() => onViewChange("full")}
+        className={`view-toggle-btn ${topView === "bracket" ? "active" : ""}`}
+        onClick={() => onTopViewChange("bracket")}
+      >
+        Bracket
+      </button>
+      <button
+        className={`view-toggle-btn ${topView === "roundVoting" ? "active" : ""}`}
+        onClick={() => onTopViewChange("roundVoting")}
+      >
+        Round Voting
+      </button>
+    </div>
+  );
+};
+
+const RegionToggle = ({ bracketRegion, onRegionChange }) => {
+  return (
+    <div className="view-toggle">
+      <button
+        className={`view-toggle-btn ${bracketRegion === "full" ? "active" : ""}`}
+        onClick={() => onRegionChange("full")}
       >
         Full Tournament
       </button>
       <button
-        className={`view-toggle-btn ${activeView === "west" ? "active" : ""}`}
-        onClick={() => onViewChange("west")}
+        className={`view-toggle-btn ${bracketRegion === "west" ? "active" : ""}`}
+        onClick={() => onRegionChange("west")}
       >
         West Region
       </button>
       <button
-        className={`view-toggle-btn ${activeView === "east" ? "active" : ""}`}
-        onClick={() => onViewChange("east")}
+        className={`view-toggle-btn ${bracketRegion === "east" ? "active" : ""}`}
+        onClick={() => onRegionChange("east")}
       >
         East Region
       </button>
@@ -47,7 +67,8 @@ const ViewToggle = ({ activeView, onViewChange }) => {
 
 const BracketContainer = () => {
   const isMobile = useIsMobile();
-  const [activeView, setActiveView] = useState("full");
+  const [topView, setTopView] = useState("bracket");
+  const [bracketRegion, setBracketRegion] = useState("full");
   const {
     bracket,
     selectedMatchup,
@@ -85,7 +106,18 @@ const BracketContainer = () => {
     editingAllowed,
     startEditing,
     cancelEditing,
+    // Per-round voting
+    activeRound,
+    perRoundVotes,
+    userRoundVotes,
+    submitRoundVote,
+    getActiveRoundMatchups,
   } = useBracketVoting();
+
+  const activeRoundMatchups = useMemo(
+    () => getActiveRoundMatchups(),
+    [getActiveRoundMatchups]
+  );
 
   // Sync visual bracket state from persisted picks whenever userPicks changes
   useEffect(() => {
@@ -142,8 +174,10 @@ const BracketContainer = () => {
         selectedPark={selectedPark}
         closeStatsComparison={closeStatsComparison}
         closeParkDetail={closeParkDetail}
-        activeView={activeView}
-        onViewChange={setActiveView}
+        topView={topView}
+        onTopViewChange={setTopView}
+        bracketRegion={bracketRegion}
+        onRegionChange={setBracketRegion}
         // Voting props
         getMatchupVotingProps={getMatchupVotingProps}
         viewMode={effectiveViewMode}
@@ -162,148 +196,173 @@ const BracketContainer = () => {
         editingAllowed={editingAllowed}
         startEditing={startEditing}
         cancelEditing={cancelEditing}
+        // Per-round voting
+        activeRound={activeRound}
+        activeRoundMatchups={activeRoundMatchups}
+        userRoundVotes={userRoundVotes}
+        perRoundVotes={perRoundVotes}
+        submitRoundVote={submitRoundVote}
       />
     );
   }
 
-  const showWest = activeView === "full" || activeView === "west";
-  const showEast = activeView === "full" || activeView === "east";
-  const showCenter = activeView === "full";
+  const showWest = bracketRegion === "full" || bracketRegion === "west";
+  const showEast = bracketRegion === "full" || bracketRegion === "east";
+  const showCenter = bracketRegion === "full";
 
   return (
     <div className="bracket-wrapper">
       <div className="bracket-controls">
-        <ViewToggle activeView={activeView} onViewChange={setActiveView} />
-      </div>
-
-      <div className={`bracket-container ${activeView !== "full" ? "region-view" : ""}`}>
-        {/* Left side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) */}
-        {showWest && (
-          <div className="bracket-side left">
-            <div className="bracket-round round-16">
-              {bracket.round16.slice(0, 4).map((matchup) => (
-                <MatchupCard
-                  key={matchup.id}
-                  matchup={matchup}
-                  roundClass="r16"
-                  isFlipped={isMatchupFlipped(matchup.id)}
-                  onSelectWinner={selectWinner}
-                  onMatchupClick={openStatsComparison}
-                  onParkClick={openParkDetail}
-                  {...getMatchupVotingProps(matchup.id)}
-                />
-              ))}
-            </div>
-            <div className="bracket-round quarterfinals">
-              {bracket.quarterfinals.slice(0, 2).map((matchup) => (
-                <MatchupCard
-                  key={matchup.id}
-                  matchup={matchup}
-                  roundClass="qf"
-                  isFlipped={isMatchupFlipped(matchup.id)}
-                  onSelectWinner={selectWinner}
-                  onMatchupClick={openStatsComparison}
-                  onParkClick={openParkDetail}
-                  {...getMatchupVotingProps(matchup.id)}
-                />
-              ))}
-            </div>
-            <div className="bracket-round semifinals">
-              <MatchupCard
-                matchup={bracket.semifinals[0]}
-                roundClass="sf"
-                isFlipped={isMatchupFlipped(bracket.semifinals[0].id)}
-                onSelectWinner={selectWinner}
-                onMatchupClick={openStatsComparison}
-                onParkClick={openParkDetail}
-                {...getMatchupVotingProps(bracket.semifinals[0].id)}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Center: Finals + Champion */}
-        {showCenter && (
-          <div className="bracket-center">
-            <div className="finals-label">FINALS</div>
-            <MatchupCard
-              matchup={bracket.finals}
-              roundClass="finals"
-              isFlipped={isMatchupFlipped(bracket.finals.id)}
-              onSelectWinner={selectWinner}
-              onMatchupClick={openStatsComparison}
-              onParkClick={openParkDetail}
-              {...getMatchupVotingProps(bracket.finals.id)}
-            />
-          </div>
-        )}
-
-        {/* Right side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) - flows toward center */}
-        {showEast && (
-          <div className="bracket-side right">
-            <div className="bracket-round round-16">
-              {bracket.round16.slice(4, 8).map((matchup) => (
-                <MatchupCard
-                  key={matchup.id}
-                  matchup={matchup}
-                  roundClass="r16"
-                  isFlipped={isMatchupFlipped(matchup.id)}
-                  onSelectWinner={selectWinner}
-                  onMatchupClick={openStatsComparison}
-                  onParkClick={openParkDetail}
-                  {...getMatchupVotingProps(matchup.id)}
-                />
-              ))}
-            </div>
-            <div className="bracket-round quarterfinals">
-              {bracket.quarterfinals.slice(2, 4).map((matchup) => (
-                <MatchupCard
-                  key={matchup.id}
-                  matchup={matchup}
-                  roundClass="qf"
-                  isFlipped={isMatchupFlipped(matchup.id)}
-                  onSelectWinner={selectWinner}
-                  onMatchupClick={openStatsComparison}
-                  onParkClick={openParkDetail}
-                  {...getMatchupVotingProps(matchup.id)}
-                />
-              ))}
-            </div>
-            <div className="bracket-round semifinals">
-              <MatchupCard
-                matchup={bracket.semifinals[1]}
-                roundClass="sf"
-                isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
-                onSelectWinner={selectWinner}
-                onMatchupClick={openStatsComparison}
-                onParkClick={openParkDetail}
-                {...getMatchupVotingProps(bracket.semifinals[1].id)}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {!isLocked && (
-        <div className="bracket-action-buttons">
-          <button className="reset-bracket-btn" onClick={resetBracket}>
-            Reset
-          </button>
-          <button
-            className="save-bracket-btn"
-            onClick={() => {
-              const result = submitUserBracket();
-              if (result.success) {
-                alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
-              } else {
-                alert(result.error);
-              }
-            }}
-            disabled={!bracketValidation.isComplete}
-          >
-            Save
-          </button>
+        <div className="bracket-view-controls">
+          <MainViewToggle topView={topView} onTopViewChange={setTopView} />
+          {topView === "bracket" && (
+            <RegionToggle bracketRegion={bracketRegion} onRegionChange={setBracketRegion} />
+          )}
         </div>
+      </div>
+
+      {topView === "bracket" && (
+        <>
+          <div className={`bracket-container ${bracketRegion !== "full" ? "region-view" : ""}`}>
+            {/* Left side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) */}
+            {showWest && (
+              <div className="bracket-side left">
+                <div className="bracket-round round-16">
+                  {bracket.round16.slice(0, 4).map((matchup) => (
+                    <MatchupCard
+                      key={matchup.id}
+                      matchup={matchup}
+                      roundClass="r16"
+                      isFlipped={isMatchupFlipped(matchup.id)}
+                      onSelectWinner={selectWinner}
+                      onMatchupClick={openStatsComparison}
+                      onParkClick={openParkDetail}
+                      {...getMatchupVotingProps(matchup.id)}
+                    />
+                  ))}
+                </div>
+                <div className="bracket-round quarterfinals">
+                  {bracket.quarterfinals.slice(0, 2).map((matchup) => (
+                    <MatchupCard
+                      key={matchup.id}
+                      matchup={matchup}
+                      roundClass="qf"
+                      isFlipped={isMatchupFlipped(matchup.id)}
+                      onSelectWinner={selectWinner}
+                      onMatchupClick={openStatsComparison}
+                      onParkClick={openParkDetail}
+                      {...getMatchupVotingProps(matchup.id)}
+                    />
+                  ))}
+                </div>
+                <div className="bracket-round semifinals">
+                  <MatchupCard
+                    matchup={bracket.semifinals[0]}
+                    roundClass="sf"
+                    isFlipped={isMatchupFlipped(bracket.semifinals[0].id)}
+                    onSelectWinner={selectWinner}
+                    onMatchupClick={openStatsComparison}
+                    onParkClick={openParkDetail}
+                    {...getMatchupVotingProps(bracket.semifinals[0].id)}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Center: Finals + Champion */}
+            {showCenter && (
+              <div className="bracket-center">
+                <div className="finals-label">FINALS</div>
+                <MatchupCard
+                  matchup={bracket.finals}
+                  roundClass="finals"
+                  isFlipped={isMatchupFlipped(bracket.finals.id)}
+                  onSelectWinner={selectWinner}
+                  onMatchupClick={openStatsComparison}
+                  onParkClick={openParkDetail}
+                  {...getMatchupVotingProps(bracket.finals.id)}
+                />
+              </div>
+            )}
+
+            {/* Right side: Round of 16 (4 matchups) -> Quarterfinals (2) -> Semifinal (1) - flows toward center */}
+            {showEast && (
+              <div className="bracket-side right">
+                <div className="bracket-round round-16">
+                  {bracket.round16.slice(4, 8).map((matchup) => (
+                    <MatchupCard
+                      key={matchup.id}
+                      matchup={matchup}
+                      roundClass="r16"
+                      isFlipped={isMatchupFlipped(matchup.id)}
+                      onSelectWinner={selectWinner}
+                      onMatchupClick={openStatsComparison}
+                      onParkClick={openParkDetail}
+                      {...getMatchupVotingProps(matchup.id)}
+                    />
+                  ))}
+                </div>
+                <div className="bracket-round quarterfinals">
+                  {bracket.quarterfinals.slice(2, 4).map((matchup) => (
+                    <MatchupCard
+                      key={matchup.id}
+                      matchup={matchup}
+                      roundClass="qf"
+                      isFlipped={isMatchupFlipped(matchup.id)}
+                      onSelectWinner={selectWinner}
+                      onMatchupClick={openStatsComparison}
+                      onParkClick={openParkDetail}
+                      {...getMatchupVotingProps(matchup.id)}
+                    />
+                  ))}
+                </div>
+                <div className="bracket-round semifinals">
+                  <MatchupCard
+                    matchup={bracket.semifinals[1]}
+                    roundClass="sf"
+                    isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
+                    onSelectWinner={selectWinner}
+                    onMatchupClick={openStatsComparison}
+                    onParkClick={openParkDetail}
+                    {...getMatchupVotingProps(bracket.semifinals[1].id)}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {!isLocked && (
+            <div className="bracket-action-buttons">
+              <button className="reset-bracket-btn" onClick={resetBracket}>
+                Reset
+              </button>
+              <button
+                className="save-bracket-btn"
+                onClick={() => {
+                  const result = submitUserBracket();
+                  if (result.success) {
+                    alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
+                  } else {
+                    alert(result.error);
+                  }
+                }}
+                disabled={!bracketValidation.isComplete}
+              >
+                Save
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
+      {topView === "roundVoting" && (
+        <RoundVoting
+          activeRound={activeRound}
+          matchups={activeRoundMatchups}
+          userRoundVotes={userRoundVotes}
+          perRoundVotes={perRoundVotes}
+          onVote={submitRoundVote}
+        />
       )}
 
       <AdminPanel onRefresh={refreshVotingData} />
@@ -336,8 +395,10 @@ const MobileBracket = ({
   selectedPark,
   closeStatsComparison,
   closeParkDetail,
-  activeView,
-  onViewChange,
+  topView,
+  onTopViewChange,
+  bracketRegion,
+  onRegionChange,
   // Voting props
   getMatchupVotingProps,
   viewMode,
@@ -356,11 +417,17 @@ const MobileBracket = ({
   editingAllowed,
   startEditing,
   cancelEditing,
+  // Per-round voting
+  activeRound,
+  activeRoundMatchups,
+  userRoundVotes,
+  perRoundVotes,
+  submitRoundVote,
 }) => {
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
 
-  const showWest = activeView === "full" || activeView === "west";
-  const showEast = activeView === "full" || activeView === "east";
+  const showWest = bracketRegion === "full" || bracketRegion === "west";
+  const showEast = bracketRegion === "full" || bracketRegion === "east";
 
   // West region: r16 slots 1-4, qf 1-2, sf 1
   // East region: r16 slots 5-8, qf 3-4, sf 2
@@ -372,158 +439,179 @@ const MobileBracket = ({
   return (
     <div className="bracket-wrapper mobile">
       <div className="bracket-controls">
-        <ViewToggle activeView={activeView} onViewChange={onViewChange} />
-        <DisplayModeToggle
-          displayMode={viewMode}
-          onDisplayModeChange={setViewMode}
-          hasResults={hasResults}
-          isLocked={isLocked}
-        />
-      </div>
-
-      <BracketSubmitPanel
-        isSubmitted={isSubmitted}
-        submittedAt={submittedAt}
-        completedPicksCount={completedPicksCount}
-        totalMatchups={totalMatchups}
-        bracketValidation={bracketValidation}
-        onSubmit={submitUserBracket}
-        isEditing={isEditing}
-        isLocked={isLocked}
-        editingAllowed={editingAllowed}
-        onStartEditing={startEditing}
-        onCancelEditing={cancelEditing}
-      />
-
-      <div className="bracket-mobile">
-        <div className="mobile-round">
-          <h3>Round of 16 {activeView !== "full" && `(${activeView === "west" ? "West" : "East"})`}</h3>
-          <div className="mobile-matchups">
-            {showWest && westR16.map((matchup) => (
-              <MatchupCard
-                key={matchup.id}
-                matchup={matchup}
-                roundClass="r16"
-                isFlipped={isMatchupFlipped(matchup.id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(matchup.id)}
-              />
-            ))}
-            {showEast && eastR16.map((matchup) => (
-              <MatchupCard
-                key={matchup.id}
-                matchup={matchup}
-                roundClass="r16"
-                isFlipped={isMatchupFlipped(matchup.id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(matchup.id)}
-              />
-            ))}
-          </div>
+        <div className="bracket-view-controls">
+          <MainViewToggle topView={topView} onTopViewChange={onTopViewChange} />
+          {topView === "bracket" && (
+            <RegionToggle bracketRegion={bracketRegion} onRegionChange={onRegionChange} />
+          )}
         </div>
-
-        <div className="mobile-round">
-          <h3>Quarterfinals {activeView !== "full" && `(${activeView === "west" ? "West" : "East"})`}</h3>
-          <div className="mobile-matchups">
-            {showWest && westQF.map((matchup) => (
-              <MatchupCard
-                key={matchup.id}
-                matchup={matchup}
-                roundClass="qf"
-                isFlipped={isMatchupFlipped(matchup.id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(matchup.id)}
-              />
-            ))}
-            {showEast && eastQF.map((matchup) => (
-              <MatchupCard
-                key={matchup.id}
-                matchup={matchup}
-                roundClass="qf"
-                isFlipped={isMatchupFlipped(matchup.id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(matchup.id)}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="mobile-round">
-          <h3>Semifinals {activeView !== "full" && `(${activeView === "west" ? "West" : "East"})`}</h3>
-          <div className="mobile-matchups">
-            {showWest && (
-              <MatchupCard
-                matchup={bracket.semifinals[0]}
-                roundClass="sf"
-                isFlipped={isMatchupFlipped(bracket.semifinals[0].id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(bracket.semifinals[0].id)}
-              />
-            )}
-            {showEast && (
-              <MatchupCard
-                matchup={bracket.semifinals[1]}
-                roundClass="sf"
-                isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
-                onSelectWinner={onSelectWinner}
-                onMatchupClick={onMatchupClick}
-                onParkClick={onParkClick}
-                {...getMatchupVotingProps(bracket.semifinals[1].id)}
-              />
-            )}
-          </div>
-        </div>
-
-        {activeView === "full" && (
-          <>
-            <div className="mobile-round">
-              <h3>Finals</h3>
-              <div className="mobile-matchups">
-                <MatchupCard
-                  matchup={bracket.finals}
-                  roundClass="finals"
-                  isFlipped={isMatchupFlipped(bracket.finals.id)}
-                  onSelectWinner={onSelectWinner}
-                  onMatchupClick={onMatchupClick}
-                  onParkClick={onParkClick}
-                  {...getMatchupVotingProps(bracket.finals.id)}
-                />
-              </div>
-            </div>
-          </>
+        {topView === "bracket" && (
+          <DisplayModeToggle
+            displayMode={viewMode}
+            onDisplayModeChange={setViewMode}
+            hasResults={hasResults}
+            isLocked={isLocked}
+          />
         )}
       </div>
 
-      {!isLocked && (
-        <div className="bracket-action-buttons">
-          <button className="reset-bracket-btn" onClick={onReset}>
-            Reset
-          </button>
-          <button
-            className="save-bracket-btn"
-            onClick={() => {
-              const result = submitUserBracket();
-              if (result.success) {
-                alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
-              } else {
-                alert(result.error);
-              }
-            }}
-            disabled={!bracketValidation.isComplete}
-          >
-            Save
-          </button>
-        </div>
+      {topView === "bracket" && (
+        <>
+          <BracketSubmitPanel
+            isSubmitted={isSubmitted}
+            submittedAt={submittedAt}
+            completedPicksCount={completedPicksCount}
+            totalMatchups={totalMatchups}
+            bracketValidation={bracketValidation}
+            onSubmit={submitUserBracket}
+            isEditing={isEditing}
+            isLocked={isLocked}
+            editingAllowed={editingAllowed}
+            onStartEditing={startEditing}
+            onCancelEditing={cancelEditing}
+          />
+
+          <div className="bracket-mobile">
+            <div className="mobile-round">
+              <h3>Round of 16 {bracketRegion !== "full" && `(${bracketRegion === "west" ? "West" : "East"})`}</h3>
+              <div className="mobile-matchups">
+                {showWest && westR16.map((matchup) => (
+                  <MatchupCard
+                    key={matchup.id}
+                    matchup={matchup}
+                    roundClass="r16"
+                    isFlipped={isMatchupFlipped(matchup.id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(matchup.id)}
+                  />
+                ))}
+                {showEast && eastR16.map((matchup) => (
+                  <MatchupCard
+                    key={matchup.id}
+                    matchup={matchup}
+                    roundClass="r16"
+                    isFlipped={isMatchupFlipped(matchup.id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(matchup.id)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="mobile-round">
+              <h3>Quarterfinals {bracketRegion !== "full" && `(${bracketRegion === "west" ? "West" : "East"})`}</h3>
+              <div className="mobile-matchups">
+                {showWest && westQF.map((matchup) => (
+                  <MatchupCard
+                    key={matchup.id}
+                    matchup={matchup}
+                    roundClass="qf"
+                    isFlipped={isMatchupFlipped(matchup.id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(matchup.id)}
+                  />
+                ))}
+                {showEast && eastQF.map((matchup) => (
+                  <MatchupCard
+                    key={matchup.id}
+                    matchup={matchup}
+                    roundClass="qf"
+                    isFlipped={isMatchupFlipped(matchup.id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(matchup.id)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="mobile-round">
+              <h3>Semifinals {bracketRegion !== "full" && `(${bracketRegion === "west" ? "West" : "East"})`}</h3>
+              <div className="mobile-matchups">
+                {showWest && (
+                  <MatchupCard
+                    matchup={bracket.semifinals[0]}
+                    roundClass="sf"
+                    isFlipped={isMatchupFlipped(bracket.semifinals[0].id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(bracket.semifinals[0].id)}
+                  />
+                )}
+                {showEast && (
+                  <MatchupCard
+                    matchup={bracket.semifinals[1]}
+                    roundClass="sf"
+                    isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
+                    onSelectWinner={onSelectWinner}
+                    onMatchupClick={onMatchupClick}
+                    onParkClick={onParkClick}
+                    {...getMatchupVotingProps(bracket.semifinals[1].id)}
+                  />
+                )}
+              </div>
+            </div>
+
+            {bracketRegion === "full" && (
+              <>
+                <div className="mobile-round">
+                  <h3>Finals</h3>
+                  <div className="mobile-matchups">
+                    <MatchupCard
+                      matchup={bracket.finals}
+                      roundClass="finals"
+                      isFlipped={isMatchupFlipped(bracket.finals.id)}
+                      onSelectWinner={onSelectWinner}
+                      onMatchupClick={onMatchupClick}
+                      onParkClick={onParkClick}
+                      {...getMatchupVotingProps(bracket.finals.id)}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {!isLocked && (
+            <div className="bracket-action-buttons">
+              <button className="reset-bracket-btn" onClick={onReset}>
+                Reset
+              </button>
+              <button
+                className="save-bracket-btn"
+                onClick={() => {
+                  const result = submitUserBracket();
+                  if (result.success) {
+                    alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
+                  } else {
+                    alert(result.error);
+                  }
+                }}
+                disabled={!bracketValidation.isComplete}
+              >
+                Save
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
+      {topView === "roundVoting" && (
+        <RoundVoting
+          activeRound={activeRound}
+          matchups={activeRoundMatchups}
+          userRoundVotes={userRoundVotes}
+          perRoundVotes={perRoundVotes}
+          onVote={submitRoundVote}
+        />
       )}
 
       <AdminPanel onRefresh={refreshVotingData} />

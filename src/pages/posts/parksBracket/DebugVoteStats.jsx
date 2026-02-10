@@ -9,6 +9,9 @@ import {
   canEditBracket,
   addSimulatedVotes,
   clearSimulatedVotes,
+  getPerRoundVotes,
+  getActiveRound,
+  getCombinedMatchupVotes,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
 
@@ -24,26 +27,40 @@ const DebugVoteStats = () => {
 
   const refreshStats = () => {
     const aggregateVotes = getAggregateVotes();
+    const perRoundVotes = getPerRoundVotes();
     const locked = isBracketLocked();
     const winners = getAllWinners();
     const userBracket = getUserBracket();
+    const activeRound = getActiveRound();
+
+    // Collect all matchup IDs from both sources
+    const allMatchupIds = new Set([
+      ...Object.keys(aggregateVotes),
+      ...Object.keys(perRoundVotes),
+    ]);
 
     // Build stats for each matchup
     const matchupStats = {};
-    Object.entries(aggregateVotes).forEach(([matchupId, votes]) => {
-      const sortedVotes = Object.entries(votes).sort((a, b) => b[1] - a[1]);
-      const totalVotes = sortedVotes.reduce((sum, [, count]) => sum + count, 0);
-      const leader = sortedVotes[0];
+    allMatchupIds.forEach((matchupId) => {
+      const bracketVotes = aggregateVotes[matchupId] || {};
+      const roundVotes = perRoundVotes[matchupId] || {};
+      const combinedVotes = getCombinedMatchupVotes(matchupId);
+
+      const sortedCombined = Object.entries(combinedVotes).sort((a, b) => b[1] - a[1]);
+      const totalCombined = sortedCombined.reduce((sum, [, count]) => sum + count, 0);
+      const leader = sortedCombined[0];
       const hasTie = hasMatchupTie(matchupId);
 
       matchupStats[matchupId] = {
-        votes: sortedVotes.map(([parkId, count]) => ({
+        bracketVotes,
+        roundVotes,
+        combined: sortedCombined.map(([parkId, count]) => ({
           parkId,
           parkName: PARKS[parkId]?.name || parkId,
           count,
-          percentage: totalVotes > 0 ? ((count / totalVotes) * 100).toFixed(1) : 0,
+          percentage: totalCombined > 0 ? ((count / totalCombined) * 100).toFixed(1) : 0,
         })),
-        totalVotes,
+        totalCombined,
         leader: leader ? { parkId: leader[0], parkName: PARKS[leader[0]]?.name || leader[0], count: leader[1] } : null,
         hasTie,
         winner: winners[matchupId] ? PARKS[winners[matchupId]]?.name || winners[matchupId] : null,
@@ -53,6 +70,7 @@ const DebugVoteStats = () => {
     setStats({
       totalVoters: getTotalVoters(),
       bracketLocked: locked,
+      activeRound,
       matchupStats,
       editingAllowed: canEditBracket(),
       userBracket: userBracket
@@ -184,6 +202,21 @@ const DebugVoteStats = () => {
                   {stats.bracketLocked ? "Locked" : "Open"}
                 </span>
               </div>
+              <div style={{ marginTop: "10px" }}>
+                <strong>Active Round: </strong>
+                <span
+                  style={{
+                    marginLeft: "10px",
+                    padding: "2px 8px",
+                    borderRadius: "4px",
+                    background: stats.activeRound ? "#38a169" : "#4a5568",
+                    color: "white",
+                    fontSize: "11px",
+                  }}
+                >
+                  {stats.activeRound || "None"}
+                </span>
+              </div>
             </div>
 
             {/* Simulation Controls */}
@@ -251,31 +284,39 @@ const DebugVoteStats = () => {
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
                       <strong style={{ color: "#63b3ed" }}>{matchupId}</strong>
                       <span style={{ color: "#a0aec0" }}>
-                        {data.totalVotes} votes
+                        {data.totalCombined} combined
                         {data.hasTie && <span style={{ color: "#f6ad55", marginLeft: "10px" }}>TIE</span>}
                         {data.winner && <span style={{ color: "#68d391", marginLeft: "10px" }}>Winner: {data.winner}</span>}
                       </span>
                     </div>
-                    <div>
-                      {data.votes.map((vote, idx) => (
-                        <div
-                          key={vote.parkId}
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            padding: "4px 0",
-                            color: idx === 0 ? "#68d391" : "#e2e8f0",
-                          }}
-                        >
-                          <span>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", fontSize: "12px" }}>
+                      <div>
+                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Bracket</div>
+                        {Object.entries(data.bracketVotes).sort((a, b) => b[1] - a[1]).map(([parkId, count]) => (
+                          <div key={parkId} style={{ padding: "2px 0" }}>
+                            {PARKS[parkId]?.name || parkId}: {count}
+                          </div>
+                        ))}
+                        {Object.keys(data.bracketVotes).length === 0 && <div style={{ color: "#4a5568" }}>—</div>}
+                      </div>
+                      <div>
+                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Per-round</div>
+                        {Object.entries(data.roundVotes).sort((a, b) => b[1] - a[1]).map(([parkId, count]) => (
+                          <div key={parkId} style={{ padding: "2px 0" }}>
+                            {PARKS[parkId]?.name || parkId}: {count}
+                          </div>
+                        ))}
+                        {Object.keys(data.roundVotes).length === 0 && <div style={{ color: "#4a5568" }}>—</div>}
+                      </div>
+                      <div>
+                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Combined</div>
+                        {data.combined.map((vote, idx) => (
+                          <div key={vote.parkId} style={{ padding: "2px 0", color: idx === 0 && !data.hasTie ? "#68d391" : "inherit" }}>
                             {idx === 0 && !data.hasTie && "► "}
-                            {vote.parkName}
-                          </span>
-                          <span>
-                            {vote.count} ({vote.percentage}%)
-                          </span>
-                        </div>
-                      ))}
+                            {vote.parkName}: {vote.count} ({vote.percentage}%)
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}

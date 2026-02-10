@@ -15,6 +15,8 @@ import {
   importAllData,
   clearAllVotingData,
   getVoteLeaderboard,
+  getActiveRound,
+  setActiveRound,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
 
@@ -33,6 +35,7 @@ const AdminPanel = ({ onRefresh }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [csvInput, setCsvInput] = useState("");
   const [message, setMessage] = useState(null);
+  const [currentActiveRound, setCurrentActiveRound] = useState(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -45,6 +48,7 @@ const AdminPanel = ({ onRefresh }) => {
     setAggregateVotes(getAggregateVotes());
     setAdminOverrides(getAdminOverrides());
     setLeaderboard(getVoteLeaderboard());
+    setCurrentActiveRound(getActiveRound());
   };
 
   const handleToggleLock = () => {
@@ -52,6 +56,16 @@ const AdminPanel = ({ onRefresh }) => {
       unlockBracket();
     } else {
       lockBracket();
+    }
+    refreshData();
+    onRefresh?.();
+  };
+
+  const handleToggleActiveRound = (roundKey) => {
+    if (currentActiveRound === roundKey) {
+      setActiveRound(null);
+    } else {
+      setActiveRound(roundKey);
     }
     refreshData();
     onRefresh?.();
@@ -168,6 +182,31 @@ const AdminPanel = ({ onRefresh }) => {
                 : "Voting is open. Users can submit and edit brackets."}
             </p>
           </div>
+        </div>
+
+        <div className="admin-section">
+          <h3>Per-Round Voting</h3>
+          {currentActiveRound && (
+            <div className="active-round-info">
+              Active: {ROUNDS.find((r) => r.key === currentActiveRound)?.label || currentActiveRound}
+            </div>
+          )}
+          <div className="round-selector">
+            {ROUNDS.map((round) => (
+              <button
+                key={round.key}
+                className={`round-selector-btn ${currentActiveRound === round.key ? "active" : ""}`}
+                onClick={() => handleToggleActiveRound(round.key)}
+              >
+                {round.label}
+              </button>
+            ))}
+          </div>
+          <p className="lock-description">
+            {currentActiveRound
+              ? "Click the active round again to close per-round voting."
+              : "Select a round to open per-round voting."}
+          </p>
         </div>
 
         <div className="admin-section">

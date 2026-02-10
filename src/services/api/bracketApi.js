@@ -58,6 +58,19 @@ export const {
   exportVotesToCSV,
   importVotesFromCSV,
 
+  // Round closed check
+  isRoundClosed,
+
+  // Per-round voting
+  getActiveRound,
+  setActiveRound,
+  getPerRoundVotes,
+  getPerRoundMatchupVotes,
+  getUserRoundVotes,
+  submitPerRoundVote,
+  getMatchupIdsForRound,
+  getCombinedMatchupVotes,
+
   // Simulation (dev only)
   addSimulatedVotes,
   clearSimulatedVotes,

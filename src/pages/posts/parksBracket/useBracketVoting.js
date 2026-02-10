@@ -11,6 +11,14 @@ import {
   saveDraftPicks,
   getDraftPicks,
   clearDraftPicks,
+  getActiveRound,
+  getPerRoundVotes,
+  getUserRoundVotes,
+  submitPerRoundVote as submitPerRoundVoteService,
+  getMatchupIdsForRound,
+  isRoundClosed,
+  getCombinedMatchupVotes,
+  getRoundKeyFromMatchupId,
 } from "../../../services/bracketVoteService";
 import { INITIAL_BRACKET, BRACKET_PROGRESSION } from "./bracketData";
 
@@ -25,6 +33,11 @@ export function useBracketVoting() {
   const [aggregateVotes, setAggregateVotes] = useState({});
   const [isLocked, setIsLocked] = useState(false);
   const [actualWinners, setActualWinners] = useState({});
+
+  // Per-round voting
+  const [activeRound, setActiveRoundState] = useState(null);
+  const [perRoundVotes, setPerRoundVotes] = useState({});
+  const [userRoundVotes, setUserRoundVotes] = useState({});
 
   // View mode: "user" shows user's picks, "results" shows community results
   const [viewMode, setViewMode] = useState("user");
@@ -63,6 +76,9 @@ export function useBracketVoting() {
     setAggregateVotes(getAggregateVotes());
     setIsLocked(isBracketLocked());
     setActualWinners(getAllWinners());
+    setActiveRoundState(getActiveRound());
+    setPerRoundVotes(getPerRoundVotes());
+    setUserRoundVotes(getUserRoundVotes());
   }, []);
 
   // Auto-save draft picks whenever userPicks changes (only if not submitted)
@@ -80,6 +96,9 @@ export function useBracketVoting() {
     setAggregateVotes(getAggregateVotes());
     setIsLocked(locked);
     setActualWinners(getAllWinners());
+    setActiveRoundState(getActiveRound());
+    setPerRoundVotes(getPerRoundVotes());
+    setUserRoundVotes(getUserRoundVotes());
 
     // If bracket just locked, exit editing mode
     if (locked) {
@@ -199,13 +218,14 @@ export function useBracketVoting() {
   // In "results" mode: returns actual winner (when locked) or user's pick
   const getDisplayWinner = useCallback(
     (matchupId) => {
-      if (viewMode === "results" && isLocked) {
+      const roundKey = getRoundKeyFromMatchupId(matchupId);
+      if (viewMode === "results" && isRoundClosed(roundKey)) {
         return actualWinners[matchupId] || null;
       }
 
       return userPicks[matchupId] || null;
     },
-    [viewMode, isLocked, actualWinners, userPicks]
+    [viewMode, isLocked, activeRound, actualWinners, userPicks]
   );
 
   // Compute which parks are actually in a matchup based on actual winners
@@ -228,29 +248,31 @@ export function useBracketVoting() {
       let allFeedingMatchupsResolved = true;
 
       feedingMatchups.forEach(([sourceMatchupId, prog]) => {
+        const sourceRound = getRoundKeyFromMatchupId(sourceMatchupId);
         const winner = actualWinners[sourceMatchupId];
 
-        if (isLocked && !winner) {
-          // Bracket is locked but no winner (tie) - can't determine
+        if (isRoundClosed(sourceRound) && !winner) {
+          // Round is closed but no winner (tie) - can't determine
           allFeedingMatchupsResolved = false;
         } else if (winner) {
           parks[prog.slot] = winner;
         } else {
-          // Not locked yet
+          // Round not closed yet
           allFeedingMatchupsResolved = false;
         }
       });
 
       return { ...parks, complete: allFeedingMatchupsResolved };
     },
-    [actualWinners, isLocked]
+    [actualWinners, isLocked, activeRound]
   );
 
   // Check if user's pick matches the actual winner
   // Also verifies the user's pick was actually a valid contender in the actual matchup
   const doesUserPickMatch = useCallback(
     (matchupId) => {
-      if (!isLocked) return null; // Bracket not locked yet
+      const roundKey = getRoundKeyFromMatchupId(matchupId);
+      if (!isRoundClosed(roundKey)) return null; // Round not closed yet
 
       const userPick = userPicks[matchupId];
       const actualWinner = actualWinners[matchupId];
@@ -277,18 +299,19 @@ export function useBracketVoting() {
 
       return userPick === actualWinner;
     },
-    [isLocked, userPicks, actualWinners, getActualMatchupParks]
+    [userPicks, actualWinners, getActualMatchupParks]
   );
 
-  // Get votes for display (only when locked)
+  // Get votes for display (when the matchup's round is closed)
   const getVotesForMatchup = useCallback(
     (matchupId) => {
-      if (!isLocked) {
-        return null; // Don't show votes until locked
+      const roundKey = getRoundKeyFromMatchupId(matchupId);
+      if (!isRoundClosed(roundKey)) {
+        return null; // Don't show votes until round is closed
       }
-      return aggregateVotes[matchupId] || {};
+      return getCombinedMatchupVotes(matchupId);
     },
-    [isLocked, aggregateVotes]
+    [aggregateVotes, perRoundVotes]
   );
 
   // Check if matchup should show vote counts
@@ -300,6 +323,52 @@ export function useBracketVoting() {
   const checkMatchupTie = useCallback((matchupId) => {
     return hasMatchupTie(matchupId);
   }, []);
+
+  // Submit a per-round vote for a single matchup
+  const submitRoundVote = useCallback(
+    (matchupId, parkId) => {
+      const result = submitPerRoundVoteService(matchupId, parkId);
+      if (result.success) {
+        setPerRoundVotes(getPerRoundVotes());
+        setUserRoundVotes(getUserRoundVotes());
+      }
+      return result;
+    },
+    []
+  );
+
+  // Get matchups for the active round with resolved park IDs
+  const getActiveRoundMatchups = useCallback(() => {
+    if (!activeRound) return [];
+
+    const matchupIds = getMatchupIdsForRound(activeRound);
+
+    return matchupIds.map((matchupId) => {
+      // Round 16 matchups have fixed parks
+      if (matchupId.startsWith("r16")) {
+        const matchup = INITIAL_BRACKET.round16.find((m) => m.id === matchupId);
+        return matchup ? { id: matchupId, parkA: matchup.parkA, parkB: matchup.parkB } : null;
+      }
+
+      // Later rounds: resolve from actualWinners via BRACKET_PROGRESSION
+      const feedingMatchups = Object.entries(BRACKET_PROGRESSION).filter(
+        ([_, prog]) => prog.nextRound === matchupId
+      );
+
+      let parkA = null;
+      let parkB = null;
+
+      feedingMatchups.forEach(([sourceId, prog]) => {
+        const winner = actualWinners[sourceId];
+        if (winner) {
+          if (prog.slot === "parkA") parkA = winner;
+          else parkB = winner;
+        }
+      });
+
+      return { id: matchupId, parkA, parkB };
+    }).filter(Boolean);
+  }, [activeRound, actualWinners]);
 
   // Validation state
   const bracketValidation = useMemo(() => {
@@ -349,5 +418,12 @@ export function useBracketVoting() {
     getVotesForMatchup,
     shouldShowVotes,
     checkMatchupTie,
+
+    // Per-round voting
+    activeRound,
+    perRoundVotes,
+    userRoundVotes,
+    submitRoundVote,
+    getActiveRoundMatchups,
   };
 }

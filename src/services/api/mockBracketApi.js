@@ -8,6 +8,9 @@ const STORAGE_KEYS = {
   AGGREGATE_VOTES: "sf_parks_bracket_votes",
   BRACKET_LOCKED: "sf_parks_bracket_locked",
   ADMIN_OVERRIDES: "sf_parks_bracket_admin_overrides",
+  ACTIVE_ROUND: "sf_parks_bracket_active_round",
+  PER_ROUND_VOTES: "sf_parks_bracket_per_round_votes",
+  USER_ROUND_VOTES: "sf_parks_bracket_user_round_votes",
 };
 
 // ============ Session Management ============
@@ -188,10 +191,25 @@ export function canEditBracket() {
   return !isBracketLocked();
 }
 
+// ============ Round Closed Check ============
+
+const ROUND_ORDER = ["round16", "quarterfinals", "semifinals", "finals"];
+
+export function isRoundClosed(roundKey) {
+  if (isBracketLocked()) return true;
+  const activeRound = getActiveRound();
+  if (!activeRound) return false;
+  const activeIdx = ROUND_ORDER.indexOf(activeRound);
+  const roundIdx = ROUND_ORDER.indexOf(roundKey);
+  if (activeIdx === -1 || roundIdx === -1) return false;
+  return roundIdx < activeIdx;
+}
+
 // ============ Winners ============
 
 export function getWinnerForMatchup(matchupId) {
-  if (!isBracketLocked()) {
+  const round = getRoundKeyFromMatchupId(matchupId);
+  if (!isRoundClosed(round)) {
     return null;
   }
 
@@ -200,7 +218,7 @@ export function getWinnerForMatchup(matchupId) {
     return overrides[matchupId];
   }
 
-  const votes = getMatchupVotes(matchupId);
+  const votes = getCombinedMatchupVotes(matchupId);
   if (Object.keys(votes).length === 0) {
     return null;
   }
@@ -252,10 +270,122 @@ export function removeAdminOverride(matchupId) {
   localStorage.setItem(STORAGE_KEYS.ADMIN_OVERRIDES, JSON.stringify(overrides));
 }
 
+// ============ Per-Round Voting ============
+
+export function getActiveRound() {
+  return localStorage.getItem(STORAGE_KEYS.ACTIVE_ROUND) || null;
+}
+
+export function setActiveRound(round) {
+  if (round) {
+    localStorage.setItem(STORAGE_KEYS.ACTIVE_ROUND, round);
+  } else {
+    localStorage.removeItem(STORAGE_KEYS.ACTIVE_ROUND);
+  }
+}
+
+export function getPerRoundVotes() {
+  const stored = localStorage.getItem(STORAGE_KEYS.PER_ROUND_VOTES);
+  if (!stored) return {};
+  try {
+    return JSON.parse(stored);
+  } catch {
+    return {};
+  }
+}
+
+export function getPerRoundMatchupVotes(matchupId) {
+  const votes = getPerRoundVotes();
+  return votes[matchupId] || {};
+}
+
+export function getUserRoundVotes() {
+  const stored = localStorage.getItem(STORAGE_KEYS.USER_ROUND_VOTES);
+  if (!stored) return {};
+  try {
+    return JSON.parse(stored);
+  } catch {
+    return {};
+  }
+}
+
+export function getMatchupIdsForRound(roundKey) {
+  switch (roundKey) {
+    case "round16":
+      return ["r16-1", "r16-2", "r16-3", "r16-4", "r16-5", "r16-6", "r16-7", "r16-8"];
+    case "quarterfinals":
+      return ["qf-1", "qf-2", "qf-3", "qf-4"];
+    case "semifinals":
+      return ["sf-1", "sf-2"];
+    case "finals":
+      return ["f-1"];
+    default:
+      return [];
+  }
+}
+
+export function submitPerRoundVote(matchupId, parkId) {
+  const activeRound = getActiveRound();
+  if (!activeRound) {
+    return { error: "No active round for voting" };
+  }
+
+  const matchupRound = getRoundKeyFromMatchupId(matchupId);
+  if (matchupRound !== activeRound) {
+    return { error: "This matchup is not in the active round" };
+  }
+
+  const perRoundVotes = getPerRoundVotes();
+  const userVotes = getUserRoundVotes();
+
+  // If user already voted on this matchup, remove old vote
+  const oldPick = userVotes[matchupId];
+  if (oldPick) {
+    if (perRoundVotes[matchupId] && perRoundVotes[matchupId][oldPick]) {
+      perRoundVotes[matchupId][oldPick]--;
+      if (perRoundVotes[matchupId][oldPick] <= 0) {
+        delete perRoundVotes[matchupId][oldPick];
+      }
+    }
+  }
+
+  // Add new vote
+  if (!perRoundVotes[matchupId]) {
+    perRoundVotes[matchupId] = {};
+  }
+  if (!perRoundVotes[matchupId][parkId]) {
+    perRoundVotes[matchupId][parkId] = 0;
+  }
+  perRoundVotes[matchupId][parkId]++;
+
+  // Record user's vote
+  userVotes[matchupId] = parkId;
+
+  localStorage.setItem(STORAGE_KEYS.PER_ROUND_VOTES, JSON.stringify(perRoundVotes));
+  localStorage.setItem(STORAGE_KEYS.USER_ROUND_VOTES, JSON.stringify(userVotes));
+
+  return { success: true };
+}
+
+export function getCombinedMatchupVotes(matchupId) {
+  const bracketVotes = getMatchupVotes(matchupId);
+  const perRoundVotes = getPerRoundMatchupVotes(matchupId);
+
+  const combined = { ...bracketVotes };
+  Object.entries(perRoundVotes).forEach(([parkId, count]) => {
+    if (!combined[parkId]) {
+      combined[parkId] = 0;
+    }
+    combined[parkId] += count;
+  });
+
+  return combined;
+}
+
 // ============ Utilities ============
 
 export function hasMatchupTie(matchupId) {
-  const votes = getMatchupVotes(matchupId);
+  const votes = getCombinedMatchupVotes(matchupId);
   if (Object.keys(votes).length < 2) {
     return false;
   }
@@ -297,6 +427,8 @@ export function exportAllData() {
     aggregateVotes: getAggregateVotes(),
     bracketLocked: isBracketLocked(),
     adminOverrides: getAdminOverrides(),
+    activeRound: getActiveRound(),
+    perRoundVotes: getPerRoundVotes(),
   };
 }
 
@@ -312,6 +444,12 @@ export function importAllData(data) {
   if (data.adminOverrides) {
     localStorage.setItem(STORAGE_KEYS.ADMIN_OVERRIDES, JSON.stringify(data.adminOverrides));
   }
+  if (data.activeRound !== undefined) {
+    setActiveRound(data.activeRound);
+  }
+  if (data.perRoundVotes) {
+    localStorage.setItem(STORAGE_KEYS.PER_ROUND_VOTES, JSON.stringify(data.perRoundVotes));
+  }
 }
 
 export function clearAllVotingData() {
@@ -320,6 +458,9 @@ export function clearAllVotingData() {
   localStorage.removeItem(STORAGE_KEYS.BRACKET_LOCKED);
   localStorage.removeItem(STORAGE_KEYS.ADMIN_OVERRIDES);
   localStorage.removeItem(STORAGE_KEYS.DRAFT_PICKS);
+  localStorage.removeItem(STORAGE_KEYS.ACTIVE_ROUND);
+  localStorage.removeItem(STORAGE_KEYS.PER_ROUND_VOTES);
+  localStorage.removeItem(STORAGE_KEYS.USER_ROUND_VOTES);
 }
 
 // ============ Simulation (Dev Only) ============
@@ -447,5 +588,11 @@ if (typeof window !== "undefined") {
     getTotalVoters,
     exportAll: exportAllData,
     importAll: importAllData,
+    getActiveRound,
+    setActiveRound,
+    getPerRoundVotes,
+    getUserRoundVotes,
+    submitPerRoundVote,
+    getCombinedMatchupVotes,
   };
 }
