@@ -12,8 +12,16 @@ import {
   getPerRoundVotes,
   getActiveRound,
   getCombinedMatchupVotes,
+  getUserRoundVotes,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
+
+const ROUND_GROUPS = [
+  { key: "r16", label: "Round of 16", matchupIds: ["r16-1", "r16-2", "r16-3", "r16-4", "r16-5", "r16-6", "r16-7", "r16-8"] },
+  { key: "qf", label: "Quarterfinals", matchupIds: ["qf-1", "qf-2", "qf-3", "qf-4"] },
+  { key: "sf", label: "Semifinals", matchupIds: ["sf-1", "sf-2"] },
+  { key: "f", label: "Finals", matchupIds: ["f-1"] },
+];
 
 const DebugVoteStats = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +40,7 @@ const DebugVoteStats = () => {
     const winners = getAllWinners();
     const userBracket = getUserBracket();
     const activeRound = getActiveRound();
+    const userRoundVotes = getUserRoundVotes();
 
     // Collect all matchup IDs from both sources
     const allMatchupIds = new Set([
@@ -67,12 +76,27 @@ const DebugVoteStats = () => {
       };
     });
 
+    // Compute bracket-only totals
+    const bracketTotalVotes = Object.values(aggregateVotes).reduce(
+      (sum, matchup) => sum + Object.values(matchup).reduce((s, c) => s + c, 0),
+      0
+    );
+
+    // Compute round-only totals
+    const roundTotalVotes = Object.values(perRoundVotes).reduce(
+      (sum, matchup) => sum + Object.values(matchup).reduce((s, c) => s + c, 0),
+      0
+    );
+
     setStats({
       totalVoters: getTotalVoters(),
       bracketLocked: locked,
       activeRound,
       matchupStats,
       editingAllowed: canEditBracket(),
+      bracketTotalVotes,
+      roundTotalVotes,
+      userRoundVotesCount: Object.keys(userRoundVotes).length,
       userBracket: userBracket
         ? {
             submittedAt: userBracket.submittedAt,
@@ -186,7 +210,7 @@ const DebugVoteStats = () => {
             {/* Overview */}
             <div style={{ marginBottom: "20px", padding: "10px", background: "#2a2a4a", borderRadius: "8px" }}>
               <h3 style={{ margin: "0 0 10px 0", color: "#f6ad55" }}>Overview</h3>
-              <div>Total Voters: {stats.totalVoters}</div>
+              <div>Total Bracket Voters: {stats.totalVoters}</div>
               <div style={{ marginTop: "10px" }}>
                 <strong>Bracket Status: </strong>
                 <span
@@ -217,6 +241,104 @@ const DebugVoteStats = () => {
                   {stats.activeRound || "None"}
                 </span>
               </div>
+            </div>
+
+            {/* Bracket Votes Section */}
+            <div style={{ marginBottom: "20px", padding: "10px", background: "#2a2a4a", borderRadius: "8px" }}>
+              <h3 style={{ margin: "0 0 10px 0", color: "#63b3ed" }}>
+                Bracket Votes
+                <span style={{ fontSize: "12px", color: "#a0aec0", marginLeft: "10px", fontWeight: "400" }}>
+                  {stats.bracketTotalVotes} total votes
+                </span>
+              </h3>
+              {ROUND_GROUPS.map((group) => {
+                const groupEntries = group.matchupIds
+                  .filter((id) => stats.matchupStats[id] && Object.keys(stats.matchupStats[id].bracketVotes).length > 0)
+                  .map((id) => [id, stats.matchupStats[id]]);
+                if (groupEntries.length === 0) return null;
+                const groupTotal = groupEntries.reduce(
+                  (sum, [, data]) => sum + Object.values(data.bracketVotes).reduce((s, c) => s + c, 0), 0
+                );
+                return (
+                  <div key={group.key} style={{ marginBottom: "12px" }}>
+                    <div style={{ fontSize: "11px", color: "#63b3ed", fontWeight: "600", marginBottom: "6px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                      {group.label}
+                      <span style={{ color: "#a0aec0", fontWeight: "400", marginLeft: "8px" }}>{groupTotal} votes</span>
+                    </div>
+                    {groupEntries.map(([matchupId, data]) => (
+                      <div key={matchupId} style={{ marginBottom: "8px", padding: "8px", background: "#1a1a2e", borderRadius: "6px", borderLeft: "3px solid #63b3ed" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                          <strong style={{ color: "#63b3ed" }}>{matchupId}</strong>
+                          <span style={{ color: "#a0aec0", fontSize: "12px" }}>
+                            {Object.values(data.bracketVotes).reduce((s, c) => s + c, 0)} votes
+                          </span>
+                        </div>
+                        <div style={{ fontSize: "12px" }}>
+                          {Object.entries(data.bracketVotes)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([parkId, count]) => (
+                              <span key={parkId} style={{ marginRight: "14px" }}>
+                                {PARKS[parkId]?.name || parkId}: {count}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+              {stats.bracketTotalVotes === 0 && (
+                <div style={{ color: "#4a5568", fontStyle: "italic" }}>No bracket votes yet</div>
+              )}
+            </div>
+
+            {/* Round Votes Section */}
+            <div style={{ marginBottom: "20px", padding: "10px", background: "#2a2a4a", borderRadius: "8px" }}>
+              <h3 style={{ margin: "0 0 10px 0", color: "#f6ad55" }}>
+                Round Votes
+                <span style={{ fontSize: "12px", color: "#a0aec0", marginLeft: "10px", fontWeight: "400" }}>
+                  {stats.roundTotalVotes} total votes | Your round votes: {stats.userRoundVotesCount}
+                </span>
+              </h3>
+              {ROUND_GROUPS.map((group) => {
+                const groupEntries = group.matchupIds
+                  .filter((id) => stats.matchupStats[id] && Object.keys(stats.matchupStats[id].roundVotes).length > 0)
+                  .map((id) => [id, stats.matchupStats[id]]);
+                if (groupEntries.length === 0) return null;
+                const groupTotal = groupEntries.reduce(
+                  (sum, [, data]) => sum + Object.values(data.roundVotes).reduce((s, c) => s + c, 0), 0
+                );
+                return (
+                  <div key={group.key} style={{ marginBottom: "12px" }}>
+                    <div style={{ fontSize: "11px", color: "#f6ad55", fontWeight: "600", marginBottom: "6px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                      {group.label}
+                      <span style={{ color: "#a0aec0", fontWeight: "400", marginLeft: "8px" }}>{groupTotal} votes</span>
+                    </div>
+                    {groupEntries.map(([matchupId, data]) => (
+                      <div key={matchupId} style={{ marginBottom: "8px", padding: "8px", background: "#1a1a2e", borderRadius: "6px", borderLeft: "3px solid #f6ad55" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
+                          <strong style={{ color: "#f6ad55" }}>{matchupId}</strong>
+                          <span style={{ color: "#a0aec0", fontSize: "12px" }}>
+                            {Object.values(data.roundVotes).reduce((s, c) => s + c, 0)} votes
+                          </span>
+                        </div>
+                        <div style={{ fontSize: "12px" }}>
+                          {Object.entries(data.roundVotes)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([parkId, count]) => (
+                              <span key={parkId} style={{ marginRight: "14px" }}>
+                                {PARKS[parkId]?.name || parkId}: {count}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+              {stats.roundTotalVotes === 0 && (
+                <div style={{ color: "#4a5568", fontStyle: "italic" }}>No round votes yet</div>
+              )}
             </div>
 
             {/* Simulation Controls */}
@@ -265,9 +387,9 @@ const DebugVoteStats = () => {
               </div>
             </div>
 
-            {/* Matchup Stats */}
+            {/* Combined Matchup Stats */}
             <div style={{ padding: "10px", background: "#2a2a4a", borderRadius: "8px" }}>
-              <h3 style={{ margin: "0 0 15px 0", color: "#f6ad55" }}>Matchup Results</h3>
+              <h3 style={{ margin: "0 0 15px 0", color: "#f6ad55" }}>Combined Matchup Results</h3>
               {Object.entries(stats.matchupStats)
                 .sort((a, b) => a[0].localeCompare(b[0]))
                 .map(([matchupId, data]) => (
@@ -289,34 +411,13 @@ const DebugVoteStats = () => {
                         {data.winner && <span style={{ color: "#68d391", marginLeft: "10px" }}>Winner: {data.winner}</span>}
                       </span>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", fontSize: "12px" }}>
-                      <div>
-                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Bracket</div>
-                        {Object.entries(data.bracketVotes).sort((a, b) => b[1] - a[1]).map(([parkId, count]) => (
-                          <div key={parkId} style={{ padding: "2px 0" }}>
-                            {PARKS[parkId]?.name || parkId}: {count}
-                          </div>
-                        ))}
-                        {Object.keys(data.bracketVotes).length === 0 && <div style={{ color: "#4a5568" }}>—</div>}
-                      </div>
-                      <div>
-                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Per-round</div>
-                        {Object.entries(data.roundVotes).sort((a, b) => b[1] - a[1]).map(([parkId, count]) => (
-                          <div key={parkId} style={{ padding: "2px 0" }}>
-                            {PARKS[parkId]?.name || parkId}: {count}
-                          </div>
-                        ))}
-                        {Object.keys(data.roundVotes).length === 0 && <div style={{ color: "#4a5568" }}>—</div>}
-                      </div>
-                      <div>
-                        <div style={{ color: "#a0aec0", marginBottom: "4px", fontWeight: "600" }}>Combined</div>
-                        {data.combined.map((vote, idx) => (
-                          <div key={vote.parkId} style={{ padding: "2px 0", color: idx === 0 && !data.hasTie ? "#68d391" : "inherit" }}>
-                            {idx === 0 && !data.hasTie && "► "}
-                            {vote.parkName}: {vote.count} ({vote.percentage}%)
-                          </div>
-                        ))}
-                      </div>
+                    <div style={{ fontSize: "12px" }}>
+                      {data.combined.map((vote, idx) => (
+                        <div key={vote.parkId} style={{ padding: "2px 0", color: idx === 0 && !data.hasTie ? "#68d391" : "inherit" }}>
+                          {idx === 0 && !data.hasTie && "► "}
+                          {vote.parkName}: {vote.count} ({vote.percentage}%)
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}

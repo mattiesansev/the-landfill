@@ -21,7 +21,9 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-const MainViewToggle = ({ topView, onTopViewChange }) => {
+const MainViewToggle = ({ topView, onTopViewChange, activeRound }) => {
+  if (!activeRound) return null;
+
   return (
     <div className="view-toggle">
       <button
@@ -40,35 +42,10 @@ const MainViewToggle = ({ topView, onTopViewChange }) => {
   );
 };
 
-const RegionToggle = ({ bracketRegion, onRegionChange }) => {
-  return (
-    <div className="view-toggle">
-      <button
-        className={`view-toggle-btn ${bracketRegion === "full" ? "active" : ""}`}
-        onClick={() => onRegionChange("full")}
-      >
-        Full Tournament
-      </button>
-      <button
-        className={`view-toggle-btn ${bracketRegion === "west" ? "active" : ""}`}
-        onClick={() => onRegionChange("west")}
-      >
-        West Region
-      </button>
-      <button
-        className={`view-toggle-btn ${bracketRegion === "east" ? "active" : ""}`}
-        onClick={() => onRegionChange("east")}
-      >
-        East Region
-      </button>
-    </div>
-  );
-};
-
 const BracketContainer = () => {
   const isMobile = useIsMobile();
   const [topView, setTopView] = useState("bracket");
-  const [bracketRegion, setBracketRegion] = useState("full");
+  const bracketRegion = "full";
   const {
     bracket,
     selectedMatchup,
@@ -110,7 +87,12 @@ const BracketContainer = () => {
     activeRound,
     perRoundVotes,
     userRoundVotes,
-    submitRoundVote,
+    draftRoundVotes,
+    updateRoundVoteDraft,
+    submitAllRoundVotes,
+    isRoundVotesSubmitted,
+    hasUnsavedRoundChanges,
+    roundVotingProgress,
     getActiveRoundMatchups,
   } = useBracketVoting();
 
@@ -123,6 +105,13 @@ const BracketContainer = () => {
   useEffect(() => {
     loadFromPicks(userPicks);
   }, [userPicks, loadFromPicks]);
+
+  // Reset to bracket view if active round is cleared
+  useEffect(() => {
+    if (!activeRound && topView === "roundVoting") {
+      setTopView("bracket");
+    }
+  }, [activeRound, topView]);
 
   // Wrap selectWinner to also update voting picks
   const selectWinner = (matchupId, parkId) => {
@@ -199,9 +188,13 @@ const BracketContainer = () => {
         // Per-round voting
         activeRound={activeRound}
         activeRoundMatchups={activeRoundMatchups}
-        userRoundVotes={userRoundVotes}
+        draftRoundVotes={draftRoundVotes}
         perRoundVotes={perRoundVotes}
-        submitRoundVote={submitRoundVote}
+        updateRoundVoteDraft={updateRoundVoteDraft}
+        submitAllRoundVotes={submitAllRoundVotes}
+        isRoundVotesSubmitted={isRoundVotesSubmitted}
+        hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+        roundVotingProgress={roundVotingProgress}
       />
     );
   }
@@ -214,10 +207,7 @@ const BracketContainer = () => {
     <div className="bracket-wrapper">
       <div className="bracket-controls">
         <div className="bracket-view-controls">
-          <MainViewToggle topView={topView} onTopViewChange={setTopView} />
-          {topView === "bracket" && (
-            <RegionToggle bracketRegion={bracketRegion} onRegionChange={setBracketRegion} />
-          )}
+          <MainViewToggle topView={topView} onTopViewChange={setTopView} activeRound={activeRound} />
         </div>
       </div>
 
@@ -359,9 +349,13 @@ const BracketContainer = () => {
         <RoundVoting
           activeRound={activeRound}
           matchups={activeRoundMatchups}
-          userRoundVotes={userRoundVotes}
+          draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
-          onVote={submitRoundVote}
+          onDraftVote={updateRoundVoteDraft}
+          onSubmitRoundVotes={submitAllRoundVotes}
+          isRoundVotesSubmitted={isRoundVotesSubmitted}
+          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+          roundVotingProgress={roundVotingProgress}
         />
       )}
 
@@ -420,9 +414,13 @@ const MobileBracket = ({
   // Per-round voting
   activeRound,
   activeRoundMatchups,
-  userRoundVotes,
+  draftRoundVotes,
   perRoundVotes,
-  submitRoundVote,
+  updateRoundVoteDraft,
+  submitAllRoundVotes,
+  isRoundVotesSubmitted,
+  hasUnsavedRoundChanges,
+  roundVotingProgress,
 }) => {
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
 
@@ -440,7 +438,7 @@ const MobileBracket = ({
     <div className="bracket-wrapper mobile">
       <div className="bracket-controls">
         <div className="bracket-view-controls">
-          <MainViewToggle topView={topView} onTopViewChange={onTopViewChange} />
+          <MainViewToggle topView={topView} onTopViewChange={onTopViewChange} activeRound={activeRound} />
           {topView === "bracket" && (
             <RegionToggle bracketRegion={bracketRegion} onRegionChange={onRegionChange} />
           )}
@@ -608,9 +606,13 @@ const MobileBracket = ({
         <RoundVoting
           activeRound={activeRound}
           matchups={activeRoundMatchups}
-          userRoundVotes={userRoundVotes}
+          draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
-          onVote={submitRoundVote}
+          onDraftVote={updateRoundVoteDraft}
+          onSubmitRoundVotes={submitAllRoundVotes}
+          isRoundVotesSubmitted={isRoundVotesSubmitted}
+          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+          roundVotingProgress={roundVotingProgress}
         />
       )}
 

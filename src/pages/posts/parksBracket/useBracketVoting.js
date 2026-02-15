@@ -19,6 +19,9 @@ import {
   isRoundClosed,
   getCombinedMatchupVotes,
   getRoundKeyFromMatchupId,
+  saveDraftRoundVotes,
+  getDraftRoundVotes as getDraftRoundVotesService,
+  clearDraftRoundVotes,
 } from "../../../services/bracketVoteService";
 import { INITIAL_BRACKET, BRACKET_PROGRESSION } from "./bracketData";
 
@@ -38,6 +41,8 @@ export function useBracketVoting() {
   const [activeRound, setActiveRoundState] = useState(null);
   const [perRoundVotes, setPerRoundVotes] = useState({});
   const [userRoundVotes, setUserRoundVotes] = useState({});
+  const [draftRoundVotes, setDraftRoundVotes] = useState({});
+  const [isRoundVotesSubmitted, setIsRoundVotesSubmitted] = useState(false);
 
   // View mode: "user" shows user's picks, "results" shows community results
   const [viewMode, setViewMode] = useState("user");
@@ -76,9 +81,45 @@ export function useBracketVoting() {
     setAggregateVotes(getAggregateVotes());
     setIsLocked(isBracketLocked());
     setActualWinners(getAllWinners());
-    setActiveRoundState(getActiveRound());
     setPerRoundVotes(getPerRoundVotes());
-    setUserRoundVotes(getUserRoundVotes());
+
+    const existingUserRoundVotes = getUserRoundVotes();
+    setUserRoundVotes(existingUserRoundVotes);
+
+    const activeRd = getActiveRound();
+    setActiveRoundState(activeRd);
+
+    // Initialize draft round votes: from localStorage drafts, or from existing submitted votes
+    if (activeRd) {
+      const savedDrafts = getDraftRoundVotesService();
+      const matchupIds = getMatchupIdsForRound(activeRd);
+
+      // Filter saved drafts to only include matchups in the active round
+      const filteredDrafts = {};
+      matchupIds.forEach((id) => {
+        if (savedDrafts[id]) {
+          filteredDrafts[id] = savedDrafts[id];
+        }
+      });
+
+      if (Object.keys(filteredDrafts).length > 0) {
+        // Has drafts in progress for this round
+        setDraftRoundVotes(filteredDrafts);
+      } else {
+        // Load from existing submitted votes for this round
+        const existingForRound = {};
+        matchupIds.forEach((id) => {
+          if (existingUserRoundVotes[id]) {
+            existingForRound[id] = existingUserRoundVotes[id];
+          }
+        });
+        setDraftRoundVotes(existingForRound);
+      }
+
+      // Check if user has already submitted votes for all matchups in this round
+      const hasAllVotes = matchupIds.every((id) => existingUserRoundVotes[id]);
+      setIsRoundVotesSubmitted(hasAllVotes);
+    }
   }, []);
 
   // Auto-save draft picks whenever userPicks changes (only if not submitted)
@@ -90,15 +131,49 @@ export function useBracketVoting() {
     }
   }, [userPicks, isSubmitted]);
 
+  // Auto-save draft round votes only when there are unsaved changes
+  useEffect(() => {
+    if (!activeRound) return;
+    const matchupIds = getMatchupIdsForRound(activeRound);
+    const hasDraftChanges = matchupIds.some((id) => draftRoundVotes[id] && draftRoundVotes[id] !== userRoundVotes[id]);
+    if (hasDraftChanges) {
+      saveDraftRoundVotes(draftRoundVotes);
+    }
+  }, [draftRoundVotes, userRoundVotes, activeRound]);
+
   // Refresh voting data (call this after admin changes)
   const refreshVotingData = useCallback(() => {
     const locked = isBracketLocked();
     setAggregateVotes(getAggregateVotes());
     setIsLocked(locked);
     setActualWinners(getAllWinners());
-    setActiveRoundState(getActiveRound());
     setPerRoundVotes(getPerRoundVotes());
-    setUserRoundVotes(getUserRoundVotes());
+
+    const existingUserRoundVotes = getUserRoundVotes();
+    setUserRoundVotes(existingUserRoundVotes);
+
+    const newActiveRound = getActiveRound();
+    setActiveRoundState((prevActiveRound) => {
+      // If active round changed, reset draft round votes
+      if (newActiveRound !== prevActiveRound) {
+        clearDraftRoundVotes();
+        setIsRoundVotesSubmitted(false);
+        if (newActiveRound) {
+          const matchupIds = getMatchupIdsForRound(newActiveRound);
+          const existingForRound = {};
+          matchupIds.forEach((id) => {
+            if (existingUserRoundVotes[id]) {
+              existingForRound[id] = existingUserRoundVotes[id];
+            }
+          });
+          setDraftRoundVotes(existingForRound);
+          setIsRoundVotesSubmitted(matchupIds.every((id) => existingUserRoundVotes[id]));
+        } else {
+          setDraftRoundVotes({});
+        }
+      }
+      return newActiveRound;
+    });
 
     // If bracket just locked, exit editing mode
     if (locked) {
@@ -207,8 +282,9 @@ export function useBracketVoting() {
     // Clear draft picks after successful submission
     clearDraftPicks();
 
-    // Refresh aggregate votes after submission
+    // Refresh aggregate votes and winners after submission
     setAggregateVotes(getAggregateVotes());
+    setActualWinners(getAllWinners());
 
     return { success: true, isResubmission: !!result.bracket.firstSubmittedAt };
   }, [userPicks, isLocked]);
@@ -324,18 +400,57 @@ export function useBracketVoting() {
     return hasMatchupTie(matchupId);
   }, []);
 
-  // Submit a per-round vote for a single matchup
-  const submitRoundVote = useCallback(
+  // Update a draft round vote (does not submit to API)
+  const updateRoundVoteDraft = useCallback(
     (matchupId, parkId) => {
-      const result = submitPerRoundVoteService(matchupId, parkId);
-      if (result.success) {
-        setPerRoundVotes(getPerRoundVotes());
-        setUserRoundVotes(getUserRoundVotes());
-      }
-      return result;
+      setDraftRoundVotes((prev) => ({ ...prev, [matchupId]: parkId }));
     },
     []
   );
+
+  // Submit all round votes at once
+  const submitAllRoundVotes = useCallback(() => {
+    if (!activeRound) {
+      return { success: false, error: "No active round for voting" };
+    }
+
+    const matchupIds = getMatchupIdsForRound(activeRound);
+    const missingVotes = matchupIds.filter((id) => !draftRoundVotes[id]);
+
+    if (missingVotes.length > 0) {
+      return {
+        success: false,
+        error: `Please vote on all ${missingVotes.length} remaining matchups`,
+      };
+    }
+
+    // Submit each vote
+    for (const matchupId of matchupIds) {
+      const result = submitPerRoundVoteService(matchupId, draftRoundVotes[matchupId]);
+      if (result.error) {
+        return { success: false, error: result.error };
+      }
+    }
+
+    // Update state - reset drafts to match submitted votes so auto-save doesn't re-save stale data
+    const updatedUserRoundVotes = getUserRoundVotes();
+    setPerRoundVotes(getPerRoundVotes());
+    setUserRoundVotes(updatedUserRoundVotes);
+    setActualWinners(getAllWinners());
+    setIsRoundVotesSubmitted(true);
+
+    // Reset draft state to match what was just submitted (prevents auto-save from re-saving)
+    const submittedForRound = {};
+    matchupIds.forEach((id) => {
+      if (updatedUserRoundVotes[id]) {
+        submittedForRound[id] = updatedUserRoundVotes[id];
+      }
+    });
+    setDraftRoundVotes(submittedForRound);
+    clearDraftRoundVotes();
+
+    return { success: true, isResubmission: isRoundVotesSubmitted };
+  }, [activeRound, draftRoundVotes, isRoundVotesSubmitted]);
 
   // Get matchups for the active round with resolved park IDs
   const getActiveRoundMatchups = useCallback(() => {
@@ -382,6 +497,25 @@ export function useBracketVoting() {
 
   const totalMatchups = 15; // 8 + 4 + 2 + 1
 
+  // Round voting progress
+  const roundVotingProgress = useMemo(() => {
+    if (!activeRound) return { completed: 0, total: 0, isComplete: false };
+    const matchupIds = getMatchupIdsForRound(activeRound);
+    const completed = matchupIds.filter((id) => draftRoundVotes[id]).length;
+    return {
+      completed,
+      total: matchupIds.length,
+      isComplete: completed === matchupIds.length,
+    };
+  }, [activeRound, draftRoundVotes]);
+
+  // Check if drafts differ from submitted votes
+  const hasUnsavedRoundChanges = useMemo(() => {
+    if (!activeRound) return false;
+    const matchupIds = getMatchupIdsForRound(activeRound);
+    return matchupIds.some((id) => draftRoundVotes[id] !== userRoundVotes[id]);
+  }, [activeRound, draftRoundVotes, userRoundVotes]);
+
   return {
     // User's bracket state
     userPicks,
@@ -423,7 +557,12 @@ export function useBracketVoting() {
     activeRound,
     perRoundVotes,
     userRoundVotes,
-    submitRoundVote,
+    draftRoundVotes,
+    updateRoundVoteDraft,
+    submitAllRoundVotes,
+    isRoundVotesSubmitted,
+    hasUnsavedRoundChanges,
+    roundVotingProgress,
     getActiveRoundMatchups,
   };
 }

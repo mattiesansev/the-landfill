@@ -2498,6 +2498,126 @@
       }
     }
   }
+
+  .tiebreaker-list {
+    .tiebreaker-round {
+      margin-bottom: 14px;
+
+      h4 {
+        font-size: 13px;
+        color: #4a5568;
+        margin-bottom: 8px;
+      }
+    }
+
+    .tiebreaker-matchup {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+
+      .tiebreaker-matchup-id {
+        font-size: 11px;
+        font-family: monospace;
+        color: #92400e;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .tiebreaker-options {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .tiebreaker-pick-btn {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 14px;
+          border: 1px solid #fbbf24;
+          background: white;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 500;
+          color: #92400e;
+          cursor: pointer;
+          transition: all 0.15s ease;
+
+          &:hover {
+            background: #fef3c7;
+            border-color: #f59e0b;
+          }
+
+          .tiebreaker-count {
+            font-size: 11px;
+            color: #b45309;
+            font-weight: 600;
+            background: #fef3c7;
+            padding: 1px 6px;
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .tiebreaker-overrides {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+
+    h4 {
+      font-size: 13px;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    .tiebreaker-override-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: rgba(72, 187, 120, 0.1);
+      border-radius: 8px;
+      margin-bottom: 6px;
+
+      .tiebreaker-override-matchup {
+        font-size: 12px;
+        font-family: monospace;
+        color: #718096;
+        font-weight: 600;
+      }
+
+      .tiebreaker-override-winner {
+        flex: 1;
+        font-size: 13px;
+        font-weight: 500;
+        color: #276749;
+      }
+
+      .remove-override-btn {
+        padding: 3px 10px;
+        font-size: 11px;
+        border: 1px solid #fc8181;
+        background: white;
+        color: #e53e3e;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: #fc8181;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .no-votes {
+    color: #718096;
+    font-style: italic;
+    font-size: 13px;
+  }
 }
 
 // ============ Per-Round Voting Styles ============
@@ -2527,6 +2647,86 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  .round-voting-submit-panel {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+
+    .progress-section {
+      margin-bottom: 12px;
+
+      .progress-bar {
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #7a9ec4 0%, #48bb78 100%);
+          border-radius: 4px;
+          transition: width 0.3s ease;
+        }
+      }
+    }
+
+    .round-submitted-status {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #276749;
+      padding: 6px 0;
+    }
+
+    .submit-error {
+      background: rgba(254, 178, 178, 0.3);
+      color: #c53030;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+
+      &.ready {
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        color: white;
+
+        &:hover {
+          background: linear-gradient(135deg, #38a169 0%, #276749 100%);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+      }
+
+      &.disabled {
+        background: #e2e8f0;
+        color: #a0aec0;
+        cursor: not-allowed;
+      }
+    }
+
+    .submit-hint {
+      text-align: center;
+      font-size: 13px;
+      color: #718096;
+      margin-top: 8px;
+    }
   }
 }
 

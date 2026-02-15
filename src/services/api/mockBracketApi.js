@@ -11,6 +11,7 @@ const STORAGE_KEYS = {
   ACTIVE_ROUND: "sf_parks_bracket_active_round",
   PER_ROUND_VOTES: "sf_parks_bracket_per_round_votes",
   USER_ROUND_VOTES: "sf_parks_bracket_user_round_votes",
+  DRAFT_ROUND_VOTES: "sf_parks_bracket_draft_round_votes",
 };
 
 // ============ Session Management ============
@@ -367,6 +368,26 @@ export function submitPerRoundVote(matchupId, parkId) {
   return { success: true };
 }
 
+// ============ Draft Round Votes ============
+
+export function saveDraftRoundVotes(votes) {
+  localStorage.setItem(STORAGE_KEYS.DRAFT_ROUND_VOTES, JSON.stringify(votes));
+}
+
+export function getDraftRoundVotes() {
+  const stored = localStorage.getItem(STORAGE_KEYS.DRAFT_ROUND_VOTES);
+  if (!stored) return {};
+  try {
+    return JSON.parse(stored);
+  } catch {
+    return {};
+  }
+}
+
+export function clearDraftRoundVotes() {
+  localStorage.removeItem(STORAGE_KEYS.DRAFT_ROUND_VOTES);
+}
+
 export function getCombinedMatchupVotes(matchupId) {
   const bracketVotes = getMatchupVotes(matchupId);
   const perRoundVotes = getPerRoundMatchupVotes(matchupId);
@@ -461,6 +482,7 @@ export function clearAllVotingData() {
   localStorage.removeItem(STORAGE_KEYS.ACTIVE_ROUND);
   localStorage.removeItem(STORAGE_KEYS.PER_ROUND_VOTES);
   localStorage.removeItem(STORAGE_KEYS.USER_ROUND_VOTES);
+  localStorage.removeItem(STORAGE_KEYS.DRAFT_ROUND_VOTES);
 }
 
 // ============ Simulation (Dev Only) ============

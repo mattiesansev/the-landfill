@@ -17,6 +17,9 @@ import {
   getVoteLeaderboard,
   getActiveRound,
   setActiveRound,
+  getAllMatchupIds,
+  getCombinedMatchupVotes,
+  getRoundKeyFromMatchupId,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
 
@@ -36,6 +39,7 @@ const AdminPanel = ({ onRefresh }) => {
   const [csvInput, setCsvInput] = useState("");
   const [message, setMessage] = useState(null);
   const [currentActiveRound, setCurrentActiveRound] = useState(null);
+  const [tiedMatchups, setTiedMatchups] = useState([]);
 
   useEffect(() => {
     if (isOpen) {
@@ -46,9 +50,26 @@ const AdminPanel = ({ onRefresh }) => {
   const refreshData = () => {
     setBracketLocked(isBracketLocked());
     setAggregateVotes(getAggregateVotes());
-    setAdminOverrides(getAdminOverrides());
+    const overrides = getAdminOverrides();
+    setAdminOverrides(overrides);
     setLeaderboard(getVoteLeaderboard());
     setCurrentActiveRound(getActiveRound());
+
+    // Find all tied matchups (combined votes) that don't have an override
+    const tied = [];
+    getAllMatchupIds().forEach((matchupId) => {
+      if (overrides[matchupId]) return; // already resolved
+      const votes = getCombinedMatchupVotes(matchupId);
+      const sorted = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+      if (sorted.length >= 2 && sorted[0][1] === sorted[1][1] && sorted[0][1] > 0) {
+        tied.push({
+          matchupId,
+          round: getRoundKeyFromMatchupId(matchupId),
+          parks: sorted.map(([parkId, count]) => ({ parkId, count })),
+        });
+      }
+    });
+    setTiedMatchups(tied);
   };
 
   const handleToggleLock = () => {
@@ -207,6 +228,61 @@ const AdminPanel = ({ onRefresh }) => {
               ? "Click the active round again to close per-round voting."
               : "Select a round to open per-round voting."}
           </p>
+        </div>
+
+        <div className="admin-section">
+          <h3>Tie Breakers</h3>
+          {tiedMatchups.length === 0 ? (
+            <p className="no-votes">No tied matchups</p>
+          ) : (
+            <div className="tiebreaker-list">
+              {ROUNDS.map((round) => {
+                const roundTies = tiedMatchups.filter((t) => t.round === round.key);
+                if (roundTies.length === 0) return null;
+                return (
+                  <div key={round.key} className="tiebreaker-round">
+                    <h4>{round.label}</h4>
+                    {roundTies.map(({ matchupId, parks }) => (
+                      <div key={matchupId} className="tiebreaker-matchup">
+                        <div className="tiebreaker-matchup-id">{matchupId}</div>
+                        <div className="tiebreaker-options">
+                          {parks.map(({ parkId, count }) => (
+                            <button
+                              key={parkId}
+                              className="tiebreaker-pick-btn"
+                              onClick={() => handleSetOverride(matchupId, parkId)}
+                            >
+                              {PARKS[parkId]?.name || parkId}
+                              <span className="tiebreaker-count">{count}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {Object.keys(adminOverrides).length > 0 && (
+            <div className="tiebreaker-overrides">
+              <h4>Active Overrides</h4>
+              {Object.entries(adminOverrides).map(([matchupId, parkId]) => (
+                <div key={matchupId} className="tiebreaker-override-item">
+                  <span className="tiebreaker-override-matchup">{matchupId}</span>
+                  <span className="tiebreaker-override-winner">
+                    {PARKS[parkId]?.name || parkId}
+                  </span>
+                  <button
+                    className="remove-override-btn"
+                    onClick={() => handleRemoveOverride(matchupId)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="admin-section">

@@ -61,6 +61,11 @@ export {
   getMatchupIdsForRound,
   getCombinedMatchupVotes,
 
+  // Draft round votes
+  saveDraftRoundVotes,
+  getDraftRoundVotes,
+  clearDraftRoundVotes,
+
   // Simulation (dev only)
   addSimulatedVotes,
   clearSimulatedVotes,

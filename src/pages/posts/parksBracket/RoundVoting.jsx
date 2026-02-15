@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RoundMatchupVoteCard from "./RoundMatchupVoteCard";
 
 const ROUND_LABELS = {
@@ -11,27 +11,97 @@ const ROUND_LABELS = {
 const RoundVoting = ({
   activeRound,
   matchups,
-  userRoundVotes,
+  draftRoundVotes,
   perRoundVotes,
-  onVote,
+  onDraftVote,
+  onSubmitRoundVotes,
+  isRoundVotesSubmitted,
+  hasUnsavedRoundChanges,
+  roundVotingProgress,
 }) => {
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!activeRound || !matchups || matchups.length === 0) {
     return null;
   }
+
+  const handleSubmit = () => {
+    setError(null);
+    setIsSubmitting(true);
+
+    const result = onSubmitRoundVotes();
+
+    if (!result.success) {
+      setError(result.error);
+      setIsSubmitting(false);
+      return;
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const { completed, total, isComplete } = roundVotingProgress;
+  const progressPercent = total > 0 ? (completed / total) * 100 : 0;
+
+  // Determine button state
+  const showSubmitButton = !isRoundVotesSubmitted || hasUnsavedRoundChanges;
+  const buttonText = isSubmitting
+    ? "Submitting..."
+    : isRoundVotesSubmitted && hasUnsavedRoundChanges
+      ? "Update Votes"
+      : "Submit Votes";
 
   return (
     <div className="round-voting-section">
       <h3 className="round-voting-header">
         {ROUND_LABELS[activeRound] || activeRound}
       </h3>
+
+      {/* Submit panel */}
+      <div className="round-voting-submit-panel">
+        <div className="progress-section">
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
+
+        {isRoundVotesSubmitted && !hasUnsavedRoundChanges && (
+          <div className="round-submitted-status">Votes submitted</div>
+        )}
+
+        {error && <div className="submit-error">{error}</div>}
+
+        {showSubmitButton && (
+          <>
+            <button
+              className={`submit-btn ${isComplete ? "ready" : "disabled"}`}
+              onClick={handleSubmit}
+              disabled={!isComplete || isSubmitting}
+            >
+              {buttonText}
+            </button>
+
+            {!isComplete && (
+              <div className="submit-hint">
+                Vote on {total - completed} more matchup{total - completed !== 1 ? "s" : ""} to submit
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
       <div className="round-voting-cards">
         {matchups.map((matchup) => (
           <RoundMatchupVoteCard
             key={matchup.id}
             matchup={matchup}
-            userVote={userRoundVotes[matchup.id] || null}
+            userVote={draftRoundVotes[matchup.id] || null}
             perRoundVotes={perRoundVotes}
-            onVote={onVote}
+            onVote={onDraftVote}
           />
         ))}
       </div>
