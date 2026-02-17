@@ -8,8 +8,11 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import VoteCard from "../../components/votes/VoteCard";
 
 const MEETING_DATES = [
+  { date: "2026-02-10", display: "February 10, 2026" },
+  { date: "2026-02-03", display: "February 3, 2026" },
   { date: "2026-01-27", display: "January 27, 2026" },
   { date: "2026-01-13", display: "January 13, 2026" },
   { date: "2026-01-06", display: "January 6, 2026" },
@@ -42,10 +45,88 @@ const SupervisorUpdates = () => {
   const location = useLocation();
   const [districts, setDistricts] = useState([]);
   const mapRef = useRef(null);
+  const [viewMode, setViewMode] = useState("date"); // "date" or "supervisor"
+  const [allVoteData, setAllVoteData] = useState([]);
+  const [supervisorList, setSupervisorList] = useState([]);
+  const [selectedSupervisor, setSelectedSupervisor] = useState(null);
+  const [loadingVotes, setLoadingVotes] = useState(false);
 
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: location.pathname });
   }, [location]);
+
+  // Load all vote data when switching to supervisor view
+  useEffect(() => {
+    if (viewMode === "supervisor" && allVoteData.length === 0) {
+      loadAllVotes();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewMode]);
+
+  async function loadAllVotes() {
+    setLoadingVotes(true);
+    try {
+      const allData = [];
+      for (const { date, display } of MEETING_DATES) {
+        try {
+          const response = await fetch(`/votes/${date}.json`);
+          if (response.ok) {
+            const data = await response.json();
+            allData.push({ ...data, dateKey: date, displayDate: display });
+          }
+        } catch (err) {
+          console.error(`Error loading votes for ${date}:`, err);
+        }
+      }
+      setAllVoteData(allData);
+
+      // Extract unique supervisor list from the first available data
+      if (allData.length > 0 && allData[0].supervisors) {
+        setSupervisorList(allData[0].supervisors);
+      }
+    } finally {
+      setLoadingVotes(false);
+    }
+  }
+
+  // Get votes for a specific supervisor across all meetings
+  const getVotesForSupervisor = (supervisorLastName) => {
+    const votes = [];
+    for (const meetingData of allVoteData) {
+      for (const vote of meetingData.importantVotes) {
+        const voteInfo = vote.vote;
+        let stance = null;
+        if (voteInfo.ayes_names.includes(supervisorLastName)) {
+          stance = "aye";
+        } else if (voteInfo.noes_names.includes(supervisorLastName)) {
+          stance = "no";
+        } else if (voteInfo.excused.includes(supervisorLastName)) {
+          stance = "excused";
+        }
+        if (stance) {
+          votes.push({
+            ...vote,
+            stance,
+            meetingDate: meetingData.displayDate,
+            meetingDateKey: meetingData.dateKey,
+            supervisors: meetingData.supervisors,
+          });
+        }
+      }
+    }
+    return votes;
+  };
+
+  // Get vote statistics for a supervisor
+  const getVoteStats = (supervisorLastName) => {
+    const votes = getVotesForSupervisor(supervisorLastName);
+    return {
+      total: votes.length,
+      ayes: votes.filter((v) => v.stance === "aye").length,
+      noes: votes.filter((v) => v.stance === "no").length,
+      excused: votes.filter((v) => v.stance === "excused").length,
+    };
+  };
 
   useEffect(() => {
     async function loadDistricts() {
@@ -134,17 +215,117 @@ const SupervisorUpdates = () => {
           </MapContainer>
         </div>
 
-        <div className="week-cards">
-          {MEETING_DATES.map(({ date, display }) => (
-            <Link
-              key={date}
-              to={`/post/supervisor-updates/${date}`}
-              className="week-card"
-            >
-              <span className="week-date">{display}</span>
-            </Link>
-          ))}
+        <div className="view-toggle">
+          <button
+            className={`view-toggle-btn ${viewMode === "date" ? "active" : ""}`}
+            onClick={() => {
+              setViewMode("date");
+              setSelectedSupervisor(null);
+            }}
+          >
+            By Date
+          </button>
+          <button
+            className={`view-toggle-btn ${viewMode === "supervisor" ? "active" : ""}`}
+            onClick={() => setViewMode("supervisor")}
+          >
+            By Supervisor
+          </button>
         </div>
+
+        {viewMode === "date" && (
+          <div className="week-cards">
+            {MEETING_DATES.map(({ date, display }) => (
+              <Link
+                key={date}
+                to={`/post/supervisor-updates/${date}`}
+                className="week-card"
+              >
+                <span className="week-date">{display}</span>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {viewMode === "supervisor" && !selectedSupervisor && (
+          <>
+            {loadingVotes ? (
+              <p>Loading supervisor data...</p>
+            ) : (
+              <div className="supervisor-cards">
+                {supervisorList.map((supervisor) => {
+                  const stats = getVoteStats(supervisor.lastName);
+                  return (
+                    <div
+                      key={supervisor.district}
+                      className="supervisor-card"
+                      onClick={() => setSelectedSupervisor(supervisor)}
+                    >
+                      <img
+                        src={supervisor.image}
+                        alt={supervisor.fullName}
+                        className="supervisor-card-img"
+                      />
+                      <div className="supervisor-card-info">
+                        <div className="supervisor-card-name">
+                          {supervisor.fullName}
+                        </div>
+                        <div className="supervisor-card-district">
+                          District {supervisor.district}
+                        </div>
+                        <div className="supervisor-card-stats">
+                          <span className="stat-ayes">{stats.ayes} Ayes</span>
+                          <span className="stat-noes">{stats.noes} Noes</span>
+                          {stats.excused > 0 && (
+                            <span className="stat-excused">
+                              {stats.excused} Excused
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        )}
+
+        {viewMode === "supervisor" && selectedSupervisor && (
+          <div className="supervisor-detail">
+            <button
+              className="back-link"
+              onClick={() => setSelectedSupervisor(null)}
+            >
+              &larr; All Supervisors
+            </button>
+            <div className="supervisor-detail-header">
+              <img
+                src={selectedSupervisor.image}
+                alt={selectedSupervisor.fullName}
+                className="supervisor-detail-img"
+              />
+              <div className="supervisor-detail-info">
+                <h2>{selectedSupervisor.fullName}</h2>
+                <p>District {selectedSupervisor.district}</p>
+              </div>
+            </div>
+            <div className="votes-section">
+              <h2>Voting Record</h2>
+              {getVotesForSupervisor(selectedSupervisor.lastName).map(
+                (vote, index) => (
+                  <div key={`${vote.file_number}-${index}`} className="vote-with-stance">
+                    <div className={`stance-indicator stance-${vote.stance}`}>
+                      {vote.stance.toUpperCase()}
+                    </div>
+                    <div className="vote-meeting-date">{vote.meetingDate}</div>
+                    <VoteCard vote={vote} supervisors={vote.supervisors} />
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

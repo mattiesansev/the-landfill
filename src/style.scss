@@ -672,6 +672,47 @@
           }
         }
 
+        // View toggle for supervisor updates
+        .view-toggle {
+          display: flex;
+          gap: 0;
+          margin: 30px auto 0;
+          justify-content: center;
+          background: rgba(138, 196, 212, 0.15);
+          border-radius: 30px;
+          padding: 4px;
+          width: fit-content;
+
+          .view-toggle-btn {
+            font-size: 15px;
+            font-family: "Outfit", sans-serif;
+            font-weight: 600;
+            color: #5a8ab8;
+            padding: 12px 28px;
+            border-radius: 26px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            @media (max-width: 768px) {
+              font-size: 13px;
+              padding: 10px 20px;
+            }
+
+            &:hover:not(.active) {
+              background-color: rgba(255, 255, 255, 0.5);
+              color: #3d6a8a;
+            }
+
+            &.active {
+              color: #fff;
+              background-color: #5a8ab8;
+              box-shadow: 0 2px 8px rgba(90, 138, 184, 0.3);
+            }
+          }
+        }
+
         // Week cards for supervisor updates
         .week-cards {
           display: flex;
@@ -1267,5 +1308,200 @@
     .name-label {
       font-size: 10px;
     }
+  }
+}
+
+// Supervisor cards for "By Supervisor" view
+.supervisor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  padding: 0 10%;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+    grid-template-columns: 1fr;
+  }
+}
+
+.supervisor-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #8ac4d4;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(138, 196, 212, 0.2);
+  }
+
+  .supervisor-card-img {
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #8ac4d4;
+    flex-shrink: 0;
+  }
+
+  .supervisor-card-info {
+    flex: 1;
+
+    .supervisor-card-name {
+      font-family: "Outfit", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .supervisor-card-district {
+      font-family: "Outfit", sans-serif;
+      font-size: 14px;
+      color: #5a8ab8;
+      margin-bottom: 8px;
+    }
+
+    .supervisor-card-stats {
+      display: flex;
+      gap: 12px;
+      font-family: "Outfit", sans-serif;
+      font-size: 13px;
+
+      .stat-ayes {
+        color: #6a994e;
+        font-weight: 600;
+      }
+
+      .stat-noes {
+        color: #bc4749;
+        font-weight: 600;
+      }
+
+      .stat-excused {
+        color: #8a9bab;
+      }
+    }
+  }
+}
+
+// Supervisor detail view
+.supervisor-detail {
+  margin-top: 20px;
+
+  .supervisor-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 10%;
+    margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+      padding: 0 5%;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .supervisor-detail-img {
+      width: 120px !important;
+      height: 120px !important;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #8ac4d4;
+
+      @media (max-width: 768px) {
+        width: 100px !important;
+        height: 100px !important;
+      }
+    }
+
+    .supervisor-detail-info {
+      h2 {
+        font-family: "Outfit", sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0 0 8px 0;
+
+        @media (max-width: 768px) {
+          font-size: 26px;
+        }
+      }
+
+      p {
+        font-family: "Outfit", sans-serif;
+        font-size: 18px;
+        color: #5a8ab8;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+// Vote with stance indicator
+.vote-with-stance {
+  position: relative;
+
+  .stance-indicator {
+    position: absolute;
+    left: 10%;
+    top: -10px;
+    font-family: "Outfit", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    z-index: 1;
+
+    &.stance-aye {
+      background: linear-gradient(135deg, #7eb8a0 0%, #6a994e 100%);
+      color: white;
+    }
+
+    &.stance-no {
+      background: linear-gradient(135deg, #c9897e 0%, #bc4749 100%);
+      color: white;
+    }
+
+    &.stance-excused {
+      background: linear-gradient(135deg, #a8b8c8 0%, #8a9bab 100%);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      left: 5%;
+    }
+  }
+
+  .vote-meeting-date {
+    position: absolute;
+    right: 10%;
+    top: -10px;
+    font-family: "Outfit", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: rgba(90, 138, 184, 0.15);
+    color: #5a8ab8;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      right: 5%;
+    }
+  }
+
+  .vote-card {
+    margin-top: 10px;
   }
 }
