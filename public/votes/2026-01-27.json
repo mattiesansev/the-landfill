@@ -1,0 +1,156 @@
+{
+  "meeting": {
+    "date": "2026-01-27",
+    "display_date": "January 27, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "251245",
+      "title": "Charter Amendment - Lifetime Term Limits",
+      "description": "Charter Amendment to change the current two-term limits for Mayor and Board of Supervisors from consecutive term limits to lifetime term limits. An amendment was proposed to also impose lifetime limits on Assessor-Recorder, City Attorney, District Attorney, Public Defender, Sheriff, and Treasurer. The amendment FAILED.",
+      "action": "FAILED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Fielder", "Walton"],
+        "noes_names": ["Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": ["Melgar", "Sherrill", "Dorsey", "Sauter", "Wong"]
+      }
+    },
+    {
+      "file_number": "260042",
+      "title": "Condemning ICE, Reaffirming Sanctuary City",
+      "description": "Resolution condemning Immigration and Customs Enforcement (ICE) for actions that have led to loss of life; urging state and federal partners to call for a third-party investigation on all deaths as a result of ICE actions; calling for a moratorium on ICE detention until investigation and corrective action; reaffirming San Francisco's commitment to Sanctuary City policies.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Chen",
+        "co_sponsors": ["Walton", "Fielder", "Mahmood", "Chan", "Melgar", "Sauter", "Mandelman", "Sherrill"]
+      }
+    },
+    {
+      "file_number": "251163",
+      "title": "Settlement - City Tree Wrongful Death - $6M",
+      "description": "Ordinance authorizing settlement of the lawsuit filed by Stephanie York, James Edward Brown, and Kayla Briers against the City for $6,030,000. The lawsuit involves alleged personal injury and wrongful death caused by a City tree.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251164",
+      "title": "Settlement - General Motors Tax Refund - $71M",
+      "description": "Ordinance authorizing settlement of the lawsuit filed by General Motors Company against the City for $71,125,000. The lawsuit involves a claim for refund of gross receipts taxes, homelessness gross receipts taxes, overpaid executive gross receipts taxes, penalties, and interest.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251180",
+      "title": "Airport Revenue Bonds - $9 Billion",
+      "description": "Ordinance appropriating $9,016,051,176 of proceeds from the sale of revenue bonds or commercial paper for capital improvement projects to the Airport Commission for FY2025-2026.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251217",
+      "title": "GO Bonds - Earthquake Safety - $535M for June Ballot",
+      "description": "Resolution declaring public interest and necessity for construction, acquisition, improvement, rehabilitation of Emergency Firefighting Water System, Fire/Police Facilities, Muni Bus Storage at Potrero Yard, and other Public Safety Infrastructure. Authorizes $535,000,000 general obligation bonds for the June 2, 2026 election.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Mandelman", "Dorsey", "Wong", "Mahmood", "Sauter", "Chen", "Chan", "Sherrill"]
+      }
+    },
+    {
+      "file_number": "251187",
+      "title": "Koshland Park Improvement Grant - $1.6M",
+      "description": "Resolution authorizing Recreation and Park Department to accept and expend cash and in-kind grants from Trust for Public Land and the Theodore & Frances Geballe Philanthropic Fund, valued at approximately $1,625,000 for design, installation, repair and construction of improvements to Koshland Park.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251262",
+      "title": "Stonestown Infrastructure Financing District",
+      "description": "Resolution approving the Infrastructure Financing Plan for the San Francisco Enhanced Infrastructure Financing District No. 2 (Stonestown), including division of taxes, an EIFD Acquisition and Financing Agreement, and authorizing filing of a judicial validation action.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Melgar", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "251261",
+      "title": "3333 California St Infrastructure Financing District",
+      "description": "Resolution approving the Infrastructure Financing Plan for the San Francisco Enhanced Infrastructure Financing District No. 3 (3333/3700 California Street), including division of taxes, an EIFD Acquisition and Financing Agreement, and authorizing filing of a judicial validation action.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Sherrill", "Mandelman"]
+      }
+    }
+  ]
+}

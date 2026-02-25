@@ -1,0 +1,171 @@
+{
+  "meeting": {
+    "date": "2026-02-10",
+    "display_date": "February 10, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "260028",
+      "title": "RESET Center Contract - Alternative to Incarceration for Drug Use",
+      "description": "Resolution approving a $14.5 million contract with ConnectionsCA, LLC to operate the Rapid Enforcement Support Evaluation and Triage (RESET) Center, a safe alternative to incarceration for individuals brought in by law enforcement for public intoxication or drug use. Initial term of two years and two months with option to extend.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Chan", "Fielder"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Dorsey", "Mandelman", "Sherrill"]
+      }
+    },
+    {
+      "file_number": "251246",
+      "title": "Hearst Hotel Development Incentive - Up to $40M Tax Rebate",
+      "description": "Ordinance approving a Hotel Development Incentive Agreement with Bespoke Hospitality, LLC for the Hearst Hotel Development Project at 5 Third Street and 17-29 Third Street, providing financial assistance not to exceed $40 million in net present value over 20 years calculated as a percentage of new Transient Occupancy Taxes.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Chan", "Fielder"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Dorsey"]
+      }
+    },
+    {
+      "file_number": "251251",
+      "title": "Tenderloin and SOMA Retail Hours Restriction - Final Passage",
+      "description": "Ordinance expanding the Tenderloin retail hours restriction pilot program to encompass high-crime areas across the Tenderloin and South of Market neighborhoods. Retail food and tobacco establishments prohibited from being open from 12:00 a.m. to 5:00 a.m. (or 2:00 a.m. to 5:00 a.m. if regulated by ABC). Extended for 18 months.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "noes_names": ["Fielder", "Walton"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Dorsey",
+        "co_sponsors": ["Mahmood", "Wong"]
+      }
+    },
+    {
+      "file_number": "251224",
+      "title": "Restrictions on Use of City Property - Immigration Enforcement",
+      "description": "Ordinance prohibiting the use of City property without authorization; prohibiting City officials from authorizing use that would disrupt City operations or discourage access to City services unless it furthers a City purpose; stating that civil immigration enforcement is not a City purpose; and authorizing the City Attorney to bring action against unauthorized use.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": ["Chen", "Melgar", "Sauter", "Fielder", "Walton", "Mandelman", "Chan"]
+      }
+    },
+    {
+      "file_number": "260102",
+      "title": "Sunshine Ordinance Task Force Appointment - Joseph Sangirardi",
+      "description": "Motion appointing Joseph Sangirardi to the Sunshine Ordinance Task Force, term ending April 27, 2026. Other applicants considered included Cynthia Dai, Honest Charley Bodkin, and Kartik Sathappan.",
+      "action": "APPROVED",
+      "vote": {
+        "ayes_names": ["Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Chan", "Fielder"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260041",
+      "title": "DOJ Tobacco Grant for Drug Market Coordination Center - $1.1M",
+      "description": "Resolution retroactively authorizing the Police Department to accept and expend a $1,119,862 grant from the California Department of Justice for the 2025 Tobacco Grant Program to fund personnel and operating expenses for SFPD's Drug Market Agency Coordination Center (DMACC) through June 30, 2029.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "noes_names": [],
+        "excused": ["Walton"]
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Mandelman", "Dorsey", "Mahmood"]
+      }
+    },
+    {
+      "file_number": "250391",
+      "title": "Castro LGBTQ Cultural District Expansion to Duboce Triangle",
+      "description": "Ordinance amending the Administrative Code to expand the boundaries of the Castro Lesbian, Gay, Bisexual, Transgender, and Queer (LGBTQ) Cultural District to include the Duboce Triangle neighborhood.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": ["Chan"]
+      }
+    },
+    {
+      "file_number": "251103",
+      "title": "Alcohol Sales in Movie Theaters",
+      "description": "Ordinance amending the Planning Code to authorize Movie Theaters that also operate as Bona Fide Eating Places to offer entertainment, cultural, artistic, dramatic, musical, or leisure activities, and permit on-site wine, beer, and/or liquor sales.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Sherrill",
+        "co_sponsors": ["Chan"]
+      }
+    },
+    {
+      "file_number": "251218",
+      "title": "Twin Peaks Promenade Project - Street Vacation",
+      "description": "Resolution declaring intent to vacate portions of Christmas Tree Point Road and the eastern alignment of Twin Peaks Boulevard as public right-of-way for roadway purposes, and re-designate as public right-of-way for recreation and park purposes to facilitate the Twin Peaks Promenade Project.",
+      "action": "ADOPTED AS AMENDED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Melgar", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "251255",
+      "title": "District 10 Youth Violence Prevention Funding - $250K",
+      "description": "Ordinance de-appropriating $250,000 from General City Responsibility and appropriating to Department of Children, Youth and Their Families to support the District 10 safety plan, including services at Hope SF sites, violence prevention events, safe passages, response to schools, and support to youth and residents most impacted by violence.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Walton",
+        "co_sponsors": []
+      }
+    }
+  ]
+}

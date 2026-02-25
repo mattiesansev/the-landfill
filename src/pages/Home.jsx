@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import rentControlCover from "/src/rent_control.jpeg"
+import supervisorCover from "/src/img/RepsMap.png"
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
 import aboutUsCover from "../img/group_photo.jpg"
@@ -47,6 +48,15 @@ const Home = () => {
       category: CATEGORIES.HISTORICAL
     },
     {
+      id: "supervisor-updates",
+      title: "What is my district supervisor up to?",
+      desc: "Weekly recaps of SF Board of Supervisors meetings - votes, debates, and decisions that affect your neighborhood.",
+      img: supervisorCover,
+      imgFit: "contain",
+      authors: [authors.mattie],
+      category: CATEGORIES.POLITICS
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
@@ -74,8 +84,8 @@ const Home = () => {
           filteredPosts.map((post) => (
             <div className="post" key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
-                <div className="img">
-                  <img src={post.img} alt="" />
+                <div className="img" style={post.imgFit ? { background: '#e2eef3' } : undefined}>
+                  <img src={post.img} alt="" style={post.imgFit ? { objectFit: post.imgFit } : undefined} />
                 </div>
                 <div className="content">
                   <div className="title">{post.title}</div>
