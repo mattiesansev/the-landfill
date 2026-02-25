@@ -28,6 +28,7 @@ const ROUNDS = [
   { key: "quarterfinals", label: "Quarterfinals", matchupPrefix: "qf" },
   { key: "semifinals", label: "Semifinals", matchupPrefix: "sf" },
   { key: "finals", label: "Finals", matchupPrefix: "f" },
+  { key: "completed", label: "Completed" },
 ];
 
 const AdminPanel = ({ onRefresh }) => {
@@ -283,7 +284,9 @@ const AdminPanel = ({ onRefresh }) => {
             ))}
           </div>
           <p className="lock-description">
-            {currentActiveRound
+            {currentActiveRound === "completed"
+              ? "All rounds completed. Results are fully visible. Click again to revert."
+              : currentActiveRound
               ? "Click the active round again to close per-round voting."
               : "Select a round to open per-round voting."}
           </p>

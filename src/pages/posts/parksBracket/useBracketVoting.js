@@ -56,14 +56,14 @@ export function useBracketVoting() {
 
   const isRoundClosedLocal = useCallback(
     (roundKey) => {
-      if (isLocked) return true;
+      if (activeRound === "completed") return true;
       if (!activeRound) return false;
       const activeIdx = ROUND_ORDER.indexOf(activeRound);
       const roundIdx = ROUND_ORDER.indexOf(roundKey);
       if (activeIdx === -1 || roundIdx === -1) return false;
       return roundIdx < activeIdx;
     },
-    [isLocked, activeRound]
+    [activeRound]
   );
 
   const getCombinedVotesLocal = useCallback(
@@ -77,6 +77,28 @@ export function useBracketVoting() {
       return combined;
     },
     [aggregateVotes, perRoundVotes]
+  );
+
+  // ---- Viewing phase (progressive reveal, auto-derived from admin-controlled state) ----
+
+  const viewingPhase = useMemo(() => {
+    if (activeRound === "completed") return "complete";
+    if (!activeRound) return "preRound";
+    const activeIdx = ROUND_ORDER.indexOf(activeRound);
+    if (activeIdx <= 0) return "preRound"; // round16 is active, nothing closed yet
+    return ROUND_ORDER[activeIdx - 1]; // last closed round
+  }, [activeRound]);
+
+  const isRoundRevealedByPhase = useCallback(
+    (roundKey) => {
+      if (viewingPhase === "preRound") return false;
+      if (viewingPhase === "complete") return true;
+      const phaseIdx = ROUND_ORDER.indexOf(viewingPhase);
+      const roundIdx = ROUND_ORDER.indexOf(roundKey);
+      if (phaseIdx === -1 || roundIdx === -1) return false;
+      return roundIdx <= phaseIdx;
+    },
+    [viewingPhase]
   );
 
   // ---- Load initial state ----
@@ -323,12 +345,12 @@ export function useBracketVoting() {
   const getDisplayWinner = useCallback(
     (matchupId) => {
       const roundKey = getRoundKeyFromMatchupId(matchupId);
-      if (viewMode === "results" && isRoundClosedLocal(roundKey)) {
+      if (viewMode === "results" && isRoundClosedLocal(roundKey) && isRoundRevealedByPhase(roundKey)) {
         return actualWinners[matchupId] || null;
       }
       return userPicks[matchupId] || null;
     },
-    [viewMode, isRoundClosedLocal, actualWinners, userPicks]
+    [viewMode, isRoundClosedLocal, isRoundRevealedByPhase, actualWinners, userPicks]
   );
 
   // Compute which parks are actually in a matchup based on actual winners
@@ -368,7 +390,7 @@ export function useBracketVoting() {
   const doesUserPickMatch = useCallback(
     (matchupId) => {
       const roundKey = getRoundKeyFromMatchupId(matchupId);
-      if (!isRoundClosedLocal(roundKey)) return null;
+      if (!isRoundClosedLocal(roundKey) || !isRoundRevealedByPhase(roundKey)) return null;
 
       const userPick = userPicks[matchupId];
       const actualWinner = actualWinners[matchupId];
@@ -390,19 +412,19 @@ export function useBracketVoting() {
       if (!actualWinner) return null;
       return userPick === actualWinner;
     },
-    [userPicks, actualWinners, getActualMatchupParks, isRoundClosedLocal]
+    [userPicks, actualWinners, getActualMatchupParks, isRoundClosedLocal, isRoundRevealedByPhase]
   );
 
-  // Get votes for display (when the matchup's round is closed)
+  // Get votes for display (when the matchup's round is closed AND revealed by phase)
   const getVotesForMatchup = useCallback(
     (matchupId) => {
       const roundKey = getRoundKeyFromMatchupId(matchupId);
-      if (!isRoundClosedLocal(roundKey)) {
+      if (!isRoundClosedLocal(roundKey) || !isRoundRevealedByPhase(roundKey)) {
         return null;
       }
       return getCombinedVotesLocal(matchupId);
     },
-    [isRoundClosedLocal, getCombinedVotesLocal]
+    [isRoundClosedLocal, isRoundRevealedByPhase, getCombinedVotesLocal]
   );
 
   // Check if matchup should show vote counts
@@ -419,6 +441,15 @@ export function useBracketVoting() {
       return sorted[0] === sorted[1];
     },
     [getCombinedVotesLocal]
+  );
+
+  // Check if a matchup's round is closed and revealed (for per-matchup display mode)
+  const shouldShowResults = useCallback(
+    (matchupId) => {
+      const roundKey = getRoundKeyFromMatchupId(matchupId);
+      return isRoundClosedLocal(roundKey) && isRoundRevealedByPhase(roundKey);
+    },
+    [isRoundClosedLocal, isRoundRevealedByPhase]
   );
 
   // Update a draft round vote (does not submit to API)
@@ -578,7 +609,11 @@ export function useBracketVoting() {
     doesUserPickMatch,
     getVotesForMatchup,
     shouldShowVotes,
+    shouldShowResults,
     checkMatchupTie,
+
+    // Viewing phase (auto-derived, read-only)
+    viewingPhase,
 
     // Per-round voting
     activeRound,

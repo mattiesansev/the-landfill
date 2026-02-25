@@ -36,7 +36,10 @@ const MatchupCard = ({
   const showVotes = votes && Object.keys(votes).length > 0;
 
   // Determine display winner based on mode
-  const displayWinner = displayMode === "results" && actualWinner
+  // Only use actualWinner if it's one of the parks shown in this card;
+  // otherwise fall back to the user's bracket pick.
+  const actualWinnerIsDisplayed = actualWinner && (actualWinner === parkA || actualWinner === parkB);
+  const displayWinner = displayMode === "results" && actualWinnerIsDisplayed
     ? actualWinner
     : winner;
 

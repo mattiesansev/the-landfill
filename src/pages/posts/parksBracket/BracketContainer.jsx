@@ -21,7 +21,7 @@ function useIsMobile(breakpoint = 768) {
 }
 
 const MainViewToggle = ({ topView, onTopViewChange, activeRound }) => {
-  if (!activeRound) return null;
+  if (!activeRound || activeRound === "completed") return null;
 
   return (
     <div className="view-toggle">
@@ -71,6 +71,7 @@ const BracketContainer = () => {
     doesUserPickMatch,
     getVotesForMatchup,
     shouldShowVotes,
+    shouldShowResults,
     // Editing state
     isLocked,
     // Per-round voting
@@ -96,9 +97,9 @@ const BracketContainer = () => {
     loadFromPicks(userPicks);
   }, [userPicks, loadFromPicks]);
 
-  // Reset to bracket view if active round is cleared
+  // Reset to bracket view if active round is cleared or completed
   useEffect(() => {
-    if (!activeRound && topView === "roundVoting") {
+    if ((!activeRound || activeRound === "completed") && topView === "roundVoting") {
       setTopView("bracket");
     }
   }, [activeRound, topView]);
@@ -125,12 +126,9 @@ const BracketContainer = () => {
   // Can interact anytime round16 is still open
   const canInteractWithBracket = !isLocked;
 
-  // When locked, always show results overlay
-  const effectiveViewMode = isLocked ? "results" : viewMode;
-
   // Get voting props for a matchup
   const getMatchupVotingProps = (matchupId) => ({
-    displayMode: effectiveViewMode,
+    displayMode: shouldShowResults(matchupId) ? "results" : "user",
     isLocked: !canInteractWithBracket,
     votes: getVotesForMatchup(matchupId),
     actualWinner: actualWinners[matchupId],

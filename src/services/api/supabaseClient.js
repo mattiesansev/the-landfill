@@ -3,11 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('[Supabase] Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY — backend calls will fail.');
-}
-
-export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
+// Only create the client when credentials are present.
+// When missing, bracketApi.js routes to the mock backend so this module is never used.
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 // Ensure user has an anonymous session.
 // Call this once at app startup; resolves to the user object.
