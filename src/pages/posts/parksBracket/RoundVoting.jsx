@@ -26,19 +26,21 @@ const RoundVoting = ({
     return null;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setError(null);
     setIsSubmitting(true);
 
-    const result = onSubmitRoundVotes();
+    try {
+      const result = await onSubmitRoundVotes();
 
-    if (!result.success) {
-      setError(result.error);
+      if (!result.success) {
+        setError(result.error);
+      }
+    } catch (e) {
+      setError(e.message || "Failed to submit votes");
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    setIsSubmitting(false);
   };
 
   const { completed, total, isComplete } = roundVotingProgress;

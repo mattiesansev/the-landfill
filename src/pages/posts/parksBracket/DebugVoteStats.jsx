@@ -4,7 +4,6 @@ import {
   isBracketLocked,
   getAllWinners,
   getTotalVoters,
-  hasMatchupTie,
   getUserBracket,
   canEditBracket,
   addSimulatedVotes,
@@ -33,14 +32,19 @@ const DebugVoteStats = () => {
     }
   }, [isOpen]);
 
-  const refreshStats = () => {
-    const aggregateVotes = getAggregateVotes();
-    const perRoundVotes = getPerRoundVotes();
-    const locked = isBracketLocked();
-    const winners = getAllWinners();
-    const userBracket = getUserBracket();
-    const activeRound = getActiveRound();
-    const userRoundVotes = getUserRoundVotes();
+  const refreshStats = async () => {
+    const [aggregateVotes, perRoundVotes, locked, winners, userBracket, activeRound, userRoundVotes, voters, editable] =
+      await Promise.all([
+        getAggregateVotes(),
+        getPerRoundVotes(),
+        isBracketLocked(),
+        getAllWinners(),
+        getUserBracket(),
+        getActiveRound(),
+        getUserRoundVotes(),
+        getTotalVoters(),
+        canEditBracket(),
+      ]);
 
     // Collect all matchup IDs from both sources
     const allMatchupIds = new Set([
@@ -50,15 +54,17 @@ const DebugVoteStats = () => {
 
     // Build stats for each matchup
     const matchupStats = {};
-    allMatchupIds.forEach((matchupId) => {
+    for (const matchupId of allMatchupIds) {
       const bracketVotes = aggregateVotes[matchupId] || {};
       const roundVotes = perRoundVotes[matchupId] || {};
-      const combinedVotes = getCombinedMatchupVotes(matchupId);
+      const combinedVotes = await getCombinedMatchupVotes(matchupId);
 
       const sortedCombined = Object.entries(combinedVotes).sort((a, b) => b[1] - a[1]);
       const totalCombined = sortedCombined.reduce((sum, [, count]) => sum + count, 0);
       const leader = sortedCombined[0];
-      const hasTie = hasMatchupTie(matchupId);
+
+      // Detect tie locally from combined votes
+      const hasTie = sortedCombined.length >= 2 && sortedCombined[0][1] === sortedCombined[1][1];
 
       matchupStats[matchupId] = {
         bracketVotes,
@@ -74,7 +80,7 @@ const DebugVoteStats = () => {
         hasTie,
         winner: winners[matchupId] ? PARKS[winners[matchupId]]?.name || winners[matchupId] : null,
       };
-    });
+    }
 
     // Compute bracket-only totals
     const bracketTotalVotes = Object.values(aggregateVotes).reduce(
@@ -89,11 +95,11 @@ const DebugVoteStats = () => {
     );
 
     setStats({
-      totalVoters: getTotalVoters(),
+      totalVoters: voters,
       bracketLocked: locked,
       activeRound,
       matchupStats,
-      editingAllowed: canEditBracket(),
+      editingAllowed: editable,
       bracketTotalVotes,
       roundTotalVotes,
       userRoundVotesCount: Object.keys(userRoundVotes).length,
@@ -346,37 +352,37 @@ const DebugVoteStats = () => {
               <h3 style={{ margin: "0 0 10px 0", color: "#f6ad55" }}>Simulate Voters</h3>
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <button
-                  onClick={() => { addSimulatedVotes(5); refreshStats(); }}
+                  onClick={async () => { await addSimulatedVotes(5); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +5 Random
                 </button>
                 <button
-                  onClick={() => { addSimulatedVotes(10); refreshStats(); }}
+                  onClick={async () => { await addSimulatedVotes(10); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +10 Random
                 </button>
                 <button
-                  onClick={() => { addSimulatedVotes(25); refreshStats(); }}
+                  onClick={async () => { await addSimulatedVotes(25); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +25 Random
                 </button>
                 <button
-                  onClick={() => { addSimulatedVotes(10, "favorites"); refreshStats(); }}
+                  onClick={async () => { await addSimulatedVotes(10, "favorites"); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#3182ce", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +10 Favorites
                 </button>
                 <button
-                  onClick={() => { addSimulatedVotes(10, "underdogs"); refreshStats(); }}
+                  onClick={async () => { await addSimulatedVotes(10, "underdogs"); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#d69e2e", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +10 Underdogs
                 </button>
                 <button
-                  onClick={() => { clearSimulatedVotes(); refreshStats(); }}
+                  onClick={async () => { await clearSimulatedVotes(); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#e53e3e", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   Clear Votes

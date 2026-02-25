@@ -1,15 +1,20 @@
 // Bracket API Interface
 // This module exports the appropriate API implementation based on configuration.
-// In development, it uses the mock (localStorage-based) implementation.
-// In production, swap to a real API implementation.
+// Set USE_MOCK_API to false and provide Supabase env vars to use the real backend.
 
 import * as mockApi from './mockBracketApi';
-// Future: import * as realApi from './realBracketApi';
+import * as realApi from './realBracketApi';
 
-// Configuration - change this to switch implementations
-const USE_MOCK_API = true;
+// Auto-detect: use real API when Supabase env vars are present
+const USE_MOCK_API = !import.meta.env.VITE_SUPABASE_URL;
 
-const api = USE_MOCK_API ? mockApi : mockApi; // Future: realApi
+if (USE_MOCK_API) {
+  console.log('[BracketApi] Using mock (localStorage) backend');
+} else {
+  console.log('[BracketApi] Using Supabase backend');
+}
+
+const api = USE_MOCK_API ? mockApi : realApi;
 
 // Re-export all API methods
 export const {
@@ -80,3 +85,7 @@ export const {
   addSimulatedVotes,
   clearSimulatedVotes,
 } = api;
+
+// Admin auth (only meaningful for real API; mock returns no-ops)
+export const setAdminPassword = api.setAdminPassword || (() => {});
+export const verifyAdminPassword = api.verifyAdminPassword || (async () => true);

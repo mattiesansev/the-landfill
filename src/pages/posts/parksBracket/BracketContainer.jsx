@@ -6,7 +6,6 @@ import MatchupCard from "./MatchupCard";
 import ParkCard from "./ParkCard";
 import StatsComparison from "./StatsComparison";
 import ParkDetailModal from "./ParkDetailModal";
-import BracketSubmitPanel from "./BracketSubmitPanel";
 import AdminPanel from "./AdminPanel";
 import DebugVoteStats from "./DebugVoteStats";
 import RoundVoting from "./RoundVoting";
@@ -45,7 +44,7 @@ const MainViewToggle = ({ topView, onTopViewChange, activeRound }) => {
 const BracketContainer = () => {
   const isMobile = useIsMobile();
   const [topView, setTopView] = useState("bracket");
-  const bracketRegion = "full";
+  const [bracketRegion] = useState("full");
   const {
     bracket,
     selectedMatchup,
@@ -61,28 +60,19 @@ const BracketContainer = () => {
 
   const {
     userPicks,
-    isSubmitted,
-    submittedAt,
     updatePick,
     submitUserBracket,
     resetPicks,
     bracketValidation,
-    completedPicksCount,
-    totalMatchups,
     actualWinners,
     refreshVotingData,
     viewMode,
-    setViewMode,
     getDisplayWinner,
     doesUserPickMatch,
     getVotesForMatchup,
     shouldShowVotes,
     // Editing state
-    isEditing,
     isLocked,
-    editingAllowed,
-    startEditing,
-    cancelEditing,
     // Per-round voting
     activeRound,
     perRoundVotes,
@@ -128,9 +118,6 @@ const BracketContainer = () => {
     resetPicks();
   };
 
-  // Results are available when bracket is locked
-  const hasResults = isLocked;
-
   // Helper to check if a specific matchup is flipped (selected for comparison)
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
 
@@ -166,25 +153,12 @@ const BracketContainer = () => {
         topView={topView}
         onTopViewChange={setTopView}
         bracketRegion={bracketRegion}
-        onRegionChange={setBracketRegion}
         // Voting props
         getMatchupVotingProps={getMatchupVotingProps}
-        viewMode={effectiveViewMode}
-        setViewMode={setViewMode}
-        hasResults={hasResults}
-        isSubmitted={isSubmitted}
-        submittedAt={submittedAt}
-        completedPicksCount={completedPicksCount}
-        totalMatchups={totalMatchups}
         bracketValidation={bracketValidation}
         submitUserBracket={submitUserBracket}
         refreshVotingData={refreshVotingData}
-        // Editing state
-        isEditing={isEditing}
         isLocked={isLocked}
-        editingAllowed={editingAllowed}
-        startEditing={startEditing}
-        cancelEditing={cancelEditing}
         // Per-round voting
         activeRound={activeRound}
         activeRoundMatchups={activeRoundMatchups}
@@ -328,8 +302,8 @@ const BracketContainer = () => {
               </button>
               <button
                 className="save-bracket-btn"
-                onClick={() => {
-                  const result = submitUserBracket();
+                onClick={async () => {
+                  const result = await submitUserBracket();
                   if (result.success) {
                     alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
                   } else {
@@ -392,25 +366,12 @@ const MobileBracket = ({
   topView,
   onTopViewChange,
   bracketRegion,
-  onRegionChange,
   // Voting props
   getMatchupVotingProps,
-  viewMode,
-  setViewMode,
-  hasResults,
-  isSubmitted,
-  submittedAt,
-  completedPicksCount,
-  totalMatchups,
   bracketValidation,
   submitUserBracket,
   refreshVotingData,
-  // Editing state
-  isEditing,
   isLocked,
-  editingAllowed,
-  startEditing,
-  cancelEditing,
   // Per-round voting
   activeRound,
   activeRoundMatchups,
@@ -439,36 +400,11 @@ const MobileBracket = ({
       <div className="bracket-controls">
         <div className="bracket-view-controls">
           <MainViewToggle topView={topView} onTopViewChange={onTopViewChange} activeRound={activeRound} />
-          {topView === "bracket" && (
-            <RegionToggle bracketRegion={bracketRegion} onRegionChange={onRegionChange} />
-          )}
         </div>
-        {topView === "bracket" && (
-          <DisplayModeToggle
-            displayMode={viewMode}
-            onDisplayModeChange={setViewMode}
-            hasResults={hasResults}
-            isLocked={isLocked}
-          />
-        )}
       </div>
 
       {topView === "bracket" && (
         <>
-          <BracketSubmitPanel
-            isSubmitted={isSubmitted}
-            submittedAt={submittedAt}
-            completedPicksCount={completedPicksCount}
-            totalMatchups={totalMatchups}
-            bracketValidation={bracketValidation}
-            onSubmit={submitUserBracket}
-            isEditing={isEditing}
-            isLocked={isLocked}
-            editingAllowed={editingAllowed}
-            onStartEditing={startEditing}
-            onCancelEditing={cancelEditing}
-          />
-
           <div className="bracket-mobile">
             <div className="mobile-round">
               <h3>Round of 16 {bracketRegion !== "full" && `(${bracketRegion === "west" ? "West" : "East"})`}</h3>
@@ -585,8 +521,8 @@ const MobileBracket = ({
               </button>
               <button
                 className="save-bracket-btn"
-                onClick={() => {
-                  const result = submitUserBracket();
+                onClick={async () => {
+                  const result = await submitUserBracket();
                   if (result.success) {
                     alert(result.isResubmission ? "Bracket updated!" : "Bracket saved!");
                   } else {

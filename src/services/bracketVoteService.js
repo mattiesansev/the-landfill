@@ -69,4 +69,8 @@ export {
   // Simulation (dev only)
   addSimulatedVotes,
   clearSimulatedVotes,
+
+  // Admin auth
+  setAdminPassword,
+  verifyAdminPassword,
 } from './api/bracketApi';

@@ -6,13 +6,11 @@ import {
   getAggregateVotes,
   exportVotesToCSV,
   importVotesFromCSV,
-  hasMatchupTie,
   setAdminOverride,
   removeAdminOverride,
   getAdminOverrides,
   getTotalVoters,
   exportAllData,
-  importAllData,
   clearAllVotingData,
   getVoteLeaderboard,
   getActiveRound,
@@ -20,6 +18,8 @@ import {
   getAllMatchupIds,
   getCombinedMatchupVotes,
   getRoundKeyFromMatchupId,
+  setAdminPassword,
+  verifyAdminPassword,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
 
@@ -36,30 +36,58 @@ const AdminPanel = ({ onRefresh }) => {
   const [aggregateVotes, setAggregateVotes] = useState({});
   const [adminOverrides, setAdminOverrides] = useState({});
   const [leaderboard, setLeaderboard] = useState([]);
+  const [totalVoters, setTotalVoters] = useState(0);
   const [csvInput, setCsvInput] = useState("");
   const [message, setMessage] = useState(null);
   const [currentActiveRound, setCurrentActiveRound] = useState(null);
   const [tiedMatchups, setTiedMatchups] = useState([]);
 
+  // Admin auth
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [authError, setAuthError] = useState(null);
+
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && isAuthenticated) {
       refreshData();
     }
-  }, [isOpen]);
+  }, [isOpen, isAuthenticated]);
 
-  const refreshData = () => {
-    setBracketLocked(isBracketLocked());
-    setAggregateVotes(getAggregateVotes());
-    const overrides = getAdminOverrides();
+  const handleLogin = async () => {
+    setAuthError(null);
+    const valid = await verifyAdminPassword(passwordInput);
+    if (valid) {
+      setAdminPassword(passwordInput);
+      setIsAuthenticated(true);
+      setPasswordInput("");
+    } else {
+      setAuthError("Invalid password");
+    }
+  };
+
+  const refreshData = async () => {
+    const [locked, aggVotes, overrides, board, activeRd, voters] = await Promise.all([
+      isBracketLocked(),
+      getAggregateVotes(),
+      getAdminOverrides(),
+      getVoteLeaderboard(),
+      getActiveRound(),
+      getTotalVoters(),
+    ]);
+
+    setBracketLocked(locked);
+    setAggregateVotes(aggVotes);
     setAdminOverrides(overrides);
-    setLeaderboard(getVoteLeaderboard());
-    setCurrentActiveRound(getActiveRound());
+    setLeaderboard(board);
+    setCurrentActiveRound(activeRd);
+    setTotalVoters(voters);
 
     // Find all tied matchups (combined votes) that don't have an override
     const tied = [];
-    getAllMatchupIds().forEach((matchupId) => {
-      if (overrides[matchupId]) return; // already resolved
-      const votes = getCombinedMatchupVotes(matchupId);
+    const allIds = getAllMatchupIds();
+    for (const matchupId of allIds) {
+      if (overrides[matchupId]) continue; // already resolved
+      const votes = await getCombinedMatchupVotes(matchupId);
       const sorted = Object.entries(votes).sort((a, b) => b[1] - a[1]);
       if (sorted.length >= 2 && sorted[0][1] === sorted[1][1] && sorted[0][1] > 0) {
         tied.push({
@@ -68,32 +96,32 @@ const AdminPanel = ({ onRefresh }) => {
           parks: sorted.map(([parkId, count]) => ({ parkId, count })),
         });
       }
-    });
+    }
     setTiedMatchups(tied);
   };
 
-  const handleToggleLock = () => {
+  const handleToggleLock = async () => {
     if (bracketLocked) {
-      unlockBracket();
+      await unlockBracket();
     } else {
-      lockBracket();
+      await lockBracket();
     }
-    refreshData();
+    await refreshData();
     onRefresh?.();
   };
 
-  const handleToggleActiveRound = (roundKey) => {
+  const handleToggleActiveRound = async (roundKey) => {
     if (currentActiveRound === roundKey) {
-      setActiveRound(null);
+      await setActiveRound(null);
     } else {
-      setActiveRound(roundKey);
+      await setActiveRound(roundKey);
     }
-    refreshData();
+    await refreshData();
     onRefresh?.();
   };
 
-  const handleExportCSV = () => {
-    const csv = exportVotesToCSV();
+  const handleExportCSV = async () => {
+    const csv = await exportVotesToCSV();
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -104,14 +132,14 @@ const AdminPanel = ({ onRefresh }) => {
     setMessage({ type: "success", text: "Votes exported successfully!" });
   };
 
-  const handleImportCSV = () => {
+  const handleImportCSV = async () => {
     if (!csvInput.trim()) {
       setMessage({ type: "error", text: "Please paste CSV data first" });
       return;
     }
     try {
-      importVotesFromCSV(csvInput);
-      refreshData();
+      await importVotesFromCSV(csvInput);
+      await refreshData();
       onRefresh?.();
       setCsvInput("");
       setMessage({ type: "success", text: "Votes imported successfully!" });
@@ -120,8 +148,8 @@ const AdminPanel = ({ onRefresh }) => {
     }
   };
 
-  const handleExportAll = () => {
-    const data = exportAllData();
+  const handleExportAll = async () => {
+    const data = await exportAllData();
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -133,24 +161,24 @@ const AdminPanel = ({ onRefresh }) => {
     setMessage({ type: "success", text: "Full backup exported!" });
   };
 
-  const handleSetOverride = (matchupId, parkId) => {
-    setAdminOverride(matchupId, parkId);
-    refreshData();
+  const handleSetOverride = async (matchupId, parkId) => {
+    await setAdminOverride(matchupId, parkId);
+    await refreshData();
     onRefresh?.();
     setMessage({ type: "success", text: `Override set for ${matchupId}` });
   };
 
-  const handleRemoveOverride = (matchupId) => {
-    removeAdminOverride(matchupId);
-    refreshData();
+  const handleRemoveOverride = async (matchupId) => {
+    await removeAdminOverride(matchupId);
+    await refreshData();
     onRefresh?.();
     setMessage({ type: "success", text: `Override removed for ${matchupId}` });
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = async () => {
     if (window.confirm("Are you sure? This will delete ALL voting data!")) {
-      clearAllVotingData();
-      refreshData();
+      await clearAllVotingData();
+      await refreshData();
       onRefresh?.();
       setMessage({ type: "success", text: "All data cleared" });
     }
@@ -162,13 +190,44 @@ const AdminPanel = ({ onRefresh }) => {
       .sort();
   };
 
-  const totalVoters = getTotalVoters();
-
   if (!isOpen) {
     return (
       <button className="admin-panel-toggle" onClick={() => setIsOpen(true)}>
         Admin
       </button>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="admin-panel-overlay">
+        <div className="admin-panel">
+          <button className="close-btn" onClick={() => setIsOpen(false)}>
+            &times;
+          </button>
+          <h2>Admin Panel</h2>
+          <div className="admin-section">
+            <h3>Enter Admin Password</h3>
+            {authError && (
+              <div className="admin-message error">{authError}</div>
+            )}
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                placeholder="Password"
+                style={{ padding: "8px", borderRadius: "6px", border: "1px solid #4a5568", background: "#2a2a4a", color: "#eee", flex: 1 }}
+              />
+              <button onClick={handleLogin} style={{ padding: "8px 16px" }}>
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -318,13 +377,12 @@ const AdminPanel = ({ onRefresh }) => {
                 <h4>{round.label}</h4>
                 {matchups.map((matchupId) => {
                   const votes = aggregateVotes[matchupId] || {};
-                  const hasTie = hasMatchupTie(matchupId);
                   const override = adminOverrides[matchupId];
 
                   return (
                     <div
                       key={matchupId}
-                      className={`matchup-votes ${hasTie ? "tie" : ""}`}
+                      className="matchup-votes"
                     >
                       <div className="matchup-id">{matchupId}</div>
                       <div className="votes-list">
@@ -342,16 +400,6 @@ const AdminPanel = ({ onRefresh }) => {
                                   {park?.name || parkId}
                                 </span>
                                 <span className="vote-count">{count}</span>
-                                {hasTie && (
-                                  <button
-                                    className="override-btn"
-                                    onClick={() =>
-                                      handleSetOverride(matchupId, parkId)
-                                    }
-                                  >
-                                    {isOverride ? "Winner" : "Set Winner"}
-                                  </button>
-                                )}
                               </div>
                             );
                           })}
@@ -363,9 +411,6 @@ const AdminPanel = ({ onRefresh }) => {
                         >
                           Remove Override
                         </button>
-                      )}
-                      {hasTie && !override && (
-                        <div className="tie-warning">TIE - Select a winner</div>
                       )}
                     </div>
                   );
