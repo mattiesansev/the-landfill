@@ -476,6 +476,32 @@ export function useBracketVoting() {
       };
     }
 
+    // Fetch fresh winners so overrides are up to date, and update UI immediately.
+    const freshWinners = await getAllWinners();
+    setActualWinners(freshWinners);
+    for (const matchupId of matchupIds) {
+      const votedPark = draftRoundVotes[matchupId];
+      if (matchupId.startsWith("r16")) continue; // R16 parks are fixed, no need to validate
+
+      const feedingMatchups = Object.entries(BRACKET_PROGRESSION).filter(
+        ([_, prog]) => prog.nextRound === matchupId
+      );
+      const resolvedParks = {};
+      feedingMatchups.forEach(([sourceId, prog]) => {
+        if (freshWinners[sourceId]) resolvedParks[prog.slot] = freshWinners[sourceId];
+      });
+
+      if (resolvedParks.parkA && resolvedParks.parkB) {
+        const validParks = [resolvedParks.parkA, resolvedParks.parkB];
+        if (!validParks.includes(votedPark)) {
+          return {
+            success: false,
+            error: `Your vote for ${matchupId} is no longer valid — the matchup participants changed. Please review and re-vote.`,
+          };
+        }
+      }
+    }
+
     // Submit each vote
     for (const matchupId of matchupIds) {
       const result = await submitPerRoundVoteService(matchupId, draftRoundVotes[matchupId]);
@@ -611,6 +637,7 @@ export function useBracketVoting() {
     shouldShowVotes,
     shouldShowResults,
     checkMatchupTie,
+    getActualMatchupParks,
 
     // Viewing phase (auto-derived, read-only)
     viewingPhase,

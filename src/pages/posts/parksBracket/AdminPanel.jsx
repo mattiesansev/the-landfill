@@ -17,6 +17,7 @@ import {
   setActiveRound,
   getAllMatchupIds,
   getCombinedMatchupVotes,
+  getPerRoundMatchupVotes,
   getRoundKeyFromMatchupId,
   setAdminPassword,
   verifyAdminPassword,
@@ -31,8 +32,8 @@ const ROUNDS = [
   { key: "completed", label: "Completed" },
 ];
 
-const AdminPanel = ({ onRefresh }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const AdminPanel = ({ onRefresh, standalone = false }) => {
+  const [isOpen, setIsOpen] = useState(standalone);
   const [bracketLocked, setBracketLocked] = useState(false);
   const [aggregateVotes, setAggregateVotes] = useState({});
   const [adminOverrides, setAdminOverrides] = useState({});
@@ -43,8 +44,8 @@ const AdminPanel = ({ onRefresh }) => {
   const [currentActiveRound, setCurrentActiveRound] = useState(null);
   const [tiedMatchups, setTiedMatchups] = useState([]);
 
-  // Admin auth
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // Admin auth — skip when running in standalone mode (page already authenticated)
+  const [isAuthenticated, setIsAuthenticated] = useState(standalone);
   const [passwordInput, setPasswordInput] = useState("");
   const [authError, setAuthError] = useState(null);
 
@@ -83,12 +84,17 @@ const AdminPanel = ({ onRefresh }) => {
     setCurrentActiveRound(activeRd);
     setTotalVoters(voters);
 
-    // Find all tied matchups (combined votes) that don't have an override
+    // Find all tied matchups that don't have an override.
+    // R16: use combined bracket + per-round votes (parks are fixed seedings).
+    // QF+: use ONLY per-round votes — bracket predictions include parks that may
+    //      not have advanced, which would create phantom ties with the wrong parks.
     const tied = [];
     const allIds = getAllMatchupIds();
     for (const matchupId of allIds) {
       if (overrides[matchupId]) continue; // already resolved
-      const votes = await getCombinedMatchupVotes(matchupId);
+      const votes = matchupId.startsWith('r16')
+        ? await getCombinedMatchupVotes(matchupId)
+        : await getPerRoundMatchupVotes(matchupId);
       const sorted = Object.entries(votes).sort((a, b) => b[1] - a[1]);
       if (sorted.length >= 2 && sorted[0][1] === sorted[1][1] && sorted[0][1] > 0) {
         tied.push({
@@ -232,13 +238,14 @@ const AdminPanel = ({ onRefresh }) => {
     );
   }
 
-  return (
-    <div className="admin-panel-overlay">
-      <div className="admin-panel">
+  const panelContent = (
+    <div className="admin-panel">
+      {!standalone && (
         <button className="close-btn" onClick={() => setIsOpen(false)}>
           &times;
         </button>
-        <h2>Admin Panel</h2>
+      )}
+      <h2>Admin Panel</h2>
 
         {message && (
           <div className={`admin-message ${message.type}`}>{message.text}</div>
@@ -442,6 +449,15 @@ const AdminPanel = ({ onRefresh }) => {
           </div>
         </div>
       </div>
+  );
+
+  if (standalone) {
+    return panelContent;
+  }
+
+  return (
+    <div className="admin-panel-overlay">
+      {panelContent}
     </div>
   );
 };

@@ -285,13 +285,20 @@ export async function getAllWinners() {
       continue;
     }
 
-    // Combine bracket + round votes for this matchup
+    // For R16: combine bracket predictions + per-round votes (parks are fixed seedings)
+    // For QF+: use ONLY per-round votes — bracket predictions may include parks that
+    //           never actually advanced to this round, polluting the winner calculation.
     const bracketVotes = aggregateVotes[matchupId] || {};
     const roundVotesForMatchup = perRoundVotes[matchupId] || {};
-    const combined = { ...bracketVotes };
-    Object.entries(roundVotesForMatchup).forEach(([parkId, count]) => {
-      combined[parkId] = (combined[parkId] || 0) + count;
-    });
+    let combined;
+    if (matchupId.startsWith('r16')) {
+      combined = { ...bracketVotes };
+      Object.entries(roundVotesForMatchup).forEach(([parkId, count]) => {
+        combined[parkId] = (combined[parkId] || 0) + count;
+      });
+    } else {
+      combined = { ...roundVotesForMatchup };
+    }
 
     if (Object.keys(combined).length === 0) continue;
 

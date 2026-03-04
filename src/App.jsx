@@ -10,6 +10,7 @@ import Parcels from "./pages/posts/RentControl"
 import ParksBracket from "./pages/posts/ParksBracket"
 import SupervisorUpdates from "./pages/posts/SupervisorUpdates"
 import WeeklyReport from "./pages/posts/WeeklyReport"
+import BracketAdmin from "./pages/BracketAdmin"
 
 const Layout = () => {
   return (
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/post/supervisor-updates/:date",
         element: <WeeklyReport />
+      },
+      {
+        path: "/bracket-admin",
+        element: <BracketAdmin />
       },
     ],
   },
