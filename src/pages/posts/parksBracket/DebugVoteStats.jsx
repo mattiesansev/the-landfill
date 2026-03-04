@@ -22,8 +22,8 @@ const ROUND_GROUPS = [
   { key: "f", label: "Finals", matchupIds: ["f-1"] },
 ];
 
-const DebugVoteStats = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const DebugVoteStats = ({ standalone = false }) => {
+  const [isOpen, setIsOpen] = useState(standalone);
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -139,46 +139,32 @@ const DebugVoteStats = () => {
     );
   }
 
-  return (
+  const content = (
     <div
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(0,0,0,0.7)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        zIndex: 2000,
+        background: "#1a1a2e",
+        color: "#eee",
+        borderRadius: "12px",
         padding: "20px",
-        overflow: "auto",
+        maxWidth: "800px",
+        width: "100%",
+        fontFamily: "monospace",
+        fontSize: "13px",
       }}
     >
-      <div
-        style={{
-          background: "#1a1a2e",
-          color: "#eee",
-          borderRadius: "12px",
-          padding: "20px",
-          maxWidth: "800px",
-          width: "100%",
-          fontFamily: "monospace",
-          fontSize: "13px",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
-          <h2 style={{ margin: 0, color: "#805ad5" }}>Vote Stats Debug</h2>
-          <div>
-            <button onClick={refreshStats} style={{ marginRight: "10px", padding: "5px 10px", cursor: "pointer" }}>
-              Refresh
-            </button>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
+        <h2 style={{ margin: 0, color: "#805ad5" }}>Vote Stats Debug</h2>
+        <div>
+          <button onClick={refreshStats} style={{ marginRight: "10px", padding: "5px 10px", cursor: "pointer" }}>
+            Refresh
+          </button>
+          {!standalone && (
             <button onClick={() => setIsOpen(false)} style={{ padding: "5px 10px", cursor: "pointer" }}>
               Close
             </button>
-          </div>
+          )}
         </div>
+      </div>
 
         {stats && (
           <>
@@ -431,6 +417,30 @@ const DebugVoteStats = () => {
           </>
         )}
       </div>
+  );
+
+  if (standalone) {
+    return content;
+  }
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: "rgba(0,0,0,0.7)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        zIndex: 2000,
+        padding: "20px",
+        overflow: "auto",
+      }}
+    >
+      {content}
     </div>
   );
 };

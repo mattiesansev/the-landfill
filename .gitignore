@@ -6,3 +6,5 @@ yarn.lock
 .ipynb_checkpoints/
 .env
 .env.local
+# Local Netlify folder
+.netlify

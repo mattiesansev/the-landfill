@@ -219,7 +219,12 @@ export function getWinnerForMatchup(matchupId) {
     return overrides[matchupId];
   }
 
-  const votes = getCombinedMatchupVotes(matchupId);
+  // For R16: combine bracket predictions + per-round votes (parks are fixed seedings)
+  // For QF+: use ONLY per-round votes — bracket predictions may include parks that
+  //           never actually advanced to this round, polluting the winner calculation.
+  const votes = matchupId.startsWith('r16')
+    ? getCombinedMatchupVotes(matchupId)
+    : getPerRoundMatchupVotes(matchupId);
   if (Object.keys(votes).length === 0) {
     return null;
   }

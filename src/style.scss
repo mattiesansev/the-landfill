@@ -1581,6 +1581,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-shrink: 0;
 
   &.left {
     flex-direction: row;
@@ -1615,6 +1616,7 @@
   align-items: center;
   gap: 15px;
   min-width: 150px;
+  flex-shrink: 0;
 
   .finals-label {
     font-size: 12px;
@@ -1683,6 +1685,33 @@
     margin-top: 3px;
     font-style: italic;
   }
+
+  .compare-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 95%;
+    min-height: 12px;
+    margin-top: 2px;
+    background: none;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    cursor: pointer;
+    color: #a0aec0;
+    font-size: 12px;
+    border-radius: 0 0 4px 4px;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba(138, 196, 212, 0.12);
+      color: #5a9ab5;
+    }
+
+    &:active {
+      background: rgba(138, 196, 212, 0.25);
+    }
+  }
 }
 
 .park-card {
@@ -1741,10 +1770,26 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .park-info-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #cbd5e0;
+    border-radius: 50%;
+    transition: color 0.15s ease, background 0.15s ease;
 
     &:hover {
-      color: #5a8ab8;
-      text-decoration: underline;
+      color: #5a9ab5;
+      background: rgba(138, 196, 212, 0.15);
     }
   }
 
@@ -2190,21 +2235,65 @@
   }
 }
 
-// Bracket View Controls (stacks main toggle + region sub-toggle)
-.bracket-view-controls {
+// My Bracket / Live toggle
+.bracket-view-toggle {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 8px;
+  margin: 12px 0 4px;
+
+  .bracket-view-btn {
+    padding: 6px 20px;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 20px;
+    background: white;
+    color: #718096;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+
+    &:hover:not(.active) {
+      border-color: #8ac4d4;
+      color: #5a9ab5;
+    }
+
+    &.active {
+      background: #5a8ab8;
+      border-color: #5a8ab8;
+      color: white;
+    }
+
+    &.live.active {
+      background: #38a169;
+      border-color: #38a169;
+    }
+  }
 }
 
-// Bracket Controls Container
-.bracket-controls {
+// Bracket section header — shown between round voting and bracket during voting phase
+.bracket-section-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
+  justify-content: center;
+  margin: 16px 0 4px;
+}
+
+.bracket-collapse-toggle {
+  padding: 6px 18px;
+  background: none;
+  border: 1px solid #cbd5e0;
+  border-radius: 20px;
+  color: #718096;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: #8ac4d4;
+    color: #5a9ab5;
+  }
 }
 
 // Display Mode Toggle (My Bracket / Results)
@@ -3339,4 +3428,131 @@
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+// Bracket Admin Page
+.bracket-admin-login {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #1a1a2e;
+  border-radius: 12px;
+  color: #eee;
+  text-align: center;
+
+  h2 {
+    margin: 0 0 12px;
+    color: #805ad5;
+    font-size: 22px;
+  }
+
+  p {
+    margin: 0 0 24px;
+    color: #a0aec0;
+    font-size: 14px;
+  }
+}
+
+.bracket-admin-error {
+  background: rgba(197, 48, 48, 0.2);
+  border: 1px solid #e53e3e;
+  color: #fc8181;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.bracket-admin-login-form {
+  display: flex;
+  gap: 8px;
+
+  input[type="password"] {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #4a5568;
+    background: #2a2a4a;
+    color: #eee;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #805ad5;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+
+  button {
+    padding: 10px 18px;
+    background: #805ad5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+      background: #6b46c1;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.bracket-admin-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.bracket-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #1a1a1a;
+  }
+}
+
+.bracket-admin-logout {
+  padding: 6px 16px;
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #718096;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #fc8181;
+    color: #e53e3e;
+  }
+}
+
+.bracket-admin-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.bracket-admin-section {
+  .admin-panel {
+    position: static;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  }
 }

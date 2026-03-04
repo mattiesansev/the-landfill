@@ -147,3 +147,85 @@ FINALLY PASSED by the following vote:
 Ayes: 9 - Chan, Chen, Dorsey, Mahmood, Mandelman, Melgar, Sauter, Sherrill, Wong
 Noes: 2 - Fielder, Walton
 ```
+
+---
+
+## SF Parks Bracket Feature (Branch: `park-madness`)
+
+A 16-park single-elimination bracket tournament for SF parks. Users fill out a bracket predicting winners, then per-round community voting determines actual outcomes.
+
+### Architecture
+
+- **Backend**: Supabase (PostgreSQL + RLS + anonymous auth). Falls back to localStorage mock when env vars are missing.
+- **Deployment**: Netlify (site: `data-dump` / bayareadatadump.com). Env vars `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` set in Netlify.
+- **Supabase project URL**: `https://xlgqsmhrurrsdoqttgpa.supabase.co`
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `src/pages/posts/parksBracket/useBracketVoting.js` | Core hook: all voting state, display gating, progressive reveal logic |
+| `src/pages/posts/parksBracket/BracketContainer.jsx` | Main bracket UI, desktop + mobile layouts, `getMatchupVotingProps` |
+| `src/pages/posts/parksBracket/MatchupCard.jsx` | Single matchup card: displays parks, winner highlight, votes, badges |
+| `src/pages/posts/parksBracket/ParkCard.jsx` | Individual park in a matchup: winner/loser/user-pick styling |
+| `src/pages/posts/parksBracket/AdminPanel.jsx` | Admin controls: lock/unlock, round-selector, tie breakers, overrides |
+| `src/pages/posts/parksBracket/RoundVoting.jsx` | Per-round voting UI (active when a round is selected) |
+| `src/pages/posts/parksBracket/bracketData.js` | Static data: `PARKS`, `INITIAL_BRACKET`, `BRACKET_PROGRESSION` |
+| `src/pages/posts/parksBracket/useBracketState.js` | Visual bracket state management (tracks selections for rendering) |
+| `src/services/api/bracketApi.js` | API router: picks real vs mock based on env vars |
+| `src/services/api/realBracketApi.js` | Supabase API implementation |
+| `src/services/api/mockBracketApi.js` | localStorage mock API |
+| `src/services/api/supabaseClient.js` | Supabase client init + anonymous auth |
+| `src/services/bracketVoteService.js` | Re-exports from bracketApi for backward compat |
+| `src/style.scss` | All styles including bracket, park-card voting states, admin panel |
+
+### Progressive Reveal System
+
+Results (CORRECT/INCORRECT badges, vote bars) are **only shown for rounds that the admin has progressed past** via the round-selector in AdminPanel.
+
+**How it works (in `useBracketVoting.js`):**
+
+1. `activeRound` — admin-controlled, stored in Supabase config. Values: `null`, `"round16"`, `"quarterfinals"`, `"semifinals"`, `"finals"`, `"completed"`.
+2. `isRoundClosedLocal(roundKey)` — a round is closed when `activeRound` is past it, or when `activeRound === "completed"`. **NOT** tied to `isLocked` (locking only prevents bracket submissions).
+3. `viewingPhase` — auto-derived from `activeRound`:
+   - `activeRound === "completed"` → `"complete"` (all revealed)
+   - `activeRound === null` → `"preRound"` (nothing revealed)
+   - Otherwise → last closed round (e.g., QF active → R16 revealed)
+4. `isRoundRevealedByPhase(roundKey)` — returns true if round should show results given current phase.
+5. Three gating functions check both `isRoundClosedLocal` AND `isRoundRevealedByPhase`:
+   - `doesUserPickMatch(matchupId)` → returns `true`/`false`/`null`
+   - `getVotesForMatchup(matchupId)` → returns votes object or `null`
+   - `getDisplayWinner(matchupId)` → returns actual winner or user's pick
+6. `shouldShowResults(matchupId)` — exported for BracketContainer to set per-matchup `displayMode`.
+
+**Admin round progression example:**
+| Admin sets activeRound to | R16 results | QF results | SF results | Finals results |
+|---|---|---|---|---|
+| `"round16"` | hidden | hidden | hidden | hidden |
+| `"quarterfinals"` | shown | hidden | hidden | hidden |
+| `"semifinals"` | shown | shown | hidden | hidden |
+| `"finals"` | shown | shown | shown | hidden |
+| `"completed"` | shown | shown | shown | shown |
+
+### Key Design Decisions
+
+- **`isLocked` is independent from result visibility.** Locking prevents bracket submissions/edits. Result visibility is controlled solely by `activeRound` progression.
+- **`displayMode` is per-matchup** in `BracketContainer.getMatchupVotingProps`: `shouldShowResults(matchupId) ? "results" : "user"`. Unrevealed matchups show user's bracket picks; revealed matchups show actual results.
+- **`MatchupCard.displayWinner` validates `actualWinner`** against displayed parks (`parkA`/`parkB`). This prevents a "CORRECT!" badge from appearing when the user's predicted park didn't actually advance to that round (the `doesUserPickMatch` validParks check catches this as a wrong pick, but the old code still highlighted it as a winner).
+- **Bracket view always shows user's predicted parks** in each matchup slot (from `useBracketState`), not the actual parks that advanced. The results overlay (badges, vote bars) is layered on top.
+
+### Uncommitted Changes (as of session end)
+
+All changes are on the `park-madness` branch, unstaged. Key modifications:
+- `useBracketVoting.js` — progressive reveal logic, decoupled `isLocked` from round closure/reveal, added `shouldShowResults` export
+- `BracketContainer.jsx` — per-matchup `displayMode`, removed ProgressStepper UI (was briefly added then removed per user request — stepper controls belong in AdminPanel, not user-facing)
+- `MatchupCard.jsx` — `actualWinnerIsDisplayed` guard on `displayWinner`
+- `AdminPanel.jsx` — added "Completed" to round-selector
+- `supabaseClient.js` — guarded `createClient` when env vars missing (fixed white page bug)
+- `style.scss` — removed `.progress-stepper` styles
+
+### Common Gotchas
+
+- **White page on deploy**: If Supabase env vars are missing, `supabaseClient.js` must NOT call `createClient('')`. The guard `supabaseUrl && supabaseAnonKey ? createClient(...) : null` prevents this.
+- **`getActualMatchupParks` vs `actualWinners`**: These can disagree. `actualWinners` is from aggregate/per-round votes (who users voted for). `getActualMatchupParks` traces actual bracket progression from feeding matchup winners. For later rounds, a park might "win" in votes but not have actually advanced. Always validate `actualWinner` against the displayed parks before using it.
+- **Admin auth**: AdminPanel requires a password stored in Supabase `bracket_config.admin_password_hash`. The `getConfigData` query must select only `bracket_locked, active_round` — never `admin_password_hash`.

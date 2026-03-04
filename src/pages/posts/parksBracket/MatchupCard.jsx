@@ -26,7 +26,8 @@ const MatchupCard = ({
     }
   };
 
-  const handleMatchupClick = () => {
+  const handleMatchupClick = (e) => {
+    e.stopPropagation();
     if (parkA && parkB) {
       onMatchupClick(id);
     }
@@ -36,7 +37,10 @@ const MatchupCard = ({
   const showVotes = votes && Object.keys(votes).length > 0;
 
   // Determine display winner based on mode
-  const displayWinner = displayMode === "results" && actualWinner
+  // Only use actualWinner if it's one of the parks shown in this card;
+  // otherwise fall back to the user's bracket pick.
+  const actualWinnerIsDisplayed = actualWinner && (actualWinner === parkA || actualWinner === parkB);
+  const displayWinner = displayMode === "results" && actualWinnerIsDisplayed
     ? actualWinner
     : winner;
 
@@ -46,7 +50,6 @@ const MatchupCard = ({
   return (
     <div
       className={`matchup-card ${roundClass} ${canInteract ? "interactive" : "waiting"} ${isFlipped ? "flipped" : ""} ${isLocked ? "locked" : ""} ${userWasWrong ? "user-wrong" : ""}`}
-      onClick={handleMatchupClick}
     >
       <div className="matchup-card-inner">
         <div className="matchup-card-front">
@@ -77,10 +80,17 @@ const MatchupCard = ({
               winner={actualWinner}
             />
           )}
-          {canInteract && !displayWinner && !isLocked && (
-            <div className="view-stats-hint">Click to compare</div>
+          {canInteract && (
+            <button
+              className="compare-btn"
+              onClick={handleMatchupClick}
+              aria-label="Compare parks"
+            >
+              <svg width="11" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              Compare
+            </button>
           )}
-          {isLocked && !displayWinner && (
+          {isLocked && !canInteract && (
             <div className="view-stats-hint">Awaiting results</div>
           )}
         </div>
