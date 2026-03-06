@@ -73,9 +73,11 @@ CREATE POLICY "Anyone can read overrides" ON admin_overrides
 -- ============================================================
 
 -- Aggregate bracket votes: extract JSONB picks into {matchupId: {parkId: count}}
+-- SECURITY DEFINER bypasses RLS so all users' brackets are counted, not just the caller's.
 CREATE OR REPLACE FUNCTION get_aggregate_votes()
 RETURNS JSON
 LANGUAGE sql STABLE
+SECURITY DEFINER
 AS $$
   SELECT COALESCE(
     json_object_agg(matchup_id, votes),
@@ -113,9 +115,11 @@ AS $$
 $$;
 
 -- Combined votes (bracket + round) for a single matchup
+-- SECURITY DEFINER required for same reason as get_aggregate_votes.
 CREATE OR REPLACE FUNCTION get_combined_matchup_votes(p_matchup_id TEXT)
 RETURNS JSON
 LANGUAGE sql STABLE
+SECURITY DEFINER
 AS $$
   SELECT COALESCE(json_object_agg(park_id, total), '{}'::json)
   FROM (
@@ -139,9 +143,11 @@ AS $$
 $$;
 
 -- Total bracket voters (count of submitted brackets)
+-- SECURITY DEFINER required to count all users' brackets, not just the caller's.
 CREATE OR REPLACE FUNCTION get_total_voters()
 RETURNS INTEGER
 LANGUAGE sql STABLE
+SECURITY DEFINER
 AS $$
   SELECT COUNT(*)::integer FROM brackets;
 $$;
