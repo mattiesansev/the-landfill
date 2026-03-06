@@ -31,14 +31,13 @@ const BracketViewToggle = ({ bracketView, onChange }) => (
       className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
       onClick={() => onChange("live")}
     >
-      Live
+      Live Results
     </button>
   </div>
 );
 
 const BracketContainer = () => {
   const isMobile = useIsMobile();
-  const [bracketExpanded, setBracketExpanded] = useState(true);
   // "mine" = user's predictions, "live" = actual advancing parks
   const [bracketView, setBracketView] = useState("mine");
   const [bracketRegion] = useState("full");
@@ -88,11 +87,6 @@ const BracketContainer = () => {
   // Phase drives the entire layout
   const phase = !activeRound ? "submission" : activeRound === "completed" ? "complete" : "voting";
 
-  // Collapse bracket by default when voting starts; expand otherwise
-  useEffect(() => {
-    setBracketExpanded(phase !== "voting");
-  }, [phase]);
-
   // Reset to "My Bracket" view during submission — no live data to show yet
   useEffect(() => {
     if (phase === "submission") setBracketView("mine");
@@ -137,7 +131,7 @@ const BracketContainer = () => {
   const getMatchupVotingProps = (matchupId) => ({
     displayMode: shouldShowResults(matchupId) ? "results" : "user",
     isLocked,
-    votes: getVotesForMatchup(matchupId),
+    votes: null,
     actualWinner: actualWinners[matchupId],
     userPick: userPicks[matchupId],
     userPickMatches: doesUserPickMatch(matchupId),
@@ -197,8 +191,6 @@ const BracketContainer = () => {
         closeStatsComparison={closeStatsComparison}
         closeParkDetail={closeParkDetail}
         bracketRegion={bracketRegion}
-        bracketExpanded={bracketExpanded}
-        onToggleBracket={() => setBracketExpanded((e) => !e)}
         phase={phase}
         showViewToggle={showViewToggle}
         bracketView={bracketView}
@@ -240,21 +232,7 @@ const BracketContainer = () => {
         />
       )}
 
-      {/* Bracket section header with collapse toggle (voting phase only) */}
-      {phase === "voting" && (
-        <div className="bracket-section-header">
-          <button
-            className="bracket-collapse-toggle"
-            onClick={() => setBracketExpanded((e) => !e)}
-          >
-            {bracketExpanded ? "Hide bracket ▲" : "Show bracket & results ▼"}
-          </button>
-        </div>
-      )}
-
-      {/* Bracket — always visible during submission/complete, collapsible during voting */}
-      {(phase !== "voting" || bracketExpanded) && (
-        <>
+      <>
           {/* My Bracket / Live toggle (shown when results exist) */}
           {showViewToggle && (
             <BracketViewToggle
@@ -382,8 +360,7 @@ const BracketContainer = () => {
               </button>
             </div>
           )}
-        </>
-      )}
+      </>
 
       {selectedMatchup && (
         <StatsComparison
@@ -413,8 +390,6 @@ const MobileBracket = ({
   closeStatsComparison,
   closeParkDetail,
   bracketRegion,
-  bracketExpanded,
-  onToggleBracket,
   phase,
   showViewToggle,
   bracketView,
@@ -459,18 +434,7 @@ const MobileBracket = ({
         />
       )}
 
-      {/* Bracket collapse toggle during voting */}
-      {phase === "voting" && (
-        <div className="bracket-section-header">
-          <button className="bracket-collapse-toggle" onClick={onToggleBracket}>
-            {bracketExpanded ? "Hide bracket ▲" : "Show bracket & results ▼"}
-          </button>
-        </div>
-      )}
-
-      {/* Bracket */}
-      {(phase !== "voting" || bracketExpanded) && (
-        <>
+      <>
           {showViewToggle && (
             <BracketViewToggle
               bracketView={bracketView}
@@ -599,8 +563,7 @@ const MobileBracket = ({
               </button>
             </div>
           )}
-        </>
-      )}
+      </>
 
       {selectedMatchup && (
         <StatsComparison

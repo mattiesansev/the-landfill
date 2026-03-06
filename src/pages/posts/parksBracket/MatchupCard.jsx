@@ -40,8 +40,8 @@ const MatchupCard = ({
   // Only use actualWinner if it's one of the parks shown in this card;
   // otherwise fall back to the user's bracket pick.
   const actualWinnerIsDisplayed = actualWinner && (actualWinner === parkA || actualWinner === parkB);
-  const displayWinner = displayMode === "results" && actualWinnerIsDisplayed
-    ? actualWinner
+  const displayWinner = displayMode === "results"
+    ? (actualWinnerIsDisplayed ? actualWinner : null)
     : winner;
 
   // Check if user's pick was wrong (for results mode)
