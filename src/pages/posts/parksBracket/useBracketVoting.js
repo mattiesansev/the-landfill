@@ -399,13 +399,14 @@ export function useBracketVoting() {
 
       if (!matchupId.startsWith("r16")) {
         const actualParks = getActualMatchupParks(matchupId);
-        if (actualParks && actualParks.complete) {
+        if (actualParks) {
           const validParks = [actualParks.parkA, actualParks.parkB].filter(Boolean);
           if (validParks.length > 0 && !validParks.includes(userPick)) {
-            return false;
+            return false; // pick not among any known actual parks
           }
-        } else if (actualParks && !actualParks.complete) {
-          return null;
+          if (!actualParks.complete) {
+            return null; // parks partially resolved, can't confirm match yet
+          }
         }
       }
 

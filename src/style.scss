@@ -2262,39 +2262,17 @@
     &.active {
       background: #5a8ab8;
       border-color: #5a8ab8;
-      color: white;
+      color:  #718096;
     }
 
     &.live.active {
       background: #38a169;
       border-color: #38a169;
+      color:  #718096;
     }
   }
 }
 
-// Bracket section header — shown between round voting and bracket during voting phase
-.bracket-section-header {
-  display: flex;
-  justify-content: center;
-  margin: 16px 0 4px;
-}
-
-.bracket-collapse-toggle {
-  padding: 6px 18px;
-  background: none;
-  border: 1px solid #cbd5e0;
-  border-radius: 20px;
-  color: #718096;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
-
-  &:hover {
-    border-color: #8ac4d4;
-    color: #5a9ab5;
-  }
-}
 
 // Display Mode Toggle (My Bracket / Results)
 .display-mode-toggle {
