@@ -28,12 +28,6 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
             {parkA.image && (
               <img className="comparison-park-image" src={parkA.image} alt={parkA.name} />
             )}
-            <button
-              className={`select-btn ${matchup.winner === matchup.parkA ? "selected" : ""}`}
-              onClick={() => onSelectWinner(matchupId, matchup.parkA)}
-            >
-              Select
-            </button>
           </div>
 
           {/* Center stats table */}
@@ -55,12 +49,6 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
             {parkB.image && (
               <img className="comparison-park-image" src={parkB.image} alt={parkB.name} />
             )}
-            <button
-              className={`select-btn ${matchup.winner === matchup.parkB ? "selected" : ""}`}
-              onClick={() => onSelectWinner(matchupId, matchup.parkB)}
-            >
-              Select
-            </button>
           </div>
         </div>
 

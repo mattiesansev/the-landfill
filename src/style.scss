@@ -1526,9 +1526,10 @@
   gap: 15px;
 
   &.mobile {
-    .bracket-mobile {
-      width: 100%;
-    }
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    align-items: stretch;
   }
 }
 
@@ -2202,6 +2203,7 @@
 // Mobile Bracket Layout — swipeable rounds
 .mobile-round-tabs {
   display: flex;
+  justify-content: center;
   gap: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -2211,9 +2213,8 @@
   margin-bottom: 0;
 
   .mobile-round-tab {
-    flex: 1;
-    min-width: 0;
-    padding: 10px 6px;
+    flex: none;
+    padding: 10px 12px;
     font-size: 13px;
     font-weight: 500;
     font-family: inherit;
@@ -2240,19 +2241,28 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  width: 100%;
   &::-webkit-scrollbar { display: none; }
 
   .mobile-round-panel {
     flex: 0 0 100%;
     width: 100%;
+    min-width: 0;
     scroll-snap-align: start;
-    padding: 16px 4px;
+    padding: 16px 8px;
     box-sizing: border-box;
 
     .mobile-matchups {
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+
+    .matchup-card {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
   }
 }
