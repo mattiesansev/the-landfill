@@ -2199,38 +2199,60 @@
   }
 }
 
-// Mobile Bracket Layout
-.bracket-mobile {
-  width: 100%;
+// Mobile Bracket Layout — swipeable rounds
+.mobile-round-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 0;
 
-  .mobile-round {
-    margin-bottom: 30px;
+  .mobile-round-tab {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #718096;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    text-align: center;
 
-    h3 {
-      font-size: 18px;
+    &.active {
       color: #5a8ab8;
-      margin-bottom: 15px;
-      padding-left: 10px;
-      border-left: 3px solid #8ac4d4;
+      border-bottom-color: #5a8ab8;
+      font-weight: 600;
     }
+  }
+}
+
+.mobile-rounds-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+
+  .mobile-round-panel {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    padding: 16px 4px;
+    box-sizing: border-box;
 
     .mobile-matchups {
       display: flex;
       flex-direction: column;
       gap: 12px;
-    }
-  }
-
-  .mobile-champion {
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
-    border-radius: 12px;
-    border: 3px solid #eab308;
-
-    h3 {
-      color: #854d0e;
-      margin-bottom: 10px;
     }
   }
 }
