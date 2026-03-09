@@ -491,7 +491,7 @@
       display: flex;
       justify-content: center;
       gap: 50px;
-      padding: 40px 20px;
+      padding: 40px 0;
       box-sizing: border-box;
       max-width: 100%;
 
@@ -530,7 +530,7 @@
 
       // Use this if you need varied widths across content in an article
       .complexContentContainer {
-        width: 85%;
+        width: 100%;
         max-width: 100%;
         box-sizing: border-box;
         display: flex;
@@ -538,31 +538,21 @@
         justify-content: center;
         gap: 30px;
         align-items: center;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        padding: 40px;
+        padding: 40px 80px;
         margin: 0 auto;
         @media (max-width: 850px) {
-          width: 95%;
           padding: 20px;
         }
       }
 
       // Direct child .content gets the white box styling
       > .content {
-        width: 85%;
+        width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        padding: 40px;
+        padding: 40px 80px;
         margin: 0 auto;
         @media (max-width: 850px) {
-          width: 95%;
           padding: 20px;
         }
       }
@@ -725,7 +715,6 @@
             &:hover {
               background: rgba(255, 255, 255, 0.95);
               border-color: #8ac4d4;
-              transform: translateX(8px);
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             }
 
@@ -1332,7 +1321,6 @@
   &:hover {
     background: rgba(255, 255, 255, 0.95);
     border-color: #8ac4d4;
-    transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(138, 196, 212, 0.2);
   }
 
