@@ -256,7 +256,71 @@ BEGIN
   DELETE FROM round_votes;
   DELETE FROM brackets;
   DELETE FROM admin_overrides;
+  DELETE FROM bracket_vote_aggregates;
   UPDATE config SET bracket_locked = FALSE, active_round = NULL WHERE id = 1;
   RETURN TRUE;
 END;
 $$;
+
+
+-- ============================================================
+-- BRACKET VOTE AGGREGATES — pre-computed vote counts
+-- Maintained automatically via trigger on brackets table.
+-- ============================================================
+
+-- 5. BRACKET_VOTE_AGGREGATES — cached per-matchup per-park vote counts
+CREATE TABLE bracket_vote_aggregates (
+  matchup_id TEXT NOT NULL,
+  park_id TEXT NOT NULL,
+  vote_count INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (matchup_id, park_id)
+);
+
+ALTER TABLE bracket_vote_aggregates ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Anyone can read aggregates" ON bracket_vote_aggregates
+  FOR SELECT USING (true);
+
+-- Trigger function: full recompute on any bracket change
+CREATE OR REPLACE FUNCTION refresh_bracket_aggregates()
+RETURNS TRIGGER
+LANGUAGE plpgsql SECURITY DEFINER
+AS $$
+BEGIN
+  TRUNCATE bracket_vote_aggregates;
+  INSERT INTO bracket_vote_aggregates (matchup_id, park_id, vote_count)
+    SELECT kv.key AS matchup_id, kv.value #>> '{}' AS park_id, COUNT(*) AS vote_count
+    FROM brackets, jsonb_each(picks) AS kv
+    GROUP BY kv.key, kv.value;
+  RETURN NULL;
+END;
+$$;
+
+CREATE TRIGGER trg_refresh_bracket_aggregates
+  AFTER INSERT OR UPDATE OR DELETE ON brackets
+  FOR EACH STATEMENT
+  EXECUTE FUNCTION refresh_bracket_aggregates();
+
+-- Replace get_aggregate_votes to read from the materialized table
+CREATE OR REPLACE FUNCTION get_aggregate_votes()
+RETURNS JSON
+LANGUAGE sql STABLE
+SECURITY DEFINER
+AS $$
+  SELECT COALESCE(
+    json_object_agg(matchup_id, votes),
+    '{}'::json
+  )
+  FROM (
+    SELECT matchup_id, json_object_agg(park_id, vote_count) AS votes
+    FROM bracket_vote_aggregates
+    GROUP BY matchup_id
+  ) agg;
+$$;
+
+-- Backfill: populate aggregates from existing brackets
+-- (trigger only fires on future changes, this seeds existing data)
+INSERT INTO bracket_vote_aggregates (matchup_id, park_id, vote_count)
+  SELECT kv.key, kv.value #>> '{}', COUNT(*)
+  FROM brackets, jsonb_each(picks) AS kv
+  GROUP BY kv.key, kv.value
+ON CONFLICT (matchup_id, park_id) DO UPDATE SET vote_count = EXCLUDED.vote_count;
