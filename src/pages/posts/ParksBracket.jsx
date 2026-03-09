@@ -4,6 +4,7 @@ import ReactGA from "react-ga4";
 import AuthorFooter from "../../components/AuthorFooter";
 import { authors } from "../../authors/authors";
 import BracketContainer from "./parksBracket/BracketContainer";
+import ParkStatsSection from "./parksBracket/ParkStatsSection";
 
 ReactGA.initialize("G-NR2T70PVBG");
 
@@ -45,6 +46,8 @@ const ParksBracket = () => {
           <h2 className="bracket-title">2025 SF Parks Championship</h2>
           <BracketContainer />
         </div>
+
+        <ParkStatsSection />
 
         <h3>About the Seeding</h3>
         <p>

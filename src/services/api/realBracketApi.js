@@ -241,7 +241,7 @@ const ROUND_ORDER = ['round16', 'quarterfinals', 'semifinals', 'finals'];
 
 export async function isRoundClosed(roundKey) {
   const config = await getConfigData();
-  if (config.bracket_locked || config.active_round === 'completed') return true;
+  if (config.active_round === 'completed') return true;
   if (!config.active_round) return false;
   const activeIdx = ROUND_ORDER.indexOf(config.active_round);
   const roundIdx = ROUND_ORDER.indexOf(roundKey);
@@ -267,9 +267,9 @@ export async function getAllWinners() {
   for (const matchupId of allMatchups) {
     const roundKey = getRoundKeyFromMatchupId(matchupId);
 
-    // Check if round is closed
+    // Check if round is closed (based solely on activeRound progression, not bracket_locked)
     let roundClosed = false;
-    if (config.bracket_locked || config.active_round === 'completed') {
+    if (config.active_round === 'completed') {
       roundClosed = true;
     } else if (config.active_round) {
       const activeIdx = ROUND_ORDER.indexOf(config.active_round);
