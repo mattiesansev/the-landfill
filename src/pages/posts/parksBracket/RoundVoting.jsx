@@ -13,6 +13,7 @@ const RoundVoting = ({
   matchups,
   draftRoundVotes,
   perRoundVotes,
+  aggregateVotes,
   onDraftVote,
   onSubmitRoundVotes,
   isRoundVotesSubmitted,
@@ -103,6 +104,7 @@ const RoundVoting = ({
             matchup={matchup}
             userVote={draftRoundVotes[matchup.id] || null}
             perRoundVotes={perRoundVotes}
+            aggregateVotes={aggregateVotes}
             onVote={onDraftVote}
           />
         ))}

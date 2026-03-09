@@ -57,11 +57,13 @@ const BracketContainer = () => {
 
   const {
     userPicks,
+    isSubmitted,
     updatePick,
     submitUserBracket,
     resetPicks,
     bracketValidation,
     actualWinners,
+    aggregateVotes,
     refreshVotingData,
     doesUserPickMatch,
     getVotesForMatchup,
@@ -174,8 +176,13 @@ const BracketContainer = () => {
     };
   }, [bracket, bracketView, getActualMatchupParks, actualWinners]);
 
-  // Show the view toggle only when there are actual results to compare against
-  const showViewToggle = phase === "voting" || phase === "complete";
+  // Show the view toggle only when there are actual results AND user has a bracket
+  const showViewToggle = (phase === "voting" || phase === "complete") && isSubmitted;
+
+  // Force "live" view for users who never submitted when bracket is locked
+  useEffect(() => {
+    if (!isSubmitted && isLocked) setBracketView("live");
+  }, [isSubmitted, isLocked]);
 
   if (isMobile) {
     return (
@@ -202,6 +209,7 @@ const BracketContainer = () => {
         activeRoundMatchups={activeRoundMatchups}
         draftRoundVotes={draftRoundVotes}
         perRoundVotes={perRoundVotes}
+        aggregateVotes={aggregateVotes}
         updateRoundVoteDraft={updateRoundVoteDraft}
         submitAllRoundVotes={submitAllRoundVotes}
         isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -224,6 +232,7 @@ const BracketContainer = () => {
           matchups={activeRoundMatchups}
           draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
           onDraftVote={updateRoundVoteDraft}
           onSubmitRoundVotes={submitAllRoundVotes}
           isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -408,6 +417,7 @@ const MobileBracket = ({
   activeRoundMatchups,
   draftRoundVotes,
   perRoundVotes,
+  aggregateVotes,
   updateRoundVoteDraft,
   submitAllRoundVotes,
   isRoundVotesSubmitted,
@@ -470,6 +480,7 @@ const MobileBracket = ({
           matchups={activeRoundMatchups}
           draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
           onDraftVote={updateRoundVoteDraft}
           onSubmitRoundVotes={submitAllRoundVotes}
           isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -540,13 +551,19 @@ const MobileBracket = ({
             <button className="reset-bracket-btn" onClick={onReset}>
               Reset
             </button>
-            <button
-              className="save-bracket-btn"
-              onClick={onSave}
-              disabled={!bracketValidation.isComplete}
-            >
-              Save
-            </button>
+            {activeTab < 3 ? (
+              <button className="save-bracket-btn" onClick={() => scrollToTab(activeTab + 1)}>
+                Next
+              </button>
+            ) : (
+              <button
+                className="save-bracket-btn"
+                onClick={onSave}
+                disabled={!bracketValidation.isComplete}
+              >
+                Save
+              </button>
+            )}
           </div>
         )}
       </>

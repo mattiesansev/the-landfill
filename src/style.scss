@@ -1863,6 +1863,9 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    background: #f0f0f0;
+    color: #c0c0c0;
+    border-color: #e0e0e0;
   }
 }
 
@@ -1909,7 +1912,7 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 25px;
-  max-width: 500px;
+  max-width: calc(100vw - 40px);
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
@@ -1920,7 +1923,6 @@
 
   @media (max-width: 768px) {
     padding: 18px;
-    max-width: 95%;
   }
 
   .close-btn {
@@ -3359,6 +3361,30 @@
     color: #38a169;
     margin-top: 8px;
     font-weight: 500;
+  }
+
+  .round-vote-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+    background: #edf2f7;
+
+    .round-vote-bar-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+
+      &.left {
+        background: #5a8ab8;
+        border-radius: 3px 0 0 3px;
+      }
+
+      &.right {
+        background: #e2a84b;
+        border-radius: 0 3px 3px 0;
+      }
+    }
   }
 }
 
