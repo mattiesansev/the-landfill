@@ -1,0 +1,266 @@
+{
+  "meeting": {
+    "date": "2026-01-06",
+    "day_of_week": "Tuesday",
+    "start_time": null,
+    "end_time": "4:09 PM",
+    "location": "Legislative Chamber, Room 250, City Hall",
+    "type": "Regular Meeting"
+  },
+  "members": {
+    "present": [
+      "Chan",
+      "Chen",
+      "Dorsey",
+      "Mahmood",
+      "Mandelman",
+      "Melgar",
+      "Sauter",
+      "Sherrill",
+      "Walton",
+      "Wong"
+    ],
+    "absent": [
+      "Fielder"
+    ],
+    "president": null
+  },
+  "votes": [
+    {
+      "file_number": "250881",
+      "title": "Liquor License Transfer - 1201 Howard Street - Unimart",
+      "description": "Resolution determining that the person-to-person, premise-to-premise transfer of a Type-21 off-sale general beer, wine, and distilled spirits liquor license to Royal Mart LLC, doing business as Unimart, located 1201 Howard Street (District 6), will not serve the public convenience or necessity of the City and County of San Francisco; and requesting that the California Department of Alcoholic Beverage Control deny the issuance of the license, in accordance with California Business and Professions...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_public_safety_and_neighborhood_services"
+    },
+    {
+      "file_number": "251121",
+      "title": "Liquor License Transfer - 895 O'Farrell Street - Club 895",
+      "description": "Resolution determining that the person-to-person, premise-to-premise transfer of a Type-48 on-sale general public premises beer, wine, and distilled spirits liquor license to Big Skye LLC, doing business as Club 895, located at 895 O'Farrell Street (District 5), will serve the public convenience or necessity of the City and County of San Francisco, in accordance with California Business and Professions Code, Section 23958.4; and requesting that the California Department of Alcoholic Beverage Con...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_public_safety_and_neighborhood_services"
+    },
+    {
+      "file_number": "251142",
+      "title": "Liquor License Transfer - 2149 Union Street - Caldero",
+      "description": "Resolution determining that the person-to-person, premise-to-premise transfer of a Type-20 off-sale beer and wine liquor license to Caldero LLC, doing business as Caldero, located at 2149 Union Street (District 2), will serve the public convenience or necessity of the City and County of San Francisco, in accordance with California Business and Professions Code, Section 23958.4; and requesting that the California Department of Alcoholic Beverage Control impose conditions on the issuance of the li...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_public_safety_and_neighborhood_services"
+    },
+    {
+      "file_number": "251167",
+      "title": "Biannual Surveillance Report - Juvenile Probation Department - Web Filtering\n Software",
+      "description": "Resolution accepting the Biannual Surveillance Report under Administrative Code, Section 19B.6, for the Juvenile Probation Department. (Juvenile Probation Department)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_rules"
+    },
+    {
+      "file_number": "251271",
+      "title": "Urging the Recreation and Parks Commission to Commemoratively Name a Street\n in Golden Gate Park “Claude the Alligator Way”",
+      "description": "Resolution urging the Recreation and Parks Commission to commemoratively name a street in Golden Gate Park “Claude the Alligator Way.”",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Melgar",
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false
+    },
+    {
+      "file_number": "251272",
+      "title": "Supporting California State Assembly Bill No. 762 (Irwin and Wilson) - Disposable,\n Battery-Embedded Vapor Inhalation Device: Prohibition",
+      "description": "Resolution supporting California State Assembly Bill No. 762 (AB 762), introduced by Assemblymembers Jacqui Irwin and Lori Wilson, which would prohibit the sale of disposable, battery-embedded vapor inhalation devices and authorizes State departments to enforce this prohibition. Supervisor Sauter requested to be added as a co-sponsor.",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Sherrill",
+        "co_sponsors": [
+          "Mahmood",
+          "Walton",
+          "Sauter"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 10,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton",
+          "Wong"
+        ],
+        "noes_names": [],
+        "excused": [
+          "Fielder"
+        ]
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false
+    }
+  ],
+  "consent_agenda": {
+    "items": [],
+    "vote": null
+  },
+  "grouped_votes": [],
+  "severed_items": [
+    {
+      "file_number": "251271",
+      "severed_by": "Melgar"
+    }
+  ],
+  "notable_events": {
+    "commendations": [],
+    "mayors_appearance": null,
+    "appeals": [],
+    "amendments": []
+  },
+  "public_comment_summary": []
+}

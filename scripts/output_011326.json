@@ -1,0 +1,708 @@
+{
+  "meeting": {
+    "date": "2026-01-13",
+    "day_of_week": "Tuesday",
+    "start_time": null,
+    "end_time": "5:28 PM",
+    "location": "Legislative Chamber, Room 250, City Hall",
+    "type": "Special Meeting"
+  },
+  "members": {
+    "present": [
+      "Chan",
+      "Chen",
+      "Dorsey",
+      "Fielder",
+      "Mahmood",
+      "Mandelman",
+      "Melgar",
+      "Sauter",
+      "Sherrill",
+      "Walton",
+      "Wong"
+    ],
+    "absent": [],
+    "president": null
+  },
+  "votes": [
+    {
+      "file_number": "250824",
+      "title": "Street Vacation Order and Interdepartmental Property Transfer - 1236 Carroll\n Avenue - Fire Department Fire Training Facility",
+      "description": "Ordinance ordering the vacation of portions of Hawes Street, Griffith Street, and Bancroft Avenue for the development of the San Francisco Fire Department Training Facility at 1236 Carroll Avenue; reserving public utility and access rights in favor of the City and easement rights for existing PG&E overhead electrical facilities; approving the interdepartmental transfer of the street vacation area from Public Works to the Fire Department; authorizing official acts in connection with this Ordinanc...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": "Walton",
+        "co_sponsors": [
+          "Mandelman",
+          "Chan"
+        ]
+      },
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false
+    },
+    {
+      "file_number": "250823",
+      "title": "Planning Code, Zoning Map - 1236 Carroll Avenue",
+      "description": "Ordinance amending the Zoning Map of the Planning Code to change the zoning use district designation of Assessor’s Parcel Block No. 4877, Lot Nos. 001, 002, 003, and 004, and Assessor’s Parcel Block No. 4852, Lot Nos. 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, and 022, the full width of Bancroft Avenue between Griffith Street and Hawes Street, and the full widths of Griffith Street and Hawes Street between Carroll Avenue and Armstrong Aven...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": "Walton",
+        "co_sponsors": [
+          "Mandelman",
+          "Chan"
+        ]
+      },
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_land_use_and_transportation"
+    },
+    {
+      "file_number": "250719",
+      "title": "Planning Code - Definitions, Family, Dwelling Unit, Residential Care Facility",
+      "description": "Ordinance amending the Planning Code to define a “Family” as a “Household,” eliminate numeric limits on unrelated family members and requirements that family members share meals, classify Residential Care Facilities that serve six or fewer persons as Residential Uses, include certain groups of six or fewer people and associated operators as a “Household”; clarify the Zoning Administrator’s enforcement authority to administratively subpoena documents; affirming the Planning Department’s determina...",
+      "type": "Ordinance",
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": [
+          "Sauter",
+          "Sherrill",
+          "Melgar",
+          "Dorsey",
+          "Chen"
+        ]
+      },
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_land_use_and_transportation"
+    },
+    {
+      "file_number": "251168",
+      "title": "Accept and Expend Grant - Retroactive - United States Department of Energy -\n Buildings Upgrade Challenge, Phase 1 - $400,000",
+      "description": "Resolution retroactively authorizing the Department of the Environment (“Environment Department”) to accept and expend a prize in the amount of $400,000, which was confirmed as received by the Environment Department on December 12, 2023, from the United States Department of Energy’s Office of Energy Efficiency and Renewable Energy, to develop a pilot implementation plan to upgrade up to 200 San Francisco homes with electric heat pump water heaters (HPWH) and energy efficiency measures; and to ex...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251169",
+      "title": "Accept and Expend Grant - Retroactive - United States Department of Energy -\n Buildings Upgrade Challenge, Phase 2 - $400,000",
+      "description": "Resolution retroactively authorizing the Department of the Environment (“Environment Department”) to accept and expend a prize in the amount of $400,000 which was confirmed as received by the Environment Department on March 17, 2025, from the United States Department of Energy’s Office of Energy Efficiency and Renewable Energy, to implement a pilot program to upgrade 20 San Francisco homes with electric heat pump water heaters and energy efficiency measures. (Environment) Supervisor Mandelman re...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251170",
+      "title": "Airport Food and Beverage Minimum Annual Guarantee and Pre-Security \n Percentage Rent Reduction Program",
+      "description": "Resolution approving the Food and Beverage Minimum Annual Guarantee and Pre-Security Rent Reduction Program for Food & Beverage Concession Tenants allowing the San Francisco International Airport to enter into lease amendments to lower the minimum annual guarantees for 18 of 69 food & beverage leases, lower the percentage rent structure for seven pre-security leases, and alter the annual minimum annual guarantee adjustment methodology for all food and beverage leases. (Airport Commission) (Fisca...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251186",
+      "title": "Accept and Expend Grant - San Francisco General Hospital Foundation - ZPCQI\n Round 3: Optimizing Epic to Drive True North and Developing our people: The\n ZSFG Way - $6,755,486.26",
+      "description": "Resolution authorizing the Department of Public Health to accept and expend a grant in the amount of $6,755,486.26 from the San Francisco General Hospital Foundation for participation in a program, entitled “ZPCQI Round 3: Optimizing Epic to Drive True North and Developing our people: The ZSFG Way,” for the period of January 1, 2026, through June 30, 2029; approving the Notice of Award agreement pursuant to Charter, Section 9.118(a); and to authorize the Director of Health to enter into amendmen...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251188",
+      "title": "Accept and Expend Grant - Retroactive - California Department of Health -\n Disease Intervention Specialist (DIS) Workforce Development Grant - $1,123,180",
+      "description": "Resolution retroactively authorizing the Department of Public Health to accept and expend a grant in the amount of $1,123,180 from the California Department of Health for participation in a program, entitled “Disease Intervention Specialist (DIS) Workforce Development Grant,” for the period of July 1, 2025, through June 30, 2026; approving the Grant Agreement pursuant to Charter, Section 9.118(a); and to authorize the Director of Health to enter into amendments or modifications to the Grant Agre...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251257",
+      "title": "Accept and Expend Grant - Blue Cross of California Partnership Plan, Inc.\n (Anthem) - Housing and Homelessness Incentive Program Funding - San Francisco\n - $268,000",
+      "description": "Resolution authorizing the Human Services Agency to accept and expend a grant in the total amount of $268,000 from the Blue Cross of California Partnership Plan, Inc. for participation in the program entitled “Housing and Homelessness Incentive Program Funding - San Francisco” for the period of April 1, 2026, through March 31, 2030. (Human Services Agency)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251258",
+      "title": "Accept and Expend Grant - San Francisco Health Plan (Health Plan) - Housing and\n Homelessness Incentive Program Funding - San Francisco - $1,072,000",
+      "description": "Resolution authorizing the Human Services Agency to accept and expend a grant in the total amount of $1,072,000 from the San Francisco Health Plan for participation in the program entitled “Housing and Homelessness Incentive Program Funding - San Francisco” for the period of April 1, 2026, through March 31, 2030. (Human Services Agency)",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251259",
+      "title": "Grant Agreement - Accept and Expend Grant - Retroactive - California Department\n of Health Care Services - Bond BHCIP Round 1 - 887 Potrero Avenue - Anticipated\n Revenue $21,347,760",
+      "description": "Resolution authorizing the Department of Public Health to enter into a Grant Agreement for a term commencing on the execution of the Grant Agreement, through June 30, 2030, between the City and County of San Francisco (“City”), acting by and through its Department of Public Health (“DPH”), and the California Department of Health Care Services and its third-party administrator Advocates for Human Potential, Inc., having anticipated revenue to the City of $21,347,760; including a provision allowin...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251260",
+      "title": "Grant Agreement - Accept and Expend Grant - Retroactive - California Department\n of Health Care Services - Bond BHCIP Round 1 - Anticipated Revenue $6,337,140",
+      "description": "Resolution authorizing the Department of Public Health to enter into a Grant Agreement for a term commencing on the execution of the Grant Agreement, through June 30, 2030, between the City and County of San Francisco (“City”), acting by and through its Department of Public Health (“DPH”), and the California Department of Health Care Services and its third-party administrator Advocates for Human Potential, Inc., having anticipated revenue of $6,337,140; including a provision allowing for the rec...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": [
+          "Dorsey",
+          "Mandelman"
+        ]
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251263",
+      "title": "Grant Agreement - Retroactive - Operating Subsidy for Permanent Supportive\n \n Housing Units - RSU Associates, L.P. - 78 Haight Street and 120 Octavia Street -\n Not to Exceed $15,369,361",
+      "description": "Resolution retroactively approving and authorizing the Mayor and the Director of the Mayor’s Office of Housing and Community Development (“MOHCD”) to execute a grant agreement with RSU Associates, L.P. in the amount not to exceed $15,369,361 for a 20-year term to provide operating subsidies for a 100% affordable housing project housing for low-income and formerly homeless households, including transition aged youth, located at 78 Haight Street and 120 Octavia Street; approving the form of and au...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251264",
+      "title": "Multifamily Housing Revenue Notes - 967 Mission - Not to Exceed $41,750,000",
+      "description": "Resolution authorizing the execution and delivery of a multifamily housing revenue note (tax-exempt) in a principal amount not to exceed $21,750,000 and a multifamily housing revenue note (taxable) in an aggregate principal amount not to exceed $20,000,000 for a total not to exceed amount of $41,750,000 for the purpose of providing financing for the construction of a 95-unit multifamily rental housing development known as “967 Mission”; approving the form of and authorizing the execution of a fu...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251265",
+      "title": "Ground Lease and Amended, Restated and Consolidated Loan Agreement - 967\n \n Mission, LP - 967 Mission Street - 100% Affordable Housing - $15,000 Annual Base\n Rent - Loan Not to Exceed $44,318,000",
+      "description": "Resolution 1) approving and authorizing the Director of Property and the Director of the Mayor’s Office of Housing and Community Development (“MOHCD”) to enter into a Ground Lease for real property owned by the City located at 967 Mission Street (“Property”) with 967 Mission, LP, for a lease term of 75 years and one 24-year option to extend, and an annual base rent of $15,000 (“Ground Lease”) in order to construct a 100% affordable rental housing development consisting of 95-units (including one...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251166",
+      "title": "Contract Amendment - A&A Health Services - Rehabilitative Board and Care\n Residential Services - Not to Exceed $32,654,875",
+      "description": "Resolution approving Amendment No. 1 to the agreement between the City and County of San Francisco, acting by and through, the Department of Public Health (DPH), and A&A Health Services, Inc., to provide rehabilitative board and care residential services, to extend the term by three years from June 30, 2026, for a total term of July 1, 2024, through June 30, 2029, and to increase the amount by $22,722,200 for a total not to exceed amount of $32,654,875; and to authorize DPH to enter into amendme...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251266",
+      "title": "Grant Agreement - Senior Operating Subsidy - 967 Mission, LP - Not to Exceed\n $10,548,907",
+      "description": "Resolution approving and authorizing the Mayor and the Director of the Mayor’s Office of Housing and Community Development (“MOHCD”) to execute a grant agreement with 967 Mission, LP in the amount of $10,548,907 for a term of 15 years to provide operating subsidies for a 95-unit 100% affordable housing project, with 40 units of housing for extremely low-income seniors; approving the form of and authorizing the execution of the grant agreement; granting general authority to City officials to take...",
+      "type": "Resolution",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "ADOPTED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": true,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_budget_and_finance"
+    },
+    {
+      "file_number": "251276",
+      "title": "Appointments, Inclusionary Housing Technical Advisory Committee - Saki Baily\n and Tiffany Bohee",
+      "description": "Motion appointing Saki Baily (residency requirement waived) and Tiffany Bohee to the Inclusionary Housing Technical Advisory Committee, for unlimited terms. (Rules Committee) Applicants considered in committee: Saki Bailey, seats 1 and 2 (residency waiver required) Tiffany Bohee, seats 1 and 2 Motion No. M26-002",
+      "type": "Motion",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "APPROVED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_rules"
+    },
+    {
+      "file_number": "251273",
+      "title": "Mayoral Reappointment - City Administrator - Carmen Chu",
+      "description": "Motion confirming the Mayoral reappointment of Carmen Chu as City Administrator, for a five-year term beginning on the effective date of this Motion, pursuant to Charter, Section 3.104. (Clerk of the Board) Motion No. M26-001",
+      "type": "Motion",
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      },
+      "action": "APPROVED",
+      "vote": {
+        "ayes": 11,
+        "noes": 0,
+        "ayes_names": [
+          "Chan",
+          "Chen",
+          "Dorsey",
+          "Fielder",
+          "Mahmood",
+          "Mandelman",
+          "Melgar",
+          "Sauter",
+          "Sherrill",
+          "Walton"
+        ],
+        "noes_names": [],
+        "excused": []
+      },
+      "is_unanimous": true,
+      "fiscal_impact": false,
+      "first_reading_noes": null,
+      "is_consent_agenda": false,
+      "committee": "_rules"
+    }
+  ],
+  "consent_agenda": {
+    "items": [],
+    "vote": null
+  },
+  "grouped_votes": [],
+  "severed_items": [],
+  "notable_events": {
+    "commendations": [],
+    "mayors_appearance": {
+      "topic": "2",
+      "questioner": null,
+      "summary": null
+    },
+    "appeals": [],
+    "amendments": []
+  },
+  "public_comment_summary": []
+}

@@ -263,38 +263,44 @@ def parse_minutes(pdf_path: str) -> Dict[str, Any]:
 
     # Parse votes from relevant sections
     all_votes = []
+    seen_file_numbers = set()  # Track to avoid duplicates
 
-    # Regular agenda votes
-    if "regular_agenda" in sections:
-        regular_votes = parse_votes(sections["regular_agenda"])
-        for v in regular_votes:
-            v["is_consent_agenda"] = False
-        all_votes.extend(regular_votes)
+    # Sections that may contain votes
+    vote_sections = [
+        "regular_agenda",
+        "unfinished_business",
+        "new_business",
+        "adoption_without_committee",
+        "imperative_agenda",
+        "special_order_3pm",
+    ]
 
-    # Committee reports votes
+    # Parse votes from standard sections
+    for section_name in vote_sections:
+        if section_name in sections:
+            section_votes = parse_votes(sections[section_name])
+            for v in section_votes:
+                # Skip duplicates
+                if v.get("file_number") in seen_file_numbers:
+                    continue
+                seen_file_numbers.add(v.get("file_number"))
+                v["is_consent_agenda"] = False
+                all_votes.append(v)
+
+    # Committee reports votes (both "committee:*" keys and "committee_reports")
     for key, content in sections.items():
         if key.startswith("committee:") or key == "committee_reports":
             committee_votes = parse_votes(content)
             for v in committee_votes:
+                # Skip duplicates
+                if v.get("file_number") in seen_file_numbers:
+                    continue
+                seen_file_numbers.add(v.get("file_number"))
                 v["is_consent_agenda"] = False
                 # Extract committee name
                 if key.startswith("committee:"):
-                    v["committee"] = key.replace("committee:", "").strip()
-            all_votes.extend(committee_votes)
-
-    # Adoption without committee
-    if "adoption_without_committee" in sections:
-        adopt_votes = parse_votes(sections["adoption_without_committee"])
-        for v in adopt_votes:
-            v["is_consent_agenda"] = False
-        all_votes.extend(adopt_votes)
-
-    # Unfinished business
-    if "unfinished_business" in sections:
-        unfinished_votes = parse_votes(sections["unfinished_business"])
-        for v in unfinished_votes:
-            v["is_consent_agenda"] = False
-        all_votes.extend(unfinished_votes)
+                    v["committee"] = "_" + key.replace("committee:", "").strip().lower().replace(" ", "_")
+                all_votes.append(v)
 
     # Parse consent agenda
     consent_data = {"items": [], "vote": None}

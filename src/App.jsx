@@ -7,6 +7,10 @@ import AboutUs from "./pages/AboutUs"
 import TitleRow from "./components/TitleRow"
 import Contact from "./pages/Contact";
 import Parcels from "./pages/posts/RentControl"
+import ParksBracket from "./pages/posts/ParksBracket"
+import SupervisorUpdates from "./pages/posts/SupervisorUpdates"
+import WeeklyReport from "./pages/posts/WeeklyReport"
+import BracketAdmin from "./pages/BracketAdmin"
 
 const Layout = () => {
   return (
@@ -41,6 +45,22 @@ const router = createBrowserRouter([
       {
         path: "/post/rent-control-analysis",
         element: <Parcels />
+      },
+      {
+        path: "/post/sf-parks-bracket",
+        element: <ParksBracket />
+      },
+      {  
+        path: "/post/supervisor-updates",
+        element: <SupervisorUpdates />
+      },
+      {
+        path: "/post/supervisor-updates/:date",
+        element: <WeeklyReport />
+      },
+      {
+        path: "/bracket-admin",
+        element: <BracketAdmin />
       },
     ],
   },

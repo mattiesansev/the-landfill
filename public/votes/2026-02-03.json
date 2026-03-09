@@ -1,0 +1,171 @@
+{
+  "meeting": {
+    "date": "2026-02-03",
+    "display_date": "February 3, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "251245",
+      "title": "Charter Amendment - Lifetime Term Limits for Mayor and Supervisors",
+      "description": "Charter Amendment to change the current two-term limits for the office of Mayor and the office of Member of the Board of Supervisors from consecutive term limits to lifetime term limits; to be placed on the June 2, 2026 ballot.",
+      "action": "ORDERED SUBMITTED",
+      "vote": {
+        "ayes_names": ["Dorsey", "Fielder", "Mahmood", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "noes_names": ["Chan", "Chen", "Mandelman", "Walton"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": ["Melgar", "Sherrill", "Dorsey", "Sauter", "Wong"]
+      }
+    },
+    {
+      "file_number": "251268",
+      "title": "Downtown Revitalization and Economic Recovery Financing District",
+      "description": "Resolution establishing the San Francisco Downtown Revitalization and Economic Recovery Financing District, approving the Downtown Revitalization Financing Plan, including the division of taxes, and authorizing the filing of a judicial validation action.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "noes_names": ["Chan", "Chen", "Fielder", "Walton"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Sauter", "Mahmood", "Sherrill", "Mandelman", "Dorsey"]
+      }
+    },
+    {
+      "file_number": "251251",
+      "title": "Tenderloin and South of Market Retail Hours Restriction Pilot Program",
+      "description": "Ordinance expanding the current Tenderloin retail hours restriction pilot program to encompass high-crime areas across the Tenderloin and South of Market neighborhoods. Retail food and tobacco establishments are prohibited from being open from 12:00 a.m. to 5:00 a.m. (or 2:00 a.m. to 5:00 a.m. if regulated by ABC). Extended for 18 months.",
+      "action": "PASSED ON FIRST READING",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Wong"],
+        "noes_names": ["Fielder", "Walton"],
+        "excused": ["Sherrill"]
+      },
+      "sponsors": {
+        "primary": "Dorsey",
+        "co_sponsors": ["Mahmood", "Wong"]
+      }
+    },
+    {
+      "file_number": "251024",
+      "title": "Building Code - Hydrogen-Fueling Station Equipment",
+      "description": "Ordinance amending the Building Code to create a permit and permitting process for Hydrogen-Fueling Station Equipment installation.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Chan", "Fielder"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251216",
+      "title": "GO Bond - Earthquake Safety and Emergency Response - $535M for June Ballot",
+      "description": "Ordinance calling for a special election on June 2, 2026 to submit a proposition for $535 million in bonded indebtedness to finance construction, improvement, and seismic retrofitting of the Emergency Firefighting Water System, Firefighting Facilities, Police Facilities, and Potrero Yard Municipal Railway Bus Storage.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Mandelman", "Dorsey", "Wong", "Mahmood", "Sauter", "Chen", "Chan", "Sherrill", "Melgar"]
+      }
+    },
+    {
+      "file_number": "260092",
+      "title": "Reaffirming Commitment to TGNCI2S Rights and Gender-Affirming Care",
+      "description": "Resolution reaffirming San Francisco's commitment to the rights of its transgender, gender-nonconforming, intersex, and two-spirit (TGNCI2S) residents and employees to obtain gender-affirming care without discrimination; urging healthcare providers and insurance carriers to adhere to state and local laws mandating access to medically necessary healthcare.",
+      "action": "ADOPTED AS AMENDED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Sherrill"]
+      },
+      "sponsors": {
+        "primary": "Chan",
+        "co_sponsors": ["Mandelman", "Fielder", "Dorsey", "Chen", "Walton", "Mahmood", "Melgar", "Sauter"]
+      }
+    },
+    {
+      "file_number": "260093",
+      "title": "Condemning Closure of SF Immigration Court",
+      "description": "Resolution condemning the systematic dismantling of the San Francisco immigration court system and urging the Department of Justice to keep the San Francisco Immigration Court open to guarantee due process for all immigrants seeking a path towards citizenship.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Sherrill"]
+      },
+      "sponsors": {
+        "primary": "Chen",
+        "co_sponsors": ["Walton", "Chan", "Fielder", "Melgar", "Mahmood", "Sauter", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "251226",
+      "title": "Bloomberg Philanthropies Innovation Team Grant - $7M",
+      "description": "Ordinance authorizing the Mayor's Office to retroactively accept and expend a $7 million grant from Bloomberg Philanthropies to fund the Mayor's Office of Innovation from January 1, 2026 through December 31, 2028; creating four grant-funded positions in the Office of the City Administrator.",
+      "action": "PASSED ON FIRST READING AS AMENDED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mayor",
+        "co_sponsors": ["Mandelman"]
+      }
+    },
+    {
+      "file_number": "251139",
+      "title": "3333 Mission Street Development - Tentative Parcel Map Approved",
+      "description": "Motion approving the tentative parcel map for a three-lot subdivision, five residential and 10 commercial mixed-use condominium project at 3333 Mission Street and 190 Coleridge Street. The Board denied the appeal and upheld Public Works' approval.",
+      "action": "APPROVED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260094",
+      "title": "Supporting Fire-Displaced Residents with Extended Aid",
+      "description": "Resolution urging the City of San Francisco to strengthen fire displacement response systems and prevent newly displaced residents from becoming homeless through extended aid, case management, and stronger language access.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Sherrill"]
+      },
+      "sponsors": {
+        "primary": "Mahmood",
+        "co_sponsors": ["Chen", "Chan", "Dorsey", "Sauter", "Mandelman", "Melgar"]
+      }
+    }
+  ]
+}
