@@ -36,6 +36,13 @@ const BracketViewToggle = ({ bracketView, onChange }) => (
   </div>
 );
 
+// Banner shown when user is viewing live results without their own bracket
+const LiveResultsBanner = () => (
+  <div className="live-results-banner">
+    Viewing Live Results
+  </div>
+);
+
 const BracketContainer = () => {
   const isMobile = useIsMobile();
   // "mine" = user's predictions, "live" = actual advancing parks
@@ -249,6 +256,7 @@ const BracketContainer = () => {
               onChange={setBracketView}
             />
           )}
+          {!showViewToggle && bracketView === "live" && <LiveResultsBanner />}
 
           <div className={`bracket-container ${bracketRegion !== "full" ? "region-view" : ""}`}>
             {showWest && (
@@ -496,6 +504,7 @@ const MobileBracket = ({
             onChange={onBracketViewChange}
           />
         )}
+        {!showViewToggle && bracketView === "live" && <LiveResultsBanner />}
 
         {/* Round tabs */}
         <div className="mobile-round-tabs">
