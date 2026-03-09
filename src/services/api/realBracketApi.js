@@ -189,7 +189,7 @@ export async function getVoteLeaderboard() {
 
 export async function getTotalVoters() {
   const { data, error } = await supabase.rpc('get_total_voters');
-  if (error) return 0;
+  if (error) { console.error('getTotalVoters error:', error); return 0; }
   return data || 0;
 }
 
