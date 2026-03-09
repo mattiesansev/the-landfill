@@ -382,7 +382,7 @@ const BracketContainer = () => {
       {selectedMatchup && (
         <StatsComparison
           matchupId={selectedMatchup}
-          bracket={bracket}
+          bracket={displayBracket}
           onSelectWinner={selectWinner}
           onClose={closeStatsComparison}
         />
