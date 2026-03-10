@@ -19,14 +19,16 @@ function useIsMobile(breakpoint = 768) {
 }
 
 // Toggle between the user's own predictions and the live community bracket
-const BracketViewToggle = ({ bracketView, onChange }) => (
+const BracketViewToggle = ({ bracketView, onChange, showMyBracket = true }) => (
   <div className="bracket-view-toggle">
-    <button
-      className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
-      onClick={() => onChange("mine")}
-    >
-      My Bracket
-    </button>
+    {showMyBracket && (
+      <button
+        className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
+        onClick={() => onChange("mine")}
+      >
+        My Bracket
+      </button>
+    )}
     <button
       className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
       onClick={() => onChange("live")}
@@ -183,8 +185,8 @@ const BracketContainer = () => {
     };
   }, [bracket, bracketView, getActualMatchupParks, actualWinners]);
 
-  // Show the view toggle only when there are actual results AND user has a bracket
-  const showViewToggle = (phase === "voting" || phase === "complete") && isSubmitted;
+  // Show the view toggle when there are actual results to view
+  const showViewToggle = phase === "voting" || phase === "complete";
 
   // Force "live" view for users who never submitted when bracket is locked
   useEffect(() => {
@@ -212,6 +214,7 @@ const BracketContainer = () => {
         getMatchupVotingProps={activeVotingProps}
         bracketValidation={bracketValidation}
         isLocked={isLocked}
+        isSubmitted={isSubmitted}
         activeRound={activeRound}
         activeRoundMatchups={activeRoundMatchups}
         draftRoundVotes={draftRoundVotes}
@@ -254,9 +257,9 @@ const BracketContainer = () => {
             <BracketViewToggle
               bracketView={bracketView}
               onChange={setBracketView}
+              showMyBracket={isSubmitted}
             />
           )}
-          {!showViewToggle && bracketView === "live" && <LiveResultsBanner />}
 
           <div className={`bracket-container ${bracketRegion !== "full" ? "region-view" : ""}`}>
             {showWest && (
@@ -421,6 +424,7 @@ const MobileBracket = ({
   getMatchupVotingProps,
   bracketValidation,
   isLocked,
+  isSubmitted,
   activeRound,
   activeRoundMatchups,
   draftRoundVotes,
@@ -502,9 +506,9 @@ const MobileBracket = ({
           <BracketViewToggle
             bracketView={bracketView}
             onChange={onBracketViewChange}
+            showMyBracket={isSubmitted}
           />
         )}
-        {!showViewToggle && bracketView === "live" && <LiveResultsBanner />}
 
         {/* Round tabs */}
         <div className="mobile-round-tabs">
