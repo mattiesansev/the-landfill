@@ -1,0 +1,141 @@
+{
+  "meeting": {
+    "date": "2026-02-24",
+    "display_date": "February 24, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "251246",
+      "title": "Hearst Hotel Tax Incentive Agreement – Up to $40M",
+      "description": "Approves a 20-year agreement giving Bespoke Hospitality up to $40 million in net present value from new hotel occupancy taxes for the proposed Hearst Hotel at 5 Third Street. The deal subsidizes hotel development in the mid-Market area. Chan and Fielder voted no.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Chan", "Fielder"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Dorsey"]
+      }
+    },
+    {
+      "file_number": "260030",
+      "title": "Re-Affirming City Support to Acquire PG&E Assets",
+      "description": "Reaffirms the Board's support for the City acquiring PG&E's local electrical distribution infrastructure, following a series of major PG&E outages that disrupted power across San Francisco neighborhoods.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Chan",
+        "co_sponsors": ["Dorsey", "Sauter", "Walton", "Chen", "Fielder", "Mahmood", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "260031",
+      "title": "Urging CPUC to Hold PG&E Accountable for Outages",
+      "description": "Urges Governor Newsom and the California Public Utilities Commission to hold PG&E accountable for repeated power outages across San Francisco. Passed alongside a parallel resolution supporting the City acquiring PG&E assets.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Chan",
+        "co_sponsors": ["Dorsey", "Sauter", "Walton", "Chen", "Fielder", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "260026",
+      "title": "Bay Area Urban Areas Security Initiative MOU",
+      "description": "Retroactively approves a regional agreement with Oakland, San Jose, and Bay Area counties governing how federal Urban Areas Security Initiative (UASI) homeland security grant funds are distributed to the Bay Area.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251184",
+      "title": "Fixed Two-Year Budget for Airport, Port, and PUC",
+      "description": "Requires the Airport, Port, and Public Utilities Commission to submit fixed two-year budgets for FY2026-27 and FY2027-28, aligning them with the City's broader biennial budget cycle.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260089",
+      "title": "Paratransit Services Contract Extension – $339M Total",
+      "description": "Extends Transdev Services' paratransit brokerage contract by two years through June 2028, increasing the total contract value by $30.8 million to $339 million. Paratransit provides accessible transit for people with disabilities.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Mandelman"]
+      }
+    },
+    {
+      "file_number": "260090",
+      "title": "Up to $150M in Commercial Paper for Capital Projects",
+      "description": "Reauthorizes up to $150 million in tax-exempt and taxable lease revenue commercial paper certificates to fund city capital improvements and equipment acquisitions.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260075",
+      "title": "Vitalant Blood Products Contract Extension – $28.2M",
+      "description": "Extends the Department of Public Health's blood and blood products contract with Vitalant by five years through September 2031, increasing the total contract by $18.3 million to $28.2 million.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    }
+  ]
+}
