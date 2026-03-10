@@ -16,7 +16,7 @@ const AboutUs = () => {
     },
     {
       name: "Nick Vargas",
-      desc: "",
+      desc: "Nick never wrote a bio.",
       img: authors.nick.photo,
     },
     {
@@ -24,6 +24,10 @@ const AboutUs = () => {
       desc: "Maggie Carroll is an SF-based lady about town. Maggie graduated from UC Berkeley in 2022, majoring in Global Studies and Media Studies, and minoring in Journalism. She now works for the great state of California in a government oversight role. Maggie has really enjoyed working on the blog article with this incredible team! In her free time, Maggie enjoys doing ceramics, chatting with strangers, and meticulously decorating for various holidays.",
       img: authors.maggie.photo,
     },
+    {
+      name: "Megan Roche",
+      desc: "Megan Roche is a software engineer with a degree in Physics from Carnegie Mellon, and this is her first time working on a non-work coding project since college! She has a passion for learning- whether by reading books, taking CCSF courses, or going to seminars. She's excited to learn more about the beautiful city of San Francisco through working on the Bay Area Data Dump!",
+    }
   ]
   return (
     <div className="about">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useBracketState } from "./useBracketState";
 import { useBracketVoting } from "./useBracketVoting";
 import { PARKS } from "./bracketData";
@@ -19,20 +19,29 @@ function useIsMobile(breakpoint = 768) {
 }
 
 // Toggle between the user's own predictions and the live community bracket
-const BracketViewToggle = ({ bracketView, onChange }) => (
+const BracketViewToggle = ({ bracketView, onChange, showMyBracket = true }) => (
   <div className="bracket-view-toggle">
-    <button
-      className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
-      onClick={() => onChange("mine")}
-    >
-      My Bracket
-    </button>
+    {showMyBracket && (
+      <button
+        className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
+        onClick={() => onChange("mine")}
+      >
+        My Bracket
+      </button>
+    )}
     <button
       className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
       onClick={() => onChange("live")}
     >
       Live Results
     </button>
+  </div>
+);
+
+// Banner shown when user is viewing live results without their own bracket
+const LiveResultsBanner = () => (
+  <div className="live-results-banner">
+    Viewing Live Results
   </div>
 );
 
@@ -57,11 +66,13 @@ const BracketContainer = () => {
 
   const {
     userPicks,
+    isSubmitted,
     updatePick,
     submitUserBracket,
     resetPicks,
     bracketValidation,
     actualWinners,
+    aggregateVotes,
     refreshVotingData,
     doesUserPickMatch,
     getVotesForMatchup,
@@ -174,8 +185,13 @@ const BracketContainer = () => {
     };
   }, [bracket, bracketView, getActualMatchupParks, actualWinners]);
 
-  // Show the view toggle only when there are actual results to compare against
+  // Show the view toggle when there are actual results to view
   const showViewToggle = phase === "voting" || phase === "complete";
+
+  // Force "live" view for users who never submitted when bracket is locked
+  useEffect(() => {
+    if (!isSubmitted && isLocked) setBracketView("live");
+  }, [isSubmitted, isLocked]);
 
   if (isMobile) {
     return (
@@ -198,10 +214,12 @@ const BracketContainer = () => {
         getMatchupVotingProps={activeVotingProps}
         bracketValidation={bracketValidation}
         isLocked={isLocked}
+        isSubmitted={isSubmitted}
         activeRound={activeRound}
         activeRoundMatchups={activeRoundMatchups}
         draftRoundVotes={draftRoundVotes}
         perRoundVotes={perRoundVotes}
+        aggregateVotes={aggregateVotes}
         updateRoundVoteDraft={updateRoundVoteDraft}
         submitAllRoundVotes={submitAllRoundVotes}
         isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -224,6 +242,7 @@ const BracketContainer = () => {
           matchups={activeRoundMatchups}
           draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
           onDraftVote={updateRoundVoteDraft}
           onSubmitRoundVotes={submitAllRoundVotes}
           isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -238,6 +257,7 @@ const BracketContainer = () => {
             <BracketViewToggle
               bracketView={bracketView}
               onChange={setBracketView}
+              showMyBracket={isSubmitted || !isLocked}
             />
           )}
 
@@ -365,7 +385,7 @@ const BracketContainer = () => {
       {selectedMatchup && (
         <StatsComparison
           matchupId={selectedMatchup}
-          bracket={bracket}
+          bracket={displayBracket}
           onSelectWinner={selectWinner}
           onClose={closeStatsComparison}
         />
@@ -377,7 +397,14 @@ const BracketContainer = () => {
   );
 };
 
-// Mobile layout — same phase-aware structure
+const ROUND_TABS = [
+  { key: "round16", label: "Round of 16" },
+  { key: "quarterfinals", label: "Quarterfinals" },
+  { key: "semifinals", label: "Semifinals" },
+  { key: "finals", label: "Finals" },
+];
+
+// Mobile layout — swipeable rounds
 const MobileBracket = ({
   bracket,
   selectedMatchup,
@@ -397,16 +424,22 @@ const MobileBracket = ({
   getMatchupVotingProps,
   bracketValidation,
   isLocked,
+  isSubmitted,
   activeRound,
   activeRoundMatchups,
   draftRoundVotes,
   perRoundVotes,
+  aggregateVotes,
   updateRoundVoteDraft,
   submitAllRoundVotes,
   isRoundVotesSubmitted,
   hasUnsavedRoundChanges,
   roundVotingProgress,
 }) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const scrollRef = useRef(null);
+  const isScrolling = useRef(false);
+
   const isMatchupFlipped = (matchupId) => selectedMatchup === matchupId;
 
   const showWest = bracketRegion === "full" || bracketRegion === "west";
@@ -417,6 +450,39 @@ const MobileBracket = ({
   const westQF = bracket.quarterfinals.slice(0, 2);
   const eastQF = bracket.quarterfinals.slice(2, 4);
 
+  // Sync active tab from scroll position
+  const handleScroll = useCallback(() => {
+    if (isScrolling.current) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const index = Math.round(el.scrollLeft / el.offsetWidth);
+    setActiveTab(index);
+  }, []);
+
+  // Scroll to tab on tap
+  const scrollToTab = useCallback((index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isScrolling.current = true;
+    setActiveTab(index);
+    el.scrollTo({ left: index * el.offsetWidth, behavior: "smooth" });
+    setTimeout(() => { isScrolling.current = false; }, 400);
+  }, []);
+
+  const renderMatchups = (matchups, roundClass) =>
+    matchups.map((matchup) => (
+      <MatchupCard
+        key={matchup.id}
+        matchup={matchup}
+        roundClass={roundClass}
+        isFlipped={isMatchupFlipped(matchup.id)}
+        onSelectWinner={onSelectWinner}
+        onMatchupClick={onMatchupClick}
+        onParkClick={onParkClick}
+        {...getMatchupVotingProps(matchup.id)}
+      />
+    ));
+
   return (
     <div className="bracket-wrapper mobile">
       {/* Phase 2: Round voting at top */}
@@ -426,6 +492,7 @@ const MobileBracket = ({
           matchups={activeRoundMatchups}
           draftRoundVotes={draftRoundVotes}
           perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
           onDraftVote={updateRoundVoteDraft}
           onSubmitRoundVotes={submitAllRoundVotes}
           isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -435,125 +502,73 @@ const MobileBracket = ({
       )}
 
       <>
-          {showViewToggle && (
-            <BracketViewToggle
-              bracketView={bracketView}
-              onChange={onBracketViewChange}
-            />
-          )}
+        {showViewToggle && (
+          <BracketViewToggle
+            bracketView={bracketView}
+            onChange={onBracketViewChange}
+            showMyBracket={isSubmitted || !isLocked}
+          />
+        )}
 
-          <div className="bracket-mobile">
-            <div className="mobile-round">
-              <h3>Round of 16</h3>
-              <div className="mobile-matchups">
-                {showWest && westR16.map((matchup) => (
-                  <MatchupCard
-                    key={matchup.id}
-                    matchup={matchup}
-                    roundClass="r16"
-                    isFlipped={isMatchupFlipped(matchup.id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(matchup.id)}
-                  />
-                ))}
-                {showEast && eastR16.map((matchup) => (
-                  <MatchupCard
-                    key={matchup.id}
-                    matchup={matchup}
-                    roundClass="r16"
-                    isFlipped={isMatchupFlipped(matchup.id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(matchup.id)}
-                  />
-                ))}
-              </div>
+        {/* Round tabs */}
+        <div className="mobile-round-tabs">
+          {ROUND_TABS.map((tab, i) => (
+            <button
+              key={tab.key}
+              className={`mobile-round-tab ${activeTab === i ? "active" : ""}`}
+              onClick={() => scrollToTab(i)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Swipeable round panels */}
+        <div
+          className="mobile-rounds-scroll"
+          ref={scrollRef}
+          onScroll={handleScroll}
+        >
+          <div className="mobile-round-panel">
+            <div className="mobile-matchups">
+              {showWest && renderMatchups(westR16, "r16")}
+              {showEast && renderMatchups(eastR16, "r16")}
             </div>
-
-            <div className="mobile-round">
-              <h3>Quarterfinals</h3>
-              <div className="mobile-matchups">
-                {showWest && westQF.map((matchup) => (
-                  <MatchupCard
-                    key={matchup.id}
-                    matchup={matchup}
-                    roundClass="qf"
-                    isFlipped={isMatchupFlipped(matchup.id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(matchup.id)}
-                  />
-                ))}
-                {showEast && eastQF.map((matchup) => (
-                  <MatchupCard
-                    key={matchup.id}
-                    matchup={matchup}
-                    roundClass="qf"
-                    isFlipped={isMatchupFlipped(matchup.id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(matchup.id)}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="mobile-round">
-              <h3>Semifinals</h3>
-              <div className="mobile-matchups">
-                {showWest && (
-                  <MatchupCard
-                    matchup={bracket.semifinals[0]}
-                    roundClass="sf"
-                    isFlipped={isMatchupFlipped(bracket.semifinals[0].id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(bracket.semifinals[0].id)}
-                  />
-                )}
-                {showEast && (
-                  <MatchupCard
-                    matchup={bracket.semifinals[1]}
-                    roundClass="sf"
-                    isFlipped={isMatchupFlipped(bracket.semifinals[1].id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(bracket.semifinals[1].id)}
-                  />
-                )}
-              </div>
-            </div>
-
-            {bracketRegion === "full" && (
-              <div className="mobile-round">
-                <h3>Finals</h3>
-                <div className="mobile-matchups">
-                  <MatchupCard
-                    matchup={bracket.finals}
-                    roundClass="finals"
-                    isFlipped={isMatchupFlipped(bracket.finals.id)}
-                    onSelectWinner={onSelectWinner}
-                    onMatchupClick={onMatchupClick}
-                    onParkClick={onParkClick}
-                    {...getMatchupVotingProps(bracket.finals.id)}
-                  />
-                </div>
-              </div>
-            )}
           </div>
 
-          {!isLocked && bracketView === "mine" && (
-            <div className="bracket-action-buttons">
-              <button className="reset-bracket-btn" onClick={onReset}>
-                Reset
+          <div className="mobile-round-panel">
+            <div className="mobile-matchups">
+              {showWest && renderMatchups(westQF, "qf")}
+              {showEast && renderMatchups(eastQF, "qf")}
+            </div>
+          </div>
+
+          <div className="mobile-round-panel">
+            <div className="mobile-matchups">
+              {showWest && renderMatchups([bracket.semifinals[0]], "sf")}
+              {showEast && renderMatchups([bracket.semifinals[1]], "sf")}
+            </div>
+          </div>
+
+          {bracketRegion === "full" && (
+            <div className="mobile-round-panel">
+              <div className="mobile-matchups">
+                {renderMatchups([bracket.finals], "finals")}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {!isLocked && bracketView === "mine" && (
+          <div className="bracket-action-buttons">
+            <button className="reset-bracket-btn" onClick={onReset}>
+              Reset
+            </button>
+            {activeTab < 3 ? (
+              <button className="save-bracket-btn" onClick={() => scrollToTab(activeTab + 1)}>
+                Next
               </button>
+            ) : (
               <button
                 className="save-bracket-btn"
                 onClick={onSave}
@@ -561,8 +576,9 @@ const MobileBracket = ({
               >
                 Save
               </button>
-            </div>
-          )}
+            )}
+          </div>
+        )}
       </>
 
       {selectedMatchup && (

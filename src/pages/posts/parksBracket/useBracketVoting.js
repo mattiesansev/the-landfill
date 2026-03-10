@@ -68,13 +68,19 @@ export function useBracketVoting() {
 
   const getCombinedVotesLocal = useCallback(
     (matchupId) => {
-      const bracket = aggregateVotes[matchupId] || {};
       const round = perRoundVotes[matchupId] || {};
-      const combined = { ...bracket };
-      Object.entries(round).forEach(([parkId, count]) => {
-        combined[parkId] = (combined[parkId] || 0) + count;
-      });
-      return combined;
+      // R16: combine bracket predictions + per-round votes (mirrors getAllWinners logic)
+      // QF+: per-round votes only — bracket predictions may include parks that never
+      //       advanced to this round, which would show misleading vote counts
+      if (matchupId.startsWith('r16')) {
+        const bracket = aggregateVotes[matchupId] || {};
+        const combined = { ...bracket };
+        Object.entries(round).forEach(([parkId, count]) => {
+          combined[parkId] = (combined[parkId] || 0) + count;
+        });
+        return combined;
+      }
+      return { ...round };
     },
     [aggregateVotes, perRoundVotes]
   );

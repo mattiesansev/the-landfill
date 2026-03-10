@@ -1506,9 +1506,10 @@
   gap: 15px;
 
   &.mobile {
-    .bracket-mobile {
-      width: 100%;
-    }
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    align-items: stretch;
   }
 }
 
@@ -1842,6 +1843,9 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    background: #f0f0f0;
+    color: #c0c0c0;
+    border-color: #e0e0e0;
   }
 }
 
@@ -1888,7 +1892,7 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 25px;
-  max-width: 500px;
+  max-width: calc(100vw - 40px);
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
@@ -1899,7 +1903,6 @@
 
   @media (max-width: 768px) {
     padding: 18px;
-    max-width: 95%;
   }
 
   .close-btn {
@@ -2179,43 +2182,255 @@
   }
 }
 
-// Mobile Bracket Layout
-.bracket-mobile {
-  width: 100%;
+// Park Stats Section (expandable park list)
+.park-stats-section {
+  margin-top: 30px;
 
-  .mobile-round {
-    margin-bottom: 30px;
+  .park-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-    h3 {
-      font-size: 18px;
-      color: #5a8ab8;
-      margin-bottom: 15px;
-      padding-left: 10px;
-      border-left: 3px solid #8ac4d4;
+  .park-stats-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+
+    &.open {
+      border-color: #8ac4d4;
     }
+
+    .park-stats-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 12px 16px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      text-align: left;
+      gap: 10px;
+      transition: background 0.15s;
+
+      &:hover {
+        background: #f7fafc;
+      }
+    }
+
+    .park-stats-seed {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5a6577;
+      min-width: 28px;
+    }
+
+    .park-stats-name {
+      flex: 1;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .park-stats-chevron {
+      font-size: 12px;
+      color: #a0aec0;
+      transition: transform 0.2s;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+
+    .park-stats-body {
+      padding: 0 16px 16px;
+      background: #fafbfc;
+      border-top: 1px solid #edf2f7;
+
+      .park-stats-description {
+        font-size: 14px;
+        color: #4a5568;
+        margin: 12px 0;
+        line-height: 1.5;
+      }
+
+      .park-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 12px;
+
+        @media (max-width: 480px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat {
+          text-align: center;
+          padding: 8px;
+          background: white;
+          border-radius: 6px;
+          border: 1px solid #edf2f7;
+
+          .stat-label {
+            display: block;
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+          }
+
+          .stat-value {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d3748;
+          }
+        }
+      }
+
+      .park-stats-amenities {
+        margin-bottom: 12px;
+
+        h4 {
+          font-size: 13px;
+          color: #5a8ab8;
+          margin: 0 0 6px;
+        }
+
+        ul {
+          margin: 0;
+          padding-left: 20px;
+          font-size: 13px;
+          color: #4a5568;
+          columns: 2;
+
+          li {
+            margin-bottom: 2px;
+          }
+        }
+      }
+
+      .park-stats-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+
+        .feature {
+          font-size: 12px;
+          padding: 3px 10px;
+          border-radius: 12px;
+          background: #e6fffa;
+          color: #2c7a7b;
+          font-weight: 500;
+
+          &.no {
+            background: #fff5f5;
+            color: #c53030;
+          }
+        }
+      }
+
+      .park-stats-fun-fact {
+        font-size: 13px;
+        color: #4a5568;
+        background: #fffff0;
+        border-left: 3px solid #ecc94b;
+        padding: 8px 12px;
+        border-radius: 0 6px 6px 0;
+        line-height: 1.4;
+
+        strong {
+          color: #975a16;
+        }
+      }
+    }
+  }
+}
+
+// Mobile Bracket Layout — swipeable rounds
+.mobile-round-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 0;
+
+  .mobile-round-tab {
+    flex: none;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #718096;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    text-align: center;
+
+    &.active {
+      color: #5a8ab8;
+      border-bottom-color: #5a8ab8;
+      font-weight: 600;
+    }
+  }
+}
+
+.mobile-rounds-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
+  &::-webkit-scrollbar { display: none; }
+
+  .mobile-round-panel {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    padding: 16px 8px;
+    box-sizing: border-box;
 
     .mobile-matchups {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-  }
 
-  .mobile-champion {
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
-    border-radius: 12px;
-    border: 3px solid #eab308;
-
-    h3 {
-      color: #854d0e;
-      margin-bottom: 10px;
+    .matchup-card {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
   }
 }
 
 // My Bracket / Live toggle
+.live-results-banner {
+  text-align: center;
+  padding: 8px 16px;
+  margin: 12px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a8ab8;
+  background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+  border: 1px solid #bee3f8;
+  border-radius: 8px;
+}
+
 .bracket-view-toggle {
   display: flex;
   justify-content: center;
@@ -3307,6 +3522,30 @@
     color: #38a169;
     margin-top: 8px;
     font-weight: 500;
+  }
+
+  .round-vote-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+    background: #edf2f7;
+
+    .round-vote-bar-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+
+      &.left {
+        background: #5a8ab8;
+        border-radius: 3px 0 0 3px;
+      }
+
+      &.right {
+        background: #e2a84b;
+        border-radius: 0 3px 3px 0;
+      }
+    }
   }
 }
 
