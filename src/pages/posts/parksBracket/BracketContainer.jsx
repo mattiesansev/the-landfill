@@ -257,7 +257,7 @@ const BracketContainer = () => {
             <BracketViewToggle
               bracketView={bracketView}
               onChange={setBracketView}
-              showMyBracket={isSubmitted}
+              showMyBracket={isSubmitted || !isLocked}
             />
           )}
 
@@ -506,7 +506,7 @@ const MobileBracket = ({
           <BracketViewToggle
             bracketView={bracketView}
             onChange={onBracketViewChange}
-            showMyBracket={isSubmitted}
+            showMyBracket={isSubmitted || !isLocked}
           />
         )}
 
