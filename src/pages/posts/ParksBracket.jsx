@@ -42,6 +42,10 @@ const ParksBracket = () => {
           park name to see more details about that park.
         </p>
 
+        <div className="bracket-callout">
+          Follow our <a href="https://www.instagram.com/bayareadatadump/" target="_blank" rel="noopener noreferrer">Instagram</a> or <a href="https://docs.google.com/forms/d/e/1FAIpQLSfffPb045GrsatVJLg6jUN1nOprh2NlREhJgmIUfmxBFC_T_w/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">sign up for our newsletter</a> to get updates per round.
+        </div>
+
         <div className="bracket-section">
           <h2 className="bracket-title">2025 SF Parks Championship</h2>
           <BracketContainer />
