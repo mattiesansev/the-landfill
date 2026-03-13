@@ -397,35 +397,74 @@
     //ABOUT
     .about {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       @media (max-width: 850px) {
-        max-width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 40px 20px;
         text-align: center;
       }
 
+      .about-group-photo {
+        width: 65%;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        img {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .about-section {
+        width: 65%;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #d0e6ed;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        h2 {
+          font-size: 30px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 28px;
+          color: #2d3748;
+        }
+      }
+
+      .meet-the-team {
+        width: 65%;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 24px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+      }
+
       .people {
-        margin-top: 50px;
         flex-direction: column;
         display: flex;
         width: 65%;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        border: 2px solid #8ac4d4;
-        padding: 40px;
         @media (max-width: 850px) {
           width: 95%;
-          padding: 20px;
         }
         .person {
           display: flex;
           gap: 25px;
-          padding-top: 40px;
+          padding: 32px 0;
+          border-bottom: 1px solid #d0e6ed;
+          &:last-child {
+            border-bottom: none;
+          }
 
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
@@ -1078,6 +1117,10 @@
 }
 
 // Global styles for Leaflet
+.leaflet-container {
+  z-index: 1;
+}
+
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
