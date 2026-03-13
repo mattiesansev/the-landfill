@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { PARKS } from "./bracketData";
 
 const ParkDetailModal = ({ parkId, onClose }) => {
@@ -6,7 +7,7 @@ const ParkDetailModal = ({ parkId, onClose }) => {
 
   const park = PARKS[parkId];
 
-  return (
+  return createPortal(
     <div className="park-detail-overlay" onClick={onClose}>
       <div className="park-detail-modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>
@@ -60,7 +61,8 @@ const ParkDetailModal = ({ parkId, onClose }) => {
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

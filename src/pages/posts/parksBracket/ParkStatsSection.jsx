@@ -12,7 +12,7 @@ const ParkStatsSection = () => {
 
   return (
     <div className="park-stats-section">
-      <h3>Park Stats</h3>
+      <h3>Park Info & Stats</h3>
       <div className="park-stats-list">
         {sortedParks.map((park) => {
           const isOpen = expandedPark === park.id;

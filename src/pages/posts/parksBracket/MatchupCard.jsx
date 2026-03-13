@@ -61,6 +61,8 @@ const MatchupCard = ({
             onParkNameClick={onParkClick}
             isUserPick={userPick === parkA && displayMode === "results"}
             userPickWrong={userPick === parkA && userWasWrong}
+            roundClass={roundClass}
+            votePosition={showVotes ? "park-a" : null}
           />
           <div className="matchup-divider">vs</div>
           <ParkCard
@@ -71,6 +73,8 @@ const MatchupCard = ({
             onParkNameClick={onParkClick}
             isUserPick={userPick === parkB && displayMode === "results"}
             userPickWrong={userPick === parkB && userWasWrong}
+            roundClass={roundClass}
+            votePosition={showVotes ? "park-b" : null}
           />
           {showVotes && (
             <VoteResultsOverlay

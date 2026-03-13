@@ -1691,22 +1691,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     text-align: center;
     width: 95%;
     min-height: 12px;
     margin-top: 2px;
-    background: none;
-    border: none;
-    border-top: 1px solid #e2e8f0;
+    padding: 4px 0;
+    background: rgba(90, 154, 181, 0.08);
+    border: 1px solid rgba(90, 154, 181, 0.25);
     cursor: pointer;
-    color: #a0aec0;
+    color: #5a9ab5;
     font-size: 12px;
-    border-radius: 0 0 4px 4px;
-    transition: background 0.15s ease, color 0.15s ease;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 
     &:hover {
-      background: rgba(138, 196, 212, 0.12);
-      color: #5a9ab5;
+      background: rgba(90, 154, 181, 0.18);
+      border-color: rgba(90, 154, 181, 0.45);
+      color: #3d7a94;
     }
 
     &:active {
@@ -1723,6 +1726,22 @@
   border-radius: 4px;
   transition: all 0.2s ease;
   cursor: pointer;
+
+  .color-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.park-a {
+      background: #5a8ab8;
+    }
+
+    &.park-b {
+      background: #e2a84b;
+    }
+  }
 
   &:hover {
     background-color: rgba(138, 196, 212, 0.15);
@@ -1883,6 +1902,7 @@
   align-items: center;
   z-index: 1000;
   padding: 20px;
+  overflow-y: auto;
   animation: fadeIn 0.3s ease;
 }
 
@@ -1919,6 +1939,7 @@
   overflow-x: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin: auto;
   animation: flipIn 0.4s ease;
 
   @media (max-width: 768px) {
@@ -1935,6 +1956,7 @@
     cursor: pointer;
     color: #718096;
     line-height: 1;
+    z-index: 1;
 
     &:hover {
       color: #2d3748;
@@ -1950,70 +1972,63 @@
   }
 }
 
-.comparison-main {
+// Park comparison header: images + names side by side
+.comparison-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  padding: 0 10px;
 
-  @media (max-width: 768px) {
+  .comparison-park-header {
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
-}
+    gap: 8px;
+    flex: 1;
 
-.comparison-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-
-  .comparison-park-image {
-    width: 80px;
-    height: 100px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 2px solid #e2e8f0;
-  }
-
-  .select-btn {
-    padding: 6px 16px;
-    border: 2px solid #7a9ec4;
-    border-radius: 16px;
-    background: white;
-    color: #5a8ab8;
-    font-weight: 500;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(122, 158, 196, 0.1);
-    }
-
-    &.selected {
-      background: #7a9ec4;
-      color: white;
-    }
-  }
-
-  @media (max-width: 768px) {
     .comparison-park-image {
-      width: 60px;
-      height: 80px;
+      width: 80px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #e2e8f0;
+    }
+
+    .comparison-park-name {
+      color: #5a8ab8;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 400px) {
+    gap: 10px;
+    padding: 0;
+
+    .comparison-park-header {
+      .comparison-park-image {
+        width: 60px;
+        height: 75px;
+      }
+
+      .comparison-park-name {
+        font-size: 12px;
+      }
     }
   }
 }
 
 .comparison-stats {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  max-width: 220px;
+  max-width: 280px;
+  margin: 0 auto 16px;
 
   .stat-row {
     text-align: center;
@@ -2057,7 +2072,7 @@
   padding-top: 15px;
   border-top: 1px solid #e2e8f0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     gap: 15px;
   }
@@ -2205,6 +2220,14 @@
 // Park Stats Section (expandable park list)
 .park-stats-section {
   margin-top: 30px;
+
+  .park-stats-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
 
   .park-stats-list {
     display: flex;
@@ -2777,18 +2800,20 @@
       transition: width 0.3s ease;
 
       &.park-a {
-        background: #7a9ec4;
+        background: #5a8ab8;
+        border-radius: 3px 0 0 3px;
 
         &.winner {
-          background: #48bb78;
+          background: #4a7ba8;
         }
       }
 
       &.park-b {
-        background: #a0aec0;
+        background: #e2a84b;
+        border-radius: 0 3px 3px 0;
 
         &.winner {
-          background: #48bb78;
+          background: #d49a3e;
         }
       }
     }
@@ -2802,11 +2827,36 @@
     font-size: 11px;
 
     .vote-count {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       font-weight: 600;
-      color: #718096;
+
+      &.park-a {
+        color: #5a8ab8;
+      }
+
+      &.park-b {
+        color: #e2a84b;
+      }
 
       &.winner {
-        color: #48bb78;
+        font-weight: 700;
+      }
+    }
+
+    .color-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+
+      &.park-a {
+        background: #5a8ab8;
+      }
+
+      &.park-b {
+        background: #e2a84b;
       }
     }
 
