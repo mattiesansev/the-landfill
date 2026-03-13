@@ -21,6 +21,12 @@ function useIsMobile(breakpoint = 768) {
 // Toggle between the user's own predictions and the live community bracket
 const BracketViewToggle = ({ bracketView, onChange, showMyBracket = true }) => (
   <div className="bracket-view-toggle">
+    <button
+      className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
+      onClick={() => onChange("live")}
+    >
+      Live Results
+    </button>
     {showMyBracket && (
       <button
         className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
@@ -29,12 +35,6 @@ const BracketViewToggle = ({ bracketView, onChange, showMyBracket = true }) => (
         My Bracket
       </button>
     )}
-    <button
-      className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
-      onClick={() => onChange("live")}
-    >
-      Live Results
-    </button>
   </div>
 );
 
@@ -48,7 +48,7 @@ const LiveResultsBanner = () => (
 const BracketContainer = () => {
   const isMobile = useIsMobile();
   // "mine" = user's predictions, "live" = actual advancing parks
-  const [bracketView, setBracketView] = useState("mine");
+  const [bracketView, setBracketView] = useState("live");
   const [bracketRegion] = useState("full");
 
   const {
@@ -99,8 +99,15 @@ const BracketContainer = () => {
   const phase = !activeRound ? "submission" : activeRound === "completed" ? "complete" : "voting";
 
   // Reset to "My Bracket" view during submission — no live data to show yet
+  // Use a ref to avoid resetting on initial load (activeRound starts null before fetch)
+  const hasLoadedPhase = useRef(false);
   useEffect(() => {
-    if (phase === "submission") setBracketView("mine");
+    if (phase === "submission" && hasLoadedPhase.current) {
+      setBracketView("mine");
+    }
+    if (phase !== "submission") {
+      hasLoadedPhase.current = true;
+    }
   }, [phase]);
 
   // Sync visual bracket state from persisted picks
@@ -235,22 +242,6 @@ const BracketContainer = () => {
 
   return (
     <div className="bracket-wrapper">
-      {/* Phase 2: Round voting at the top when a round is active */}
-      {phase === "voting" && (
-        <RoundVoting
-          activeRound={activeRound}
-          matchups={activeRoundMatchups}
-          draftRoundVotes={draftRoundVotes}
-          perRoundVotes={perRoundVotes}
-          aggregateVotes={aggregateVotes}
-          onDraftVote={updateRoundVoteDraft}
-          onSubmitRoundVotes={submitAllRoundVotes}
-          isRoundVotesSubmitted={isRoundVotesSubmitted}
-          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
-          roundVotingProgress={roundVotingProgress}
-        />
-      )}
-
       <>
           {/* My Bracket / Live toggle (shown when results exist) */}
           {showViewToggle && (
@@ -382,6 +373,22 @@ const BracketContainer = () => {
           )}
       </>
 
+      {/* Round voting below the bracket view */}
+      {phase === "voting" && (
+        <RoundVoting
+          activeRound={activeRound}
+          matchups={activeRoundMatchups}
+          draftRoundVotes={draftRoundVotes}
+          perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
+          onDraftVote={updateRoundVoteDraft}
+          onSubmitRoundVotes={submitAllRoundVotes}
+          isRoundVotesSubmitted={isRoundVotesSubmitted}
+          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+          roundVotingProgress={roundVotingProgress}
+        />
+      )}
+
       {selectedMatchup && (
         <StatsComparison
           matchupId={selectedMatchup}
@@ -485,22 +492,6 @@ const MobileBracket = ({
 
   return (
     <div className="bracket-wrapper mobile">
-      {/* Phase 2: Round voting at top */}
-      {phase === "voting" && (
-        <RoundVoting
-          activeRound={activeRound}
-          matchups={activeRoundMatchups}
-          draftRoundVotes={draftRoundVotes}
-          perRoundVotes={perRoundVotes}
-          aggregateVotes={aggregateVotes}
-          onDraftVote={updateRoundVoteDraft}
-          onSubmitRoundVotes={submitAllRoundVotes}
-          isRoundVotesSubmitted={isRoundVotesSubmitted}
-          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
-          roundVotingProgress={roundVotingProgress}
-        />
-      )}
-
       <>
         {showViewToggle && (
           <BracketViewToggle
@@ -534,6 +525,12 @@ const MobileBracket = ({
               {showWest && renderMatchups(westR16, "r16")}
               {showEast && renderMatchups(eastR16, "r16")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(1)}>Next</button>
+              </div>
+            )}
           </div>
 
           <div className="mobile-round-panel">
@@ -541,6 +538,12 @@ const MobileBracket = ({
               {showWest && renderMatchups(westQF, "qf")}
               {showEast && renderMatchups(eastQF, "qf")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(2)}>Next</button>
+              </div>
+            )}
           </div>
 
           <div className="mobile-round-panel">
@@ -548,6 +551,12 @@ const MobileBracket = ({
               {showWest && renderMatchups([bracket.semifinals[0]], "sf")}
               {showEast && renderMatchups([bracket.semifinals[1]], "sf")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(3)}>Next</button>
+              </div>
+            )}
           </div>
 
           {bracketRegion === "full" && (
@@ -555,31 +564,38 @@ const MobileBracket = ({
               <div className="mobile-matchups">
                 {renderMatchups([bracket.finals], "finals")}
               </div>
+              {!isLocked && bracketView === "mine" && (
+                <div className="bracket-action-buttons">
+                  <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                  <button
+                    className="save-bracket-btn"
+                    onClick={onSave}
+                    disabled={!bracketValidation.isComplete}
+                  >
+                    Save
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
-
-        {!isLocked && bracketView === "mine" && (
-          <div className="bracket-action-buttons">
-            <button className="reset-bracket-btn" onClick={onReset}>
-              Reset
-            </button>
-            {activeTab < 3 ? (
-              <button className="save-bracket-btn" onClick={() => scrollToTab(activeTab + 1)}>
-                Next
-              </button>
-            ) : (
-              <button
-                className="save-bracket-btn"
-                onClick={onSave}
-                disabled={!bracketValidation.isComplete}
-              >
-                Save
-              </button>
-            )}
-          </div>
-        )}
       </>
+
+      {/* Round voting below the bracket view */}
+      {phase === "voting" && (
+        <RoundVoting
+          activeRound={activeRound}
+          matchups={activeRoundMatchups}
+          draftRoundVotes={draftRoundVotes}
+          perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
+          onDraftVote={updateRoundVoteDraft}
+          onSubmitRoundVotes={submitAllRoundVotes}
+          isRoundVotesSubmitted={isRoundVotesSubmitted}
+          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+          roundVotingProgress={roundVotingProgress}
+        />
+      )}
 
       {selectedMatchup && (
         <StatsComparison

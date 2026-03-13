@@ -474,20 +474,143 @@ export async function importVotesFromCSV(_csv) {
   console.warn('importVotesFromCSV: not yet implemented for Supabase');
 }
 
-// ============ Simulation (Dev Only) ============
-// Simulation stays client-side in mockBracketApi.
-// These are no-ops in the real API.
+// ============ Simulation (Dev/Admin Only) ============
 
-export async function addSimulatedVotes(_count = 10, _bias = null) {
-  console.warn('addSimulatedVotes: not available with real backend');
-  return { added: 0, totalVoters: 0 };
+// R16 matchups with their park pairs
+const R16_MATCHUPS = [
+  { id: 'r16-1', parkA: 'golden-gate', parkB: 'sunset-dunes' },
+  { id: 'r16-2', parkA: 'corona-heights', parkB: 'the-panhandle' },
+  { id: 'r16-3', parkA: 'alamo-square', parkB: 'alta-plaza' },
+  { id: 'r16-4', parkA: 'buena-vista-park', parkB: 'stern-grove' },
+  { id: 'r16-5', parkA: 'presidio-tunnel-tops', parkB: 'balboa-park' },
+  { id: 'r16-6', parkA: 'twin-peaks', parkB: 'marina-green' },
+  { id: 'r16-7', parkA: 'dolores-park', parkB: 'duboce-park' },
+  { id: 'r16-8', parkA: 'lake-merced', parkB: 'ocean-beach' },
+];
+
+const PROGRESSION = {
+  'r16-1': { next: 'qf-1', slot: 'A' },
+  'r16-2': { next: 'qf-1', slot: 'B' },
+  'r16-3': { next: 'qf-2', slot: 'A' },
+  'r16-4': { next: 'qf-2', slot: 'B' },
+  'r16-5': { next: 'qf-3', slot: 'A' },
+  'r16-6': { next: 'qf-3', slot: 'B' },
+  'r16-7': { next: 'qf-4', slot: 'A' },
+  'r16-8': { next: 'qf-4', slot: 'B' },
+  'qf-1': { next: 'sf-1', slot: 'A' },
+  'qf-2': { next: 'sf-1', slot: 'B' },
+  'qf-3': { next: 'sf-2', slot: 'A' },
+  'qf-4': { next: 'sf-2', slot: 'B' },
+  'sf-1': { next: 'f-1', slot: 'A' },
+  'sf-2': { next: 'f-1', slot: 'B' },
+};
+
+function generateRandomBracketPicks() {
+  const picks = {};
+  const matchupParks = {};
+
+  // R16: pick random winner from each matchup
+  for (const m of R16_MATCHUPS) {
+    const winner = Math.random() < 0.5 ? m.parkA : m.parkB;
+    picks[m.id] = winner;
+    matchupParks[m.id] = { parkA: m.parkA, parkB: m.parkB };
+  }
+
+  // Build subsequent rounds from winners
+  const rounds = [
+    ['qf-1', 'qf-2', 'qf-3', 'qf-4'],
+    ['sf-1', 'sf-2'],
+    ['f-1'],
+  ];
+
+  for (const roundIds of rounds) {
+    for (const matchupId of roundIds) {
+      // Find the two feeder matchups
+      const feeders = Object.entries(PROGRESSION).filter(([, v]) => v.next === matchupId);
+      const parkA = picks[feeders.find(([, v]) => v.slot === 'A')[0]];
+      const parkB = picks[feeders.find(([, v]) => v.slot === 'B')[0]];
+      matchupParks[matchupId] = { parkA, parkB };
+      picks[matchupId] = Math.random() < 0.5 ? parkA : parkB;
+    }
+  }
+
+  return picks;
+}
+
+export async function simulateVoters(count = 10) {
+  const password = getAdminPassword();
+  let added = 0;
+
+  // Get active round to also simulate round votes
+  const config = await getConfigData();
+  const activeRound = config.active_round;
+
+  for (let i = 0; i < count; i++) {
+    const picks = generateRandomBracketPicks();
+
+    // Submit bracket via admin RPC (bypasses lock)
+    const { error } = await supabase.rpc('admin_simulate_bracket', {
+      p_password: password,
+      p_picks: picks,
+    });
+
+    if (error) {
+      console.error(`simulateVoters bracket ${i}:`, error);
+      // Fallback: insert directly if RPC doesn't exist
+      if (error.message?.includes('function') || error.code === '42883') {
+        const fakeUserId = crypto.randomUUID();
+        const now = new Date().toISOString();
+        const { error: insertErr } = await supabase.from('brackets').insert({
+          user_id: fakeUserId,
+          picks,
+          submitted_at: now,
+          first_submitted_at: now,
+        });
+        if (insertErr) {
+          console.error(`simulateVoters insert ${i}:`, insertErr);
+          continue;
+        }
+
+        // Also simulate round votes for the active round
+        if (activeRound && activeRound !== 'completed') {
+          const roundMatchupIds = getMatchupIdsForRound(activeRound);
+          for (const matchupId of roundMatchupIds) {
+            const parkA = matchupId.startsWith('r16')
+              ? R16_MATCHUPS.find(m => m.id === matchupId)?.parkA
+              : null;
+            // For round votes, pick from the bracket picks
+            const votedPark = picks[matchupId];
+            if (votedPark) {
+              await supabase.from('round_votes').upsert({
+                user_id: fakeUserId,
+                matchup_id: matchupId,
+                park_id: votedPark,
+                submitted_at: now,
+              }, { onConflict: 'user_id,matchup_id' });
+            }
+          }
+        }
+      } else {
+        continue;
+      }
+    }
+
+    added++;
+  }
+
+  const totalVoters = await getTotalVoters();
+  return { added, totalVoters };
+}
+
+// Legacy compat
+export async function addSimulatedVotes(count = 10, _bias = null) {
+  return simulateVoters(count);
 }
 
 export async function clearSimulatedVotes() {
-  console.warn('clearSimulatedVotes: not available with real backend');
+  console.warn('clearSimulatedVotes: use Clear All Data in admin panel');
 }
 
 export function generateRandomBracket(_bias = null) {
-  // Keep for compatibility — import from mockBracketApi if needed
-  throw new Error('generateRandomBracket: use mockBracketApi for simulation');
+  return generateRandomBracketPicks();
 }

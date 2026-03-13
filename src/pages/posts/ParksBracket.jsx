@@ -27,6 +27,14 @@ const ParksBracket = () => {
           authorName={authors.mattie.name}
           postDate="January 2025"
         />
+        <AuthorFooter
+          authorImageUrl={authors.maggie.photo}
+          authorName={authors.maggie.name}
+        />
+        <AuthorFooter
+          authorImageUrl={authors.nick.photo}
+          authorName={authors.nick.name}
+        />
 
         <p>
           San Francisco is home to over 220 parks, from sprawling urban oases to

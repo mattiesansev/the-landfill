@@ -24,9 +24,10 @@ const RoundMatchupVoteCard = ({
     );
   }
 
-  // Combine bracket aggregate votes + per-round votes (mirrors getCombinedVotesLocal)
-  const combinedA = (bracketVotes[parkA] || 0) + (roundVotes[parkA] || 0);
-  const combinedB = (bracketVotes[parkB] || 0) + (roundVotes[parkB] || 0);
+  // Mirror getCombinedVotesLocal: R16 combines bracket + per-round, QF+ uses per-round only
+  const isR16 = id.startsWith('r16');
+  const combinedA = (isR16 ? (bracketVotes[parkA] || 0) : 0) + (roundVotes[parkA] || 0);
+  const combinedB = (isR16 ? (bracketVotes[parkB] || 0) : 0) + (roundVotes[parkB] || 0);
   const totalVotes = combinedA + combinedB;
   const percentA = totalVotes > 0 ? (combinedA / totalVotes) * 100 : 50;
 

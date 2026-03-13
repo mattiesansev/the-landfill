@@ -10,6 +10,8 @@ const ParkCard = ({
   onParkNameClick,
   isUserPick = false, // Show indicator that this was user's pick
   userPickWrong = false, // User picked this but it lost
+  roundClass = "r16", // Only show seed in round of 16
+  votePosition = null, // "park-a" or "park-b" — shows color dot next to name
 }) => {
   if (!parkId) {
     return <div className="park-card empty">TBD</div>;
@@ -37,7 +39,8 @@ const ParkCard = ({
 
   return (
     <div className={classNames} onClick={onSelect}>
-      <span className="seed">{park.seed}</span>
+      {roundClass === "r16" && <span className="seed">{park.seed}</span>}
+      {votePosition && <span className={`color-dot ${votePosition}`} />}
       <span className="park-name">{park.name}</span>
       {isWinner && <span className="winner-indicator">&#10003;</span>}
       {userPickWrong && <span className="wrong-pick-indicator">&#10007;</span>}

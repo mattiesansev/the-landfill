@@ -4,6 +4,8 @@ import {
   lockBracket,
   unlockBracket,
   getAggregateVotes,
+  getPerRoundVotes,
+  simulateVoters,
   exportVotesToCSV,
   importVotesFromCSV,
   setAdminOverride,
@@ -36,6 +38,7 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
   const [isOpen, setIsOpen] = useState(standalone);
   const [bracketLocked, setBracketLocked] = useState(false);
   const [aggregateVotes, setAggregateVotes] = useState({});
+  const [perRoundVotesData, setPerRoundVotesData] = useState({});
   const [adminOverrides, setAdminOverrides] = useState({});
   const [leaderboard, setLeaderboard] = useState([]);
   const [totalVoters, setTotalVoters] = useState(0);
@@ -43,6 +46,8 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
   const [message, setMessage] = useState(null);
   const [currentActiveRound, setCurrentActiveRound] = useState(null);
   const [tiedMatchups, setTiedMatchups] = useState([]);
+  const [simCount, setSimCount] = useState(10);
+  const [isSimulating, setIsSimulating] = useState(false);
 
   // Admin auth — skip when running in standalone mode (page already authenticated)
   const [isAuthenticated, setIsAuthenticated] = useState(standalone);
@@ -68,9 +73,10 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
   };
 
   const refreshData = async () => {
-    const [locked, aggVotes, overrides, board, activeRd, voters] = await Promise.all([
+    const [locked, aggVotes, roundVotes, overrides, board, activeRd, voters] = await Promise.all([
       isBracketLocked(),
       getAggregateVotes(),
+      getPerRoundVotes(),
       getAdminOverrides(),
       getVoteLeaderboard(),
       getActiveRound(),
@@ -79,6 +85,7 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
 
     setBracketLocked(locked);
     setAggregateVotes(aggVotes);
+    setPerRoundVotesData(roundVotes);
     setAdminOverrides(overrides);
     setLeaderboard(board);
     setCurrentActiveRound(activeRd);
@@ -191,8 +198,24 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
     }
   };
 
+  const handleSimulateVoters = async () => {
+    setIsSimulating(true);
+    setMessage(null);
+    try {
+      const result = await simulateVoters(simCount);
+      await refreshData();
+      onRefresh?.();
+      setMessage({ type: "success", text: `Simulated ${result.added} voters (${result.totalVoters} total)` });
+    } catch (e) {
+      setMessage({ type: "error", text: `Simulation failed: ${e.message}` });
+    } finally {
+      setIsSimulating(false);
+    }
+  };
+
   const getMatchupsForRound = (prefix) => {
-    return Object.keys(aggregateVotes)
+    const allKeys = new Set([...Object.keys(aggregateVotes), ...Object.keys(perRoundVotesData)]);
+    return [...allKeys]
       .filter((id) => id.startsWith(prefix) || (prefix === "f" && id === "f-1"))
       .sort();
   };
@@ -386,7 +409,19 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
               <div key={round.key} className="round-votes">
                 <h4>{round.label}</h4>
                 {matchups.map((matchupId) => {
-                  const votes = aggregateVotes[matchupId] || {};
+                  // R16: combine bracket + per-round votes; QF+: per-round only
+                  const isR16 = matchupId.startsWith('r16');
+                  const bracketVotes = aggregateVotes[matchupId] || {};
+                  const roundVotes = perRoundVotesData[matchupId] || {};
+                  const votes = {};
+                  if (isR16) {
+                    Object.entries(bracketVotes).forEach(([parkId, count]) => {
+                      votes[parkId] = (votes[parkId] || 0) + count;
+                    });
+                  }
+                  Object.entries(roundVotes).forEach(([parkId, count]) => {
+                    votes[parkId] = (votes[parkId] || 0) + count;
+                  });
                   const override = adminOverrides[matchupId];
 
                   return (
@@ -428,6 +463,26 @@ const AdminPanel = ({ onRefresh, standalone = false }) => {
               </div>
             );
           })}
+        </div>
+
+        <div className="admin-section">
+          <h3>Simulate Voters</h3>
+          <div className="simulate-voters">
+            <label>
+              Number of voters:
+              <input
+                type="number"
+                min="1"
+                max="100"
+                value={simCount}
+                onChange={(e) => setSimCount(Number(e.target.value))}
+                style={{ width: 60, marginLeft: 8 }}
+              />
+            </label>
+            <button onClick={handleSimulateVoters} disabled={isSimulating}>
+              {isSimulating ? "Simulating..." : "Simulate Voters"}
+            </button>
+          </div>
         </div>
 
         <div className="admin-section">
