@@ -397,35 +397,74 @@
     //ABOUT
     .about {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       @media (max-width: 850px) {
-        max-width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 40px 20px;
         text-align: center;
       }
 
+      .about-group-photo {
+        width: 65%;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        img {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .about-section {
+        width: 65%;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #d0e6ed;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        h2 {
+          font-size: 30px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 28px;
+          color: #2d3748;
+        }
+      }
+
+      .meet-the-team {
+        width: 65%;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 24px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+      }
+
       .people {
-        margin-top: 50px;
         flex-direction: column;
         display: flex;
         width: 65%;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        border: 2px solid #8ac4d4;
-        padding: 40px;
         @media (max-width: 850px) {
           width: 95%;
-          padding: 20px;
         }
         .person {
           display: flex;
           gap: 25px;
-          padding-top: 40px;
+          padding: 32px 0;
+          border-bottom: 1px solid #d0e6ed;
+          &:last-child {
+            border-bottom: none;
+          }
 
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
@@ -471,20 +510,69 @@
     }
     //CONTACT
     .contact {
-      max-width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      gap: 10px;
-      .contactHeader {
-        padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      gap: 32px;
+      @media (max-width: 850px) {
+        padding: 40px 20px;
+      }
+
+      .contact-photo {
+        width: 65%;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        img {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .contact-heading {
         font-size: 40px;
-        .groupPhoto {
-          img {
-            max-width: 80%;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+      }
+
+      .contact-links {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        .contact-link {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 16px 20px;
+          border: 1px solid #d0e6ed;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #2d3748;
+          transition: background-color 0.15s;
+          &:hover {
+            background-color: #f0f8fb;
+          }
+          .contact-link-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #8ac4d4;
+            min-width: 80px;
+          }
+          .contact-link-value {
+            font-size: 18px;
           }
         }
       }
+
     }
     //SINGLE
     .single {
@@ -1078,6 +1166,10 @@
 }
 
 // Global styles for Leaflet
+.leaflet-container {
+  z-index: 1;
+}
+
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
@@ -1483,6 +1575,24 @@
 
   .vote-card {
     margin-top: 10px;
+  }
+}
+
+.bracket-callout {
+  background-color: #f0f8fb;
+  border-left: 4px solid #8ac4d4;
+  border-radius: 6px;
+  padding: 14px 20px;
+  font-size: 18px;
+  line-height: 28px;
+  color: #2d3748;
+  margin: 16px 10%;
+  a {
+    color: #5a9eb8;
+    text-decoration: underline;
+    &:hover {
+      color: #3a7e98;
+    }
   }
 }
 

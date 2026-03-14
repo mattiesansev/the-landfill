@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { authors } from "../authors/authors"
+import groupPhoto from "../img/group_cropped.jpg"
 
 const AboutUs = () => {
   const people = [
@@ -31,6 +32,18 @@ const AboutUs = () => {
   ]
   return (
     <div className="about">
+      <div className="about-group-photo">
+        <img src={groupPhoto} alt="The Bay Area Data Dump team" />
+      </div>
+      <div className="about-section">
+        <h2>About the blog</h2>
+        <p>The Bay Area Data Dump is a space for us to explore and share just about anything related to the San Francisco Bay Area. We are San Francisco residents who are excited to share our love for the place we live!</p>
+      </div>
+      <div className="about-section">
+        <h2>AI Disclaimer</h2>
+        <p>The Bay Area Data Dump team does not use AI for any research, written content or art. We do use AI tools to help with coding and designing the website. We're a small team, and we are doing our best to put some genuine content out there!</p>
+      </div>
+      <h2 className="meet-the-team">Meet the team</h2>
       <div className="people">
         {people.map((person) => (
           <div className="person" key={person.name}>
