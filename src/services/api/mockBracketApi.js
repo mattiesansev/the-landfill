@@ -605,6 +605,9 @@ export function clearSimulatedVotes() {
   }
 }
 
+// Alias for compatibility with real API
+export const simulateVoters = addSimulatedVotes;
+
 // Expose for console debugging
 if (typeof window !== "undefined") {
   window.bracketApi = {

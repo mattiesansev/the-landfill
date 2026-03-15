@@ -6,11 +6,9 @@ import {
   getTotalVoters,
   getUserBracket,
   canEditBracket,
-  addSimulatedVotes,
-  clearSimulatedVotes,
+  simulateVoters,
   getPerRoundVotes,
   getActiveRound,
-  getCombinedMatchupVotes,
   getUserRoundVotes,
 } from "../../../services/bracketVoteService";
 import { PARKS } from "./bracketData";
@@ -57,7 +55,18 @@ const DebugVoteStats = ({ standalone = false }) => {
     for (const matchupId of allMatchupIds) {
       const bracketVotes = aggregateVotes[matchupId] || {};
       const roundVotes = perRoundVotes[matchupId] || {};
-      const combinedVotes = await getCombinedMatchupVotes(matchupId);
+
+      // Compute combined votes locally using same round-aware logic:
+      // R16: bracket + per-round; QF+: per-round only
+      const combinedVotes = {};
+      if (matchupId.startsWith('r16')) {
+        Object.entries(bracketVotes).forEach(([parkId, count]) => {
+          combinedVotes[parkId] = (combinedVotes[parkId] || 0) + count;
+        });
+      }
+      Object.entries(roundVotes).forEach(([parkId, count]) => {
+        combinedVotes[parkId] = (combinedVotes[parkId] || 0) + count;
+      });
 
       const sortedCombined = Object.entries(combinedVotes).sort((a, b) => b[1] - a[1]);
       const totalCombined = sortedCombined.reduce((sum, [, count]) => sum + count, 0);
@@ -338,44 +347,26 @@ const DebugVoteStats = ({ standalone = false }) => {
               <h3 style={{ margin: "0 0 10px 0", color: "#f6ad55" }}>Simulate Voters</h3>
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <button
-                  onClick={async () => { await addSimulatedVotes(5); await refreshStats(); }}
+                  onClick={async () => { await simulateVoters(5); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +5 Random
                 </button>
                 <button
-                  onClick={async () => { await addSimulatedVotes(10); await refreshStats(); }}
+                  onClick={async () => { await simulateVoters(10); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +10 Random
                 </button>
                 <button
-                  onClick={async () => { await addSimulatedVotes(25); await refreshStats(); }}
+                  onClick={async () => { await simulateVoters(25); await refreshStats(); }}
                   style={{ padding: "6px 12px", background: "#38a169", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
                 >
                   +25 Random
                 </button>
-                <button
-                  onClick={async () => { await addSimulatedVotes(10, "favorites"); await refreshStats(); }}
-                  style={{ padding: "6px 12px", background: "#3182ce", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
-                >
-                  +10 Favorites
-                </button>
-                <button
-                  onClick={async () => { await addSimulatedVotes(10, "underdogs"); await refreshStats(); }}
-                  style={{ padding: "6px 12px", background: "#d69e2e", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
-                >
-                  +10 Underdogs
-                </button>
-                <button
-                  onClick={async () => { await clearSimulatedVotes(); await refreshStats(); }}
-                  style={{ padding: "6px 12px", background: "#e53e3e", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "12px" }}
-                >
-                  Clear Votes
-                </button>
               </div>
               <div style={{ marginTop: "8px", fontSize: "11px", color: "#a0aec0" }}>
-                Favorites = 70% higher seed wins | Underdogs = 70% lower seed wins | Clear keeps your bracket
+                Generates random bracket submissions + round votes for active round
               </div>
             </div>
 

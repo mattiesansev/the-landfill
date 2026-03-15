@@ -84,6 +84,7 @@ export const {
   // Simulation (dev only)
   addSimulatedVotes,
   clearSimulatedVotes,
+  simulateVoters,
 } = api;
 
 // Admin auth (only meaningful for real API; mock returns no-ops)
