@@ -6,13 +6,7 @@ import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
 import aboutUsCover from "../img/group_photo.jpg"
 import parkMadnessCover from "../img/park_madness_drawing.png"
-import ReactGA from 'react-ga4';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Logo from "../img/logo_transparent.png"
-
-
-ReactGA.initialize('G-NR2T70PVBG');
 
 const CATEGORIES = {
   ALL: "all",
@@ -22,13 +16,8 @@ const CATEGORIES = {
 };
 
 const Home = () => {
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || CATEGORIES.ALL;
-
-  useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
 
   const posts = [
     {
