@@ -11,9 +11,8 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
 
   const stats = [
     { label: "Acreage", valueA: parkA.stats.acreage, valueB: parkB.stats.acreage },
-    { label: "Playgrounds", valueA: parkA.stats.playgrounds, valueB: parkB.stats.playgrounds },
-    { label: "Sports Fields", valueA: parkA.stats.sportsFields, valueB: parkB.stats.sportsFields },
-    { label: "Year Est.", valueA: parkA.stats.yearEstablished, valueB: parkB.stats.yearEstablished },
+    { label: "Year Est.", valueA: parkA.stats.yearEstablished ?? "—", valueB: parkB.stats.yearEstablished ?? "—" },
+    { label: "Neighborhood", valueA: parkA.stats.neighborhood, valueB: parkB.stats.neighborhood },
   ];
 
   return createPortal(
@@ -58,12 +57,10 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
           <div className="park-blurb">
             <h4>{parkA.name}</h4>
             <p>{parkA.description}</p>
-            {parkA.funFact && <p className="fun-fact">{parkA.funFact}</p>}
           </div>
           <div className="park-blurb">
             <h4>{parkB.name}</h4>
             <p>{parkB.description}</p>
-            {parkB.funFact && <p className="fun-fact">{parkB.funFact}</p>}
           </div>
         </div>
       </div>

@@ -37,17 +37,15 @@ const ParksBracket = () => {
         />
 
         <p>
-          San Francisco is home to over 220 parks, from sprawling urban oases to
-          hidden neighborhood gems. But which one is the best? We've seeded 16
-          of the city's most beloved parks into a tournament bracket, and now
-          it's up to you to decide the champion.
+          San Francisco is home to over 230 parks, from multi-purpose giants like golden gate park
+          to shiny hidden gems like balboa park. Everyone has their favorite, but which one is truly the best?
+          In Park Madness, 16 parks battle it out for the championship title. 
         </p>
 
         <p>
-          <strong>How it works:</strong> Click on any matchup to compare park
-          stats side-by-side, including acreage, amenities, and fun facts. Then
-          select your winner to advance them to the next round. Click on any
-          park name to see more details about that park.
+          <strong>How it works:</strong> Create a bracket to represent how you think each round's voting will pan out.
+          Then, each week a new round will open up for voting. Let your voice be heard as you vote for the parks that you think should win it all!
+          Click on each matchup to see more details about the parks, and learn fun facts along the way!
         </p>
 
         <div className="bracket-callout">
@@ -61,32 +59,6 @@ const ParksBracket = () => {
         </div>
 
         <ParkStatsSection />
-
-        <h3>About the Seeding</h3>
-        <p>
-          Parks were seeded based on a combination of factors including size,
-          historical significance, popularity, and amenities. Golden Gate Park,
-          as the city's largest and most iconic park, earned the #1 seed, while
-          newer parks like Sunset Dunes and smaller neighborhood parks received
-          lower seeds.
-        </p>
-
-        <p>
-          Of course, size isn't everything! Some of the best matchups pit large
-          parks against smaller but equally beloved spaces. Will the historic
-          charm of Buena Vista Park overcome the concert-famous Stern Grove?
-          Can the Instagram-famous Alamo Square top the elegant Alta Plaza?
-          That's for you to decide.
-        </p>
-
-        <h3>Methodology</h3>
-        <p>
-          Park data was compiled from SF Recreation & Parks, historical records,
-          and community input. Stats shown are approximate and meant to give a
-          general comparison between parks. We focused on amenities that matter
-          most to park visitors: playgrounds, sports facilities, dog-friendliness,
-          parking, and restroom availability.
-        </p>
       </div>
     </div>
   );
