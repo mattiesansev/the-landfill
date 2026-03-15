@@ -518,6 +518,22 @@ const MobileBracket = ({
           <BuildBracketBanner isSubmitted={isSubmitted} />
         )}
 
+        {/* Round voting above the bracket view on mobile */}
+        {phase === "voting" && (
+          <RoundVoting
+            activeRound={activeRound}
+            matchups={activeRoundMatchups}
+            draftRoundVotes={draftRoundVotes}
+            perRoundVotes={perRoundVotes}
+            aggregateVotes={aggregateVotes}
+            onDraftVote={updateRoundVoteDraft}
+            onSubmitRoundVotes={submitAllRoundVotes}
+            isRoundVotesSubmitted={isRoundVotesSubmitted}
+            hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+            roundVotingProgress={roundVotingProgress}
+          />
+        )}
+
         {/* Round tabs */}
         <div className="mobile-round-tabs">
           {ROUND_TABS.map((tab, i) => (
@@ -597,22 +613,6 @@ const MobileBracket = ({
           )}
         </div>
       </>
-
-      {/* Round voting below the bracket view */}
-      {phase === "voting" && (
-        <RoundVoting
-          activeRound={activeRound}
-          matchups={activeRoundMatchups}
-          draftRoundVotes={draftRoundVotes}
-          perRoundVotes={perRoundVotes}
-          aggregateVotes={aggregateVotes}
-          onDraftVote={updateRoundVoteDraft}
-          onSubmitRoundVotes={submitAllRoundVotes}
-          isRoundVotesSubmitted={isRoundVotesSubmitted}
-          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
-          roundVotingProgress={roundVotingProgress}
-        />
-      )}
 
       {selectedMatchup && (
         <StatsComparison
