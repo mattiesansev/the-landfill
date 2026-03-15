@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import ReactGA from "react-ga4";
+import { Link } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -44,7 +43,6 @@ const viewSettings = {
 };
 
 const SupervisorUpdates = () => {
-  const location = useLocation();
   const [districts, setDistricts] = useState([]);
   const mapRef = useRef(null);
   const [viewMode, setViewMode] = useState("date"); // "date" or "supervisor"
@@ -52,10 +50,6 @@ const SupervisorUpdates = () => {
   const [supervisorList, setSupervisorList] = useState([]);
   const [selectedSupervisor, setSelectedSupervisor] = useState(null);
   const [loadingVotes, setLoadingVotes] = useState(false);
-
-  useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
-  }, [location]);
 
   // Load all vote data when switching to supervisor view
   useEffect(() => {
