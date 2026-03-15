@@ -45,10 +45,19 @@ const LiveResultsBanner = () => (
   </div>
 );
 
+// Banner shown during submission phase to guide users
+const BuildBracketBanner = ({ isSubmitted }) => (
+  <div className="build-bracket-banner">
+    {isSubmitted
+      ? "Bracket saved! You can still edit it before voting begins."
+      : "Build your bracket!"}
+  </div>
+);
+
 const BracketContainer = () => {
   const isMobile = useIsMobile();
   // "mine" = user's predictions, "live" = actual advancing parks
-  const [bracketView, setBracketView] = useState("live");
+  const [bracketView, setBracketView] = useState("mine");
   const [bracketRegion] = useState("full");
 
   const {
@@ -252,6 +261,10 @@ const BracketContainer = () => {
             />
           )}
 
+          {phase === "submission" && !isLocked && (
+            <BuildBracketBanner isSubmitted={isSubmitted} />
+          )}
+
           <div className={`bracket-container ${bracketRegion !== "full" ? "region-view" : ""}`}>
             {showWest && (
               <div className="bracket-side left">
@@ -405,7 +418,7 @@ const BracketContainer = () => {
 };
 
 const ROUND_TABS = [
-  { key: "round16", label: "Round of 16" },
+  { key: "round16", label: "Sweet 16" },
   { key: "quarterfinals", label: "Quarterfinals" },
   { key: "semifinals", label: "Semifinals" },
   { key: "finals", label: "Finals" },
@@ -499,6 +512,10 @@ const MobileBracket = ({
             onChange={onBracketViewChange}
             showMyBracket={isSubmitted || !isLocked}
           />
+        )}
+
+        {phase === "submission" && !isLocked && (
+          <BuildBracketBanner isSubmitted={isSubmitted} />
         )}
 
         {/* Round tabs */}

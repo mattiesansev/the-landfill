@@ -14,7 +14,7 @@ import {
 import { PARKS } from "./bracketData";
 
 const ROUND_GROUPS = [
-  { key: "r16", label: "Round of 16", matchupIds: ["r16-1", "r16-2", "r16-3", "r16-4", "r16-5", "r16-6", "r16-7", "r16-8"] },
+  { key: "r16", label: "Sweet 16", matchupIds: ["r16-1", "r16-2", "r16-3", "r16-4", "r16-5", "r16-6", "r16-7", "r16-8"] },
   { key: "qf", label: "Quarterfinals", matchupIds: ["qf-1", "qf-2", "qf-3", "qf-4"] },
   { key: "sf", label: "Semifinals", matchupIds: ["sf-1", "sf-2"] },
   { key: "f", label: "Finals", matchupIds: ["f-1"] },

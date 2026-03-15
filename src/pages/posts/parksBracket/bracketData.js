@@ -252,7 +252,7 @@ export function findMatchup(matchupId, bracket) {
 
 // Helper to get round name from matchup ID
 export function getRoundName(matchupId) {
-  if (matchupId.startsWith("r16")) return "Round of 16";
+  if (matchupId.startsWith("r16")) return "Sweet 16";
   if (matchupId.startsWith("qf")) return "Quarterfinals";
   if (matchupId.startsWith("sf")) return "Semifinals";
   if (matchupId === "f-1") return "Finals";
