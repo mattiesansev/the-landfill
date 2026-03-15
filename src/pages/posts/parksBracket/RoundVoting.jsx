@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RoundMatchupVoteCard from "./RoundMatchupVoteCard";
 
 const ROUND_LABELS = {
-  round16: "Round of 16",
+  round16: "Sweet 16",
   quarterfinals: "Quarterfinals",
   semifinals: "Semifinals",
   finals: "Finals",
