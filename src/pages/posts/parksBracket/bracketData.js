@@ -2,22 +2,10 @@
 // Stats can be updated with real data later
 
 export const PARKS = {
-  "alamo-square": {
-    id: "alamo-square",
-    name: "Alamo Square",
-    seed: 1,
-    image: "/park_pictures/alamo_square.png",
-    stats: {
-      acreage: 13,
-      yearEstablished: 1856,
-      neighborhood: "Alamo Square",
-    },
-    description: "Embedded in the historic Alamo Square neighborhood, this park provides great (some might even say \"iconic\") views of San Francisco. Perhaps the most photogenic park, it is no wonder that tourists and film/TV crews alike flock to the park to capture that San Francisco-style (hello, Full House!). But while the views might knock you over, so could the wind. Sitting pretty up on Alamo Hill both provides great views… and makes the park especially prone to a stiff breeze. Can Alamo Square breeze through the competition, or will this shortcoming be its downfall?",
-  },
   "golden-gate": {
     id: "golden-gate",
     name: "Golden Gate Park",
-    seed: 2,
+    seed: 1,
     image: "/park_pictures/ggp.jpg",
     stats: {
       acreage: 1017,
@@ -25,6 +13,18 @@ export const PARKS = {
       neighborhood: "Sunset/Richmond",
     },
     description: "Stretching about half the length of the city, Golden Gate Park is a clear heavyweight when it comes to city parks. Larger than NYC's Central Park, Golden Gate is famous, not just for its size, but for its variety of attractions. From the Conservatory of Flowers, California Academy of Sciences, DeYoung art museum, Japanese Tea Garden, Botanical Gardens, JFK promenade, and famous annual music festivals, including Outside Lands, Golden Gate Park has shown itself to be a fierce competitor. But is the comparison to other parks fair? Should GGP be in a league of its own or even be judged more harshly considering the advantage of its size? We'll see where voters land on this contentious issue…",
+  },
+  "alamo-square": {
+    id: "alamo-square",
+    name: "Alamo Square",
+    seed: 2,
+    image: "/park_pictures/alamo_square.png",
+    stats: {
+      acreage: 13,
+      yearEstablished: 1856,
+      neighborhood: "Alamo Square",
+    },
+    description: "Embedded in the historic Alamo Square neighborhood, this park provides great (some might even say \"iconic\") views of San Francisco. Perhaps the most photogenic park, it is no wonder that tourists and film/TV crews alike flock to the park to capture that San Francisco-style (hello, Full House!). But while the views might knock you over, so could the wind. Sitting pretty up on Alamo Hill both provides great views… and makes the park especially prone to a stiff breeze. Can Alamo Square breeze through the competition, or will this shortcoming be its downfall?",
   },
   "mission-dolores": {
     id: "mission-dolores",
@@ -157,22 +157,10 @@ export const PARKS = {
     },
     description: "Stern Grove is home to the city's longest-running free concert series. The founder, Rosalie M. Stern noticed the park's natural acoustics and established it as a public performance venue. While it's a niche pick, Stern Grove's natural advantages and historical performance venue make this park a favorite among music lovers.",
   },
-  "sunset-dunes": {
-    id: "sunset-dunes",
-    name: "Sunset Dunes",
-    seed: 14,
-    image: "/park_pictures/sunset_dunes.jpg",
-    stats: {
-      acreage: 50,
-      yearEstablished: 2025,
-      neighborhood: "Outer Sunset",
-    },
-    description: "This newcomer may be a controversial pick for some, but its charm has won many over many. Sunset Dunes has been the subject of much debate after being converted from the Great Highway, a move that cost Sunset Supervisor Joel Engardio his seat in an upset recall election. While the park has many critics among commuters, others have grown to appreciate increased pedestrian and biker access, public art, and sweeping views of Ocean Beach. With less than a year under its belt and many San Franciscans cheering for its downfall, will Sunset Dunes be able to stand up to the heat?",
-  },
   "presidio": {
     id: "presidio",
     name: "Presidio",
-    seed: 15,
+    seed: 14,
     image: "/park_pictures/presidio.jpg",
     stats: {
       acreage: 1491,
@@ -180,6 +168,18 @@ export const PARKS = {
       neighborhood: "Presidio",
     },
     description: "A veteran of the San Francisco parks, the Presidio served as a U.S. army post before its conversion to a national park in 1994. Originally a fortress for Spain, Mexico, and finally the U.S., the Presidio's previous military presence can still be seen in the converted military barracks, point fort (now a museum), and the National Cemetery (one of the few remaining cemeteries in San Francisco). While the Presidio was once appreciated for its tactical advantages, it is now appreciated for its lush nature, views of the Golden Gate Bridge, and San Francisco's premier nude beach (Baker Beach).",
+  },
+  "sunset-dunes": {
+    id: "sunset-dunes",
+    name: "Sunset Dunes",
+    seed: 15,
+    image: "/park_pictures/sunset_dunes.jpg",
+    stats: {
+      acreage: 50,
+      yearEstablished: 2025,
+      neighborhood: "Outer Sunset",
+    },
+    description: "This newcomer may be a controversial pick for some, but its charm has won many over many. Sunset Dunes has been the subject of much debate after being converted from the Great Highway, a move that cost Sunset Supervisor Joel Engardio his seat in an upset recall election. While the park has many critics among commuters, others have grown to appreciate increased pedestrian and biker access, public art, and sweeping views of Ocean Beach. With less than a year under its belt and many San Franciscans cheering for its downfall, will Sunset Dunes be able to stand up to the heat?",
   },
   "john-mclaren": {
     id: "john-mclaren",
@@ -198,14 +198,14 @@ export const PARKS = {
 // Initial bracket seeding - matchups for round of 16
 export const INITIAL_BRACKET = {
   round16: [
-    { id: "r16-1", parkA: "golden-gate", parkB: "sunset-dunes", winner: null },
-    { id: "r16-2", parkA: "corona-heights", parkB: "the-panhandle", winner: null },
-    { id: "r16-3", parkA: "alamo-square", parkB: "alta-plaza", winner: null },
-    { id: "r16-4", parkA: "buena-vista-park", parkB: "stern-grove", winner: null },
-    { id: "r16-5", parkA: "presidio", parkB: "washington-square", winner: null },
-    { id: "r16-6", parkA: "twin-peaks", parkB: "marina-green", winner: null },
-    { id: "r16-7", parkA: "mission-dolores", parkB: "duboce-park", winner: null },
-    { id: "r16-8", parkA: "lake-merced", parkB: "john-mclaren", winner: null },
+    { id: "r16-1", parkA: "golden-gate",     parkB: "john-mclaren",   winner: null }, // 1 vs 16
+    { id: "r16-2", parkA: "lake-merced",     parkB: "duboce-park",    winner: null }, // 8 vs 9
+    { id: "r16-3", parkA: "the-panhandle",   parkB: "marina-green",   winner: null }, // 5 vs 12
+    { id: "r16-4", parkA: "corona-heights",  parkB: "stern-grove",    winner: null }, // 4 vs 13
+    { id: "r16-5", parkA: "buena-vista-park", parkB: "washington-square-park",   winner: null }, // 6 vs 11
+    { id: "r16-6", parkA: "mission-dolores", parkB: "presidio",       winner: null }, // 3 vs 14
+    { id: "r16-7", parkA: "twin-peaks",      parkB: "alta-plaza",     winner: null }, // 7 vs 10
+    { id: "r16-8", parkA: "alamo-square",    parkB: "sunset-dunes",   winner: null }, // 2 vs 15
   ],
   quarterfinals: [
     { id: "qf-1", parkA: null, parkB: null, winner: null },
