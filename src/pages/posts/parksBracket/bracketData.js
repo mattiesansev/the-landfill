@@ -182,23 +182,23 @@ export const PARKS = {
     description: "A long, flat waterfront park perfect for kite flying with views of the Golden Gate Bridge.",
     funFact: "Marina Green was built on rubble from the 1906 earthquake and debris from the 1915 World's Fair."
   },
-  "ocean-beach": {
-    id: "ocean-beach",
-    name: "Ocean Beach",
+  "washington-square": {
+    id: "washington-square",
+    name: "Washington Square Park",
     seed: 11,
-    image: "https://placehold.co/200x200/06b6d4/white?text=OB",
+    image: "https://placehold.co/200x200/06b6d4/white?text=WS",
     stats: {
-      acreage: 120,
-      amenities: ["Beach Access", "Surfing", "Fire Pits", "Running Path", "Sunset Views"],
-      yearEstablished: 1895,
-      playgrounds: 0,
+      acreage: 2.9,
+      amenities: ["Bocce Ball Courts", "Playground", "Historic Statue", "Tai Chi Lawn", "Picnic Areas"],
+      yearEstablished: 1847,
+      playgrounds: 1,
       sportsFields: 0,
       dogFriendly: true,
       hasRestrooms: true,
-      hasParking: true,
+      hasParking: false,
     },
-    description: "A 3.5-mile beach along SF's western edge, popular for surfing, bonfires, and sunset watching.",
-    funFact: "Ocean Beach has some of the most dangerous surf in California due to powerful rip currents."
+    description: "The social heart of North Beach, a beloved neighborhood green surrounded by Italian cafes and bakeries.",
+    funFact: "Washington Square Park is home to a statue of Benjamin Franklin, not Washington, gifted by dentist Henry Cogswell in 1879."
   },
   "stern-grove": {
     id: "stern-grove",
@@ -302,7 +302,7 @@ export const INITIAL_BRACKET = {
     { id: "r16-5", parkA: "presidio-tunnel-tops", parkB: "balboa-park", winner: null },
     { id: "r16-6", parkA: "twin-peaks", parkB: "marina-green", winner: null },
     { id: "r16-7", parkA: "dolores-park", parkB: "duboce-park", winner: null },
-    { id: "r16-8", parkA: "lake-merced", parkB: "ocean-beach", winner: null },
+    { id: "r16-8", parkA: "lake-merced", parkB: "washington-square", winner: null },
   ],
   quarterfinals: [
     { id: "qf-1", parkA: null, parkB: null, winner: null },

@@ -19,6 +19,10 @@ const ParkCard = ({
 
   const park = PARKS[parkId];
 
+  if (!park) {
+    return <div className="park-card empty">{parkId}</div>;
+  }
+
   const handleNameClick = (e) => {
     e.stopPropagation();
     if (onParkNameClick) {
