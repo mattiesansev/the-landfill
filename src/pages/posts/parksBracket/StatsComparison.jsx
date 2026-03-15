@@ -10,9 +10,8 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
 
   const stats = [
     { label: "Acreage", valueA: parkA.stats.acreage, valueB: parkB.stats.acreage },
-    { label: "Playgrounds", valueA: parkA.stats.playgrounds, valueB: parkB.stats.playgrounds },
-    { label: "Sports Fields", valueA: parkA.stats.sportsFields, valueB: parkB.stats.sportsFields },
-    { label: "Year Est.", valueA: parkA.stats.yearEstablished, valueB: parkB.stats.yearEstablished },
+    { label: "Year Est.", valueA: parkA.stats.yearEstablished ?? "—", valueB: parkB.stats.yearEstablished ?? "—" },
+    { label: "Neighborhood", valueA: parkA.stats.neighborhood, valueB: parkB.stats.neighborhood },
   ];
 
   return (
