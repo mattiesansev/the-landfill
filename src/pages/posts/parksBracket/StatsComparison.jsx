@@ -9,10 +9,12 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
   const parkA = PARKS[matchup.parkA];
   const parkB = PARKS[matchup.parkB];
 
+  if (!parkA || !parkB) return null;
+
   const stats = [
-    { label: "Acreage", valueA: parkA.stats.acreage, valueB: parkB.stats.acreage },
-    { label: "Year Est.", valueA: parkA.stats.yearEstablished ?? "—", valueB: parkB.stats.yearEstablished ?? "—" },
-    { label: "Neighborhood", valueA: parkA.stats.neighborhood, valueB: parkB.stats.neighborhood },
+    { label: "Acreage", valueA: parkA.stats?.acreage ?? "—", valueB: parkB.stats?.acreage ?? "—" },
+    { label: "Year Est.", valueA: parkA.stats?.yearEstablished ?? "—", valueB: parkB.stats?.yearEstablished ?? "—" },
+    { label: "Neighborhood", valueA: parkA.stats?.neighborhood ?? "—", valueB: parkB.stats?.neighborhood ?? "—" },
   ];
 
   return createPortal(

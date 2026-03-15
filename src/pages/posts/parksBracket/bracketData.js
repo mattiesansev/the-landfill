@@ -121,17 +121,17 @@ export const PARKS = {
     },
     description: "Walking up the grand, and seemingly neverending, stairs to the top of Alta Plaza, it's hard not to feel like Rocky Balboa. Once a quarry, later a refuge during the 1906 earthquake, and now a bustling park for residents and dogs, Alta Plaza has lived many lives. The views from the top are hard to beat, with the shining Bay on full display from the north end, and a panoramic birds-eye view of the city on the south. The views will take your breath away, but will they be enough to make you forget how out of breath you were after making the trek to get there?",
   },
-  "balboa-park": {
-    id: "balboa-park",
-    name: "Balboa Park",
+  "washington-square": {
+    id: "washington-square",
+    name: "Washington Square Park",
     seed: 11,
-    image: "/park_pictures/balboa_park.jpg",
+    image: "/park_pictures/Washington.jpg",
     stats: {
-      acreage: 25,
-      yearEstablished: 1909,
-      neighborhood: "Mission Terrace/Excelsior",
+      acreage: 2.8,
+      yearEstablished: 1847,
+      neighborhood: "North Beach",
     },
-    description: "While not particularly well-known compared to other parks, Balboa is a well-rounded pick. With baseball fields, an indoor swimming pool, a wooden skate park, tennis and basketball courts, and other amenities, it is a favorite among sports-fanatics. It is a particularly popular choice for students of City College, which has a campus adjacent to the park. With beautiful mosaic art pieces and beautifully kept amenities, it's no wonder it's a favorite for many.",
+    description: "A sweet oasis in North Beach surrounded by plenty of pasteries and pasta shops for you to find in San Francisco's \"Little Italy\". Come visit for public movie showings, live music, and local artist cafts at events hosted in and around this space! It seems to be one of the places to be for late-night eats after a night out - we'll see if that's enough to win over voters to make it in this competition! ",
   },
   "marina-green": {
     id: "marina-green",
@@ -202,7 +202,7 @@ export const INITIAL_BRACKET = {
     { id: "r16-2", parkA: "lake-merced",     parkB: "duboce-park",    winner: null }, // 8 vs 9
     { id: "r16-3", parkA: "the-panhandle",   parkB: "marina-green",   winner: null }, // 5 vs 12
     { id: "r16-4", parkA: "corona-heights",  parkB: "stern-grove",    winner: null }, // 4 vs 13
-    { id: "r16-5", parkA: "buena-vista-park", parkB: "balboa-park",   winner: null }, // 6 vs 11
+    { id: "r16-5", parkA: "buena-vista-park", parkB: "washington-square",   winner: null }, // 6 vs 11
     { id: "r16-6", parkA: "mission-dolores", parkB: "presidio",       winner: null }, // 3 vs 14
     { id: "r16-7", parkA: "twin-peaks",      parkB: "alta-plaza",     winner: null }, // 7 vs 10
     { id: "r16-8", parkA: "alamo-square",    parkB: "sunset-dunes",   winner: null }, // 2 vs 15
