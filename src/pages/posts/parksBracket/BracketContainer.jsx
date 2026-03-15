@@ -107,16 +107,20 @@ const BracketContainer = () => {
   // Phase drives the entire layout
   const phase = !activeRound ? "submission" : activeRound === "completed" ? "complete" : "voting";
 
-  // Reset to "My Bracket" view during submission — no live data to show yet
-  // Use a ref to avoid resetting on initial load (activeRound starts null before fetch)
+  // Default view based on phase: "mine" during submission, "live" during voting/complete
   const hasLoadedPhase = useRef(false);
   useEffect(() => {
-    if (phase === "submission" && hasLoadedPhase.current) {
-      setBracketView("mine");
-    }
-    if (phase !== "submission") {
+    if (!hasLoadedPhase.current && phase === "submission") {
+      // Initial load in submission phase — already defaulted to "mine"
       hasLoadedPhase.current = true;
+      return;
     }
+    if (phase === "submission") {
+      setBracketView("mine");
+    } else {
+      setBracketView("live");
+    }
+    hasLoadedPhase.current = true;
   }, [phase]);
 
   // Sync visual bracket state from persisted picks
