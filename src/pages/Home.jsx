@@ -5,6 +5,7 @@ import supervisorCover from "/src/img/RepsMap.png"
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
 import aboutUsCover from "../img/group_photo.jpg"
+import parkMadnessCover from "../img/park_madness_drawing.png"
 import ReactGA from 'react-ga4';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -30,6 +31,14 @@ const Home = () => {
   }, [location]);
 
   const posts = [
+    {
+      id: "sf-parks-bracket",
+      title: "SF Park Madness",
+      desc: "A bracket-based competition featuring 16 SF Parks. Vote for winners each week until we name a champion!",
+      img: parkMadnessCover,
+      authors: [authors.mattie],
+      category: CATEGORIES.FIELD_NOTES
+    },
     {
       id: "bay-area-landfills",
       title:
