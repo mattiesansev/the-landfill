@@ -51,7 +51,8 @@ const ParksBracket = () => {
         </p>
 
         <div className="bracket-callout">
-          Follow our <a href="https://www.instagram.com/bayareadatadump/" target="_blank" rel="noopener noreferrer">Instagram</a> or <a href="https://docs.google.com/forms/d/e/1FAIpQLSfffPb045GrsatVJLg6jUN1nOprh2NlREhJgmIUfmxBFC_T_w/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">sign up for our newsletter</a> to get updates per round.
+          Follow our <a href="https://www.instagram.com/bayareadatadump/" target="_blank" rel="noopener noreferrer">Instagram</a> or <a href="https://docs.google.com/forms/d/e/1FAIpQLSfffPb045GrsatVJLg6jUN1nOprh2NlREhJgmIUfmxBFC_T_w/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">sign up for our newsletter</a> to get updates per round.<br/>
+          Don't agree with where a matchup is headed? See if you can sway the crowd with your pitch here: <a href="https://www.reddit.com/r/SFparkmadness/" target="_blank" rel="noopener noreferrer">SF Park Madness</a>
         </div>
 
         <div className="bracket-section">
