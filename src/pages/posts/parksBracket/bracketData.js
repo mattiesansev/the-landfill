@@ -24,7 +24,7 @@ export const PARKS = {
     id: "dolores-park",
     name: "Dolores Park",
     seed: 2,
-    image: "https://placehold.co/200x200/8ac4d4/white?text=DP",
+    image: "/park_pictures/dolores_park.jpg",
     stats: {
       acreage: 16,
       amenities: ["Tennis Courts", "Basketball Courts", "Soccer Field", "Playground", "Off-leash Dog Area"],
@@ -42,7 +42,7 @@ export const PARKS = {
     id: "presidio-tunnel-tops",
     name: "Presidio Tunnel Tops",
     seed: 3,
-    image: "https://placehold.co/200x200/48bb78/white?text=PT",
+    image: "/park_pictures/presidio_tunnel_tops.jpg",
     stats: {
       acreage: 14,
       amenities: ["Outpost Playground", "Campfire Circle", "Field Station", "Picnic Meadow", "Crissy Marsh Overlook"],
@@ -78,7 +78,7 @@ export const PARKS = {
     id: "buena-vista-park",
     name: "Buena Vista Park",
     seed: 5,
-    image: "https://placehold.co/200x200/6366f1/white?text=BV",
+    image: "/park_pictures/buena_vista.jpg",
     stats: {
       acreage: 36.5,
       amenities: ["Hiking Trails", "Tennis Courts", "Off-leash Dog Area", "Historic Trees"],
@@ -96,7 +96,7 @@ export const PARKS = {
     id: "twin-peaks",
     name: "Twin Peaks",
     seed: 6,
-    image: "https://placehold.co/200x200/ec4899/white?text=TP",
+    image: "/park_pictures/twin_peaks.jpg",
     stats: {
       acreage: 64,
       amenities: ["Hiking Trails", "Observation Point", "Wildlife Viewing"],
@@ -114,7 +114,7 @@ export const PARKS = {
     id: "lake-merced",
     name: "Lake Merced",
     seed: 7,
-    image: "https://placehold.co/200x200/14b8a6/white?text=LM",
+    image: "/park_pictures/lake_merced.jpg",
     stats: {
       acreage: 614,
       amenities: ["Fishing", "Boating", "Golf Course", "Running Trail", "Archery Range"],
@@ -132,7 +132,7 @@ export const PARKS = {
     id: "corona-heights",
     name: "Corona Heights Park",
     seed: 8,
-    image: "https://placehold.co/200x200/ef4444/white?text=CH",
+    image: "/park_pictures/corona_heights.jpg",
     stats: {
       acreage: 15,
       amenities: ["Randall Museum", "Off-leash Dog Area", "Hiking Trails", "Rock Outcroppings"],
@@ -150,7 +150,7 @@ export const PARKS = {
     id: "the-panhandle",
     name: "The Panhandle",
     seed: 9,
-    image: "https://placehold.co/200x200/84cc16/white?text=PH",
+    image: "/park_pictures/panhandle.jpg",
     stats: {
       acreage: 29,
       amenities: ["Cycling Path", "Running Trail", "Playground", "Basketball Courts", "Historic Trees"],
@@ -168,7 +168,7 @@ export const PARKS = {
     id: "marina-green",
     name: "Marina Green",
     seed: 10,
-    image: "https://placehold.co/200x200/0ea5e9/white?text=MG",
+    image: "/park_pictures/marina_green.jpg",
     stats: {
       acreage: 74,
       amenities: ["Kite Flying", "Jogging Path", "Yacht Harbor Views", "Fitness Course", "Great Meadow"],
@@ -204,7 +204,7 @@ export const PARKS = {
     id: "stern-grove",
     name: "Sigmund Stern Recreation Grove",
     seed: 12,
-    image: "https://placehold.co/200x200/22c55e/white?text=SG",
+    image: "/park_pictures/stern_grove.jpg",
     stats: {
       acreage: 33,
       amenities: ["Amphitheater", "Concert Meadow", "Dog Play Area", "Hiking Trails", "Croquet Lawn"],
@@ -222,7 +222,7 @@ export const PARKS = {
     id: "alta-plaza",
     name: "Alta Plaza",
     seed: 13,
-    image: "https://placehold.co/200x200/a855f7/white?text=AP",
+    image: "/park_pictures/alta_plaza.jpg",
     stats: {
       acreage: 11.8,
       amenities: ["Tennis Courts", "Playground", "Dog Play Area", "Terraced Steps"],
@@ -240,7 +240,7 @@ export const PARKS = {
     id: "balboa-park",
     name: "Balboa Park",
     seed: 14,
-    image: "https://placehold.co/200x200/f97316/white?text=BP",
+    image: "/park_pictures/balboa_park.jpg",
     stats: {
       acreage: 17,
       amenities: ["Pool", "Soccer Fields", "Baseball Diamond", "Playground", "Community Garden"],
@@ -258,7 +258,7 @@ export const PARKS = {
     id: "duboce-park",
     name: "Duboce Park",
     seed: 15,
-    image: "https://placehold.co/200x200/eab308/white?text=DB",
+    image: "/park_pictures/duboce_park.jpg",
     stats: {
       acreage: 4.4,
       amenities: ["Off-leash Dog Area", "Playground", "Basketball Court", "N-Judah Mural"],
