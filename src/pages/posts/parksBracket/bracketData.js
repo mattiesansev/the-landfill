@@ -202,7 +202,7 @@ export const INITIAL_BRACKET = {
     { id: "r16-2", parkA: "lake-merced",     parkB: "duboce-park",    winner: null }, // 8 vs 9
     { id: "r16-3", parkA: "the-panhandle",   parkB: "marina-green",   winner: null }, // 5 vs 12
     { id: "r16-4", parkA: "corona-heights",  parkB: "stern-grove",    winner: null }, // 4 vs 13
-    { id: "r16-5", parkA: "buena-vista-park", parkB: "washington-square-park",   winner: null }, // 6 vs 11
+    { id: "r16-5", parkA: "buena-vista-park", parkB: "washington-square",   winner: null }, // 6 vs 11
     { id: "r16-6", parkA: "mission-dolores", parkB: "presidio",       winner: null }, // 3 vs 14
     { id: "r16-7", parkA: "twin-peaks",      parkB: "alta-plaza",     winner: null }, // 7 vs 10
     { id: "r16-8", parkA: "alamo-square",    parkB: "sunset-dunes",   winner: null }, // 2 vs 15
