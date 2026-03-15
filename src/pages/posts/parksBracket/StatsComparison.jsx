@@ -57,12 +57,10 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
           <div className="park-blurb">
             <h4>{parkA.name}</h4>
             <p>{parkA.description}</p>
-            {parkA.funFact && <p className="fun-fact">{parkA.funFact}</p>}
           </div>
           <div className="park-blurb">
             <h4>{parkB.name}</h4>
             <p>{parkB.description}</p>
-            {parkB.funFact && <p className="fun-fact">{parkB.funFact}</p>}
           </div>
         </div>
       </div>

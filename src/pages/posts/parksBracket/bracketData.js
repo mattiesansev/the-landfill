@@ -6,7 +6,7 @@ export const PARKS = {
     id: "alamo-square",
     name: "Alamo Square",
     seed: 1,
-    image: "https://placehold.co/200x200/f59e0b/white?text=AS",
+    image: "/park_pictures/alamo_square.png",
     stats: {
       acreage: 13,
       amenities: ["Dog Play Area", "Tennis Court", "Playground", "Picnic Areas"],
@@ -18,7 +18,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "Embedded in the historic Alamo Square neighborhood, this park provides great (some might even say \"iconic\") views of San Francisco. Perhaps the most photogenic park, it is no wonder that tourists and film/TV crews alike flock to the park to capture that San Francisco-style (hello, Full House!). But while the views might knock you over, so could the wind. Sitting pretty up on Alamo Hill both provides great views… and makes the park especially prone to a stiff breeze. Can Alamo Square breeze through the competition, or will this shortcoming be its downfall?",
-    funFact: "The Painted Ladies at Alamo Square appeared in over 70 movies and TV shows, including Full House."
   },
   "golden-gate": {
     id: "golden-gate",
@@ -36,7 +35,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "Stretching about half the length of the city, Golden Gate Park is a clear heavyweight when it comes to city parks. Larger than NYC's Central Park, Golden Gate is famous, not just for its size, but for its variety of attractions. From the Conservatory of Flowers, California Academy of Sciences, DeYoung art museum, Japanese Tea Garden, Botanical Gardens, JFK promenade, and famous annual music festivals, including Outside Lands, Golden Gate Park has shown itself to be a fierce competitor. But is the comparison to other parks fair? Should GGP be in a league of its own or even be judged more harshly considering the advantage of its size? We'll see where voters land on this contentious issue…",
-    funFact: "Golden Gate Park is 20% larger than Central Park in New York City."
   },
   "mission-dolores": {
     id: "mission-dolores",
@@ -54,7 +52,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "Favored among sunshine-lovers, Mission Dolores is the sunniest park in San Francisco. While the park is most popularly known for providing respite from the fog, its uses have been incredibly versatile over its long history. The land was once a freshwater lake, a Jewish cemetery, and a refugee camp following the 1906 earthquake. Its versatility is impressive, but its reputation for drug use is also well-known. With this park's propensity for drug use, does Mission Dolores have the fortitude to push through the competition? Experts argue this reputation might work in the park's favor if voters enjoy a fat blunt on a Sunday afternoon.",
-    funFact: "Dolores Park was a Jewish cemetery until 1894 and served as a refugee camp after the 1906 earthquake."
   },
   "corona-heights": {
     id: "corona-heights",
@@ -72,7 +69,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "Corona Heights may be a beautiful park, but its humble origins make this young upstart all the more impressive. Originally a quarry and brick factory, Corona Heights rose from the rubble to become what it is today. Residents taunted Corona Heights in its youth, naming it \"Rocky Hill\" and \"Rock Hill\", tossing rocks at it jeeringly (we assume). But this diminished existence did not last forever… in 1928 the Recreation and Parks department proposed the area should be for recreation, purchasing the park in 1941. The park is now known for its views, animal and plant life, and popular Randall Museum.",
-    funFact: "The red rocks at Corona Heights are 200 million year old chert, formed from ancient sea creatures."
   },
   "the-panhandle": {
     id: "the-panhandle",
@@ -90,7 +86,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "Technically an extension of Golden Gate Park, the Panhandle has developed a unique reputation among San Franciscans as a truly embedded city park, providing easily accessible green space and pedestrian walkways to the Haight-Asbury and Nopa neighborhoods. Its proximity to the Haight-Ashbury neighborhood has also made the Panhandle a prime spot for protests in the late 20th century, including protests that protected the park from becoming a freeway, even converting some existing freeway on the Panhandle into meadows — a proto-Sunset Dunes, perhaps? Today, the park is popular among runners, bikers, and hippies, alike. Can the Panhandle outpace its reputation as a little sibling of Golden Gate Park, or will its fervent fanbase carry it through the competition?",
-    funFact: "The Panhandle hosted the first free concerts in the 1960s, launching the Summer of Love."
   },
   "buena-vista-park": {
     id: "buena-vista-park",
@@ -108,7 +103,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "Named after the original \"Buena Vista\" city that preceded San Francisco, as well as its good views, patrons of the park historically have seen more than they might have expected while visiting this park. Starting around the 1967 \"Summer of Love\", encampments filled the park and it developed a reputation for casual public sex. Since then, two neighborhood associations have worked to revitalize the park, including garbage cleanup, improved lighting, and landscape redesigns. Now considered more \"family-friendly\" (at least during the day), Buena Vista is beloved by its neighboring residents, but could its scandalous history come back to bite it?",
-    funFact: "Buena Vista is SF's oldest park and has trees over 150 years old."
   },
   "twin-peaks": {
     id: "twin-peaks",
@@ -126,7 +120,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "Known for its views, Twin Peaks boasts the second and third highest points in the city, beaten by Mount Davidson by only three feet (so close!). While the honor of highest point may have been snatched from them at the last minute, Twin Peaks' position in the city makes it a strong contender for best view, with visibility stretching all the way to the East Bay (on a good day). It's also known as a team player, as its peaks block the east side of SF from fog and wind. Nice assist! Without Mount Davidson to compete with, can Twin Peak come up from behind and sweep the competition? Or will the peaks be second (and third) best once again?",
-    funFact: "The Spanish called Twin Peaks 'Los Pechos de la Chola' (The Breasts of the Maiden)."
   },
   "lake-merced": {
     id: "lake-merced",
@@ -144,7 +137,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "This park is home to the largest lake in San Francisco, but it perhaps should also be known for its trigger-happy history. Lake Merced was the site of \"the last notable American duel\" between US Senator David Broderick and ex-Chief Justice David Terry, ending in Broderick's death in 1859. Yikes! The park carried on this legacy of being the preeminent location to wield firearms by hosting the Pacific Rod and Gun Club until 2015. Nowadays, visitors might appreciate the reverent tranquility of the freshwater lake, at least until a crew team pulls through. It is popular among fishers, rowboaters, crew clubs, paddle boarders, and people that just like looking at water. Who doesn't love a lake?",
-    funFact: "Lake Merced was the site of California's last legal duel in 1859."
   },
   "duboce-park": {
     id: "duboce-park",
@@ -162,7 +154,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "While you may see dogs at every San Francisco Park, Duboce may be best known for its pet visitors. The smallest park on this bracket, Duboce packs a punch with its great views, easy access to the N-train, and, of course, countless dogs. But Duboce has faced many challenges in its path to becoming the unofficial dog park of San Francisco. Dog walkers faced criticism from residents for letting their dogs run free throughout the park. The conflict was resolved when the city established a Multi-Use Zone that allowed for off-leash play. Allegedly, residents complained that this off-leash zone was the majority of the park. That's 1-0 for the dogs! But will this pup of a park be able to fetch a win when facing down its much bigger competitors? Duboce will have to rely on its charm and paw-sitive attitude to pull out a win.",
-    funFact: "Duboce Park's dog area is one of the most social in SF, with an active neighborhood group."
   },
   "alta-plaza": {
     id: "alta-plaza",
@@ -180,7 +171,6 @@ export const PARKS = {
       hasParking: false,
     },
     description: "Walking up the grand, and seemingly neverending, stairs to the top of Alta Plaza, it's hard not to feel like Rocky Balboa. Once a quarry, later a refuge during the 1906 earthquake, and now a bustling park for residents and dogs, Alta Plaza has lived many lives. The views from the top are hard to beat, with the shining Bay on full display from the north end, and a panoramic birds-eye view of the city on the south. The views will take your breath away, but will they be enough to make you forget how out of breath you were after making the trek to get there?",
-    funFact: "The south-side staircase appeared in the movie 'What's Up, Doc?' starring Barbra Streisand."
   },
   "balboa-park": {
     id: "balboa-park",
@@ -198,7 +188,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "While not particularly well-known compared to other parks, Balboa is a well-rounded pick. With baseball fields, an indoor swimming pool, a wooden skate park, tennis and basketball courts, and other amenities, it is a favorite among sports-fanatics. It is a particularly popular choice for students of City College, which has a campus adjacent to the park. With beautiful mosaic art pieces and beautifully kept amenities, it's no wonder it's a favorite for many.",
-    funFact: "Balboa Pool was where many SF Olympians trained, including some 1984 Olympic swimmers."
   },
   "marina-green": {
     id: "marina-green",
@@ -216,7 +205,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "While this park is primarily a promenade and large lawn with views of the water, it has a reputation that may make it more favorable to some - its sex appeal. A favorite among 24-year-old ex-sorority girls, one resident confidently proclaimed that the Marina Green is the \"sluttiest\" park on the west coast. Not only is the promenade a great place to walk a dog and show off your meticulously-planned workout outfit, but it is also notorious for being a place to find a date. But can sex appeal alone carry the Marina Green? Perhaps this park has more to show of itself… innuendo intended.",
-    funFact: "Marina Green was built on rubble from the 1906 earthquake and debris from the 1915 World's Fair."
   },
   "stern-grove": {
     id: "stern-grove",
@@ -234,13 +222,12 @@ export const PARKS = {
       hasParking: true,
     },
     description: "Stern Grove is home to the city's longest-running free concert series. The founder, Rosalie M. Stern noticed the park's natural acoustics and established it as a public performance venue. While it's a niche pick, Stern Grove's natural advantages and historical performance venue make this park a favorite among music lovers.",
-    funFact: "Stern Grove's free summer concerts are the oldest continuously-running free summer arts festival in the US."
   },
   "sunset-dunes": {
     id: "sunset-dunes",
     name: "Sunset Dunes",
     seed: 14,
-    image: "https://placehold.co/200x200/78716c/white?text=SD",
+    image: "/park_pictures/sunset_dunes.jpg",
     stats: {
       acreage: 50,
       amenities: ["Native Dune Habitat", "Walking Paths", "Wildlife Viewing", "Beach Access"],
@@ -252,7 +239,6 @@ export const PARKS = {
       hasParking: true,
     },
     description: "This newcomer may be a controversial pick for some, but its charm has won many over many. Sunset Dunes has been the subject of much debate after being converted from the Great Highway, a move that cost Sunset Supervisor Joel Engardio his seat in an upset recall election. While the park has many critics among commuters, others have grown to appreciate increased pedestrian and biker access, public art, and sweeping views of Ocean Beach. With less than a year under its belt and many San Franciscans cheering for its downfall, will Sunset Dunes be able to stand up to the heat?",
-    funFact: "Sunset Dunes is home to the endangered San Francisco lessingia flower found nowhere else on Earth."
   },
   "presidio": {
     id: "presidio",

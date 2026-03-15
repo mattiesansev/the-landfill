@@ -62,11 +62,6 @@ const ParkStatsSection = () => {
                     {!park.stats.dogFriendly && <span className="feature no">No Dogs</span>}
                   </div>
 
-                  {park.funFact && (
-                    <div className="park-stats-fun-fact">
-                      <strong>Fun Fact:</strong> {park.funFact}
-                    </div>
-                  )}
                 </div>
               )}
             </div>

@@ -53,12 +53,6 @@ const ParkDetailModal = ({ parkId, onClose }) => {
           {!park.stats.dogFriendly && <span className="feature no">No Dogs</span>}
         </div>
 
-        {park.funFact && (
-          <div className="fun-fact">
-            <h4>Fun Fact</h4>
-            <p>{park.funFact}</p>
-          </div>
-        )}
       </div>
     </div>
   );
