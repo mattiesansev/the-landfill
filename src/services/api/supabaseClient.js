@@ -16,8 +16,16 @@ export function ensureAnonymousUser() {
   if (authPromise) return authPromise;
 
   authPromise = (async () => {
+    // Try to get an existing session
     const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) return session.user;
+    if (session?.user) {
+      // Refresh the session to ensure the token is still valid server-side
+      const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+      if (!refreshError && refreshed.session?.user) {
+        return refreshed.session.user;
+      }
+      // Refresh failed — fall through to sign in fresh
+    }
 
     const { data, error } = await supabase.auth.signInAnonymously();
     if (error) throw new Error('Anonymous sign-in failed: ' + error.message);
