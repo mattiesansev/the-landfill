@@ -25,7 +25,7 @@ const ParksBracket = () => {
         <AuthorFooter
           authorImageUrl={authors.mattie.photo}
           authorName={authors.mattie.name}
-          postDate="January 2025"
+          postDate="January 2026"
         />
         <AuthorFooter
           authorImageUrl={authors.maggie.photo}
@@ -54,7 +54,7 @@ const ParksBracket = () => {
         </div>
 
         <div className="bracket-section">
-          <h2 className="bracket-title">2025 SF Parks Championship</h2>
+          <h2 className="bracket-title">2026 SF Parks Championship</h2>
           <BracketContainer />
         </div>
 
