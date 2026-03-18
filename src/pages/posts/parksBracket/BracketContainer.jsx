@@ -49,7 +49,7 @@ const LiveResultsBanner = () => (
 const BuildBracketBanner = ({ isSubmitted }) => (
   <div className="build-bracket-banner">
     {isSubmitted
-      ? "Bracket saved! You can still edit it before voting begins."
+      ? "Bracket saved! You can still edit it before voting begins March 23rd!"
       : "Build your bracket below! Click the park name once you've made your decision!"}
   </div>
 );
