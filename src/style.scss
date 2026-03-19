@@ -632,6 +632,22 @@
           border-radius: 12px;
         }
 
+        .image-container {
+          display: flex;
+          justify-content: center;
+          margin: 20px 0;
+          
+          img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          }
+        }
+
         .user {
           display: flex;
           align-items: center;

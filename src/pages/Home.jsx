@@ -64,6 +64,13 @@ const Home = () => {
       authors: [],
       category: CATEGORIES.ALL
     },
+    {
+      id: "urban-forestry-history",
+      title: "A deep dive into the history of the SF urban canopy",
+      desc: "Filler for tree stuff",
+      authors:[authors.destiny],
+      category: CATEGORIES.HISTORICAL
+    },
   ];
 
   const filteredPosts = activeCategory === CATEGORIES.ALL

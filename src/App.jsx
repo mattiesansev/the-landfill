@@ -11,6 +11,7 @@ import ParksBracket from "./pages/posts/ParksBracket"
 import SupervisorUpdates from "./pages/posts/SupervisorUpdates"
 import WeeklyReport from "./pages/posts/WeeklyReport"
 import BracketAdmin from "./pages/BracketAdmin"
+import UrbanForestryHistory from "./pages/posts/UrbanForestryHistory"
 
 const Layout = () => {
   return (
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/bracket-admin",
         element: <BracketAdmin />
+      },
+      {
+        path: "/post/urban-forestry-history",
+        element: <UrbanForestryHistory/>
       },
     ],
   },
