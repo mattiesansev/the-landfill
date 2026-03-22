@@ -50,7 +50,7 @@ const BuildBracketBanner = ({ isSubmitted }) => (
   <div className="build-bracket-banner">
     {isSubmitted
       ? <>Bracket saved! You can still edit it before voting begins next <strong>Monday, March 23rd</strong>!</>
-      : "Build your bracket below! Click the park name once you've made your decision!"}
+      : <>Build your bracket below! <br/>Click the park name once you've made your decision!  <br/>Don't forget to fill out the branch entirely and to hit save!</>}
   </div>
 );
 
