@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import AuthorFooter from "../../components/AuthorFooter";
+import { authors } from "../../authors/authors";
 
 const UrbanForestryHistory = () => {
     const footnotes = [
@@ -48,17 +50,19 @@ const UrbanForestryHistory = () => {
     return (
         <div className="single">
             <div className="content">
+                <img src="/img/tree_article/sfpl_trees_make_good_neighbors.jpg" alt="SFPL trees make good neighbors" />
                 <div className="title">
                     The History of San Francisco’s Urban Forest
                 </div>
-                <div className="author">
-                    by Destiny Santana
-                </div>
+                <AuthorFooter
+                    authorImageUrl={authors["destiny"]["photo"]}
+                    postDate="March 23, 2026"
+                    authorName={authors["destiny"]["name"]}
+                />
                 <div className="subtitle">
                     Introduction
                 </div>
                 {/* <img src={londonPlaneTrees}></img> */}
-                <img src="/img/tree_article/sfpl_trees_make_good_neighbors.jpg" alt="SFPL trees make good neighbors" />
                 
                 <p>{renderWithFootnotes(`Have you wandered through San Francisco’s streets and thought where are all the trees? For over a hundred years that same question has been asked by residents and visitors alike. Their curiosity has led to tangible efforts to establish an urban forest in the city. From civics organizations leading plantings in the 1930s to the establishment of government departments and non-profits dedicated to growing and maintaining the urban forest in the mid 20th century and finally responses to the climate crises in the 1990s and onward have all led to more street trees in the city. As you will learn in this article, the history of street trees in San Francisco is choppy and highly dependent on the discretion of the local government to fund street tree efforts, especially during deficit years. History is still playing out and the landscape of San Francisco’s urban forest, which consists of 125,000 street trees, changes every day.
 `)}</p>
