@@ -9,7 +9,7 @@ export const authors = {
     photo: MattieImg,
   },
   destiny: {
-    name: "Destiny Santanna",
+    name: "Destiny Santana",
     photo: DestinyImg,
   },
   nick: {
