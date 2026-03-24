@@ -11,7 +11,7 @@ const AboutUs = () => {
       img: authors.mattie.photo,
     },
     {
-      name: "Destiny Santana",
+      name: "Destiny Santanna",
       desc: "Destiny Santanna is a data analyst who has worked in mapping and data analysis since 2021. She holds a bachelor’s and master’s degree in Geography from West Chester University. In spring 2024, she began researching landfills and waste management in the Bay Area and began mapping the footprints of historic landfills, which eventually led to the creation of the Bay Area Data Dump. Destiny’s role has been to research, collect data, map, and write articles for the blog. When Destiny isn’t blogging you can find her birding in Golden Gate Park, playing with her cat Milo, or reading on the bus.",
       img: authors.destiny.photo,
     },
