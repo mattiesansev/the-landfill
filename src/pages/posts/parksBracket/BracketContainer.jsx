@@ -19,20 +19,38 @@ function useIsMobile(breakpoint = 768) {
 }
 
 // Toggle between the user's own predictions and the live community bracket
-const BracketViewToggle = ({ bracketView, onChange }) => (
+const BracketViewToggle = ({ bracketView, onChange, showMyBracket = true }) => (
   <div className="bracket-view-toggle">
-    <button
-      className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
-      onClick={() => onChange("mine")}
-    >
-      My Bracket
-    </button>
     <button
       className={`bracket-view-btn live ${bracketView === "live" ? "active" : ""}`}
       onClick={() => onChange("live")}
     >
       Live Results
     </button>
+    {showMyBracket && (
+      <button
+        className={`bracket-view-btn ${bracketView === "mine" ? "active" : ""}`}
+        onClick={() => onChange("mine")}
+      >
+        My Bracket
+      </button>
+    )}
+  </div>
+);
+
+// Banner shown when user is viewing live results without their own bracket
+const LiveResultsBanner = () => (
+  <div className="live-results-banner">
+    Viewing Live Results
+  </div>
+);
+
+// Banner shown during submission phase to guide users
+const BuildBracketBanner = ({ isSubmitted }) => (
+  <div className="build-bracket-banner">
+    {isSubmitted
+      ? <>Bracket saved! You can still edit it before voting begins next <strong>Monday, March 23rd</strong>!</>
+      : <>Build your bracket below! <br/>Click the park name once you've made your decision!  <br/>Don't forget to fill out the branch entirely and to hit save!</>}
   </div>
 );
 
@@ -57,11 +75,13 @@ const BracketContainer = () => {
 
   const {
     userPicks,
+    isSubmitted,
     updatePick,
     submitUserBracket,
     resetPicks,
     bracketValidation,
     actualWinners,
+    aggregateVotes,
     refreshVotingData,
     doesUserPickMatch,
     getVotesForMatchup,
@@ -87,9 +107,20 @@ const BracketContainer = () => {
   // Phase drives the entire layout
   const phase = !activeRound ? "submission" : activeRound === "completed" ? "complete" : "voting";
 
-  // Reset to "My Bracket" view during submission — no live data to show yet
+  // Default view based on phase: "mine" during submission, "live" during voting/complete
+  const hasLoadedPhase = useRef(false);
   useEffect(() => {
-    if (phase === "submission") setBracketView("mine");
+    if (!hasLoadedPhase.current && phase === "submission") {
+      // Initial load in submission phase — already defaulted to "mine"
+      hasLoadedPhase.current = true;
+      return;
+    }
+    if (phase === "submission") {
+      setBracketView("mine");
+    } else {
+      setBracketView("live");
+    }
+    hasLoadedPhase.current = true;
   }, [phase]);
 
   // Sync visual bracket state from persisted picks
@@ -174,8 +205,13 @@ const BracketContainer = () => {
     };
   }, [bracket, bracketView, getActualMatchupParks, actualWinners]);
 
-  // Show the view toggle only when there are actual results to compare against
+  // Show the view toggle when there are actual results to view
   const showViewToggle = phase === "voting" || phase === "complete";
+
+  // Force "live" view for users who never submitted when bracket is locked
+  useEffect(() => {
+    if (!isSubmitted && isLocked) setBracketView("live");
+  }, [isSubmitted, isLocked]);
 
   if (isMobile) {
     return (
@@ -198,10 +234,12 @@ const BracketContainer = () => {
         getMatchupVotingProps={activeVotingProps}
         bracketValidation={bracketValidation}
         isLocked={isLocked}
+        isSubmitted={isSubmitted}
         activeRound={activeRound}
         activeRoundMatchups={activeRoundMatchups}
         draftRoundVotes={draftRoundVotes}
         perRoundVotes={perRoundVotes}
+        aggregateVotes={aggregateVotes}
         updateRoundVoteDraft={updateRoundVoteDraft}
         submitAllRoundVotes={submitAllRoundVotes}
         isRoundVotesSubmitted={isRoundVotesSubmitted}
@@ -217,28 +255,18 @@ const BracketContainer = () => {
 
   return (
     <div className="bracket-wrapper">
-      {/* Phase 2: Round voting at the top when a round is active */}
-      {phase === "voting" && (
-        <RoundVoting
-          activeRound={activeRound}
-          matchups={activeRoundMatchups}
-          draftRoundVotes={draftRoundVotes}
-          perRoundVotes={perRoundVotes}
-          onDraftVote={updateRoundVoteDraft}
-          onSubmitRoundVotes={submitAllRoundVotes}
-          isRoundVotesSubmitted={isRoundVotesSubmitted}
-          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
-          roundVotingProgress={roundVotingProgress}
-        />
-      )}
-
       <>
           {/* My Bracket / Live toggle (shown when results exist) */}
           {showViewToggle && (
             <BracketViewToggle
               bracketView={bracketView}
               onChange={setBracketView}
+              showMyBracket={isSubmitted || !isLocked}
             />
+          )}
+
+          {phase === "submission" && !isLocked && (
+            <BuildBracketBanner isSubmitted={isSubmitted} />
           )}
 
           <div className={`bracket-container ${bracketRegion !== "full" ? "region-view" : ""}`}>
@@ -362,10 +390,26 @@ const BracketContainer = () => {
           )}
       </>
 
+      {/* Round voting below the bracket view */}
+      {phase === "voting" && (
+        <RoundVoting
+          activeRound={activeRound}
+          matchups={activeRoundMatchups}
+          draftRoundVotes={draftRoundVotes}
+          perRoundVotes={perRoundVotes}
+          aggregateVotes={aggregateVotes}
+          onDraftVote={updateRoundVoteDraft}
+          onSubmitRoundVotes={submitAllRoundVotes}
+          isRoundVotesSubmitted={isRoundVotesSubmitted}
+          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+          roundVotingProgress={roundVotingProgress}
+        />
+      )}
+
       {selectedMatchup && (
         <StatsComparison
           matchupId={selectedMatchup}
-          bracket={bracket}
+          bracket={displayBracket}
           onSelectWinner={selectWinner}
           onClose={closeStatsComparison}
         />
@@ -378,7 +422,7 @@ const BracketContainer = () => {
 };
 
 const ROUND_TABS = [
-  { key: "round16", label: "Round of 16" },
+  { key: "round16", label: "Sweet 16" },
   { key: "quarterfinals", label: "Quarterfinals" },
   { key: "semifinals", label: "Semifinals" },
   { key: "finals", label: "Finals" },
@@ -404,10 +448,12 @@ const MobileBracket = ({
   getMatchupVotingProps,
   bracketValidation,
   isLocked,
+  isSubmitted,
   activeRound,
   activeRoundMatchups,
   draftRoundVotes,
   perRoundVotes,
+  aggregateVotes,
   updateRoundVoteDraft,
   submitAllRoundVotes,
   isRoundVotesSubmitted,
@@ -463,26 +509,32 @@ const MobileBracket = ({
 
   return (
     <div className="bracket-wrapper mobile">
-      {/* Phase 2: Round voting at top */}
-      {phase === "voting" && (
-        <RoundVoting
-          activeRound={activeRound}
-          matchups={activeRoundMatchups}
-          draftRoundVotes={draftRoundVotes}
-          perRoundVotes={perRoundVotes}
-          onDraftVote={updateRoundVoteDraft}
-          onSubmitRoundVotes={submitAllRoundVotes}
-          isRoundVotesSubmitted={isRoundVotesSubmitted}
-          hasUnsavedRoundChanges={hasUnsavedRoundChanges}
-          roundVotingProgress={roundVotingProgress}
-        />
-      )}
-
       <>
         {showViewToggle && (
           <BracketViewToggle
             bracketView={bracketView}
             onChange={onBracketViewChange}
+            showMyBracket={isSubmitted || !isLocked}
+          />
+        )}
+
+        {phase === "submission" && !isLocked && (
+          <BuildBracketBanner isSubmitted={isSubmitted} />
+        )}
+
+        {/* Round voting above the bracket view on mobile */}
+        {phase === "voting" && (
+          <RoundVoting
+            activeRound={activeRound}
+            matchups={activeRoundMatchups}
+            draftRoundVotes={draftRoundVotes}
+            perRoundVotes={perRoundVotes}
+            aggregateVotes={aggregateVotes}
+            onDraftVote={updateRoundVoteDraft}
+            onSubmitRoundVotes={submitAllRoundVotes}
+            isRoundVotesSubmitted={isRoundVotesSubmitted}
+            hasUnsavedRoundChanges={hasUnsavedRoundChanges}
+            roundVotingProgress={roundVotingProgress}
           />
         )}
 
@@ -510,6 +562,12 @@ const MobileBracket = ({
               {showWest && renderMatchups(westR16, "r16")}
               {showEast && renderMatchups(eastR16, "r16")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(1)}>Next</button>
+              </div>
+            )}
           </div>
 
           <div className="mobile-round-panel">
@@ -517,6 +575,12 @@ const MobileBracket = ({
               {showWest && renderMatchups(westQF, "qf")}
               {showEast && renderMatchups(eastQF, "qf")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(2)}>Next</button>
+              </div>
+            )}
           </div>
 
           <div className="mobile-round-panel">
@@ -524,6 +588,12 @@ const MobileBracket = ({
               {showWest && renderMatchups([bracket.semifinals[0]], "sf")}
               {showEast && renderMatchups([bracket.semifinals[1]], "sf")}
             </div>
+            {!isLocked && bracketView === "mine" && (
+              <div className="bracket-action-buttons">
+                <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                <button className="save-bracket-btn" onClick={() => scrollToTab(3)}>Next</button>
+              </div>
+            )}
           </div>
 
           {bracketRegion === "full" && (
@@ -531,24 +601,21 @@ const MobileBracket = ({
               <div className="mobile-matchups">
                 {renderMatchups([bracket.finals], "finals")}
               </div>
+              {!isLocked && bracketView === "mine" && (
+                <div className="bracket-action-buttons">
+                  <button className="reset-bracket-btn" onClick={onReset}>Reset</button>
+                  <button
+                    className="save-bracket-btn"
+                    onClick={onSave}
+                    disabled={!bracketValidation.isComplete}
+                  >
+                    Save
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
-
-        {!isLocked && bracketView === "mine" && (
-          <div className="bracket-action-buttons">
-            <button className="reset-bracket-btn" onClick={onReset}>
-              Reset
-            </button>
-            <button
-              className="save-bracket-btn"
-              onClick={onSave}
-              disabled={!bracketValidation.isComplete}
-            >
-              Save
-            </button>
-          </div>
-        )}
       </>
 
       {selectedMatchup && (

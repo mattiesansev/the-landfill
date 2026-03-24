@@ -11,6 +11,8 @@ import "leaflet/dist/leaflet.css";
 import VoteCard from "../../components/votes/VoteCard";
 
 const MEETING_DATES = [
+  { date: "2026-03-03", display: "March 3, 2026" },
+  { date: "2026-02-24", display: "February 24, 2026" },
   { date: "2026-02-10", display: "February 10, 2026" },
   { date: "2026-02-03", display: "February 3, 2026" },
   { date: "2026-01-27", display: "January 27, 2026" },

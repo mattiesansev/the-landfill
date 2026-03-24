@@ -69,6 +69,7 @@ export {
   // Simulation (dev only)
   addSimulatedVotes,
   clearSimulatedVotes,
+  simulateVoters,
 
   // Admin auth
   setAdminPassword,

@@ -1,0 +1,141 @@
+{
+  "meeting": {
+    "date": "2026-03-03",
+    "display_date": "March 3, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "260142",
+      "title": "Restore Outdoor Emergency Warning Sirens in Tsunami Zones",
+      "description": "Urges the Department of Emergency Management and Department of Technology to prioritize restoring San Francisco's outdoor public warning system in tsunami evacuation zones and coastal areas, and to secure funding for the infrastructure. Supervisor Wong severed this item from the consent agenda at the previous meeting; Mandelman voted no.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": ["Mandelman"],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Wong",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260192",
+      "title": "Support SB 875 – Access to Public Power Act",
+      "description": "Supports California SB 875, authored by Sen. Scott Wiener, which would strengthen local jurisdictions' ability to form or expand their own public utilities within PG&E's service territory — directly relevant to SF's ongoing effort to acquire PG&E assets.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": ["Dorsey", "Sauter", "Melgar", "Wong", "Mahmood", "Fielder"]
+      }
+    },
+    {
+      "file_number": "260193",
+      "title": "Support AB 1897 – Mentally Disordered Offenders Criteria",
+      "description": "Supports California AB 1897, authored by Assemblymember Matt Haney, which clarifies legal standards governing when mentally disordered offenders can be committed to treatment, potentially making it easier to mandate care for severely ill individuals.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": ["Sauter", "Sherrill"]
+      }
+    },
+    {
+      "file_number": "260200",
+      "title": "Authorize Ballot Arguments for June 2, 2026 Election",
+      "description": "Authorizes supervisors to prepare proponent and opponent ballot arguments for measures on the June 2026 statewide direct primary. Amended on the floor to update which supervisors are assigned to write arguments for and against each measure.",
+      "action": "APPROVED AS AMENDED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260019",
+      "title": "IMCO Parking Contract Extension – $219M Total",
+      "description": "Approves a $12 million increase to IMCO Parking's contract for managing Port of San Francisco parking facilities at Pier 30-32 and Pier 70, bringing the total contract to $219 million through 2030.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260020",
+      "title": "LAZ Parking Contract Extension – $189M Total",
+      "description": "Approves a $9 million increase to LAZ Parking California's contract for managing Port parking at Triangle Lot and Seawall 321, bringing the total contract to $189 million. Both Port parking contracts were approved at the same meeting.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260119",
+      "title": "Accept $45M State Grant for Treasure Island Affordable Housing",
+      "description": "Authorizes the Treasure Island Development Authority to execute a $45.1 million state Affordable Housing and Sustainable Communities grant: $30 million as a loan to a family housing development and $15.1 million as a direct grant for sustainable infrastructure at Treasure Island.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": "Dorsey",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260076",
+      "title": "YMCA Mental Health Services Contract Extension – $11.6M",
+      "description": "Extends the YMCA of San Francisco's contract with the Department of Public Health to provide mental health services to children and youth by one year through June 2028, adding $1.6 million for a total of $11.6 million.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Fielder", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": []
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    }
+  ]
+}

@@ -499,7 +499,7 @@ const ROUND16_MATCHUPS = [
   { id: "r16-4", parkA: "buena-vista-park", parkB: "stern-grove" },
   { id: "r16-5", parkA: "presidio-tunnel-tops", parkB: "balboa-park" },
   { id: "r16-6", parkA: "twin-peaks", parkB: "marina-green" },
-  { id: "r16-7", parkA: "dolores-park", parkB: "duboce-park" },
+  { id: "r16-7", parkA: "mission-dolores", parkB: "duboce-park" },
   { id: "r16-8", parkA: "lake-merced", parkB: "ocean-beach" },
 ];
 
@@ -604,6 +604,9 @@ export function clearSimulatedVotes() {
     addVotesToAggregate(userBracket.picks);
   }
 }
+
+// Alias for compatibility with real API
+export const simulateVoters = addSimulatedVotes;
 
 // Expose for console debugging
 if (typeof window !== "undefined") {

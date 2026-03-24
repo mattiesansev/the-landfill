@@ -397,35 +397,74 @@
     //ABOUT
     .about {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
       @media (max-width: 850px) {
-        max-width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 40px 20px;
         text-align: center;
       }
 
+      .about-group-photo {
+        width: 65%;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        img {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .about-section {
+        width: 65%;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #d0e6ed;
+        margin-bottom: 32px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        h2 {
+          font-size: 30px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 10px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 28px;
+          color: #2d3748;
+        }
+      }
+
+      .meet-the-team {
+        width: 65%;
+        font-size: 30px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 24px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+      }
+
       .people {
-        margin-top: 50px;
         flex-direction: column;
         display: flex;
         width: 65%;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-        border: 2px solid #8ac4d4;
-        padding: 40px;
         @media (max-width: 850px) {
           width: 95%;
-          padding: 20px;
         }
         .person {
           display: flex;
           gap: 25px;
-          padding-top: 40px;
+          padding: 32px 0;
+          border-bottom: 1px solid #d0e6ed;
+          &:last-child {
+            border-bottom: none;
+          }
 
           &:nth-child(2n + 1) {
             flex-direction: row-reverse;
@@ -471,20 +510,69 @@
     }
     //CONTACT
     .contact {
-      max-width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      gap: 10px;
-      .contactHeader {
-        padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      gap: 32px;
+      @media (max-width: 850px) {
+        padding: 40px 20px;
+      }
+
+      .contact-photo {
+        width: 65%;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        img {
+          width: 100%;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .contact-heading {
         font-size: 40px;
-        .groupPhoto {
-          img {
-            max-width: 80%;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+      }
+
+      .contact-links {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        @media (max-width: 850px) {
+          width: 95%;
+        }
+        .contact-link {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 16px 20px;
+          border: 1px solid #d0e6ed;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #2d3748;
+          transition: background-color 0.15s;
+          &:hover {
+            background-color: #f0f8fb;
+          }
+          .contact-link-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #8ac4d4;
+            min-width: 80px;
+          }
+          .contact-link-value {
+            font-size: 18px;
           }
         }
       }
+
     }
     //SINGLE
     .single {
@@ -1094,6 +1182,10 @@
 }
 
 // Global styles for Leaflet
+.leaflet-container {
+  z-index: 1;
+}
+
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
   background-color: antiquewhite;
@@ -1502,6 +1594,24 @@
   }
 }
 
+.bracket-callout {
+  background-color: #f0f8fb;
+  border-left: 4px solid #8ac4d4;
+  border-radius: 6px;
+  padding: 14px 20px;
+  font-size: 18px;
+  line-height: 28px;
+  color: #2d3748;
+  margin: 16px 10%;
+  a {
+    color: #5a9eb8;
+    text-decoration: underline;
+    &:hover {
+      color: #3a7e98;
+    }
+  }
+}
+
 // Parks Bracket Styles
 .bracket-section {
   margin: 40px 0;
@@ -1522,9 +1632,10 @@
   gap: 15px;
 
   &.mobile {
-    .bracket-mobile {
-      width: 100%;
-    }
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    align-items: stretch;
   }
 }
 
@@ -1686,22 +1797,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     text-align: center;
     width: 95%;
     min-height: 12px;
     margin-top: 2px;
-    background: none;
-    border: none;
-    border-top: 1px solid #e2e8f0;
+    padding: 4px 0;
+    background: rgba(90, 154, 181, 0.08);
+    border: 1px solid rgba(90, 154, 181, 0.25);
     cursor: pointer;
-    color: #a0aec0;
+    color: #5a9ab5;
     font-size: 12px;
-    border-radius: 0 0 4px 4px;
-    transition: background 0.15s ease, color 0.15s ease;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 
     &:hover {
-      background: rgba(138, 196, 212, 0.12);
-      color: #5a9ab5;
+      background: rgba(90, 154, 181, 0.18);
+      border-color: rgba(90, 154, 181, 0.45);
+      color: #3d7a94;
     }
 
     &:active {
@@ -1718,6 +1832,22 @@
   border-radius: 4px;
   transition: all 0.2s ease;
   cursor: pointer;
+
+  .color-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.park-a {
+      background: #5a8ab8;
+    }
+
+    &.park-b {
+      background: #e2a84b;
+    }
+  }
 
   &:hover {
     background-color: rgba(138, 196, 212, 0.15);
@@ -1858,6 +1988,9 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    background: #f0f0f0;
+    color: #c0c0c0;
+    border-color: #e0e0e0;
   }
 }
 
@@ -1875,6 +2008,7 @@
   align-items: center;
   z-index: 1000;
   padding: 20px;
+  overflow-y: auto;
   animation: fadeIn 0.3s ease;
 }
 
@@ -1904,18 +2038,18 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 25px;
-  max-width: 500px;
+  max-width: calc(100vw - 40px);
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin: auto;
   animation: flipIn 0.4s ease;
 
   @media (max-width: 768px) {
     padding: 18px;
-    max-width: 95%;
   }
 
   .close-btn {
@@ -1928,6 +2062,7 @@
     cursor: pointer;
     color: #718096;
     line-height: 1;
+    z-index: 1;
 
     &:hover {
       color: #2d3748;
@@ -1943,70 +2078,63 @@
   }
 }
 
-.comparison-main {
+// Park comparison header: images + names side by side
+.comparison-header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  padding: 0 10px;
 
-  @media (max-width: 768px) {
+  .comparison-park-header {
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
-}
+    gap: 8px;
+    flex: 1;
 
-.comparison-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-
-  .comparison-park-image {
-    width: 80px;
-    height: 100px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 2px solid #e2e8f0;
-  }
-
-  .select-btn {
-    padding: 6px 16px;
-    border: 2px solid #7a9ec4;
-    border-radius: 16px;
-    background: white;
-    color: #5a8ab8;
-    font-weight: 500;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(122, 158, 196, 0.1);
-    }
-
-    &.selected {
-      background: #7a9ec4;
-      color: white;
-    }
-  }
-
-  @media (max-width: 768px) {
     .comparison-park-image {
-      width: 60px;
-      height: 80px;
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #e2e8f0;
+    }
+
+    .comparison-park-name {
+      color: #5a8ab8;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 400px) {
+    gap: 10px;
+    padding: 0;
+
+    .comparison-park-header {
+      .comparison-park-image {
+        width: 100px;
+        height: 100px;
+      }
+
+      .comparison-park-name {
+        font-size: 12px;
+      }
     }
   }
 }
 
 .comparison-stats {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  max-width: 220px;
+  max-width: 280px;
+  margin: 0 auto 16px;
 
   .stat-row {
     text-align: center;
@@ -2050,7 +2178,7 @@
   padding-top: 15px;
   border-top: 1px solid #e2e8f0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     gap: 15px;
   }
@@ -2195,9 +2323,187 @@
   }
 }
 
+// Park Stats Section (expandable park list)
+.park-stats-section {
+  margin-top: 30px;
+
+  .park-stats-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .park-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .park-stats-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+
+    &.open {
+      border-color: #8ac4d4;
+    }
+
+    .park-stats-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 12px 16px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      text-align: left;
+      gap: 10px;
+      transition: background 0.15s;
+
+      &:hover {
+        background: #f7fafc;
+      }
+    }
+
+    .park-stats-seed {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5a6577;
+      min-width: 28px;
+    }
+
+    .park-stats-name {
+      flex: 1;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .park-stats-chevron {
+      font-size: 12px;
+      color: #a0aec0;
+      transition: transform 0.2s;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+
+    .park-stats-body {
+      padding: 0 16px 16px;
+      background: #fafbfc;
+      border-top: 1px solid #edf2f7;
+
+      .park-stats-description {
+        font-size: 14px;
+        color: #4a5568;
+        margin: 12px 0;
+        line-height: 1.5;
+      }
+
+      .park-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 12px;
+
+        @media (max-width: 480px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stat {
+          text-align: center;
+          padding: 8px;
+          background: white;
+          border-radius: 6px;
+          border: 1px solid #edf2f7;
+
+          .stat-label {
+            display: block;
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+          }
+
+          .stat-value {
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d3748;
+          }
+        }
+      }
+
+      .park-stats-amenities {
+        margin-bottom: 12px;
+
+        h4 {
+          font-size: 13px;
+          color: #5a8ab8;
+          margin: 0 0 6px;
+        }
+
+        ul {
+          margin: 0;
+          padding-left: 20px;
+          font-size: 13px;
+          color: #4a5568;
+          columns: 2;
+
+          li {
+            margin-bottom: 2px;
+          }
+        }
+      }
+
+      .park-stats-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+
+        .feature {
+          font-size: 12px;
+          padding: 3px 10px;
+          border-radius: 12px;
+          background: #e6fffa;
+          color: #2c7a7b;
+          font-weight: 500;
+
+          &.no {
+            background: #fff5f5;
+            color: #c53030;
+          }
+        }
+      }
+
+      .park-stats-fun-fact {
+        font-size: 13px;
+        color: #4a5568;
+        background: #fffff0;
+        border-left: 3px solid #ecc94b;
+        padding: 8px 12px;
+        border-radius: 0 6px 6px 0;
+        line-height: 1.4;
+
+        strong {
+          color: #975a16;
+        }
+      }
+    }
+  }
+}
+
 // Mobile Bracket Layout — swipeable rounds
 .mobile-round-tabs {
   display: flex;
+  justify-content: center;
   gap: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -2207,9 +2513,8 @@
   margin-bottom: 0;
 
   .mobile-round-tab {
-    flex: 1;
-    min-width: 0;
-    padding: 10px 6px;
+    flex: none;
+    padding: 10px 12px;
     font-size: 13px;
     font-weight: 500;
     font-family: inherit;
@@ -2236,13 +2541,15 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  width: 100%;
   &::-webkit-scrollbar { display: none; }
 
   .mobile-round-panel {
     flex: 0 0 100%;
     width: 100%;
+    min-width: 0;
     scroll-snap-align: start;
-    padding: 16px 4px;
+    padding: 16px 8px;
     box-sizing: border-box;
 
     .mobile-matchups {
@@ -2250,10 +2557,41 @@
       flex-direction: column;
       gap: 12px;
     }
+
+    .matchup-card {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
   }
 }
 
 // My Bracket / Live toggle
+.live-results-banner {
+  text-align: center;
+  padding: 8px 16px;
+  margin: 12px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a8ab8;
+  background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+  border: 1px solid #bee3f8;
+  border-radius: 8px;
+}
+
+.build-bracket-banner {
+  text-align: center;
+  padding: 8px 16px;
+  margin: 12px 0 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a5568;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
 .bracket-view-toggle {
   display: flex;
   justify-content: center;
@@ -2580,18 +2918,20 @@
       transition: width 0.3s ease;
 
       &.park-a {
-        background: #7a9ec4;
+        background: #5a8ab8;
+        border-radius: 3px 0 0 3px;
 
         &.winner {
-          background: #48bb78;
+          background: #4a7ba8;
         }
       }
 
       &.park-b {
-        background: #a0aec0;
+        background: #e2a84b;
+        border-radius: 0 3px 3px 0;
 
         &.winner {
-          background: #48bb78;
+          background: #d49a3e;
         }
       }
     }
@@ -2605,11 +2945,36 @@
     font-size: 11px;
 
     .vote-count {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       font-weight: 600;
-      color: #718096;
+
+      &.park-a {
+        color: #5a8ab8;
+      }
+
+      &.park-b {
+        color: #e2a84b;
+      }
 
       &.winner {
-        color: #48bb78;
+        font-weight: 700;
+      }
+    }
+
+    .color-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+
+      &.park-a {
+        background: #5a8ab8;
+      }
+
+      &.park-b {
+        background: #e2a84b;
       }
     }
 
@@ -3345,6 +3710,30 @@
     color: #38a169;
     margin-top: 8px;
     font-weight: 500;
+  }
+
+  .round-vote-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+    background: #edf2f7;
+
+    .round-vote-bar-fill {
+      height: 100%;
+      transition: width 0.4s ease;
+
+      &.left {
+        background: #5a8ab8;
+        border-radius: 3px 0 0 3px;
+      }
+
+      &.right {
+        background: #e2a84b;
+        border-radius: 0 3px 3px 0;
+      }
+    }
   }
 }
 

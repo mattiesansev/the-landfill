@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RoundMatchupVoteCard from "./RoundMatchupVoteCard";
 
 const ROUND_LABELS = {
-  round16: "Round of 16",
+  round16: "Sweet 16",
   quarterfinals: "Quarterfinals",
   semifinals: "Semifinals",
   finals: "Finals",
@@ -13,6 +13,7 @@ const RoundVoting = ({
   matchups,
   draftRoundVotes,
   perRoundVotes,
+  aggregateVotes,
   onDraftVote,
   onSubmitRoundVotes,
   isRoundVotesSubmitted,
@@ -60,7 +61,20 @@ const RoundVoting = ({
         {ROUND_LABELS[activeRound] || activeRound}
       </h3>
 
-      {/* Submit panel */}
+      <div className="round-voting-cards">
+        {matchups.map((matchup) => (
+          <RoundMatchupVoteCard
+            key={matchup.id}
+            matchup={matchup}
+            userVote={draftRoundVotes[matchup.id] || null}
+            perRoundVotes={perRoundVotes}
+            aggregateVotes={aggregateVotes}
+            onVote={onDraftVote}
+          />
+        ))}
+      </div>
+
+      {/* Submit panel at bottom after all vote cards */}
       <div className="round-voting-submit-panel">
         <div className="progress-section">
           <div className="progress-bar">
@@ -94,18 +108,6 @@ const RoundVoting = ({
             )}
           </>
         )}
-      </div>
-
-      <div className="round-voting-cards">
-        {matchups.map((matchup) => (
-          <RoundMatchupVoteCard
-            key={matchup.id}
-            matchup={matchup}
-            userVote={draftRoundVotes[matchup.id] || null}
-            perRoundVotes={perRoundVotes}
-            onVote={onDraftVote}
-          />
-        ))}
       </div>
     </div>
   );

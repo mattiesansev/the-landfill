@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { PARKS, findMatchup } from "./bracketData";
 
 const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
@@ -8,77 +9,65 @@ const StatsComparison = ({ matchupId, bracket, onSelectWinner, onClose }) => {
   const parkA = PARKS[matchup.parkA];
   const parkB = PARKS[matchup.parkB];
 
+  if (!parkA || !parkB) return null;
+
   const stats = [
-    { label: "Acreage", valueA: parkA.stats.acreage, valueB: parkB.stats.acreage },
-    { label: "Playgrounds", valueA: parkA.stats.playgrounds, valueB: parkB.stats.playgrounds },
-    { label: "Sports Fields", valueA: parkA.stats.sportsFields, valueB: parkB.stats.sportsFields },
-    { label: "Year Est.", valueA: parkA.stats.yearEstablished, valueB: parkB.stats.yearEstablished },
+    { label: "Acreage", valueA: parkA.stats?.acreage ?? "—", valueB: parkB.stats?.acreage ?? "—" },
+    { label: "Year Est.", valueA: parkA.stats?.yearEstablished ?? "—", valueB: parkB.stats?.yearEstablished ?? "—" },
+    { label: "Neighborhood", valueA: parkA.stats?.neighborhood ?? "—", valueB: parkB.stats?.neighborhood ?? "—" },
   ];
 
-  return (
+  return createPortal(
     <div className="stats-comparison-overlay" onClick={onClose}>
       <div className="stats-comparison-modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>
           &times;
         </button>
 
-        <div className="comparison-main">
-          {/* Left park image */}
-          <div className="comparison-side left">
+        {/* Park headers: images + names */}
+        <div className="comparison-header">
+          <div className="comparison-park-header">
             {parkA.image && (
               <img className="comparison-park-image" src={parkA.image} alt={parkA.name} />
             )}
-            <button
-              className={`select-btn ${matchup.winner === matchup.parkA ? "selected" : ""}`}
-              onClick={() => onSelectWinner(matchupId, matchup.parkA)}
-            >
-              Select
-            </button>
+            <h4 className="comparison-park-name">{parkA.name}</h4>
           </div>
-
-          {/* Center stats table */}
-          <div className="comparison-stats">
-            {stats.map((stat) => (
-              <div key={stat.label} className="stat-row">
-                <div className="stat-label">{stat.label}</div>
-                <div className="stat-values">
-                  <span className="stat-value">{stat.valueA}</span>
-                  <span className="stat-divider">|</span>
-                  <span className="stat-value">{stat.valueB}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Right park image */}
-          <div className="comparison-side right">
+          <div className="comparison-park-header">
             {parkB.image && (
               <img className="comparison-park-image" src={parkB.image} alt={parkB.name} />
             )}
-            <button
-              className={`select-btn ${matchup.winner === matchup.parkB ? "selected" : ""}`}
-              onClick={() => onSelectWinner(matchupId, matchup.parkB)}
-            >
-              Select
-            </button>
+            <h4 className="comparison-park-name">{parkB.name}</h4>
           </div>
         </div>
 
-        {/* Blurbs / fun facts below */}
+        {/* Stats comparison table */}
+        <div className="comparison-stats">
+          {stats.map((stat) => (
+            <div key={stat.label} className="stat-row">
+              <div className="stat-label">{stat.label}</div>
+              <div className="stat-values">
+                <span className="stat-value">{stat.valueA}</span>
+                <span className="stat-divider">|</span>
+                <span className="stat-value">{stat.valueB}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Blurbs / fun facts */}
         <div className="comparison-blurbs">
           <div className="park-blurb">
             <h4>{parkA.name}</h4>
             <p>{parkA.description}</p>
-            {parkA.funFact && <p className="fun-fact">{parkA.funFact}</p>}
           </div>
           <div className="park-blurb">
             <h4>{parkB.name}</h4>
             <p>{parkB.description}</p>
-            {parkB.funFact && <p className="fun-fact">{parkB.funFact}</p>}
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
