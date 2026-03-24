@@ -33,6 +33,14 @@ const Home = () => {
 
   const posts = [
     {
+      id: "urban-forestry-history",
+      title: "The History of San Francisco's Urban Forest",
+      desc: "San Francisco’s urban forest has taken many different shapes over the past century. From sand dunes and sidewalks to a budding urban forest, this article follows the story of the City’s urban forest and its past, present, and future.",
+      img: treeArticleCover,
+      authors:[authors.destiny],
+      category: CATEGORIES.HISTORICAL
+    },
+    {
       id: "sf-parks-bracket",
       title: "SF Park Madness",
       desc: "A bracket-based competition featuring 16 SF Parks. Vote for winners each week until we name a champion!",
@@ -55,14 +63,6 @@ const Home = () => {
       desc: "A timeline and history of rent control since the 1970s.",
       img: rentControlCover,
       authors: [authors.mattie, authors.destiny, authors.nick, authors.maggie],
-      category: CATEGORIES.HISTORICAL
-    },
-    {
-      id: "urban-forestry-history",
-      title: "The History of San Francisco's Urban Forest",
-      desc: "San Francisco’s urban forest has taken many different shapes over the past century. From sand dunes and sidewalks to a budding urban forest, this article follows the story of the City’s urban forest and its past, present, and future.",
-      img: treeArticleCover,
-      authors:[authors.destiny],
       category: CATEGORIES.HISTORICAL
     },
     {
