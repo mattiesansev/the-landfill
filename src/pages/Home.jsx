@@ -9,6 +9,7 @@ import ReactGA from 'react-ga4';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Logo from "../img/logo_transparent.png"
+import treeArticleCover from "../img/cover_tree_article.png"
 
 
 ReactGA.initialize('G-NR2T70PVBG');
@@ -48,6 +49,14 @@ const Home = () => {
       category: CATEGORIES.HISTORICAL
     },
     {
+      id: "urban-forestry-history",
+      title: "The History of San Francisco's Urban Forest",
+      desc: "San Francisco’s urban forest has taken many different shapes over the past century. From sand dunes and sidewalks to a budding urban forest, this article follows the story of the City’s urban forest and its past, present, and future.",
+      img: treeArticleCover,
+      authors:[authors.destiny],
+      category: CATEGORIES.HISTORICAL
+    },
+    {
       id: "supervisor-updates",
       title: "What is my district supervisor up to?",
       desc: "Weekly recaps of SF Board of Supervisors meetings - votes, debates, and decisions that affect your neighborhood.",
@@ -63,13 +72,6 @@ const Home = () => {
       img: aboutUsCover,
       authors: [],
       category: CATEGORIES.ALL
-    },
-    {
-      id: "urban-forestry-history",
-      title: "A deep dive into the history of the SF urban canopy",
-      desc: "Filler for tree stuff",
-      authors:[authors.destiny],
-      category: CATEGORIES.HISTORICAL
     },
   ];
 
