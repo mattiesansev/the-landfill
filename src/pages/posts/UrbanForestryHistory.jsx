@@ -50,7 +50,6 @@ const UrbanForestryHistory = () => {
     return (
         <div className="single">
             <div className="content">
-                <img src="/img/tree_article/sfpl_trees_make_good_neighbors.jpg" alt="SFPL trees make good neighbors" />
                 <div className="title">
                     The History of San Francisco’s Urban Forest
                 </div>
@@ -58,7 +57,10 @@ const UrbanForestryHistory = () => {
                     authorImageUrl={authors["destiny"]["photo"]}
                     postDate="March 23, 2026"
                     authorName={authors["destiny"]["name"]}
-                />
+                />                
+                <div className="image-container">
+                    <img src="/src/img/cover_tree_article.png" alt="SFPL trees make good neighbors" />
+                </div>
                 <div className="subtitle">
                     Introduction
                 </div>
@@ -72,9 +74,6 @@ const UrbanForestryHistory = () => {
                 <p>{renderWithFootnotes(`An anonymous resident wrote into the San Francisco Chronicle in 1872 praising San Francisco’s climate for facilitating the perfect growing conditions for many trees. "It is a matter of surprise and regret to us, that tree-planting has been so neglected", the author lamented. He ended his letter with a call to action to the Board of Supervisors to devise a plan to encourage the planting and growth of trees in the city for "the health and beauty of San Francisco" (Link). `)}</p>
                 <p>{renderWithFootnotes(`Six decades later, the San Francisco Garden Club (SFGC) had the same gripes with the city’s lack of trees. The Garden Club, a group of civically engaged housewives, was dedicated to beautifying San Francisco and believed the city lagged behind cities like Seattle and Sacramento, which were greening at a faster rate. This belief was solidified when the New York Garden club visited in 1929 and left unimpressed by the city’s grey, treeless landscape (Link). `)}</p>
                 <p>{renderWithFootnotes(`After the slight from the New York Garden Club, the SFGC dedicated themselves to street tree plantings throughout San Francisco. The club quickly planned tree plantings and successfully planted 500 trees by the next year. By 1934, SFGC was the main group in the city planting trees, especially along large thoroughfares like Arguello and Van Ness, and inspired others to do the same. Drawing from civic pride to bolster support, the SFGC called on other women’s organizations, beckoning them to plant trees as memorials and gifts to make San Francisco the most beautiful city in the world. The club wanted to mimic cities famous for their greenery, such as Paris, and urged the public to plant Black Acacia and London Plane trees. By the end of the 1930’s, the San Francisco Chamber of Commerce created a tree planting program and gave quotas to women’s organizations to help beautify the city (Link). `)}</p>
-                <div className="image-container">
-                    <img src="/img/tree_article/sfpl_trees_make_good_neighbors.jpg" alt="SFPL trees make good neighbors" />
-                </div>
                 <div className="subtitle">
                     The Lull: 1940 - 1959
                 </div>
@@ -85,16 +84,13 @@ const UrbanForestryHistory = () => {
                 </div>
                 <p>{renderWithFootnotes(`The same sentiment was voiced by Soviet Premier Nikita Khrushchev a month later during his visit in September 1959, stating that while San Francisco was one of the most beautiful cities he had been, he would like to see more trees along the streets (Link). At the time, San Francisco only had 40,000 street trees (Link). Khrushchev's comments ushered in a shift of attitude at city hall. By spring 1960 the street tree planting division saw its budget rise to $216,787 but with a matching increased goal of planting 350,000 street trees (Link). `)}</p>
                 <p>{renderWithFootnotes(`To reach this goal, the city government put an emphasis on community engagement through two newly formed entities, San Francisco Beautiful and Department of Public Works (DPW) street tree division. Together the organizations facilitated Plant-a-Tree week and gave out free informational tree planting kits for residents (Link). Brian Fewer, the city’s first ever street tree superintendent, guided plantings and had an affinity for eucalyptus trees (Link). By the end of 1962, the tree planting program was responsible for 25,000 new street trees. The 25,000 street trees were "not the number we had hoped" but the program was "gathering speed" according to Brian Fewer (Link). While the program was still gathering speed, it was slashed from the city budget in 1963 and again in 1967(Link, Link). "The results of the tree planting program are not too good and there aren’t many trees," complained Supervisor Boas (Link). `)}</p>
-                <div className="image-container">
-                    <img src="/img/tree_article/street_tree_nursery.jpg" alt="Street tree nursery" />
-                </div>
-                <div className="image-container">
-                    <img src="/img/tree_article/walking_tour.jpg" alt="Brian Fewer’s exotic tree tour of Pacific heights to celebrate plant-a-tree week 1966 (Link)." />
-                </div>
+                <figure className="image-container">
+                    <img src="/img/tree_article/walking_tour.jpg" alt="Brian Fewer’s exotic tree tour" />
+                    <figcaption className="caption-text">Fig. 1 - Brian Fewer’s exotic tree tour of Pacific heights to celebrate plant-a-tree week 1966.</figcaption>
+                </figure>
                 <p>{renderWithFootnotes(`Funds for the street tree planting program fluctuated for the rest of the 1960s, with the tree budget itself always on the table. Tree planting was listed as such a low priority for DPW that Mayor George Christopher deleted it from his budget in 1963 (Link). Brian Fewer stepped in during budget cuts, assisting neighborhood groups and property owners with tree plantings for free. The board of supervisors finance committee did support the allocation of $300,000 in funds to the tree planting program annually, but this was quickly shot down. “Attitudes have radically changed”, Mrs. Klaussman of San Francisco Beautiful said regarding the support from the Board of Supervisors, “everyone - including bureaucrats - realizes that trees increase property values, make residents and businessmen take better care of their neighborhoods, and add to the livability” (Link). 
 `)}</p>
-                <p>{renderWithFootnotes(`</p>
-                <p>
+                <p>{renderWithFootnotes(`
                     Although the street tree planting program faced many hurdles in the mid-20th century the program still had much success. Due to the close connections with property owners and community groups the division assisted in planting 150,000 street trees between 1956 - 1975. One researcher even crowned San Francisco as a model city for tree planting, due to its lack of red tape and smooth cooperation with residents (Link). By the end of the 1970’s environmental concerns were top of mind for many elected officials, so much so Governor Jerry Brown allocated $3 million to urban tree planting programs throughout California. “Paris is a beautiful place because of its trees,” said the governor’s resource secretary (Link).
 `)}</p>
                 <div className="subtitle">
@@ -108,8 +104,7 @@ const UrbanForestryHistory = () => {
 `)}</p>
                 <p>{renderWithFootnotes(`By 2000, funds for public improvements from Proposition B were depleted, even though funds were meant to last until 2010. Eventually funds for tree planting did run dry. The two non-profits that maintain and plant trees, FUF and Tree Corps, lost approximately $1 million in funds (Link). According to the budget director the city budget had a $175 million shortfall because of the dot com bust and a downturn in tourism due to 9/11. As for the city, it was difficult to secure funds since there was no established tree planting budget and 16 agencies shared the responsibility for planting and maintaining the city’s 30,000 public street trees, such as the Department of Public Works and San Francisco Housing Authority. None of the agencies had tree planting at the top of their priorities list and most of the work was taken on by the non-profits (Link). 
 `)}</p>
-                <p>{renderWithFootnotes(`</p>
-                <p>
+                <p>{renderWithFootnotes(`
                     Accompanying budget woes was street tree superintendent Tom Wolcott, otherwise known as the street tree cop who gave out $16,000 in fines between January - September 2003 and 150 violations annually. After being fined for over trimming his New Zealand Christmas trees obtained from a city funded project, retiree Charlie Kreps faced a $560 fine and a lien on his house if he failed to pay. “I like trees, but now I’m having second thoughts,” Kreps said to the Chronicle. Conversely, Carolyn Balir stated that too many trees owned by private property owners were intentionally being destroyed. Simultaneously, trees were dying at clip quicker than they could be planted (Link). Despite the negativity around trees, the Urban Forestry Council was established in 2003 to report on the state of the urban forest annually and put out recommendations (Link).
 `)}</p>
                 <div className="subtitle">
@@ -121,9 +116,6 @@ const UrbanForestryHistory = () => {
 `)}</p>
                 <p>{renderWithFootnotes(`Five years after Mayor Lee's initial proposal for cutting the tree maintenance budget, a proposition was passed to fund the program. Written by Supervisor Scott Wiener, Proposition E passed with 79% of the vote in the fall of 2016 (Link). According to Dan Flannigan, Director of FUF, stated Prop. E passed overwhelmingly because people were unaware they had to care for trees or could not afford to (Link). The passage of Prop. E transferred all responsibility for street trees from property owners to the city and funneled $19 million annually from the general fund into a street tree maintenance fund (Link).
 `)}</p>
-                <div className="image-container">
-                    <img src="/img/tree_article/tree_permit.jpg" alt="Tree permit" />
-                </div>
                 <p>{renderWithFootnotes(`Despite garnering an outpouring of public support, Mayor Lee threatened to cut the funds earmarked from Prop E due to a budget shortfall. Simultaneously, the city conducted a survey of the 125,000 street trees and found 33% were in poor to critical condition, in addition to 1 and 5 sidewalks needing repairs due to tree damage (Link). Mayor Lee’s threats failed and by 2017 all street trees were transferred into city care. 
 `)}</p>
                 <p>{renderWithFootnotes(`With the passage of Prop. E, the city made promises to stay accountable for tree maintenance and health. A maintenance schedule was created for every tree and posted online, and Street Tree SF was established. The street tree division also dedicated themselves to ensuring every tree was at a healthy baseline by 2022 (Link). However, supervisors still received complaints about the tree program asking if they could be opted out, why their tree was removed, and how long it would take to get a tree on their block (Link). Questions about the Street Tree SF program prompted thousands of calls and emails to Supervisor Rafeal Mandelman’s office, nearly outpacing calls about homelessness (Link). At a grander scale, by 2019 critics of San Francisco’s lack of trees were still asking why the city had so few trees. “Why on earth are we not dumping money into planting trees? That’s literally what they do – they eat carbon for breakfast” said Joshua Klipp, an attorney and urban forest advocate regarding the state of San Francisco's Urban Forest (Link).
@@ -133,6 +125,11 @@ const UrbanForestryHistory = () => {
                 </div>
                 <p>{renderWithFootnotes(`The answer to Klipps question lies in 30 years of deferred street tree maintenance and budget constraints. There were many years when the city and non-profits did not have funds for planting or maintenance and only cared for street trees that posed the highest risk. This was reflected by how the budget was spent in 2019, with $19 million spent on maintenance and removal and $5.3 million on planting (Link). In addition to funds from Prop. E, the street tree division also got funds from the city’s gas tax amounting to $8.4 million. While San Francisco’s Urban Forest Plan had the goal of planting 2,500 new trees in 2019, the goal was not accomplished since 2,499 had to be removed, netting the city 1 new street tree. Carla Short, San Francisco’s street tree superintendent, said the rate of removal would decline after the city took inventory of all trees that need care. Overall, the urban forest plan aimed to plant 30,000 trees by 2034, increasing the number of street trees to 155,000 (Link). 
 `)}</p>
+                
+                <figure className="image-container">
+                    <img src="/img/tree_article/street_tree_nursery.jpg" alt="Street tree nursery" />
+                    <figcaption className="caption-text">Fig. 2 - The street tree nursery in San Francisco.</figcaption>
+                </figure>
                 <p>{renderWithFootnotes(`By 2023, the goal post to meet 155,000 street trees was pushed to 2040. To meet the goals of the Urban Forest Plan and Climate Action Plan, the Urban Forestry Council pushed Mayor Breed to provide $14.5 million for the planting of 4,700 trees annually (Link). The Bureau of Urban Forestry has continued to struggle with plantings and can barely keep up with tree removals. In a presentation on the health and safety of the city’s urban forest, Director of Public Works Carla Short detailed the challenges with meeting the goal of 155,000 street trees. These challenges include intense winter storms that have brought high winds and rains to the city, causing more than 900 trees and branches to fall in a three-month period, lack of a stable funding source, vandalism, and high labor costs. These challenges were echoed by FUF during the same presentation, whose goal is to plant 7,500 trees between 2023 - 2026 (Link). While a stable funding source is a pain point, DPW received tree planting and maintenance and received two grants in 2023 to plant trees in low canopy neighborhoods (Link).
 `)}</p>
                 <p>{renderWithFootnotes(`After almost 80 years of uncertain funding sources and fluctuating intentions, San Francisco street trees have finally found stable footing. While organizations changed through the years from local civics clubs and neighborhood groups, the street trees have found a home in the DPW’s Bureau of Urban Forestry, Department of the Environment, and local non-profits. All 125,000 trees are now in the care of the city, after decades of being segregated into public and private domains, leading to decades of misaligned tree maintenance practices. The public now has access to maintenance plans and removal notices, as well as the urban forest plan which gets updated annually. However, San Francisco’s urban forest and the departments that support it consistently face funding challenges. Without adequate funds to plant 30,000 street trees and replace 50,000 by 2040, the 155,000 street tree goal will likely never be met (Link). Meanwhile, as of 2026, the Department of the Environment faced a 10% budget reduction, DPW is expected to end the year with a $2.1 million deficit, and the Urban Forestry Council is slated to be eliminated. The fate of tree planting and maintenance for 2026 has yet to play out, but if past budget shortfalls mean anything, there might not be much hope (Link).
