@@ -12,6 +12,7 @@ import SupervisorUpdates from "./pages/posts/SupervisorUpdates"
 import WeeklyReport from "./pages/posts/WeeklyReport"
 import BracketAdmin from "./pages/BracketAdmin"
 import UrbanForestryHistory from "./pages/posts/UrbanForestryHistory"
+import MonthlyRoundup from "./pages/posts/MonthlyRoundup"
 
 const Layout = () => {
   return (
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/post/urban-forestry-history",
         element: <UrbanForestryHistory/>
+      },
+      {
+        path: "/post/monthly-roundup/:month",
+        element: <MonthlyRoundup />
       },
     ],
   },

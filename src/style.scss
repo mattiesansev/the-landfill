@@ -3941,3 +3941,231 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   }
 }
+
+// ─── MONTHLY ROUNDUP ──────────────────────────────────────────────────────────
+
+.monthly-roundup {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+
+  // ── Header ───────────────────────────────────────────────────────────────
+
+  .roundup-header {
+    text-align: center;
+    margin-bottom: 52px;
+
+    .roundup-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8ac4d4;
+      margin-bottom: 8px;
+    }
+
+    .roundup-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin: 0 0 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .roundup-stats {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px 16px;
+
+      .roundup-stats-sep {
+        color: #cbd5e0;
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .roundup-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .roundup-stat-value {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #2d3748;
+          line-height: 1;
+        }
+
+        .roundup-stat-label {
+          font-size: 0.7rem;
+          color: #718096;
+          letter-spacing: 0.03em;
+          margin-top: 3px;
+        }
+      }
+    }
+  }
+
+  // ── Isle grid ────────────────────────────────────────────────────────────
+
+  .roundup-isles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── Isle Card ────────────────────────────────────────────────────────────
+
+  .isle-card {
+    border: 1.5px solid #2d3748;
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    .isle-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+      color: #2d3748;
+      margin: 0 0 10px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid #2d3748;
+      letter-spacing: 0.02em;
+    }
+
+    .isle-card-stats {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      li {
+        font-size: 0.85rem;
+        color: #4a5568;
+        text-align: center;
+
+        .isle-stat-value {
+          font-weight: 700;
+          color: #2d3748;
+        }
+
+        .isle-stat-label {
+          color: #718096;
+        }
+      }
+    }
+
+    // ── Section cards grid ──────────────────────────────────────────────
+
+    .section-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+
+      // If only one section card, let it span full width
+      .section-card:only-child {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  // ── Section Card ─────────────────────────────────────────────────────────
+
+  .section-card {
+    border: 1.5px solid #2d3748;
+    padding: 16px 14px;
+    cursor: pointer;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    user-select: none;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background: #f7fafc;
+      border-color: #8ac4d4;
+
+      .section-card-title {
+        color: #8ac4d4;
+      }
+    }
+
+    &--open {
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: #f7fafc;
+      border-color: #8ac4d4;
+
+      .section-card-title {
+        color: #8ac4d4;
+        margin-bottom: 12px;
+      }
+    }
+
+    .section-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      color: #2d3748;
+      line-height: 1.35;
+      transition: color 0.15s ease;
+    }
+
+    .section-card-body {
+      width: 100%;
+      cursor: auto;
+
+      p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin: 0 0 12px;
+      }
+
+      .section-card-prompt {
+        background: #ebf8ff;
+        border-left: 3px solid #8ac4d4;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        color: #2b6cb0;
+        border-radius: 0 3px 3px 0;
+        margin-bottom: 10px;
+
+        .prompt-label {
+          font-weight: 700;
+        }
+      }
+
+      .section-card-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          font-size: 0.8rem;
+
+          a {
+            color: #8ac4d4;
+            text-decoration: underline;
+
+            &:hover {
+              color: #63b3c8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
