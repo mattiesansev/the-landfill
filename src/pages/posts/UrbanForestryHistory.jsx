@@ -124,6 +124,10 @@ const UrbanForestryHistory = () => {
 `)}</p>
                 <p>{(`After almost 80 years of uncertain funding sources and fluctuating intentions, San Francisco street trees have finally found stable footing. While organizations changed through the years from local civics clubs and neighborhood groups, the street trees have found a home in the DPW’s Bureau of Urban Forestry, Department of the Environment, and local non-profits. All 125,000 trees are now in the care of the city, after decades of being segregated into public and private domains, leading to decades of misaligned tree maintenance practices. The public now has access to maintenance plans and removal notices, as well as the urban forest plan which gets updated annually. However, San Francisco’s urban forest and the departments that support it consistently face funding challenges. Without adequate funds to plant 30,000 street trees and replace 50,000 by 2040, the 155,000 street tree goal will likely never be met. Meanwhile, as of 2026, the Department of the Environment faced a 10% budget reduction, DPW is expected to end the year with a $2.1 million deficit, and the Urban Forestry Council is slated to be eliminated. The fate of tree planting and maintenance for 2026 has yet to play out, but if past budget shortfalls mean anything, there might not be much hope.
 `)}</p>
+
+
+                <div className="subtitle">References</div>
+                <p>Kilduff, Marshall. “Housing Study Set Up.” <em>San Francisco Chronicle</em> [San Francisco, California], 17 Apr. 1979, p. A1. NewsBank: America's News – Historical and Current. <a href="https://infoweb-newsbank-com.ezproxy.sfpl.org/apps/news/document-view?p=WORLDNEWS&t=pubname%3A142051F45F422A02%21San%2BFrancisco%2BChronicle&sort=YMD_date%3AA&hide_duplicates=2&fld-base-0=alltext&maxresults=60&val-base-0=%22Feinstein%22%20%22rent%22&fld-nav-1=YMD_date&val-nav-1=1979%20-%201980&docref=image/v2%3A142051F45F422A02%40EANX-NB-15370B73E0B1BA0C%402443981-1536835BDCB6DFA3%400&origin=image/v2%3A142051F45F422A02%40EANX-NB-15370B73E0B1BA0C%402443981-1536835BF8E34F66%4015-1536835BF8E34F66%40#copy">Link</a></p>
                 <div className="footnotes">
                     <ol>
                         {footnotes.map((note, i) => <li key={i} id={`fn${i+1}`}>{note}</li>)}
@@ -132,6 +136,7 @@ const UrbanForestryHistory = () => {
             </div>
         </div>
     )
+    
 }
 
 export default UrbanForestryHistory;
