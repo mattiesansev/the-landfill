@@ -3949,27 +3949,106 @@
   margin: 0 auto;
   padding: 48px 32px 80px;
 
-  // ── Header ───────────────────────────────────────────────────────────────
+  // ── Shared eyebrow ────────────────────────────────────────────────────────
 
-  .roundup-header {
+  .roundup-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8ac4d4;
+    margin-bottom: 8px;
     text-align: center;
-    margin-bottom: 52px;
+  }
 
-    .roundup-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #8ac4d4;
-      margin-bottom: 8px;
-    }
+  // ── Year View ─────────────────────────────────────────────────────────────
 
-    .roundup-title {
-      font-size: 2.2rem;
+  .year-view {
+    text-align: center;
+
+    .year-view-title {
+      font-size: 3rem;
       font-weight: 700;
       color: #2d3748;
-      margin: 0 0 24px;
-      letter-spacing: -0.01em;
+      margin: 0 0 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .month-box {
+      border: 1.5px solid #2d3748;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+
+      &--active {
+        background: #2d3748;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+          background: #1a202c;
+          border-color: #1a202c;
+        }
+      }
+
+      &--inactive {
+        color: #a0aec0;
+        border-color: #e2e8f0;
+        cursor: default;
+      }
+    }
+  }
+
+  // ── Month Calendar ────────────────────────────────────────────────────────
+
+  .month-calendar {
+    .month-calendar-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 28px;
+
+      .back-link {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #8ac4d4;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+        background: none;
+        border: none;
+        padding: 0;
+
+        &:hover {
+          color: #63b3c8;
+          text-decoration: underline;
+        }
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
     }
 
     .roundup-stats {
@@ -3978,6 +4057,8 @@
       justify-content: center;
       align-items: center;
       gap: 8px 16px;
+      width: 100%;
+      margin-bottom: 36px;
 
       .roundup-stats-sep {
         color: #cbd5e0;
@@ -4005,52 +4086,172 @@
         }
       }
     }
-  }
 
-  // ── Isle grid ────────────────────────────────────────────────────────────
-
-  .roundup-isles {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border-top: 1.5px solid #2d3748;
+      border-left: 1.5px solid #2d3748;
     }
-  }
 
-  // ── Isle Card ────────────────────────────────────────────────────────────
-
-  .isle-card {
-    border: 1.5px solid #2d3748;
-    padding: 28px 24px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-
-    .isle-card-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-align: center;
-      color: #2d3748;
-      margin: 0 0 10px;
-      padding-bottom: 10px;
+    .calendar-day-header {
+      border-right: 1.5px solid #2d3748;
       border-bottom: 1.5px solid #2d3748;
-      letter-spacing: 0.02em;
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #718096;
     }
 
-    .isle-card-stats {
-      list-style: none;
-      padding: 0;
-      margin: 14px 0 20px;
+    .calendar-day {
+      border-right: 1.5px solid #2d3748;
+      border-bottom: 1.5px solid #2d3748;
+      min-height: 90px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       gap: 4px;
 
+      &--empty {
+        background: #f7fafc;
+      }
+
+      .day-number {
+        font-size: 0.78rem;
+        color: #a0aec0;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .isle-chips {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 2px;
+      }
+
+      .isle-chip {
+        background: #8ac4d4;
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 3px 7px;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        line-height: 1.3;
+        transition: background 0.12s ease;
+
+        &:hover {
+          background: #63b3c8;
+        }
+      }
+
+      @media (max-width: 768px) {
+        min-height: 60px;
+        padding: 4px;
+
+        .day-number {
+          font-size: 0.7rem;
+        }
+
+        .isle-chip {
+          font-size: 0.65rem;
+          padding: 2px 5px;
+        }
+      }
+    }
+  }
+
+  // ── Isle Modal ────────────────────────────────────────────────────────────
+
+  .isle-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+
+    @media (max-width: 768px) {
+      padding: 0;
+      align-items: flex-end;
+    }
+  }
+
+  .isle-modal {
+    position: relative;
+    background: #fff;
+    border: 2px solid #2d3748;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 32px;
+
+    @media (max-width: 768px) {
+      max-height: 90vh;
+      padding: 20px;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .isle-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: #718096;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+
+      &:hover {
+        color: #2d3748;
+      }
+    }
+
+    .isle-modal-header {
+      padding-bottom: 16px;
+      border-bottom: 1.5px solid #2d3748;
+      margin-bottom: 16px;
+
+      .isle-modal-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8ac4d4;
+        margin-bottom: 6px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0;
+      }
+    }
+
+    .isle-modal-stats {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+
       li {
         font-size: 0.85rem;
         color: #4a5568;
-        text-align: center;
 
         .isle-stat-value {
           font-weight: 700;
@@ -4063,72 +4264,22 @@
       }
     }
 
-    // ── Section cards grid ──────────────────────────────────────────────
+    .isle-modal-section {
+      margin-bottom: 24px;
 
-    .section-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-
-      // If only one section card, let it span full width
-      .section-card:only-child {
-        grid-column: 1 / -1;
+      &:last-child {
+        margin-bottom: 0;
       }
-    }
-  }
 
-  // ── Section Card ─────────────────────────────────────────────────────────
-
-  .section-card {
-    border: 1.5px solid #2d3748;
-    padding: 16px 14px;
-    cursor: pointer;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s ease, border-color 0.15s ease;
-    user-select: none;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      background: #f7fafc;
-      border-color: #8ac4d4;
-
-      .section-card-title {
-        color: #8ac4d4;
+      .isle-modal-section-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0 0 8px;
       }
-    }
-
-    &--open {
-      align-items: flex-start;
-      justify-content: flex-start;
-      background: #f7fafc;
-      border-color: #8ac4d4;
-
-      .section-card-title {
-        color: #8ac4d4;
-        margin-bottom: 12px;
-      }
-    }
-
-    .section-card-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-align: center;
-      color: #2d3748;
-      line-height: 1.35;
-      transition: color 0.15s ease;
-    }
-
-    .section-card-body {
-      width: 100%;
-      cursor: auto;
 
       p {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
         line-height: 1.7;
         color: #4a5568;
         margin: 0 0 12px;
@@ -4148,7 +4299,7 @@
         }
       }
 
-      .section-card-links {
+      .isle-modal-links {
         list-style: none;
         padding: 0;
         margin: 0;

@@ -69,6 +69,10 @@ const router = createBrowserRouter([
         element: <UrbanForestryHistory/>
       },
       {
+        path: "/post/monthly-roundup",
+        element: <MonthlyRoundup />
+      },
+      {
         path: "/post/monthly-roundup/:month",
         element: <MonthlyRoundup />
       },

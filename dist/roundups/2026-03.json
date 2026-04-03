@@ -10,6 +10,7 @@
     {
       "id": "mayor",
       "number": 1,
+      "date": "2026-03-11",
       "title": "The Mayor",
       "stats": [
         { "value": "3", "label": "Charter Reforms Proposed" },
@@ -35,6 +36,7 @@
     {
       "id": "housing",
       "number": 2,
+      "date": "2026-03-18",
       "title": "Housing",
       "stats": [
         { "value": "$47M", "label": "Affordable Housing Funding" },
@@ -58,6 +60,7 @@
     {
       "id": "commissions",
       "number": 3,
+      "date": "2026-03-25",
       "title": "Commissions",
       "stats": [
         { "value": "36", "label": "Commissions Proposed for Elimination" },
@@ -81,6 +84,7 @@
     {
       "id": "womens-rights",
       "number": 4,
+      "date": "2026-03-05",
       "title": "Women's Rights",
       "stats": [
         { "value": "1", "label": "Major Hearing Held" }
