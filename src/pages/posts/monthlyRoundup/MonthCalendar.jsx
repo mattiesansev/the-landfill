@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IsleModal from "./IsleModal";
 
-const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December",
@@ -17,29 +15,6 @@ const MonthCalendar = ({ data, yearMonth }) => {
   const year = parseInt(yearStr, 10);
   const monthIndex = parseInt(monthStr, 10) - 1;
 
-  const firstDayOfWeek = new Date(year, monthIndex, 1).getDay();
-  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-  const cells = [];
-  for (let i = 0; i < firstDayOfWeek; i++) cells.push(null);
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
-  while (cells.length % 7 !== 0) cells.push(null);
-
-  const islesByDate = {};
-  if (data && data.isles) {
-    for (const isle of data.isles) {
-      if (isle.date) {
-        if (!islesByDate[isle.date]) islesByDate[isle.date] = [];
-        islesByDate[isle.date].push(isle);
-      }
-    }
-  }
-
-  const formatDate = (day) => {
-    const mm = String(monthIndex + 1).padStart(2, "0");
-    const dd = String(day).padStart(2, "0");
-    return `${year}-${mm}-${dd}`;
-  };
-
   return (
     <div className="month-calendar">
       <div className="month-calendar-header">
@@ -51,7 +26,7 @@ const MonthCalendar = ({ data, yearMonth }) => {
         </h1>
       </div>
 
-      {data && data.headline_stats && (
+      {data?.headline_stats && (
         <div className="roundup-stats">
           {data.headline_stats.map((stat, i) => (
             <React.Fragment key={i}>
@@ -65,41 +40,31 @@ const MonthCalendar = ({ data, yearMonth }) => {
         </div>
       )}
 
-      <div className="calendar-grid">
-        {DAY_NAMES.map((name) => (
-          <div key={name} className="calendar-day-header">
-            {name}
-          </div>
-        ))}
-        {cells.map((day, i) => {
-          if (day === null) {
-            return <div key={`empty-${i}`} className="calendar-day calendar-day--empty" />;
-          }
-          const dateKey = formatDate(day);
-          const isles = islesByDate[dateKey] || [];
-          return (
-            <div
-              key={dateKey}
-              className={`calendar-day${isles.length > 0 ? " calendar-day--has-isles" : ""}`}
+      {data?.isles && data.isles.length > 0 && (
+        <div className="isle-sticky-board">
+          {data.isles.map((isle, i) => (
+            <button
+              key={isle.id}
+              className={`isle-sticky-note isle-sticky-note--${(i % 4) + 1}`}
+              onClick={() => setActiveIsle(isle)}
             >
-              <span className="day-number">{day}</span>
-              {isles.length > 0 && (
-                <div className="isle-chips">
-                  {isles.map((isle) => (
-                    <button
-                      key={isle.id}
-                      className="isle-chip"
-                      onClick={() => setActiveIsle(isle)}
-                    >
-                      {isle.title}
-                    </button>
-                  ))}
-                </div>
+              <span className="isle-sticky-num">Isle {isle.number}</span>
+              <span className="isle-sticky-title">{isle.title}</span>
+              {isle.stats && isle.stats[0] && (
+                <span className="isle-sticky-stat">
+                  <span className="sticky-stat-value">{isle.stats[0].value}</span>{" "}
+                  <span className="sticky-stat-label">{isle.stats[0].label}</span>
+                </span>
               )}
-            </div>
-          );
-        })}
-      </div>
+              {isle.sections && isle.sections[0] && (
+                <span className="isle-sticky-preview">
+                  {isle.sections[0].body.slice(0, 90)}…
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
 
       <IsleModal isle={activeIsle} onClose={() => setActiveIsle(null)} />
     </div>

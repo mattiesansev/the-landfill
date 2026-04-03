@@ -2,43 +2,29 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AVAILABLE_ROUNDUPS } from "./roundupIndex";
 
-const MONTHS = [
-  { key: "01", label: "January" },
-  { key: "02", label: "February" },
-  { key: "03", label: "March" },
-  { key: "04", label: "April" },
-  { key: "05", label: "May" },
-  { key: "06", label: "June" },
-  { key: "07", label: "July" },
-  { key: "08", label: "August" },
-  { key: "09", label: "September" },
-  { key: "10", label: "October" },
-  { key: "11", label: "November" },
-  { key: "12", label: "December" },
-];
-
 const YearView = ({ year }) => {
   const navigate = useNavigate();
-  const available = new Set(AVAILABLE_ROUNDUPS.map((r) => r.yearMonth));
 
   return (
     <div className="year-view">
       <div className="roundup-eyebrow">Board of Supervisors</div>
-      <div className="year-view-title">{year}</div>
-      <div className="year-grid">
-        {MONTHS.map(({ key, label }) => {
-          const yearMonth = `${year}-${key}`;
-          const isActive = available.has(yearMonth);
-          return (
-            <div
-              key={key}
-              className={`month-box month-box--${isActive ? "active" : "inactive"}`}
-              onClick={() => isActive && navigate(`/post/monthly-roundup/${yearMonth}`)}
-            >
-              {label}
-            </div>
-          );
-        })}
+      <h1 className="year-view-title">{year} Monthly Roundups</h1>
+      <p className="year-view-subtitle">Click a month to explore</p>
+      <div className="year-sticky-board">
+        {AVAILABLE_ROUNDUPS.map(({ yearMonth, label }, i) => (
+          <div
+            key={yearMonth}
+            className={`month-sticky-note month-sticky-note--${(i % 4) + 1}`}
+            onClick={() => navigate(`/post/monthly-roundup/${yearMonth}`)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) =>
+              e.key === "Enter" && navigate(`/post/monthly-roundup/${yearMonth}`)
+            }
+          >
+            <div className="month-sticky-label">{label}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
