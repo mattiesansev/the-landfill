@@ -1,0 +1,102 @@
+{
+  "month": "2026-03",
+  "display_month": "March 2026",
+  "headline_stats": [
+    { "value": "21", "label": "Committee & Board Meetings" },
+    { "value": "11", "label": "Hearings" },
+    { "value": "208", "label": "Unique Files Heard" }
+  ],
+  "isles": [
+    {
+      "id": "mayor",
+      "number": 1,
+      "date": "2026-03-11",
+      "title": "The Mayor",
+      "stats": [
+        { "value": "3", "label": "Charter Reforms Proposed" },
+        { "value": "1", "label": "New Permitting Program" }
+      ],
+      "sections": [
+        {
+          "title": "Charter Reform Push",
+          "body": "Mayor Daniel Lurie made his most aggressive legislative moves yet in March, introducing three separate charter reform proposals aimed at reshaping how the city operates. The reforms target the Civil Service Commission structure, the city's contracting process, and the governance of major departments. Critics from the progressive bloc argue the proposals consolidate too much power in the Mayor's office, while supporters say they're necessary to cut bureaucratic gridlock.",
+          "prompt": "Do you think charter reforms will speed up city government, or concentrate too much power in the Mayor's office?",
+          "links": [
+            { "text": "Read the full charter reform proposal (File 260XXX)", "url": "" }
+          ]
+        },
+        {
+          "title": "New Permitting Pilot Program",
+          "body": "The Mayor's office also unveiled a new fast-track permitting pilot program focused on affordable housing projects. The program consolidates review across the Planning, DBI, and Public Works departments into a single 90-day window. Three projects have already been approved to enter the pilot. Whether this scales city-wide is contingent on a budget approval expected in June.",
+          "prompt": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "housing",
+      "number": 2,
+      "date": "2026-03-18",
+      "title": "Housing",
+      "stats": [
+        { "value": "$47M", "label": "Affordable Housing Funding" },
+        { "value": "185", "label": "Units Approved" }
+      ],
+      "sections": [
+        {
+          "title": "Affordable Housing Appropriations",
+          "body": "The Board approved $47 million in affordable housing funding this month, split between three projects in the Tenderloin, SoMa, and the Excelsior. The largest allocation — $28 million — went to a 110-unit development on a formerly city-owned lot on Mission Street. The vote was 9-2, with Supervisors Fielder and Walton dissenting, arguing the income thresholds for eligibility were set too high to serve the lowest-income residents.",
+          "prompt": "Should the city prioritize deeply affordable units (30% AMI and below) even if it means building fewer total units?",
+          "links": []
+        },
+        {
+          "title": "State Density Bonus Projects",
+          "body": "Three projects invoking California's density bonus law were approved by the Planning Commission and ratified by the Board, adding a combined 75 units beyond what local zoning would allow. These approvals were routine but signal the continued use of state law to bypass local height restrictions — a dynamic that continues to generate tension between the Board and Planning staff.",
+          "prompt": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "commissions",
+      "number": 3,
+      "date": "2026-03-25",
+      "title": "Commissions",
+      "stats": [
+        { "value": "36", "label": "Commissions Proposed for Elimination" },
+        { "value": "2hr", "label": "Debate at Full Board" }
+      ],
+      "sections": [
+        {
+          "title": "Commission Consolidation Proposal",
+          "body": "A sweeping proposal from Supervisor Sherrill would eliminate or consolidate 36 of the city's 130+ commissions, advisory boards, and task forces. The proposal argues that many bodies are redundant, understaffed, or have not met in over a year. The full Board debated the measure for two hours — the longest single-item debate of the month — before passing it to the Government Audit & Oversight Committee for further review.",
+          "prompt": "Which commissions do you think actually matter for your neighborhood? Which could go?",
+          "links": []
+        },
+        {
+          "title": "Sunshine Ordinance Task Force Controversy",
+          "body": "Separately, the Sunshine Ordinance Task Force — the body that adjudicates public records complaints — came under scrutiny after a member was found to have violated the ordinance they're tasked with enforcing. The Ethics Commission has opened an investigation. No action was taken at the Board level in March, but the situation has renewed calls to restructure the Task Force's oversight structure.",
+          "prompt": null,
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "womens-rights",
+      "number": 4,
+      "date": "2026-03-05",
+      "title": "Women's Rights",
+      "stats": [
+        { "value": "1", "label": "Major Hearing Held" }
+      ],
+      "sections": [
+        {
+          "title": "Reproductive Rights Hearing",
+          "body": "The Board held a high-profile hearing on the status of reproductive rights access in San Francisco, examining gaps in public health infrastructure for abortion and contraceptive care. The hearing was called by Supervisor Fielder and co-sponsored by five colleagues. Testimony from UCSF, Planned Parenthood, and the Department of Public Health highlighted a waitlist backlog at city-funded clinics that has grown since 2024. The Board requested a follow-up report from DPH within 60 days.",
+          "prompt": "Are you aware of reproductive health resources in your district? Have you faced barriers accessing care in SF?",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

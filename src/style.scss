@@ -3941,3 +3941,395 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   }
 }
+
+// ─── MONTHLY ROUNDUP ──────────────────────────────────────────────────────────
+
+.monthly-roundup {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+
+  // ── Shared back link ──────────────────────────────────────────────────────
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8ac4d4;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 32px;
+
+    &:hover {
+      color: #63b3c8;
+      text-decoration: underline;
+    }
+  }
+
+  // ── Shared eyebrow ────────────────────────────────────────────────────────
+
+  .roundup-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8ac4d4;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  // ── Year View (sticky board) ──────────────────────────────────────────────
+
+  .year-view {
+    text-align: center;
+
+    .back-link {
+      display: block;
+      text-align: left;
+    }
+
+    .year-view-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .year-view-subtitle {
+      font-size: 0.9rem;
+      color: #718096;
+      margin: 0 0 48px;
+    }
+
+    .year-sticky-board {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      padding: 16px 32px 48px;
+    }
+
+    .month-sticky-note {
+      background: #fefce8;
+      box-shadow: 3px 5px 14px rgba(0, 0, 0, 0.18);
+      padding: 28px 36px 40px;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 160px;
+      user-select: none;
+      transition: box-shadow 0.2s ease;
+
+      &--1 { transform: rotate(-2deg); }
+      &--2 { transform: rotate(1.5deg); }
+      &--3 { transform: rotate(-1deg); }
+      &--4 { transform: rotate(2deg); }
+
+      &:hover {
+        transform: rotate(0deg) scale(1.05) !important;
+        box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      .month-sticky-label {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.3;
+      }
+    }
+  }
+
+  // ── Month Calendar ────────────────────────────────────────────────────────
+
+  .month-calendar {
+    .roundup-page-header {
+      text-align: center;
+      margin-bottom: 36px;
+
+      .roundup-page-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 8px 0 12px;
+        letter-spacing: -0.02em;
+      }
+
+      .roundup-page-subtitle {
+        font-size: 1rem;
+        color: #718096;
+        margin: 0;
+      }
+    }
+
+    .roundup-stat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    .roundup-stat-card {
+      border: 1.5px solid #2d3748;
+      border-top: 4px solid #8ac4d4;
+      padding: 24px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      .stat-card-value {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: #8ac4d4;
+        line-height: 1;
+      }
+
+      .stat-card-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #2d3748;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: center;
+        line-height: 1.4;
+      }
+    }
+
+    .roundup-isles-intro {
+      font-size: 1rem;
+      color: #4a5568;
+      line-height: 1.7;
+      margin: 0 0 36px;
+    }
+
+    // ── Isle sticky notes ──────────────────────────────────────────────────
+
+    .isle-sticky-board {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .isle-sticky-note {
+      background: #fefce8;
+      border: none;
+      cursor: pointer;
+      padding: 20px 22px 28px;
+      text-align: left;
+      box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      user-select: none;
+      transition: box-shadow 0.15s ease;
+
+      &--1 { transform: rotate(-1.5deg); }
+      &--2 { transform: rotate(1deg); }
+      &--3 { transform: rotate(-0.8deg); }
+      &--4 { transform: rotate(1.5deg); }
+
+      &:hover {
+        transform: rotate(0deg) scale(1.02) !important;
+        box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.22);
+        z-index: 1;
+        position: relative;
+      }
+
+      .isle-sticky-num {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #374151;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .isle-sticky-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.3;
+      }
+
+      .isle-sticky-stat {
+        font-size: 0.92rem;
+        color: #1f2937;
+        margin-top: 2px;
+
+        .sticky-stat-value {
+          font-weight: 700;
+        }
+
+        .sticky-stat-label {
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+
+  // ── Isle Modal ────────────────────────────────────────────────────────────
+
+  .isle-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+
+    @media (max-width: 768px) {
+      padding: 0;
+      align-items: flex-end;
+    }
+  }
+
+  .isle-modal {
+    position: relative;
+    background: #fff;
+    border: 2px solid #2d3748;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 32px;
+
+    @media (max-width: 768px) {
+      max-height: 90vh;
+      padding: 20px;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .isle-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: #718096;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+
+      &:hover {
+        color: #2d3748;
+      }
+    }
+
+    .isle-modal-header {
+      padding-bottom: 16px;
+      border-bottom: 1.5px solid #2d3748;
+      margin-bottom: 16px;
+
+      .isle-modal-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #8ac4d4;
+        margin-bottom: 6px;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0;
+      }
+    }
+
+    .isle-modal-stats {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+
+      li {
+        font-size: 0.85rem;
+        color: #4a5568;
+
+        .isle-stat-value {
+          font-weight: 700;
+          color: #2d3748;
+        }
+
+        .isle-stat-label {
+          color: #718096;
+        }
+      }
+    }
+
+    .isle-modal-section {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .isle-modal-section-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0 0 8px;
+      }
+
+      p {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin: 0 0 12px;
+      }
+
+      .section-card-prompt {
+        background: #ebf8ff;
+        border-left: 3px solid #8ac4d4;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        color: #2b6cb0;
+        border-radius: 0 3px 3px 0;
+        margin-bottom: 10px;
+
+        .prompt-label {
+          font-weight: 700;
+        }
+      }
+
+      .isle-modal-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          font-size: 0.8rem;
+
+          a {
+            color: #8ac4d4;
+            text-decoration: underline;
+
+            &:hover {
+              color: #63b3c8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
