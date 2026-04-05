@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IsleModal from "./IsleModal";
 
@@ -17,28 +17,32 @@ const MonthCalendar = ({ data, yearMonth }) => {
 
   return (
     <div className="month-calendar">
-      <div className="month-calendar-header">
-        <button className="back-link" onClick={() => navigate("/post/monthly-roundup")}>
-          ← All Months
-        </button>
-        <h1>
-          {MONTH_NAMES[monthIndex]} {year}
-        </h1>
+      <button className="back-link" onClick={() => navigate("/post/monthly-roundup")}>
+        ← All Months
+      </button>
+
+      <div className="roundup-page-header">
+        <div className="roundup-eyebrow">Board of Supervisors</div>
+        <h1 className="roundup-page-title">{MONTH_NAMES[monthIndex]} Roundup</h1>
+        <p className="roundup-page-subtitle">Your monthly digest of city governance</p>
       </div>
 
       {data?.headline_stats && (
-        <div className="roundup-stats">
+        <div className="roundup-stat-cards">
           {data.headline_stats.map((stat, i) => (
-            <React.Fragment key={i}>
-              {i > 0 && <span className="roundup-stats-sep">·</span>}
-              <div className="roundup-stat">
-                <span className="roundup-stat-value">{stat.value}</span>
-                <span className="roundup-stat-label">{stat.label}</span>
-              </div>
-            </React.Fragment>
+            <div key={i} className="roundup-stat-card">
+              <span className="stat-card-value">{stat.value}</span>
+              <span className="stat-card-label">{stat.label}</span>
+            </div>
           ))}
         </div>
       )}
+
+      <p className="roundup-isles-intro">
+        We pulled out {data?.isles?.length ?? "a few"} key areas of interest from
+        the world of SF local politics in the month of {MONTH_NAMES[monthIndex]}.
+        Click on each sticky note to learn more!
+      </p>
 
       {data?.isles && data.isles.length > 0 && (
         <div className="isle-sticky-board">
@@ -50,17 +54,12 @@ const MonthCalendar = ({ data, yearMonth }) => {
             >
               <span className="isle-sticky-num">Isle {isle.number}</span>
               <span className="isle-sticky-title">{isle.title}</span>
-              {isle.stats && isle.stats[0] && (
-                <span className="isle-sticky-stat">
-                  <span className="sticky-stat-value">{isle.stats[0].value}</span>{" "}
-                  <span className="sticky-stat-label">{isle.stats[0].label}</span>
+              {isle.stats && isle.stats.map((stat, j) => (
+                <span key={j} className="isle-sticky-stat">
+                  <span className="sticky-stat-value">{stat.value}</span>{" "}
+                  <span className="sticky-stat-label">{stat.label}</span>
                 </span>
-              )}
-              {isle.sections && isle.sections[0] && (
-                <span className="isle-sticky-preview">
-                  {isle.sections[0].body.slice(0, 90)}…
-                </span>
-              )}
+              ))}
             </button>
           ))}
         </div>

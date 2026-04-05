@@ -7,6 +7,9 @@ const YearView = ({ year }) => {
 
   return (
     <div className="year-view">
+      <button className="back-link" onClick={() => navigate("/post/supervisor-updates")}>
+        ← Back to supervisors homepage
+      </button>
       <div className="roundup-eyebrow">Board of Supervisors</div>
       <h1 className="year-view-title">{year} Monthly Roundups</h1>
       <p className="year-view-subtitle">Click a month to explore</p>
