@@ -19,7 +19,6 @@ const IsleModal = ({ isle, onClose }) => {
           ✕
         </button>
         <div className="isle-modal-header">
-          <div className="isle-modal-eyebrow">Isle {isle.number}</div>
           <h2>{isle.title}</h2>
         </div>
         {isle.stats && isle.stats.length > 0 && (
@@ -37,9 +36,16 @@ const IsleModal = ({ isle, onClose }) => {
             <div key={i} className="isle-modal-section">
               <div className="isle-modal-section-title">{section.title}</div>
               <p>{section.body}</p>
+              {section.list && section.list.length > 0 && (
+                <ol className="isle-section-list">
+                  {section.list.map((item, j) => <li key={j}>{item}</li>)}
+                </ol>
+              )}
+              {section.body_after && (
+                <p>{section.body_after}</p>
+              )}
               {section.prompt && (
                 <div className="section-card-prompt">
-                  <span className="prompt-label">Think about it: </span>
                   {section.prompt}
                 </div>
               )}
@@ -55,6 +61,9 @@ const IsleModal = ({ isle, onClose }) => {
                       </li>
                     ))}
                 </ul>
+              )}
+              {section.image && (
+                <img src={section.image} alt="" className="isle-section-image" />
               )}
             </div>
           ))}

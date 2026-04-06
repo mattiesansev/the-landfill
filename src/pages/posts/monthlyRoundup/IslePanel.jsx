@@ -25,9 +25,17 @@ const IslePanel = ({ isle, onClose }) => {
                 <div key={i} className="isle-section">
                   <h3 className="isle-section-title">{section.title}</h3>
                   <p className="isle-section-body">{section.body}</p>
+                  {section.list && section.list.length > 0 && (
+                    <ol className="isle-section-list">
+                      {section.list.map((item, j) => <li key={j}>{item}</li>)}
+                    </ol>
+                  )}
+                  {section.body_after && (
+                    <p className="isle-section-body">{section.body_after}</p>
+                  )}
                   {section.prompt && (
                     <div className="isle-section-prompt">
-                      <span className="prompt-label">Reader prompt:</span> {section.prompt}
+                      {section.prompt}
                     </div>
                   )}
                   {section.links && section.links.length > 0 && (
@@ -42,6 +50,9 @@ const IslePanel = ({ isle, onClose }) => {
                         </li>
                       ))}
                     </ul>
+                  )}
+                  {section.image && (
+                    <img src={section.image} alt="" className="isle-section-image" />
                   )}
                 </div>
               ))}

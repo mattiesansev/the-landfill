@@ -4109,6 +4109,11 @@
       color: #4a5568;
       line-height: 1.7;
       margin: 0 0 36px;
+      font-weight: 550;
+      width: 80%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     // ── Isle sticky notes ──────────────────────────────────────────────────
@@ -4298,6 +4303,22 @@
         margin: 0 0 12px;
       }
 
+      .isle-section-list {
+        font-size: 0.88rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin: 0 0 12px;
+        padding-left: 1.4rem;
+
+        li {
+          margin-bottom: 8px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
       .section-card-prompt {
         background: #ebf8ff;
         border-left: 3px solid #8ac4d4;
@@ -4329,6 +4350,13 @@
             }
           }
         }
+      }
+
+      .isle-section-image {
+        display: block;
+        width: 100%;
+        margin-top: 12px;
+        border-radius: 4px;
       }
     }
   }

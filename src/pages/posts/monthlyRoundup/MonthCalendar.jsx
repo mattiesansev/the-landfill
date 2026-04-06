@@ -39,7 +39,7 @@ const MonthCalendar = ({ data, yearMonth }) => {
       )}
 
       <p className="roundup-isles-intro">
-        We pulled out {data?.isles?.length ?? "a few"} key areas of interest from
+        We extracted {data?.isles?.length ?? "a few"} key areas of interest from
         the world of SF local politics in the month of {MONTH_NAMES[monthIndex]}.
         Click on each sticky note to learn more!
       </p>

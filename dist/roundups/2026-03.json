@@ -3,7 +3,7 @@
   "display_month": "March 2026",
   "headline_stats": [
     { "value": "21", "label": "Committee & Board Meetings" },
-    { "value": "11", "label": "Hearings" },
+    { "value": "5", "label": "Hearings" },
     { "value": "208", "label": "Unique Files Heard" }
   ],
   "isles": [
@@ -18,18 +18,30 @@
       ],
       "sections": [
         {
-          "title": "Charter Reform Push",
-          "body": "Mayor Daniel Lurie made his most aggressive legislative moves yet in March, introducing three separate charter reform proposals aimed at reshaping how the city operates. The reforms target the Civil Service Commission structure, the city's contracting process, and the governance of major departments. Critics from the progressive bloc argue the proposals consolidate too much power in the Mayor's office, while supporters say they're necessary to cut bureaucratic gridlock.",
-          "prompt": "Do you think charter reforms will speed up city government, or concentrate too much power in the Mayor's office?",
-          "links": [
-            { "text": "Read the full charter reform proposal (File 260XXX)", "url": "" }
-          ]
+          "title": "Charter Reform",
+          "body": "During his monthly appearance at the Board of Supervisors, Mayor Lurie introduced a charter reform package. The three reforms include:",
+          "list": [
+            "Moving city contracts to the control of the City Administrator. According to Mayor Lurie, this will cut red tape, save taxpayer dollars, and reduce delays.",
+            "Ballots will be made shorter and simpler by requiring a majority at the Board of Supervisors to add a measure to a ballot and remove the Mayor's ability to unilaterally place a measure on the ballot.",
+            "Increasing accountability and flexibility by allowing the Mayor to hire and fire department heads."
+          ],
+          "body_after": "The Bay Area Data Dump is working to analyze past elections to see how they informed Mayor Lurie's reform package and how many propositions would be infeasible under these reforms.",
+          "prompt": "What do you think of charter reforms? Do you have any inkling on whether you will support these reforms in the next election? Let us know!",
+          "links": []
         },
         {
-          "title": "New Permitting Pilot Program",
-          "body": "The Mayor's office also unveiled a new fast-track permitting pilot program focused on affordable housing projects. The program consolidates review across the Planning, DBI, and Public Works departments into a single 90-day window. Three projects have already been approved to enter the pilot. Whether this scales city-wide is contingent on a budget approval expected in June.",
-          "prompt": null,
+          "title": "Permitting: Sidewalk Flower Stands",
+          "body": "In line with the Mayor's permitting initiative, he sponsored this item to modernize the sidewalk flower stand permit program. In the early 1900's, downtown San Francisco had 120 outdoor flower stands, today there are only 4. Under the current system, permits can only be passed down to another family member or transferred by the Board of Supervisors. Now, the Director of the Department of Public Works will have authority over these permits and vendors will be required to operate 35 hours a week and they can sell flowers and plants. Mayor Lurie hopes updating this program will reactivate flower stands downtown and create a clear path to small business ownership in the city.",
+          "prompt": "Have you seen new flower stands sprouting Downtown?",
           "links": []
+        },
+        {
+          "title": "The Women's Agenda",
+          "body": "In collaboration with District 7 Supervisor Myrna Melgar and Department on the Status of Women (DOSW), Mayor Lurie launched the Women's Agenda on March 19th. Through strategic planning, DOSW defined four core policy areas: Health, Safety, Economic Mobility & Security, and Civic Leadership & Community Engagement. DOSW has outlined goals and objectives for each of the four policy areas, each centered around improving the lives and wellbeing of women, girls, and non-binary people. By the end of 2026, DOSW will establish progress benchmarks and performance indicators and provide updates to the Board of Supervisors, Mayor, and Commission on the Status of Women.",
+          "prompt": "What do you think the results of the women's agenda will be? What goals and outcomes do you think will be the easiest/hardest to achieve? The Bay Area Data Dump will keep an eye on forthcoming reports, but in the meantime let us know what you think!",
+          "links": [
+            { "text": "DOSW's presentation", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15325329&GUID=81E2FEB1-B18B-4107-8B46-4C852D6FA50B" }
+          ]
         }
       ]
     },
@@ -44,16 +56,20 @@
       ],
       "sections": [
         {
-          "title": "Affordable Housing Appropriations",
-          "body": "The Board approved $47 million in affordable housing funding this month, split between three projects in the Tenderloin, SoMa, and the Excelsior. The largest allocation — $28 million — went to a 110-unit development on a formerly city-owned lot on Mission Street. The vote was 9-2, with Supervisors Fielder and Walton dissenting, arguing the income thresholds for eligibility were set too high to serve the lowest-income residents.",
-          "prompt": "Should the city prioritize deeply affordable units (30% AMI and below) even if it means building fewer total units?",
-          "links": []
+          "title": "1939 Market Street – Affordable Housing Project",
+          "body": "The Mayor's Office of Housing and Community Development (MOHCD) accepted a $47 million grant for a 100% affordable housing project at 1939 Market Street. Mercy Housing/MOHCD will receive $35 million for housing construction and $12.5 million will go to city agencies for public transit and social programming. The project would include 185 affordable units, many of which are set aside for specific populations: 75 Units for Seniors, 55 Units for Veterans, 40 Units for Homeless Seniors, and 9 Units providing HIV+ Services. Supervisor Mandelman voiced strong support for this project, hoping it will lower the displacement rate of older LGBTQ+ residents in District 8. However, there is no pathway to legally make this housing for queer residents, but the non-profit Open House will create an 18-month plan for effective outreach to queer people and help them with the application process. Construction of 1939 Market Street will begin in February 2027 and end in February 2029 (35 months from approval by Mayor Lurie).",
+          "prompt": null,
+          "links": [
+            { "text": "More information on the project", "url": "https://sfgov.legistar.com/LegislationDetail.aspx?ID=7933671&GUID=2A74B7DB-01C2-4793-B24E-17B2AD2AC1DD&Options=&Search=" }
+          ],
+          "image": "/img/roundups/1939_Market_Street_Affordable_Housing.png"
         },
         {
-          "title": "State Density Bonus Projects",
-          "body": "Three projects invoking California's density bonus law were approved by the Planning Commission and ratified by the Board, adding a combined 75 units beyond what local zoning would allow. These approvals were routine but signal the continued use of state law to bypass local height restrictions — a dynamic that continues to generate tension between the Board and Planning staff.",
+          "title": "Potrero Yard Modernization Project (2500 Mariposa Street; District 9)",
+          "body": "The Potrero Yard Modernization Project will update the existing infrastructure of the Potrero bus yard, which is over 100 years old. When the project was proposed, SFMTA said that the bus yard could hold 246 buses and accommodate 465 units of affordable housing. As of 2025, the SFMTA lowered the number of affordable housing units on the site to 100. According to SFMTA, the project would not be financially feasible if they had to pay for a reinforced podium, which would have cost $70 - $160 million to install, thus eliminating their ability to build housing on top of the facility. As for the proposed 100 affordable units, SFMTA stated the development depends on funding sources and market feasibility. Supervisors Chan, Dorsey, and Sherrill all expressed disappointment over the changes to the project and pushed for other solutions. Supervisor Chan stated to support the project she will need a written commitment from both the SFMTA and Mayor Lurie promising that funds for a reinforced podium and the 465 affordable housing units; Supervisor Sherrill also pushed for the reinforced podium to be built now so affordable housing can be built later. SFMTA said that the Supervisors' requests cannot be fulfilled without going back to the bidding process, which would cause the cost of the project to rise and become financially infeasible. If approved now by the Board of Supervisors and Mayor Lurie, the project will be completed by 2030 and cost ~$1.4 billion.",
           "prompt": null,
-          "links": []
+          "links": [],
+          "image": "/img/roundups/Potrero_Yard_Modernizartion_Project.png"
         }
       ]
     },
@@ -68,16 +84,13 @@
       ],
       "sections": [
         {
-          "title": "Commission Consolidation Proposal",
-          "body": "A sweeping proposal from Supervisor Sherrill would eliminate or consolidate 36 of the city's 130+ commissions, advisory boards, and task forces. The proposal argues that many bodies are redundant, understaffed, or have not met in over a year. The full Board debated the measure for two hours — the longest single-item debate of the month — before passing it to the Government Audit & Oversight Committee for further review.",
-          "prompt": "Which commissions do you think actually matter for your neighborhood? Which could go?",
-          "links": []
-        },
-        {
-          "title": "Sunshine Ordinance Task Force Controversy",
-          "body": "Separately, the Sunshine Ordinance Task Force — the body that adjudicates public records complaints — came under scrutiny after a member was found to have violated the ordinance they're tasked with enforcing. The Ethics Commission has opened an investigation. No action was taken at the Board level in March, but the situation has renewed calls to restructure the Task Force's oversight structure.",
+          "title": "The Commission Streamlining Task Force Recommendations",
+          "body": "Proposition E was passed by voters in 2024 and led to the creation of a commission streamlining task force, whose sole purpose was shrinking the size of the city's commissions. After a year of work, the task force released their final report in January 2025, calling for the elimination and consolidation of many commissions. Before the Board of Supervisors heard the recommendations and conclusions from the task force on March 17th, 2026, Supervisor Mandelman said it would be highly unlikely for any member to introduce the charter amendment to the Board to send to voters in November. Despite this, the task force presented their recommendation to the Board: Keep 86 active and effective bodies, Combine two bodies, Eliminate 36 inactive bodies, Remove 24 bodies from the city code, and Take no action on 4 bodies. During public comment, many speakers expressed outrage at the task forces' recommendations and compared it to the federal cuts made by DOGE. Douglas Hagman, a member of the real reform committee which placed Prop E on the 2024 ballot, was disappointed in the academic approach taken by the task force. \"The charter is our constitution and cities around the country are looking at us to see if we are going to uphold our constitution or not,\" said Hagman in his closing remarks. Other speakers echoed Hagman, including a commissioner from the Immigrant's Rights Commission who stated that efficiency is important but not when it costs communities their voice and ability to be civically engaged. Public comment on this item continued for over two hours. Most recommendations made by the task force are unlikely to become anything other than recommendations.",
           "prompt": null,
-          "links": []
+          "links": [
+            { "text": "Presentation given by the commission streamlining task force", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15315564&GUID=8295D74B-5167-493C-9D6F-B61C4614A6CC" },
+            { "text": "Final report (January 2025)", "url": "https://media.api.sf.gov/documents/Commission_Streamlining_Task_Force_Final_Report.pdf" }
+          ]
         }
       ]
     },
@@ -85,16 +98,20 @@
       "id": "womens-rights",
       "number": 4,
       "date": "2026-03-05",
-      "title": "Women's Rights",
+      "title": "Women's Rights in San Francisco",
       "stats": [
         { "value": "1", "label": "Major Hearing Held" }
       ],
       "sections": [
         {
-          "title": "Reproductive Rights Hearing",
-          "body": "The Board held a high-profile hearing on the status of reproductive rights access in San Francisco, examining gaps in public health infrastructure for abortion and contraceptive care. The hearing was called by Supervisor Fielder and co-sponsored by five colleagues. Testimony from UCSF, Planned Parenthood, and the Department of Public Health highlighted a waitlist backlog at city-funded clinics that has grown since 2024. The Board requested a follow-up report from DPH within 60 days.",
-          "prompt": "Are you aware of reproductive health resources in your district? Have you faced barriers accessing care in SF?",
-          "links": []
+          "title": "Hearing on the condition of Women in custody in local jails",
+          "body": "Last May, the Public Defender's office received a complaint about a mass strip search that took place at San Francisco's county jail 2. According to the women involved, sheriff's deputies made them strip in front of each other while the deputies laughed and continued recording with their body cameras. This incident, along with many other concerns, were brought under the microscope during a public hearing called by Supervisor Chen. The hearing was nearly four hours and included voices from the public and social justice organizations calling for accountability, while Sheriff Miyamoto was grilled by Supervisors about jail conditions. The Young Women's Freedom Center and TGI Justice Project spoke of the lack of sunlight and recreation at the jail, saying the only time individuals get light is when they are taken to the hospital. They spoke of psych services being delayed or ignored by the Sheriff's Department as an act of retaliation against individuals who speak up. They spoke of the trauma of strip searches and how they increase instability and recidivism, and called for them to be limited to individualized searches based on reasonable suspicion. After the presentation the women listed their demands of the Sheriff's Department and the Board of Supervisors. Then it was time for Sheriff Miyamoto to take questions, and take the time to respond to many of the claims made. He made it clear that the Sheriff's Department is working to get body scanners in the jail's housing units, since they would be a less invasive way to search for contraband. Strip searches will always be a part of the jail and is a key part of contraband control, according to Miyamoto, but he could not answer whether or not strip searches yield results. As for the Sheriff's Deputies involved in the May 2025 incident, Sheriff Miyamoto said it was not the deputies decision to perform a mass strip search, but their supervisors. Additionally, even if the Sheriff's Department terminated the deputies involved, as community members and organizations have requested, they could be reinstated through their unions' collective bargaining agreement, under a policy called binding arbitration. During the hour of questions, Sheriff Miyamoto frequently reiterated that his department does good work in San Francisco and is working towards being accountable and accessible to the public, community organizations, and the public defender's office.",
+          "prompt": null,
+          "links": [
+            { "text": "Full transcript of the questioning of the Sheriff's Department", "url": "" },
+            { "text": "Presentation given by the Young Women's Freedom Center and TGI Justice Project", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15309537&GUID=1BFC592F-BB4F-42DE-9BFC-CB1E4FA56F6C" },
+            { "text": "Presentation given by the Sheriff's Department", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15311547&GUID=D9B45AE3-4435-4070-9BCC-B581F38A05F7" }
+          ]
         }
       ]
     }
