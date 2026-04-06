@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IsleModal from "./IsleModal";
+import { authors as authorData } from "../../../authors/authors";
+import AuthorFooter from "../../../components/AuthorFooter";
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -25,6 +27,17 @@ const MonthCalendar = ({ data, yearMonth }) => {
         <div className="roundup-eyebrow">Board of Supervisors</div>
         <h1 className="roundup-page-title">{MONTH_NAMES[monthIndex]} Roundup</h1>
         <p className="roundup-page-subtitle">Your monthly digest of city governance</p>
+        {data?.authors && data.authors.length > 0 && (
+          <div className="roundup-authors">
+            {data.authors.map((key) => authorData[key] && (
+              <AuthorFooter
+                key={key}
+                authorImageUrl={authorData[key].photo}
+                authorName={authorData[key].name}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {data?.headline_stats && (
