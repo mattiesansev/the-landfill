@@ -33,6 +33,15 @@ const Home = () => {
 
   const posts = [
     {
+      id: "monthly-roundup",
+      title: "Board of Supervisors Monthly Roundup",
+      desc: "A monthly digest of the most discussed and debated topics from the SF Board of Supervisors.",
+      img: supervisorCover,
+      imgFit: "contain",
+      authors: [authors.mattie],
+      category: CATEGORIES.POLITICS
+    },
+    {
       id: "urban-forestry-history",
       title: "The History of San Francisco's Urban Forest",
       desc: "San Francisco’s urban forest has taken many different shapes over the past century. From sand dunes and sidewalks to a budding urban forest, this article follows the story of the City’s urban forest and its past, present, and future.",

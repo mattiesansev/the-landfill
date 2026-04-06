@@ -52,7 +52,6 @@ const MonthCalendar = ({ data, yearMonth }) => {
               className={`isle-sticky-note isle-sticky-note--${(i % 4) + 1}`}
               onClick={() => setActiveIsle(isle)}
             >
-              <span className="isle-sticky-num">Isle {isle.number}</span>
               <span className="isle-sticky-title">{isle.title}</span>
               {isle.stats && isle.stats.map((stat, j) => (
                 <span key={j} className="isle-sticky-stat">

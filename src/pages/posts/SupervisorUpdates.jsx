@@ -166,9 +166,12 @@ const SupervisorUpdates = () => {
         <div className="title">What is my district supervisor up to?</div>
         <p>
           Every week, the San Francisco Board of Supervisors meets to vote on
-          legislation that affects your neighborhood. Take a look at our weekly 
+          legislation that affects your neighborhood. Take a look at our weekly
           recaps where we lay out some of the important votes that took place.
         </p>
+        <Link to="/post/monthly-roundup" className="roundup-callout">
+          Looking for a monthly summary? Check out the Monthly Roundup →
+        </Link>
 
         <div className="embed-container">
           <br />

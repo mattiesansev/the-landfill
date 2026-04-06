@@ -769,6 +769,22 @@
           }
         }
 
+        .roundup-callout {
+          display: inline-block;
+          margin: 12px 0 0;
+          padding: 10px 16px;
+          background: rgba(138, 196, 212, 0.15);
+          border: 1.5px solid #8ac4d4;
+          border-radius: 4px;
+          color: #2b6cb0;
+          font-size: 0.9rem;
+          text-decoration: none;
+
+          &:hover {
+            background: rgba(138, 196, 212, 0.3);
+          }
+        }
+
         // View toggle for supervisor updates
         .view-toggle {
           display: flex;
@@ -4224,7 +4240,8 @@
     padding: 32px;
 
     @media (max-width: 768px) {
-      max-height: 90vh;
+      max-height: 70vh;
+      width: 80%;
       padding: 20px;
       border-left: none;
       border-right: none;
