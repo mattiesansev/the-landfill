@@ -16,12 +16,9 @@ const UrbanForestryHistory = () => {
                     postDate="March 23, 2026"
                     authorName={authors["destiny"]["name"]}
                 />                
-                {/* <div className="image-container">
-                    <img src="/src/img/cover_tree_article.png" alt="SFPL trees make good neighbors" />
-                </div> */}
 
                 <figure className="image-container">
-                    <img src="/src/img/cover_tree_article.png" alt="SFPL trees make good neighbors" />
+                    <img src="/img/tree_article/cover_tree_article.png" alt="SFPL trees make good neighbors" />
                 </figure>
                 <div className="subtitle">
                     Introduction
