@@ -1,6 +1,7 @@
 {
   "month": "2026-03",
   "display_month": "March 2026",
+  "authors": ["destiny", "mattie"],
   "headline_stats": [
     { "value": "21", "label": "Committee & Board Meetings" },
     { "value": "5", "label": "Hearings" },
