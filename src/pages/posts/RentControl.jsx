@@ -1,11 +1,7 @@
 import { React, useEffect, useState } from "react";
 import headerPhoto from "/src/rent_control.jpeg";
-import { useLocation } from 'react-router-dom';
-import ReactGA from 'react-ga4';
 import ScrollyTimeline, { getContentForYear } from "./RentControlTimeline2";
 import ParcelMap from "./ParcelsMap";
-
-ReactGA.initialize('G-NR2T70PVBG'); 
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
@@ -22,12 +18,7 @@ function useIsMobile(breakpoint = 768) {
 const Parcels = () => {
   const [propInfo, setPropInfo] = useState([]);
 
-  const location = useLocation();
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
 
   return (
     <div className="single">

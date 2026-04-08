@@ -12,12 +12,6 @@ import {
 import "leaflet/dist/leaflet.css";
 import ClassBar from "./charts/ClassBar";
 import headerPhoto from "/src/header.jpg";
-import { useLocation } from 'react-router-dom'; 
-import ReactGA from 'react-ga4';
-
-ReactGA.initialize('G-NR2T70PVBG'); 
-
-
 const viewSettings = {
   main: {
     lat: 37.871558, 
@@ -28,12 +22,6 @@ const viewSettings = {
 
 const LandfillMap = () => {
   const [coordinatesPerLandfill, setCoordinatesPerLandfill] = useState([]);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
 
   // Define the polygon's coordinates
   useEffect(() => {
