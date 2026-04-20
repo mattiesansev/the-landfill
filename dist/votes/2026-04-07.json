@@ -1,0 +1,141 @@
+{
+  "meeting": {
+    "date": "2026-04-07",
+    "display_date": "April 7, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "250979",
+      "title": "Police Surveillance Policy — Electronic Location Tracking Devices",
+      "description": "Approves SFPD's surveillance technology policy governing the use of electronic location tracking devices such as GPS trackers, as required by the city's surveillance oversight ordinance. Walton voted no, continuing his opposition to expanded police surveillance tools. Fielder was excused.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Wong"],
+        "noes_names": ["Walton"],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Mandelman", "Sherrill", "Sauter", "Dorsey", "Wong"]
+      }
+    },
+    {
+      "file_number": "260176",
+      "title": "SFPD Overtime Budget Adjustment — $34.4M",
+      "description": "Shifts $34.4 million within the Police Department budget from permanent salary lines to overtime pay to cover the department's projected overtime costs for the remainder of FY2025-26. Fielder was excused.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260211",
+      "title": "SF-Marin Food Bank CalFresh Emergency Gift Card Program — $9.1M",
+      "description": "Retroactively approves a $9.1 million contract with the SF-Marin Food Bank to run a two-month emergency gift card initiative for CalFresh (food stamps) recipients who lost benefits due to a federal system outage in late 2025. Fielder was excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260242",
+      "title": "Balboa Reservoir Building A — 158-Unit 100% Affordable Housing",
+      "description": "Approves a 75-year ground lease and loan agreement for the first building at Balboa Reservoir, a 158-unit 100% affordable housing project near City College. The city contributes land at a nominal $15,000 annual rent and a loan up to $29.3 million. Fielder was excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Melgar", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "260243",
+      "title": "Balboa Reservoir Building A — $112.7M Revenue Bond",
+      "description": "Approves issuance of a multifamily housing revenue note of up to $112.7 million to finance construction of the 159-unit Balboa Reservoir Building A affordable housing project at 105 Wisteria Lane. Fielder was excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Melgar", "Mandelman"]
+      }
+    },
+    {
+      "file_number": "260170",
+      "title": "SF AIDS Foundation Health Services Contract — $21.9M",
+      "description": "Extends and expands the city's contract with the San Francisco AIDS Foundation to operate a health access point serving vulnerable populations, increasing the total to $21.9 million through June 2030. Fielder was excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": "Mandelman",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251254",
+      "title": "Street Sweeping Performance Requirements",
+      "description": "Requires DPW to conduct periodic evaluations of mechanical street sweeping operations and submit written performance reports to the Board of Supervisors and Mayor, adding accountability to a service that has long been a complaint driver for residents. Fielder was excused.",
+      "action": "FINALLY PASSED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": "Sauter",
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260081",
+      "title": "SFO Guest Assistance Contract Extension — $30.4M",
+      "description": "Extends Hallmark Aviation's Airport Information and Guest Assistance Services contract by one year through June 2027 and increases the total contract value to $30.4 million. Fielder was excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Melgar", "Sauter", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "meeting": {
+    "date": "2026-03-17",
+    "display_date": "March 17, 2026"
+  },
+  "supervisors": [
+    { "district": 1, "lastName": "Chan", "fullName": "Connie Chan", "image": "/img/supervisors/connie_chan.png" },
+    { "district": 2, "lastName": "Sherrill", "fullName": "Stephen Sherrill", "image": "/img/supervisors/D02-Stephen_Sherrill_2025_roster.png" },
+    { "district": 3, "lastName": "Sauter", "fullName": "Danny Sauter", "image": "/img/supervisors/D03-Danny_Sauter_2025_roster.png" },
+    { "district": 4, "lastName": "Wong", "fullName": "Alan Wong", "image": "/img/supervisors/D04-Alan_Wong_2025_roster.png" },
+    { "district": 5, "lastName": "Mahmood", "fullName": "Bilal Mahmood", "image": "/img/supervisors/D05-Bilal_Mahmood_2025_roster.png" },
+    { "district": 6, "lastName": "Dorsey", "fullName": "Matt Dorsey", "image": "/img/supervisors/matt_dorsey_roster92622.png" },
+    { "district": 7, "lastName": "Melgar", "fullName": "Myrna Melgar", "image": "/img/supervisors/D07-Myrna_Melgar_2025_roster.png" },
+    { "district": 8, "lastName": "Mandelman", "fullName": "Rafael Mandelman", "image": "/img/supervisors/D08-Rafael_Mandelman_2025_roster.png" },
+    { "district": 9, "lastName": "Fielder", "fullName": "Jackie Fielder", "image": "/img/supervisors/D09-Jackie-Fielder_2025_roster.png" },
+    { "district": 10, "lastName": "Walton", "fullName": "Shamann Walton", "image": "/img/supervisors/D10-Shamann_Walton_2025_roster.png" },
+    { "district": 11, "lastName": "Chen", "fullName": "Chyanne Chen", "image": "/img/supervisors/D11-Chyanne_Chen_2025_roster.png" }
+  ],
+  "importantVotes": [
+    {
+      "file_number": "260183",
+      "title": "1939 Market Street Affordable Housing — $47.6M State Grant",
+      "description": "Authorizes the Mayor's Office of Housing to execute agreements for a $47.6M California state grant supporting a 100% affordable housing project at 1939 Market Street, including a $35M loan to the developer and $12.6M to the city for infrastructure. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": ["Mandelman", "Dorsey"]
+      }
+    },
+    {
+      "file_number": "260007",
+      "title": "Annual Surveillance Report — Gunshot Detection Technology",
+      "description": "Approves the Department of Emergency Management's annual surveillance report on gunshot detection technology, as required by the city's surveillance oversight ordinance. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "251173",
+      "title": "Police Commission Statement of Purpose",
+      "description": "Approves the Police Commission's formal Statement of Purpose as required under City Charter Section 4.102(2), defining the Commission's oversight role over the SFPD. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260165",
+      "title": "Allied Universal SF General Hospital Security — $15.4M",
+      "description": "Extends the unarmed security contract at San Francisco General Hospital by six months through December 2026 and increases the total contract value to $15.38 million. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260184",
+      "title": "JPMorgan Chase StopScamsSF Grant — $3M",
+      "description": "Retroactively authorizes the Office of Treasurer and Tax Collector to accept a $3 million grant from JPMorgan Chase to fund the StopScamsSF program, which helps residents avoid financial fraud and scams, running through December 2028. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": null,
+        "co_sponsors": []
+      }
+    },
+    {
+      "file_number": "260136",
+      "title": "Landmark Designation Initiated — Engine Company No. 33",
+      "description": "Initiates the historic landmark designation process for Engine Company No. 33 at 117 Broad Street, a historic firehouse in District 11. Fielder, Melgar, and Sauter were excused.",
+      "action": "ADOPTED",
+      "vote": {
+        "ayes_names": ["Chan", "Chen", "Dorsey", "Mahmood", "Mandelman", "Sherrill", "Walton", "Wong"],
+        "noes_names": [],
+        "excused": ["Fielder", "Melgar", "Sauter"]
+      },
+      "sponsors": {
+        "primary": "Chen",
+        "co_sponsors": ["Mandelman"]
+      }
+    }
+  ]
+}
