@@ -672,9 +672,8 @@
           color: #1a1a1a;
           font-weight: 600;
           @media (max-width: 850px) {
-            font-size: 32px;
+            font-size: 35px;
             padding: 10px 4px;
-            line-height: 1.15;
           }
         }
         .subtitle {
@@ -683,8 +682,7 @@
           padding: 15px;
           color: #1a1a1a;
           @media (max-width: 850px) {
-            font-size: 26px;
-            line-height: 32px;
+            font-size: 35px;
             padding: 10px 4px;
           }
         }
@@ -695,8 +693,6 @@
           padding-left: 10%;
           padding-right: 10%;
           @media (max-width: 850px) {
-            font-size: 17px;
-            line-height: 26px;
             padding-left: 4px;
             padding-right: 4px;
           }
