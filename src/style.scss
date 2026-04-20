@@ -641,7 +641,7 @@
         padding: 40px 80px;
         margin: 0 auto;
         @media (max-width: 850px) {
-          padding: 20px;
+          padding: 20px 12px;
         }
       }
 
@@ -673,6 +673,7 @@
           font-weight: 600;
           @media (max-width: 850px) {
             font-size: 35px;
+            padding: 10px 4px;
           }
         }
         .subtitle {
@@ -682,6 +683,7 @@
           color: #1a1a1a;
           @media (max-width: 850px) {
             font-size: 35px;
+            padding: 10px 4px;
           }
         }
         p {
@@ -690,6 +692,10 @@
           color: #2d3748;
           padding-left: 10%;
           padding-right: 10%;
+          @media (max-width: 850px) {
+            padding-left: 4px;
+            padding-right: 4px;
+          }
         }
         .chartTitle {
           font-size: 30px;
@@ -722,7 +728,8 @@
 
         .image-container {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
           margin: 20px 0;
           
           img {
@@ -733,6 +740,16 @@
             object-fit: contain;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+          }
+          
+          .caption-text {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+            margin-top: 8px;
+            max-width: 100%;
           }
         }
 
