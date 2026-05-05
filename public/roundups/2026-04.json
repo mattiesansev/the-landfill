@@ -14,9 +14,9 @@
       "date": "2026-04-08",
       "title": "Land Use & Development",
       "stats": [
-        { "value": "14", "label": "D8 Designations Approved" },
-        { "value": "13", "label": "D3 Initiations Approved" },
-        { "value": "0.5 mi", "label": "SB79 Transit Proximity Requirement" },
+        { "value": "14", "label": "D8 Landmarks Approved" },
+        { "value": "13", "label": "D3 Landmarks Approved" },
+        { "value": "0.5 mile", "label": "SB79 Alternative Plan" },
         { "value": "2032", "label": "Temporary Exemption Expiry" }
       ],
       "sections": [
