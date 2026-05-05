@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
+
+const LandmarkMap = lazy(() => import("./LandmarkMap"));
 
 const IsleModal = ({ isle, onClose }) => {
   useEffect(() => {
@@ -35,15 +37,17 @@ const IsleModal = ({ isle, onClose }) => {
           isle.sections.map((section, i) => (
             <div key={i} className="isle-modal-section">
               <div className="isle-modal-section-title">{section.title}</div>
-              <p>{section.body}</p>
+              {section.body && section.body.split("\n\n").map((para, k) => (
+                <p key={k}>{para}</p>
+              ))}
               {section.list && section.list.length > 0 && (
                 <ol className="isle-section-list">
                   {section.list.map((item, j) => <li key={j}>{item}</li>)}
                 </ol>
               )}
-              {section.body_after && (
-                <p>{section.body_after}</p>
-              )}
+              {section.body_after && section.body_after.split("\n\n").map((para, k) => (
+                <p key={k}>{para}</p>
+              ))}
               {section.prompt && (
                 <div className="section-card-prompt">
                   {section.prompt}
@@ -64,6 +68,11 @@ const IsleModal = ({ isle, onClose }) => {
               )}
               {section.image && (
                 <img src={section.image} alt="" className="isle-section-image" />
+              )}
+              {section.landmarks_map && (
+                <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
+                  <LandmarkMap />
+                </Suspense>
               )}
             </div>
           ))}

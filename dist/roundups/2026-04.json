@@ -1,0 +1,165 @@
+{
+  "month": "2026-04",
+  "display_month": "April 2026",
+  "authors": ["destiny", "mattie"],
+  "headline_stats": [
+    { "value": "22", "label": "Committee & Board Meetings" },
+    { "value": "11", "label": "Hearings" },
+    { "value": "245", "label": "Unique Files Heard" }
+  ],
+  "isles": [
+    {
+      "id": "land-use-development",
+      "number": 1,
+      "date": "2026-04-08",
+      "title": "Land Use & Development",
+      "stats": [
+        { "value": "14", "label": "D8 Designations Approved" },
+        { "value": "13", "label": "D3 Initiations Approved" },
+        { "value": "0.5 mi", "label": "SB79 Transit Proximity Requirement" },
+        { "value": "2032", "label": "Temporary Exemption Expiry" }
+      ],
+      "sections": [
+        {
+          "title": "The Landmark Designation Program",
+          "body": "Last fall, Mayor Lurie passed his Family Zoning Plan (FZP) to build more housing in San Francisco. The Family Zoning Plan aims to widely expand housing capacity with initiatives like raised city building height limits, incentives for developers, and less restriction on residential density. With most of San Francisco's land developed, the Family Zoning Plan has built in protections – under the Landmark Designation Program (LDP) - to preserve buildings of historical and architectural significance. These protections were introduced by Rafael Mandelman as an amendment to the FZP. The program is in its infancy.\n\nThrough the first phase of the LDP, the Planning Department identified buildings that are cultural landmarks or fit into the following criteria:",
+          "list": [
+            "Existing Category A",
+            "Outside P/RH Zoning",
+            "0-1 Dwelling Units",
+            "Highest Significance/Integrity"
+          ],
+          "landmarks_map": true,
+          "body_after": "Districts 3 and 8 have completed phase one of the LDP. The process, which can take up to 10 months, has resulted in 14 designations in District 8 and 18 in District 2.\n\nDesignated landmarks are also eligible for other kinds of benefits and flexibility, including potential tax benefits through the Mills Act program, more flexible building regulations, protection against demolition, and eligibility for a wider array of land uses, regardless of what is permitted in the building's zoning district.\n\nApril was an eventful month for landmark designation in District 8 and District 3.\n\nThe Land Use and Transportation Committee, whose members include Supervisors Melgar, Chen, and Mahmood, recommended 14 Landmark Designation ordinances in District 8 to be voted on by the full board. The designations were approved unanimously by the full board, which completes one of the final steps in the designation process.\n\nDistrict 3's landmark designations are entering an earlier phase in the approval process. The committee and full board approved the initiation of the landmark designation process for 13 sites.",
+          "links": []
+        },
+        {
+          "title": "Transit Oriented Residential Development",
+          "body": "Last fall Governor Newsom signed Senate Bill 79 'The Abundant and Affordable Homes Near Transit Act'. SB79 will take effect July 1, 2026, and aims to increase housing availability and affordability while decreasing carbon emissions and strengthening local transit systems. Cities, including San Francisco, will be required to allow housing at various heights and densities within a half mile of major transit stops. Unlike other cities in California, San Francisco is dense and current zoning allows for more housing than mandated by SB79. Thus, the planning commission created an alternative plan in lieu of SB79 requirements.\n\nAn alternative plan allows the city to make temporary and permanent exclusions while still providing equivalent development capacity. Fears of gentrification in low resource areas like Bayview-Hunter's Point and the Outer Mission led to temporary exemptions, which will expire in 2032, in those neighborhoods. Allowing these exemptions will give the city more time to plan for more housing capacity and transit in those neighborhoods and clarify the relationship between SB79 and redevelopment. The city also made permanent exclusions in SOMA and Bayview to preserve industrial employment hubs, jobs, and land uses.\n\nOutreach for the alternative plan was extensive, and the communities impacted were on board with the permanent and temporary exclusions. Despite this, Supervisor Dorsey tried to make a last-minute amendment to make the permanent exclusions temporary. Other Supervisors were not supportive of Dorsey's amendments. A representative from Supervisor Fielder's office stated that there was no public outreach about the proposed amendments and they directly go against the current Mission Action Plan. Supervisor Melgar echoed Supervisor Fielder's sentiment, stating that housing is not appropriate above all industrial uses. Several public commenters from community organizations like SOMCAN and Young Community Developers spoke against Dorsey's amendment since it would harm working class and low-income residents. Alternatively, the SOMA West Neighborhood association and residents from Dorsey's district asked the committee to completely reject the alternative plan and said they felt betrayed by Dorsey's decision to support it. Eventually the committee voted down Dorsey's amendment. The alternative plan for SB79 was passed by the full board, however, California Department of Housing and Community Development (HCD) can make updates to permanent exclusions.",
+          "links": []
+        },
+        {
+          "title": "Temporary Exemptions Map",
+          "body": "",
+          "image": "/img/roundups/Temporary_Exemptions_SB79.png",
+          "links": []
+        },
+        {
+          "title": "Permanent Exclusions Map",
+          "body": "",
+          "image": "/img/roundups/Permanent_Exclusions_SB79.png",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "climate-action-plan",
+      "number": 2,
+      "date": "2026-04-15",
+      "title": "Climate Action Plan",
+      "stats": [
+        { "value": "2030", "label": "Net-Zero Emissions Target" },
+        { "value": "8", "label": "FTE Positions Eliminated" }
+      ],
+      "sections": [
+        {
+          "title": "2026 CAP Update",
+          "body": "In 2019 the Board of Supervisors declared a climate emergency, which led to investment into San Francisco's Climate Action Plan. The plan, also known as CAP, was created in 2004 and had not been updated until 2021, when new goals were set targeting net zero emissions, elimination of fossil fuels, and climate justice across city departments. Since then, the city now offers 100% clean energy to residents, implemented climate friendly building standards, established a tree nursery, and much more. The 2026 CAP updates continue to build on the city's success across seven key areas to reach net-zero by 2030:",
+          "list": [
+            "Energy Supply: Universal electricity use over fossil fuels by 2030",
+            "Transportation: Reduce vehicle miles travelled through a robust, electrified public transit system",
+            "Housing & Land Use: Expand housing production to 82,000 units by 2030",
+            "Healthy Ecosystems: Focus on biodiversity, access to nature, and tree canopy.",
+            "Water Supply: Create specific water efficiency targets for long-term resilience.",
+            "Circular Economy: Adds carbon reduction target and maintains waste reduction targets."
+          ],
+          "body_after": "These climate action goals impact many departments, such SFMTA and SFPUC, and require them to make decisions that are good for the long-term resilience of the city. To read more about the 2026 CAP update, you can read the Department of the Environments report.",
+          "links": [
+            { "text": "Final Legislation", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15396792&GUID=D2A1933B-DA8F-4912-B609-9A05B4EDB72F" },
+            { "text": "Department of the Environment Presentation", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15368581&GUID=9343DFBF-3F51-461E-A05A-69686CAA6D93" },
+            { "text": "2026 CAP Report", "url": "https://www.sfenvironment.org/media/15829" }
+          ]
+        },
+        {
+          "title": "Budget Cuts Threaten Progress",
+          "body": "CAP's goals are lofty and tracking the city's progress might get harder since the Department of the Environment is facing funding cuts, including the elimination of eight full-time positions. Currently, the proposed budget cuts will lead to the elimination of the clean transportation team, climate equity hub, and staff who coordinate across departments to track metrics for CAP. Without this support the city may fall behind in goals towards climate progress and environmental justice. The effect of budget cuts may not be seen until the 2031 CAP report, but they will be felt.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "conditional-use-appeal",
+      "number": 3,
+      "date": "2026-04-22",
+      "title": "Vallejo Street Conditional Use Appeal",
+      "stats": [
+        { "value": "4", "label": "Apartment Units in Dispute" },
+        { "value": ">2 hrs", "label": "Board Debate" }
+      ],
+      "sections": [
+        {
+          "title": "The Case: Telegraph Hill Family Home",
+          "body": "Three years ago, a family bought a home in San Francisco's Telegraph Hill neighborhood. They were excited to find a single-family home in a neighborhood dominated by rental units. Then the family submitted permits to add an accessory dwelling unit (ADU) to the property, raising red flags for the city. According to all government documents the home was technically a four-unit apartment building. No permits were submitted by the previous owner to convert the building, and San Francisco has stringent conversion laws to protect the rental housing stock. This led to a string of questions. Who was responsible for the conversion? Who should face repercussions for the unlawful conversion? Should the building be converted back to a four-unit multi-family building?\n\nThese questions were taken to the Planning Commission. However, the Commission could not come to a consensus, leading to a defacto denial which requires the Board of Supervisors to hear the item. For over two hours the Board heard arguments from the homeowner Katelin Holloway and the city departments involved. Holloway argued that although she knew her home was documented as a multi-family apartment building, her family should not be the ones in trouble for someone else's unlawful decisions. Conversely, the city departments asked the Board to reject Holloway's appeal since the building conflicts with housing laws and risks setting a precedent for unauthorized mergers.",
+          "links": []
+        },
+        {
+          "title": "The Board's Decision",
+          "body": "The Supervisors went back and forth asking questions to the planning department, city attorney, Department of Building Inspection (DBI), and Holloway. Supervisor Sauter, whose district includes Telegraph Hill, was especially supportive of Holloway and pushed back against the Planning Department. He stated that the existence of the fourth unit on the property was \"on thin ice\" and both the developer and DBI should be held accountable instead. Supervisor Sherill echoed many of Sauter's sentiments. However, according to the Planning Department, their comments were untrue. There is an extensive history of four units on the property according to city records and the case revolves around the current property owner who is evading repercussions despite knowing she was taking a calculated risk when purchasing the property. Public comment, mostly made by prominent housing organizations, echoed the comments made by city departments.\n\nThe Board of Supervisors struggled to reach a vote since defacto denials are rarely elevated to them. \"I'm not sure what the right answer on balancing the equities here is\", said Supervisor Mandelman, \"there is a family living in the building with their kids who have a desire to stay there against policy imperative that gives rent control protections heft\". Eventually, the defacto denial was approved by the Board requiring the appellants to convert their home back to a four-unit building. However, they are not required to rent the units once they are converted.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "police-fire-mou",
+      "number": 4,
+      "date": "2026-04-22",
+      "title": "Memorandum of Understanding - San Francisco Police Officers’ Association",
+      "stats": [
+        { "value": "20%", "label": "Wage Increase by 2030" },
+        { "value": "$149M", "label": "Union Budget by 2030" }
+      ],
+      "sections": [
+        {
+          "title": "Four-Year MOU Overview",
+          "body": "Beginning in July 2026, San Francisco will enter a four-year Memorandum of Understanding (MOU) with the San Francisco Police Officers' Association and Fire Fighters Union. The MOU gives the unions power to negotiate wages, benefits, and premiums with the city. Negotiations led to major gains for the unions, who will see a 20% increase in wages by 2030. Overall, they will see their budgets rise from $33 million to $149 million in 2030. Contract increases will help Mayor Daniel Lurie in creating a robust police force in hopes of reducing drug use and dealings while improving public safety.",
+          "image": "/img/roundups/SF_Police_Officers_Association_2026_MOU.png",
+          "links": []
+        },
+        {
+          "title": "SF Fire Union MOU",
+          "body": "",
+          "image": "/img/roundups/SF_Fire_Union_2026_MOU.png",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "drug-free-psh",
+      "number": 5,
+      "date": "2026-04-28",
+      "title": "Drug-Free Supportive Housing",
+      "stats": [
+        { "value": "3", "label": "Policy Requirements" },
+        { "value": "Unanimous", "label": "Committee Vote" }
+      ],
+      "sections": [
+        {
+          "title": "Expanding Drug Free Permanent Supportive Housing",
+          "body": "For the past two years Supervisor Matt Dorsey has spearheaded efforts to expand drug free permanent supportive housing (PSH). This work has been done in the name of expanding housing to residents who do not use illicit drugs but are experiencing homelessness such as seniors, people in recovery, and families. According to Dorsey, these PSH residents have said drug tolerance can create a dangerous and destabilizing environment. This legislation aims to create a better structure for PSH in three ways:",
+          "list": [
+            "Require all new city funded PSH to operate as drug free housing, with lease standards consistent with other rentals in SF",
+            "Direct the city to conduct a survey of residents living in PSH and ask if they want to live in a drug friendly environment or a drug free environment.",
+            "Establish as city policy that we should work to meet the demand instead of assuming the harm reduction model works for all residents"
+          ],
+          "body_after": "The requirements put forward in this legislation will not affect existing PSH and will only apply to new city funded PSH sites. Existing city and state funded sites that allow illicit drug use, which are in line with Housing First and Harm Reduction models, will not be impacted. Additionally, Supervisor Dorsey said while eviction protections are not a part of the legislation that doesn't mean those protections don't exist. For example, if an individual relapses once on-site it will not lead to an automatic eviction and relapse services will be available. Also, if an individual does get evicted for on-site illicit drug use, the Homelessness and Supportive (HSH) department will do their best to find an alternative option.",
+          "links": []
+        },
+        {
+          "title": "Public Comment & Debate",
+          "body": "The move to drug-free PSH was supported and criticized by several public commenters. Former Supervisor Bill Maher stated that more overdose deaths happen in PSH than on the streets, while a member of San Francisco Democrats said drug tolerant housing can make it harder for some to recover. Multiple commentors from organizations like the San Francisco Marin Medical Society and Coalition on Homelessness called for stronger eviction protections and concrete alternatives for people who get evicted. A woman who was able to recover in private market rate recovery housing said Dorsey's legislation will increase homelessness and that he should focus on expanding private options. The legislation was passed unanimously at committee and will appear at the full board for a vote in May.",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

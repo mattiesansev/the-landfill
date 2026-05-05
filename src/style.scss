@@ -1627,6 +1627,216 @@
   }
 }
 
+// HOW THE BOARD OF SUPERVISORS WORKS
+.how-board-works {
+  .hbw-scrolly {
+    height: 200vh;
+    position: relative;
+  }
+
+  .hbw-sticky {
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+    background: #fff;
+
+    @media (max-width: 768px) {
+      top: 120px;
+      height: calc(100vh - 120px);
+    }
+  }
+
+  .hbw-title {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 68%;
+    font-size: 58px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    color: #1a1a1a;
+    pointer-events: none;
+
+    @media (max-width: 850px) {
+      font-size: 34px;
+      width: 88%;
+      top: 5%;
+    }
+  }
+
+  .hbw-overview {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 62%;
+    pointer-events: none;
+
+    p {
+      font-size: 22px;
+      line-height: 34px;
+      text-align: center;
+      color: #2d3748;
+    }
+
+    @media (max-width: 850px) {
+      width: 88%;
+      top: 8%;
+
+      p {
+        font-size: 17px;
+        line-height: 26px;
+      }
+    }
+  }
+
+  .hbw-avatars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hbw-avatar {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid #8ac4d4;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+      @media (max-width: 850px) {
+        width: 44px;
+        height: 44px;
+        border-width: 2px;
+      }
+    }
+
+    .hbw-avatar-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: #4a5568;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+
+      @media (max-width: 850px) {
+        font-size: 8px;
+      }
+    }
+  }
+
+  // Section 2: committee animation
+  .hbw-s2-header {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    text-align: center;
+    pointer-events: none;
+
+    .hbw-s2-title {
+      font-size: 46px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hbw-s2-body {
+      font-size: 19px;
+      line-height: 30px;
+      color: #2d3748;
+      margin: 0;
+    }
+
+    @media (max-width: 850px) {
+      width: 88%;
+      top: 4%;
+
+      .hbw-s2-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .hbw-s2-body {
+        font-size: 15px;
+        line-height: 23px;
+      }
+    }
+  }
+
+  .hbw-committee-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hbw-committee-label {
+    position: absolute;
+    top: 25%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 130px;
+    text-align: center;
+
+    // subtle top border so each column reads as a group
+    &::before {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 3px;
+      background: #8ac4d4;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+
+    .hbw-committee-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    .hbw-committee-meeting {
+      font-size: 10px;
+      color: #718096;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 850px) {
+      width: 64px;
+
+      .hbw-committee-name {
+        font-size: 7px;
+        letter-spacing: 0.02em;
+      }
+
+      .hbw-committee-meeting {
+        display: none;
+      }
+    }
+  }
+}
+
 .bracket-callout {
   background-color: #f0f8fb;
   border-left: 4px solid #8ac4d4;
@@ -4418,6 +4628,105 @@
         margin-top: 12px;
         border-radius: 4px;
       }
+
+      .landmark-map-wrapper {
+        margin-top: 16px;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        position: relative;
+
+        .landmark-map {
+          height: 380px;
+          width: 100%;
+        }
+
+        .landmark-zoom-controls {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          button {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+            &:hover {
+              background: #f4f4f4;
+            }
+
+            &:active {
+              background: #e8e8e8;
+            }
+          }
+        }
+      }
+
+      .landmark-map-loading {
+        height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+        color: #888;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.landmark-star-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+    transition: transform 0.15s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.25);
+  }
+}
+
+.landmark-popup {
+  .leaflet-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 180px;
+    max-width: 240px;
+
+    strong {
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .landmark-popup-address {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .landmark-popup-desc {
+      margin: 4px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #333;
     }
   }
 }
