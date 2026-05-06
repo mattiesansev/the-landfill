@@ -15,9 +15,7 @@
       "title": "Land Use & Development",
       "stats": [
         { "value": "14", "label": "D8 Landmarks Approved" },
-        { "value": "13", "label": "D3 Landmarks Approved" },
-        { "value": "0.5 mile", "label": "SB79 Alternative Plan" },
-        { "value": "2032", "label": "Temporary Exemption Expiry" }
+        { "value": "13", "label": "D3 Landmarks Approved" }
       ],
       "sections": [
         {
@@ -32,7 +30,18 @@
           "landmarks_map": true,
           "body_after": "Districts 3 and 8 have completed phase one of the LDP. The process, which can take up to 10 months, has resulted in 14 designations in District 8 and 18 in District 2.\n\nDesignated landmarks are also eligible for other kinds of benefits and flexibility, including potential tax benefits through the Mills Act program, more flexible building regulations, protection against demolition, and eligibility for a wider array of land uses, regardless of what is permitted in the building's zoning district.\n\nApril was an eventful month for landmark designation in District 8 and District 3.\n\nThe Land Use and Transportation Committee, whose members include Supervisors Melgar, Chen, and Mahmood, recommended 14 Landmark Designation ordinances in District 8 to be voted on by the full board. The designations were approved unanimously by the full board, which completes one of the final steps in the designation process.\n\nDistrict 3's landmark designations are entering an earlier phase in the approval process. The committee and full board approved the initiation of the landmark designation process for 13 sites.",
           "links": []
-        },
+        }
+      ]
+    },
+    {
+      "id": "transit-oriented-residential-development",
+      "number": 2,
+      "date": "2026-04-08",
+      "title": "Transit Oriented Residential Development",
+      "stats": [
+        { "value": "", "label": "A plan was passed to meet new state-mandated requirements for housing development along transit corridors; the plan includes exclusions to prevent gentrification." }
+      ],
+      "sections": [
         {
           "title": "Transit Oriented Residential Development",
           "body": "Last fall Governor Newsom signed Senate Bill 79 'The Abundant and Affordable Homes Near Transit Act'. SB79 will take effect July 1, 2026, and aims to increase housing availability and affordability while decreasing carbon emissions and strengthening local transit systems. Cities, including San Francisco, will be required to allow housing at various heights and densities within a half mile of major transit stops. Unlike other cities in California, San Francisco is dense and current zoning allows for more housing than mandated by SB79. Thus, the planning commission created an alternative plan in lieu of SB79 requirements.\n\nAn alternative plan allows the city to make temporary and permanent exclusions while still providing equivalent development capacity. Fears of gentrification in low resource areas like Bayview-Hunter's Point and the Outer Mission led to temporary exemptions, which will expire in 2032, in those neighborhoods. Allowing these exemptions will give the city more time to plan for more housing capacity and transit in those neighborhoods and clarify the relationship between SB79 and redevelopment. The city also made permanent exclusions in SOMA and Bayview to preserve industrial employment hubs, jobs, and land uses.\n\nOutreach for the alternative plan was extensive, and the communities impacted were on board with the permanent and temporary exclusions. Despite this, Supervisor Dorsey tried to make a last-minute amendment to make the permanent exclusions temporary. Other Supervisors were not supportive of Dorsey's amendments. A representative from Supervisor Fielder's office stated that there was no public outreach about the proposed amendments and they directly go against the current Mission Action Plan. Supervisor Melgar echoed Supervisor Fielder's sentiment, stating that housing is not appropriate above all industrial uses. Several public commenters from community organizations like SOMCAN and Young Community Developers spoke against Dorsey's amendment since it would harm working class and low-income residents. Alternatively, the SOMA West Neighborhood association and residents from Dorsey's district asked the committee to completely reject the alternative plan and said they felt betrayed by Dorsey's decision to support it. Eventually the committee voted down Dorsey's amendment. The alternative plan for SB79 was passed by the full board, however, California Department of Housing and Community Development (HCD) can make updates to permanent exclusions.",
@@ -54,7 +63,7 @@
     },
     {
       "id": "climate-action-plan",
-      "number": 2,
+      "number": 3,
       "date": "2026-04-15",
       "title": "Climate Action Plan",
       "stats": [
@@ -89,9 +98,9 @@
     },
     {
       "id": "conditional-use-appeal",
-      "number": 3,
+      "number": 4,
       "date": "2026-04-22",
-      "title": "Vallejo Street Conditional Use Appeal",
+      "title": "What happens when an illegal merger of an apartment building catches up to new owners?",
       "stats": [
         { "value": "4", "label": "Apartment Units in Dispute" },
         { "value": ">2 hrs", "label": "Board Debate" }
@@ -111,9 +120,9 @@
     },
     {
       "id": "police-fire-mou",
-      "number": 4,
+      "number": 5,
       "date": "2026-04-22",
-      "title": "Memorandum of Understanding - San Francisco Police Officers’ Association",
+      "title": "San Francisco approves union contracts between the city and Police and Fire Unions",
       "stats": [
         { "value": "20%", "label": "Wage Increase by 2030" },
         { "value": "$149M", "label": "Union Budget by 2030" }
@@ -135,7 +144,7 @@
     },
     {
       "id": "drug-free-psh",
-      "number": 5,
+      "number": 6,
       "date": "2026-04-28",
       "title": "Drug-Free Supportive Housing",
       "stats": [
