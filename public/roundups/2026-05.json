@@ -1,7 +1,7 @@
 {
   "month": "2026-05",
   "display_month": "May 2026",
-  "authors": ["destiny", "mattie"],
+  "authors": ["destiny"],
   "headline_stats": [
     { "value": "19", "label": "Meetings" },
     { "value": "197", "label": "Items" },
