@@ -1,20 +1,10 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ReactGA from "react-ga4";
+import React from "react";
 import AuthorFooter from "../../components/AuthorFooter";
 import { authors } from "../../authors/authors";
 import BracketContainer from "./parksBracket/BracketContainer";
 import ParkStatsSection from "./parksBracket/ParkStatsSection";
 
-ReactGA.initialize("G-NR2T70PVBG");
-
 const ParksBracket = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
-  }, [location]);
-
   return (
     <div className="single">
       <div className="content">

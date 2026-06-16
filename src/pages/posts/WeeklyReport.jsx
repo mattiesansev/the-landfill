@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation, Link } from "react-router-dom";
-import ReactGA from "react-ga4";
+import { useParams, Link } from "react-router-dom";
 import VoteCard from "../../components/votes/VoteCard";
 
 const WeeklyReport = () => {
   const { date } = useParams();
-  const location = useLocation();
   const [voteData, setVoteData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
-  }, [location]);
 
   useEffect(() => {
     async function loadVoteData() {
