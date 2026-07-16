@@ -1,6 +1,24 @@
 import React, { useEffect, lazy, Suspense } from "react";
 
 const LandmarkMap = lazy(() => import("./LandmarkMap"));
+const HousingTrustFundMap = lazy(() => import("./HousingTrustFundMap"));
+
+function renderInlineLinks(text) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  if (!linkRegex.test(text)) return text;
+  linkRegex.lastIndex = 0;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  let i = 0;
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+    parts.push(<a key={i++} href={match[2]} target="_blank" rel="noopener noreferrer">{match[1]}</a>);
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts;
+}
 
 const IsleModal = ({ isle, onClose }) => {
   useEffect(() => {
@@ -38,7 +56,7 @@ const IsleModal = ({ isle, onClose }) => {
             <div key={i} className="isle-modal-section">
               <div className="isle-modal-section-title">{section.title}</div>
               {section.body && section.body.split("\n\n").map((para, k) => (
-                <p key={k}>{para}</p>
+                <p key={k}>{renderInlineLinks(para)}</p>
               ))}
               {section.list && section.list.length > 0 && (
                 <ol className="isle-section-list">
@@ -46,7 +64,7 @@ const IsleModal = ({ isle, onClose }) => {
                 </ol>
               )}
               {section.body_after && section.body_after.split("\n\n").map((para, k) => (
-                <p key={k}>{para}</p>
+                <p key={k}>{renderInlineLinks(para)}</p>
               ))}
               {section.prompt && (
                 <div className="section-card-prompt">
@@ -72,6 +90,11 @@ const IsleModal = ({ isle, onClose }) => {
               {section.landmarks_map && (
                 <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
                   <LandmarkMap />
+                </Suspense>
+              )}
+              {section.housing_map && (
+                <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
+                  <HousingTrustFundMap />
                 </Suspense>
               )}
             </div>

@@ -1,0 +1,111 @@
+{
+  "month": "2026-06",
+  "display_month": "June 2026",
+  "authors": ["destiny"],
+  "headline_stats": [
+    { "value": "25", "label": "Meetings" },
+    { "value": "276", "label": "Items" }
+  ],
+  "isles": [
+    {
+      "id": "affordable-housing-hearing",
+      "number": 1,
+      "date": "2026-06-08",
+      "title": "Hearing on inadequate progress on building affordable housing",
+      "stats": [
+        {
+          "value": "",
+          "label": "San Francisco has fallen behind on state mandated affordable housing goals. District 11 Supervisor Cheyenne Chen called a hearing to find out why and how the city could move forward."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Hearing Overview and Housing Goals",
+          "body": "In June, the Land Use and Transportation Committee held a hearing on the state of affordable housing in San Francisco. The hearing, called by District 11 Supervisor Cheynne Chen, shed light on the city’s inadequate progress in building affordable housing with an emphasis on equitable housing opportunities for vulnerable communities. Chen had requested that the Budget and Legislative Analyst’s (BLA) office analyze these issues and present them at committee. “It was clear to me that the city had been marching full speed ahead” said Chen during her opening remarks of the hearing, “without a coordinated strategy to fund our affordable housing goals”.\n\nSan Francisco’s housing goals are determined and set according to the Regional Housing Needs Allocation (RHNA) process. This state mandated process determines current and future housing needs and sets goals to meet them.\n\nEvery eight years new goals are set by the RHNA process. The 2023 - 2031 RHNA cycle is in progress, and San Francisco is behind on building the mandated 82,000 housing units at all affordability levels. Of that, over 45,000 units must be affordable. To keep pace with the RHNA mandate, San Francisco was supposed to build nearly 31,000 housing units between 2023-2025. Only 9,500 units have been built in that time frame.\n\nNow there’s a time crunch. San Francisco must build over 72,000 housing units in the next five years. If the city fails to meet the mandate the state can take local control of zoning, removing San Francisco’s current restrictions on the height and density of buildings. This mandate, however, is not funded by the state and relies on all cities throughout California to secure local, state and federal funds to make projects, especially affordable ones, financially viable.",
+          "links": []
+        },
+        {
+          "title": "Affordable Housing Fees and Their Decline",
+          "body": "To construct affordable housing San Francisco relies on two local funding sources, [inclusionary requirements](https://sfplanning.org/project/inclusionary-affordable-housing-program) and [development impact fees](https://sfplanning.org/project/development-impact-fees). Inclusionary requirements mandate developers to build affordable units in their market rate buildings, if they don’t, they must pay a fee to fund affordable housing. Meanwhile development impact fees cover city expenses for public services that are impacted like new construction, like transit and affordable housing. Together inclusionary requirements and development impact fees are known as affordable housing fees. According to the BLA, there’s been a steep decline in affordable housing fee revenue since the pandemic, even losing revenues between 2024-2025 due to cancelled projects.\n\nThe Board of Supervisors have tried to remedy San Francisco’s construction woes in recent years. In 2023 they passed the Temporary Fee Reduction Program, to lower affordable housing fees and inclusionary requirements. This program was informed by a [report](https://media.api.sf.gov/documents/Triennial_Economic_Feasibilty_Report_2026.final.pdf) from the Controller’s office that said some development would become feasible if fees and requirements were lowered. When developers build housing, market rate and affordable units cost the same to construct, but they receive a lower return on investment for affordable units since those tenants pay less in rent. Additionally, affordable housing fees can add millions to construction costs. Despite reductions in both fees and requirements the market has failed to recover. A recent report took reductions even further and recommended that the Board of Supervisors drop inclusionary requirements to zero percent to make development feasible.",
+          "image": "/img/roundups/MOHCD_INCLUSIONARY_IN_LIEU_FEES.png",
+          "links": []
+        },
+        {
+          "title": "The $17.9 Billion Funding Gap",
+          "body": "So, how much money does the city need to fulfill their affordable housing mandate? According to the BLA report – $17.9 billion. Billions could be raised, according to the BLA, by implementing financing tools like a municipal bank and expanding the housing trust fund, both of which will be on the November 2026 ballot. Other financing tools include a joint powers authority, which would merge the Mayor’s Office of Housing and Community Development (MOHCD) and the Housing Authority to pool resources from the agencies, diverting funds from [Proposition I](https://ballotpedia.org/San_Francisco,_California,_Proposition_I,_Real_Estate_Transfer_Tax_(November_2020)) to affordable housing as intended by the measure, and increasing taxes. Leveraging these financing tools could bring the city closer to meeting its RHNA mandate and providing much needed housing to vulnerable communities.\n\nSupervisor Melgar spoke from her own experience coming from an immigrant family, one of the populations listed as vulnerable by MOHCD.\n\n“It is about access” she said as to why immigrants come to San Francisco “without affordable housing it’s an empty promise”.\n\nFocus groups tailored to each community echoed Melgar’s sentiment. According to MOHCD’s Impediments Report, immigration status was a top barrier to obtaining housing and housing resources for immigrants. Impediments for other focus groups look different. Seniors and people with disabilities expressed a need for accessible housing but hold off on making requests for accessible modifications for fear of eviction. LGBTQ+ focus groups were most concerned with transitional and shelter housing for transgender people.\n\nAltogether, MOHCD identified seven vulnerable communities and their specific needs, however MOHCD’s director said, “there will always be tradeoffs between certain population groups.”",
+          "image": "/img/roundups/Estimated_Public_Funding_Needed_to_Meet_RHNA_Goals_through_New_Construction_by_2031.png",
+          "links": []
+        },
+        {
+          "title": "BLA Recommendations",
+          "body": "While there may be tradeoffs, the BLA gave recommendations on what the city should do to close equity gaps. For instance, the Board of Supervisors could mandate extremely low-income housing to be included in all new developments despite economic fluctuations. Simultaneously, MOHCD could use a new reporting framework for their Impediments Report to make their progress more transparent to the public and city hall. If progress towards impediments has stalled, the Board could request a follow-up on those items and actions that need to be taken.\n\nRecommendations from the BLA could be implemented by the city, but there is no guarantee that they will materialize. Otherwise, the Board could implement tools they think would work, without recommendation from the BLA.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "expanding-housing-trust-fund",
+      "number": 2,
+      "date": "2026-06-16",
+      "title": "Expanding San Francisco Housing Trust Fund",
+      "stats": [
+        {
+          "value": "",
+          "label": "San Francisco voters passed Proposition C in 2012, creating the Housing Trust Fund. The fund, created to support affordable housing, collects $50 million annually. Now, the Board of Supervisors is expected to send the Housing Trust Fund back to the ballot, hoping voters will expand the fund. Without voter approval the city will run out of money to fund its affordable housing projects by 2029."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Background: Proposition C and the Housing Trust Fund",
+          "body": "In November 2012, voters overwhelmingly [approved Proposition C](https://sfpl.org/locations/main-library/government-information-center/san-francisco-government/san-francisco-1/san-1?title_value=&description_value=&prop_letter_value=C&month=11&year=2012), which created the Housing Trust Fund. Created in response to cutbacks in federal and state funding for affordable housing programs, the Fund has accumulated millions annually and provides San Francisco with [a stable funding source to develop affordable housing](https://www.sf.gov/sites/default/files/2024-05/120882%20-%20Housing%20Trust%20Fund%20Five-Year%20Report%20-%202018-2023.pdf).\n\nThe Housing Trust Fund provided this, with an initial $20 million investment followed by $2.4 million annually until 2024-2025 when the contribution reached $50 million annually.\n\nThe Fund’s impact can be seen throughout the city. 1939 Market Street began construction this spring and is leveraging $1.6 million from the fund. Hundreds of units have also been preserved through the Fund, keeping families housed in over thirty buildings throughout San Francisco.",
+          "housing_map": true,
+          "links": []
+        },
+        {
+          "title": "Board Vote to Expand the Fund",
+          "body": "Now, the Housing Trust Fund is being sent back to the ballot by the Board of Supervisors, who hope voters will approve an expansion of the Fund. If the voters approve of the expansion, $125 million would eventually be deposited into the fund annually. An increase in funds will increase the city’s capacity to leverage state and federal funds, making affordable housing projects more viable. Without approval, San Francisco will run out of funds to build affordable housing by 2029.\n\n“This may be one of the more consequential items on the ballot this November,” said District 7 Supervisor Myrna Melgar, who’s sponsoring the measure. District 2 Supervisor Stephen Sherrill voiced support for Melgar’s measure. “When we look at problems in this city, the lack of housing at affordable levels is the number one problem” said Sherrill, “that’s worth setting money aside for”.\n\nMelgar is responding to a changing landscape in how affordable housing is funded. When the Fund was established, San Francisco received consistent revenues from fees paid by developers when they built new buildings. Since then, the construction market has cooled.\n\n“When affordable housing depends on fees it depends on a healthy market, where market rate housing is being produced” said Supervisor Melgar, “when the market goes down, as of right now, there are no fees being paid into the affordable housing fund”.",
+          "links": []
+        },
+        {
+          "title": "Fiscal Guardrails and Outlook",
+          "body": "However, if the measure passes it will do more than just expand the Housing Trust Fund. Melgar included fiscal guardrails in the legislation to ensure that the fund “grows responsibly”. This includes a freeze for when the city has a budget deficit and reductions in funding allocations if there’s a recession.\n\nCurrently San Francisco has a budget deficit, meaning the city spends more than it makes and the deficit is projected to increase to $1 billion in the next few years. Due to this the fund won’t be expanded until 2029. At that point the fund will gradually ramp up between 2029 - 2039 and be based on the growth of San Francisco’s tax base.\n\nThere’s broad consensus at the Board of Supervisors for the expansion of the Housing Trust Fund. In past elections, broad support at the Board has mirrored broad support at the ballot.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "sf-pretrial-services",
+      "number": 3,
+      "date": "2026-06-11",
+      "title": "San Francisco Pretrial Services",
+      "stats": [
+        {
+          "value": "",
+          "label": "The San Francisco Pretrial Diversion Project is contracted by the city to provide pretrial services as an alternative to cash bail and detention. After nearly fifty years of partnership, the Superior Court of San Francisco has requested all pretrial services be transferred to the city’s Adult Probation Department. Transitioning pretrial services will take time, and according to many SF Pretrial advocates, be detrimental to clients."
+        }
+      ],
+      "sections": [
+        {
+          "title": "What Is SF Pretrial?",
+          "body": "Typically, when an individual is arrested, they either must wait in jail until their trial or provide cash bail to await trial outside of jail. So, while an individual is technically innocent until proven guilty, they’re still incarcerated without a guilty verdict. To rectify this the San Francisco Pretrial Diversion Project, known as SF Pretrial, has worked with the Sheriff’s Department on alternatives to incarceration.\n\nFor nearly fifty years, SF Pretrial has provided alternatives to incarceration with the goal of improving individual outcomes and avoiding future arrests. In collaboration with law enforcement agencies, SF Pretrial created public safety and risk assessments to determine if an individual can await trial outside of jail. If the individual passes the assessment, they can be enrolled in one of SF Pretrial’s diversion or supervision programs.\n\nA client could be enrolled in a program like Pretrial Diversion (PTD) which pairs them with a case manager and treatment plan. Once complete a client’s misdemeanor charges will be dropped by the Superior Court. Clients can also be placed in release programs that provide support for meeting all court dates, connecting to housing services, and treatment plans at varying levels of intensity.",
+          "links": []
+        },
+        {
+          "title": "Dispute Over Data",
+          "body": "Now, after five decades of developing programs and assessments, SF Pretrial is entering their last contract with the city. At the request of the Superior Court, pretrial services are now being shifted to the city’s Adult Probation Department.\n\nThe reason, according to Court Executive Officer Brandon Riley, is due to a lack of transparency, accountability, and oversight. This mainly stems from a dispute over data. An analysis of SF Pretrial’s work by the Sheriff’s Department indicated over 90% of clients in diversion programs made their court dates and were not arraigned on new charges. “This is a pretty stable statistic going back several years” according to Nick Manard of the Budget and Legislative Analyst Office.\n\nAccording to the Superior Court, none of the statistics in relation to SF Pretrial are stable. The Court found in 2025 court appearances hovered around 80% while those not arraigned on new charges were closer to 70%. As the Board of Supervisors pointed out at committee, it is rare for two city departments to have opposing data.\n\n“Are you aware the Sheriff’s Department and the Public Defender’s Officer dispute your data and your interpretation of the work of pre-trial?” said Supervisor Walton during the Superior Courts budget review. Supervisor Connie Chan also pushed back, stating she fundamentally disagrees with the transfer of pretrial services. In response, Brandon Riley of the Superior Court said their data is “honest and true”.",
+          "links": []
+        },
+        {
+          "title": "Transition and Public Comment",
+          "body": "The cost of moving pretrial services to the Adult Probation Department was also questioned, since the transition will increase costs to the city by $4 million annually. This increased cost, according to Riley, will result in better quality work. Riley’s claim was disputed during public comment. “How will city hall explain this to its constituents as costs increase while public safety outcomes decrease?” said Cassie Dibble of the ACLU of Northern California.\n\nSF Pretrial advocates warned the transition will upend decades of community and trust building with pretrial clients. “A law enforcement agency will never possess the neutrality that SF Pretrial possesses, and clients will never trust Adult Probation because they have already been harmed by the justice system” said a case manager with SF Pretrial. Her sentiment was applauded by the audience, and a throughline in the rest of public comment.",
+          "links": []
+        },
+        {
+          "title": "Board Action",
+          "body": "A transition plan has yet to be seen, even by the Sheriff’s Department. “Based on the one meeting I had with the adult probation chief” said Sheriff Miyamoto, “they were looking towards a model for public safety assessments at the front end of pretrial diversion that relied on technology”. Since there was no plan, Sheriff Miyamoto expressed support for a deliberate and thoughtful transition process that allows his department to keep providing pretrial services. However, SF Pretrial CEO David Moore said that his organization “is not inclined to participate in a peaceful transition”.\n\nTo ensure a smooth transition the Board of Supervisors approved a one-year contract between the Sheriff’s Department and SF Pretrial and put two years of funds for the contract on reserve. If the transition of pretrial services to the Adult Probation Department takes longer than a year, the Sheriff’s Department can request those funds be released from reserve so pretrial services can continue to be provided.",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

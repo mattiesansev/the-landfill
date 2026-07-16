@@ -1,0 +1,132 @@
+{
+  "month": "2026-05",
+  "display_month": "May 2026",
+  "authors": ["destiny"],
+  "headline_stats": [
+    { "value": "19", "label": "Meetings" },
+    { "value": "197", "label": "Items" },
+    { "value": "4", "label": "Hearings" }
+  ],
+  "isles": [
+    {
+      "id": "drug-court-investigation",
+      "number": 1,
+      "date": "2026-05-06",
+      "title": "Investigation of San Francisco's Drug Court",
+      "stats": [
+        {
+          "value": "",
+          "label": "In 2025, a man who committed a violent crime requested a diversion from jail and into drug court, inspiring the San Francisco Chronicle to investigate the court. Their investigation led Supervisor Matt Dorsey to call a public hearing on the matter to hear the perspectives of the District Attorney, Public Defender, and the Department of Public Health on the effectiveness of the program. This roundup feature is a first for the Bay Area Data Dump, tying reporting from the San Francisco Chronicle, testimony from the public hearing, and analysis from the Bay Area Data Dump together."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The Chronicle's Investigation",
+          "body": "In October 2025, Troy McAlister asked to be diverted from prosecution and into San Francisco's drug court. Originally, the drug court program offered an avenue for defendants who committed low-level crimes to receive treatment for substance use without being prosecuted and sent to jail. The program's scope was broadened by a 2018 state law, which allowed defendants diagnosed with a mental health disorder to be admitted and allowed for diversions without agreement from the prosecution. McAlister was charged with vehicular manslaughter in 2020 after killing two pedestrians while driving under the influence of methamphetamine and alcohol. His request for diversion was contentious and ultimately not accepted by Judge Michael Begert; however, it did lead the San Francisco Chronicle to investigate the program.\n\nAccording to the Chronicle's analysis, cases diverted to drug court tripled between 2023 and 2025. Cases diverted to the drug court totaled 516 in 2023 and 1,909 in 2025; cases approved were 180 and 608 respectively. Some of these diversions, according to court records from 2025 reviewed by the Chronicle, were for defendants who committed serious crimes. However, the Chronicle did not cite how many individuals who committed violent crimes were diverted and approved for the program.\n\nTo fill the gap in the Chronicle's analysis, the Bay Area Data Dump reviewed incident data from 2023 to 2025 from the San Francisco Police Department. Our analysis found that there were 4,137 drug offense incidents in 2024 and 6,709 in 2025, a 62% increase. Simultaneously, violent crime decreased from 10,749 incidents in 2024 to 9,173 in 2025, a 15% decrease. Furthermore, drug offense incidents increased by 58% between 2023 and 2025. While the Chronicle drew a connection between an increase in drug court petitions to the admittance of mental health diversions for violent crime, the data could recommend that the uptick in drug court petitions could be due to a 58% increase in drug related incidents. However, even our analysis doesn't paint the full picture. We will analyze data from San Francisco's Superior Court to understand how many drug court diversions were requested for violent crimes versus low-level crimes.",
+          "links": [
+            { "text": "Troy McAlister SF Chronicle article", "url": "https://www.sfchronicle.com/crime/article/troy-mcalister-judge-mental-health-diversion-21073321.php" },
+            { "text": "SF Chronicle drug court investigation", "url": "https://www.sfchronicle.com/sf/article/drug-court-crime-san-francisco-21233358.php" },
+            { "text": "SFPD Incident Data (2018–Present)", "url": "https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783/about_data" },
+            { "text": "SF Superior Court data", "url": "https://webapps.sftc.org/crimportal/crimportal.dll?&SessionID=0779301951C9992E8E6F4F66E7D890EC9B3BC48C" }
+          ]
+        },
+        {
+          "title": "Public Hearing Testimony",
+          "body": "Due to the Chronicle's investigation, Supervisor Matt Dorsey called a public hearing to examine the program's diversion criteria and implications for public safety, among other things. The hearing featured testimony from the District Attorney's Office, Public Defender's Office, and the Department of Public Health. District Attorney Brooke Jenkins, whose office prosecutes drug court cases, said she was appalled by the large influx of diversions due to the abuse of mental health diversions allowed by the 2018 state law. “This has allowed violent offenders to be admitted into the program,” Jenkins stated, “which is destructive to the program and reduces its effectiveness while impacting public safety.” Additionally, Jenkins cited data that shows more participants were sent back to criminal court in the last three years than have graduated from the program in the same time frame. The Department of Public Health echoed this, stating that the rate of self-discharge is high and only 10% of participants graduate every year.\n\nThe Public Defender's Office, which typically represents drug court cases, disagreed with Jenkins' remarks. Most cases admitted into drug court, according to Deputy Public Defender Aaron Morgan, are for low-level crime. Additionally, no one is admitted into the program without an assessment of needs, a tailored treatment plan, and a determination that the individual will not pose a risk to the community. “Diversion through the drug court provides more accountability than a guilty plea,” public defender Anita Nabha said. Nabha also recognized that the City has not properly invested in the program, waning its effectiveness. Currently, the Department of Public Health, who manages drug court cases, is struggling to handle 400 clients, despite only being staffed to serve 260; one case manager is handling 90 cases due to understaffing.",
+          "links": [
+            { "text": "Hearing testimony (Granicus)", "url": "https://sanfrancisco.granicus.com/player/clip/52421?view_id=10&meta_id=1240530&redirect=true" },
+            { "text": "Department of Public Health presentation", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15476738&GUID=3D167958-1165-42C9-883E-86D0D5A452B2" }
+          ]
+        },
+        {
+          "title": "Conclusion",
+          "body": "To conclude the hearing Supervisor Matt Dorsey spoke of potential changes that could be made to drug court. To make the court more successful, he suggested that individuals should plead guilty before being diverted. Anita Nabha, vehemently opposed Dorsey's suggestion. “If we care about public safety in our community, we need to be evidence based and not just fearmongering”, she said. Supervisor Dorsey closed the hearing by referencing recovery traditions, all of which rely on accountability and responsibility to heal. This led him to question if a plea or something that gives the City more leverage is needed for the program to be successful. Whether or not that is a good decision should depend on expanding the Department of Public Health's capacity to manage cases, a transparent approval process, and analysis of how many petitions are granted for individuals who have committed violent crime.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "commission-streamlining",
+      "number": 2,
+      "date": "2026-05-20",
+      "title": "Commission Streamlining Taskforce - Boards, Commissions, and Advisory Body Eliminations",
+      "stats": [
+        {
+          "value": "",
+          "label": "San Francisco Voters passed Proposition E in 2024 to create a Commission Streamlining Task Force to make the administration of city government more efficient. A year and a half later the task force presented its recommendations to the Board of Supervisors to eliminate 46 boards, commissions, and advisory bodies."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The Task Force's Recommendations",
+          "body": "Typically, most votes at the full Board of Supervisors are uninteresting. Votes tend to be unanimous and there's rarely a split vote. This norm was subverted in May when the Board voted six to four to approve the elimination of 46 of 152 commissions, boards, and advisory bodies. These eliminations were recommended to the Board by the Commission Streamlining Task Force which was created by 2024's Proposition E to improve the administration of City government. Boards, commissions and advisory bodies, also known as bodies, exist to give City government advice and create policy but they cannot make any decisions for the City.\n\nA body like the Urban Forestry Council was created to develop an urban forest plan and oversee the City's urban forest. The task force chose to eliminate the Urban Forestry Council because it fulfilled its original mandate and its responsibilities overlap with City functions. Other bodies like the Advisory Council on Human Rights and the Delinquency Prevention Commission have been inactive for 15 years, thus the task force voted unanimously to eliminate them. According to the head of the task force the decision to eliminate these bodies, and many others, was uncontroversial.",
+          "links": [
+            { "text": "Task force recommendations", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15297536&GUID=E1FCAFB5-4D6C-47E0-87BC-37DF0009D0D0" }
+          ]
+        },
+        {
+          "title": "Public and Board Reaction",
+          "body": "However, the public, like the Board of Supervisors, were split on the removal of some bodies. The Shelter Monitoring Committee received support from commenters who said its members conduct inspections of shelters and elevate marginalized voices. Similarly, others asked to preserve the Shelter Grievance Committee, which tracks if due process is being followed in San Francisco's shelters. According to the task force the role of the Shelter Grievance Committee will be filled by City staff. However, Jennifer Friedenbach of the Coalition of Homelessness said that City staff do not have time to investigate complaints nor the trust of shelter residents. Conversely, other commenters said eliminating the 46 bodies will create efficiencies and make City government more accessible to residents who are not political insiders. Despite comments objecting to some of the eliminations, Mayor Daniel Lurie signed legislation to eliminate 46 bodies on May 29.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "financial-incentives-housing",
+      "number": 3,
+      "date": "2026-05-13",
+      "title": "Performance of Financial Incentives for Housing",
+      "stats": [
+        {
+          "value": "",
+          "label": "In 2023 the Board of Supervisors passed a temporary fee reduction program to provide a financial incentive to developers to build housing. To understand if the program and other incentives have helped increase housing production, Supervisor Connie Chan commissioned a report from the Budget and Legislative Analyst's Office."
+        }
+      ],
+      "sections": [
+        {
+          "title": "BLA Report Findings",
+          "body": "Called by Supervisor Chan, this hearing reviewed the Budget and Legislative Analyst's (BLA) report on financial incentives for housing in San Francisco. The report, commissioned by Chan's office, analyzed the impact of the temporary fee reduction program and other financial incentives for developers to spur housing production in the city. Implemented in 2023, the City government hoped incentives to build housing would offset the chill effect of high construction costs and interest rates. While the incentives may have softened the decline in production, the BLA found that the financial incentives were not successful and reduced City revenues.\n\nIn their report, the BLA compared housing production between 2019 and 2024 in California's ten largest cities. San Francisco ranked last, only building 127 units per 100,000 residents. The BLA attributed this stark difference to a decline in rents during this period, causing developers to shy away from building. It is too early to evaluate, but the BLA noted the artificial intelligence boom has caused a steep increase in rents, which might inspire developers to build. However, as of 2026 the Planning Department and Controller found that there was an $80,000 to $308,000 feasibility gap per unit of residential housing. Even if all development impact and inclusionary housing fees were eliminated, a large feasibility gap would remain.",
+          "image": "/img/roundups/Financial_Incentives_Housing_Building_Permits_Issued.png",
+          "links": [
+            { "text": "BLA report on financial incentives for housing", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15437642&GUID=C9FCC0BD-2450-4516-A107-410D4F85CFC2" }
+          ]
+        },
+        {
+          "title": "Policy Options",
+          "body": "To combat macro and microeconomic pressures on the housing market the BLA offered the Board of Supervisors several policy options. The Board could request an evaluation of all development impact and inclusionary fees and the extent to which they constrict the housing market from the Controller and Planning Department. Additionally, the BLA suggested a forecast analysis of rents and condo prices should be included in the same report to contextualize costs and benefits of waivers. The BLA report noted that the Board has not always requested or followed rigorous analysis before implementing policy. They also stressed that extending the temporary fee reduction program could lead to substantial loss in revenue for the City due to the recent increase in rents. If the Board does extend the program, they could consider implementing a new tax to make up for lost revenue. How these policy recommendations will impact housing development in San Francisco has yet to be seen, but they could be a guideline for what the Supervisors decide to do.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "sf-zoo-loan",
+      "number": 4,
+      "date": "2026-05-20",
+      "title": "Board of Supervisors approves loan for the SF Zoo",
+      "stats": [
+        {
+          "value": "",
+          "label": "The San Francisco Zoological Society, who maintains and operates the San Francisco Zoo, has been facing financial pressures since the pandemic. These pressures were outlined in an audit by the Budget and Legislative Analyst (BLA) Office, revealing that the Zoo has faced low revenues, little oversight, and misspent millions without approval."
+        }
+      ],
+      "sections": [
+        {
+          "title": "SF Zoo Financial Performance",
+          "body": "Due to poor financial performance and a structural deficit, the Board of Supervisors approved an $8.5 million loan to the San Francisco Zoological Society (SFZS), the non-profit operator of the San Francisco Zoo. Pitfalls in the SFZS's performance and poor financial condition were outlined in a Budget and Legislative Analyst (BLA) report commissioned by the Board. Presented at a Budget & Finance Committee meeting, the report showed that SFZS has seen low and declining attendance, which is the zoo's main revenue source. Little oversight over expenditures has led SFZS to spend millions without approval from the City. This is in part due to the outdated Lease and Management agreement between the City and SFZS, leading to weak financial provisions, unclear expectations, and a failure in key agreement terms.",
+          "image": "/img/roundups/Zoo_Revenues_and_Expenses.png",
+          "links": [
+            { "text": "BLA report on the SF Zoo", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15432808&GUID=FE39C59A-8BD0-41BD-9FDC-BB6C34BDB06E" },
+            { "text": "Finance Committee item", "url": "https://sfgov.legistar.com/LegislationDetail.aspx?ID=7981134&GUID=4DF88DA7-C05B-497C-BEA4-80461FE45F93&Options=ID|Text|&Search=Zoo#" }
+          ]
+        },
+        {
+          "title": "SFZS Programs and Loan Approval",
+          "body": "In a presentation to the Board of Supervisors Budget & Finance Committee, SFZS highlighted its programs and financial outlook. SFZS positioned itself as a conservation and educational organization that connects people from across the Bay and beyond to wildlife. Programs like the zoo's summer camp and Little Learners Early Childhood program have hundreds of registrants. They also collaborate with SFYouthworks and others to connect teens to paid internships and volunteer opportunities through the Leadership Fellows program. However, they are projecting $23 million in revenue for fiscal year 2025-2026 and $31 million in expenses during the same period. According to the BLA report, SFZS is anticipating unrealistically high revenues for the future due to the introduction of giant pandas.\n\nThe Supervisors on the committee were mostly supportive of SFZS, especially Supervisor Melgar because the Zoo is in her district. Supervisor Melgar recalled memories of taking her kids to the Zoo's summer camp and noted the special century-long relationship between the zoo and the City. She also said without the City's financial help the SFZS would no longer be able to maintain and operate the Zoo, leading to $42 million in expenses for the City over the next three years. Supervisor Connie Chan emphasized that the next two years are crucial for SFZS to build a good foundation. She also said they should not solely focus on getting pandas to increase revenues but instead put effort into connecting with local conservation organizations.\n\nThe $8.5 million loan to the San Francisco Zoological Society was approved by the full Board of Supervisors and Mayor Lurie. Oversight is baked into the loan agreement. The City stipulated that SFZS must make a financial sustainability plan, a strategic programmatic plan to improve attendance, and report quarterly to the City regarding these efforts. Conditions, physically and financially, will be closely watched over the next two years as SFZS hopefully builds a stable foundation.",
+          "links": [
+            { "text": "SFZS presentation to Budget & Finance Committee", "url": "https://sfgov.legistar.com/View.ashx?M=F&ID=15432960&GUID=0D5931B7-49D8-4E4C-BF74-2AAD49085A45" }
+          ]
+        }
+      ]
+    }
+  ]
+}
