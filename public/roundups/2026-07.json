@@ -1,0 +1,134 @@
+{
+  "month": "2026-07",
+  "display_month": "July 2026",
+  "authors": ["destiny", "mattie"],
+  "headline_stats": [
+    { "value": "18", "label": "Committee & Board Meetings" },
+    { "value": "8", "label": "Hearings" },
+    { "value": "167", "label": "Unique Files Heard" }
+  ],
+  "isles": [
+    {
+      "id": "public-bank-ballot-measure",
+      "number": 1,
+      "date": "2026-07-07",
+      "title": "S.F. Voters will vote to create a public bank this fall",
+      "stats": [
+        { "value": "9-2", "label": "Vote to place Public Bank measure on the ballot" },
+        { "value": "3", "label": "Key Focus Areas: Housing, Small Business, Green Infrastructure" }
+      ],
+      "sections": [
+        {
+          "title": "A Public Bank Heads to the Ballot",
+          "body": "In a 9-2 vote, the San Francisco Board of Supervisors placed the Public Bank on the November ballot. Promoted as an institution that will address financial disparities and fill market gaps, the Public Bank will be a non-profit that provides lending opportunities to underserved communities and sectors, eventually.\n\nIf the measure passes in November, it will create a framework for a Municipal Finance Corporation (MFC), which will eventually transition into a Public Bank. Once established, the bank will address financial disparities in three key areas: affordable housing, small businesses, and green infrastructure.\n\nAll three areas have historically been underserved, and in many cases, communities have been actively discriminated against by financial institutions.",
+          "links": []
+        },
+        {
+          "title": "Closing the Capital Gap",
+          "body": "Supervisor Melgar, who co-sponsored the legislation, referenced a recent settlement involving Wells Fargo, which was sued due to racial discrimination in their lending practices. Melgar's point was echoed by Supervisor Bilal Mahmood. \"If you talk to small businesses today, if you talk to immigrants, if you talk to people of color, if you talk to the unbanked,\" Mahmood said, \"one of the primary challenges they face is access to capital.\" Without access to capital in the private market, these communities can't buy homes or start businesses and turn to high interest predatory loans as a result.\n\nAccess, however, is not the only barrier.\n\nA viability study of the Public Bank found that there's a gap between what San Franciscans need and what banks actually offer. In the private market, banks make more profit when they are financing larger loans, thus they have little incentive to provide smaller loans and financial services.",
+          "links": [
+            { "text": "referenced", "url": "https://sanfrancisco.granicus.com/player/clip/52756?view_id=10&meta_id=1250902&redirect=true" },
+            { "text": "settlement involving Wells Fargo", "url": "https://www.bankingdive.com/news/wells-fargo-agrees-110-million-lending-hiring-discrimination-settlement/820631/" },
+            { "text": "echoed by", "url": "https://sanfrancisco.granicus.com/player/clip/52756?view_id=10&meta_id=1250902&redirect=true" },
+            { "text": "viability study", "url": "https://media.api.sf.gov/documents/rwg051823_PublicBankFinal.pdf" }
+          ]
+        },
+        {
+          "title": "How the Bank Would Work",
+          "body": "The Public Bank would provide more robust options. In partnership with community development financial institutions (CDFIs) and community financial institutions (CFIs), the Public Bank could provide low interest loans and other financial products to businesses and residents. For local businesses, the bank could provide startup capital to cover the initial costs of opening a business at a low interest. Affordable housing developers could leverage gap financing to pay for unexpected increases in construction and labor costs. Homeowners could apply for short-term loans to transition their appliances from gas to electric.\n\nThe measures' main sponsor Supervisor Chyanne Chen is hopeful that the Public Bank will address these disparities. \"We can fill those market gaps\", said Supervisor Chen at a Board of Supervisors meeting, \"we can build a Public Bank that is both financially profitable and socially transformative.\"",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "housing-first-psh-reform",
+      "number": 2,
+      "date": "2026-07-14",
+      "title": "S.F. Board of Supervisors move away from Housing First policies",
+      "stats": [
+        { "value": "2 years", "label": "Time Supervisor Dorsey spent on the legislation" },
+        { "value": "Drug-free", "label": "New requirement for city-funded PSH sites" }
+      ],
+      "sections": [
+        {
+          "title": "Ending Housing First",
+          "body": "For two years District 6 Supervisor Matt Dorsey has worked on legislation to reform San Francisco's housing for residents with a history of homelessness. Known as Permanent Supportive Housing (PSH), this program provides low barrier, affordable housing to residents exiting homelessness. This approach, known as Housing First, views housing as essential to improving someone's quality of life and doesn't make sobriety a prerequisite to accessing it.\n\nIn July, the Board of Supervisors voted to move away from Housing First policies. Introduced by Supervisor Dorsey, who previously struggled with substance abuse, the legislation mandates all new city funded PSH sites be drug-free. The legislation says this new policy will reduce returns to homelessness and increase housing stability.\n\n\"In San Francisco today virtually all permanent supportive housing for people exiting homelessness allows illicit drugs on site with no meaningful consequences tied to tenancy,\" said Dorsey during a committee meeting in April.",
+          "links": [
+            { "text": "Housing First", "url": "https://www.hcd.ca.gov/grants-funding/active-funding/docs/housing-first-fact-sheet.pdf" }
+          ]
+        },
+        {
+          "title": "The New Eviction Standard",
+          "body": "Now, the consequence for drug use is eviction. If a resident relapses or has engaged in drug use more than once they will be evicted. Prior to eviction, the city must offer them shelter or an alternate housing placement to prevent them from returning to homelessness.\n\nThe reason for this policy, according to Supervisor Dorsey, is to meet the demand for drug-free housing from PSH residents.\n\nAccording to Dorsey PSH residents \"have sounded the alarm that drug tolerant facilities can be destabilizing and dangerous\" over the past two years.\n\nA survey of residents hasn't been conducted to quantify demand, but the legislation says that some residents may \"prefer to avoid the myriad of harms and risks associated with living in a residential community where the use of illicit drugs is expressly tolerated\". While the harms and risks are mentioned many times in the legislation, what they are isn't expressly stated.",
+          "links": []
+        },
+        {
+          "title": "What's Next",
+          "body": "Residents will be surveyed over the next few months to assess their interest in living in drug-free PSH. By next spring the Department of Homelessness and Supportive Housing (HSH), in collaboration with the Controller's Office, will report on the results of the survey and outline strategies to meet demand.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "inclusionary-housing-fee-cuts",
+      "number": 3,
+      "date": "2026-07-21",
+      "title": "S.F. Board of Supervisors slash affordable housing requirements",
+      "stats": [
+        { "value": "9-2", "label": "Vote to cut inclusionary housing requirements" },
+        { "value": "15% → 5%", "label": "New flat inclusionary rate" }
+      ],
+      "sections": [
+        {
+          "title": "A Flat 5% Inclusionary Rate",
+          "body": "In a 9-2 vote, the Board of Supervisors voted to reduce affordable housing requirements and fees across San Francisco. Mayor Daniel Lurie, who sponsored the legislation, celebrated the move saying it will “unlock the construction of new homes across San Francisco”. District 11 Supervisor Chyanne Chen and District 10 Supervisor Shamman Walton were the only dissenting votes.\n\nSan Francisco's Inclusionary Affordable Housing Program requires housing developers to include affordable units in their projects and pay fees to support affordable housing construction. Previously, most inclusionary rates were set at 15% with a .5% increase annually. This legislation lowers that rate to a flat 5%, with 4% set aside for low-income and 1% for moderate income households. Similarly, the legislation reduced development impact fees by 67%, most of which developers can defer until the first certificate of occupancy is granted.",
+          "links": [
+            { "text": "celebrated the move", "url": "https://www.sf.gov/news-mayor-lurie-signs-legislation-to-boost-housing-production-transformative-investment-in-affordable-housing-heading-to-november-ballot" }
+          ]
+        },
+        {
+          "title": "Making the Financial Case",
+          "body": "These requirements and fees, according to a feasibility report from the Controller's office, hinder the construction of new housing by making construction financially infeasible.\n\nFeasibility, as pointed out by Supervisor Jackie Fielder, is affected by an array of market conditions. \"If macroeconomics is the culprit,\" said Fielder during a committee meeting, \"what evidence shows that cutting inclusionary (requirements) is the way to unlock stalled projects?\"\n\nIn response, Jacob Bentley from the Office of Economic and Workforce Development (OEWD) said that increased construction costs and interest rates have put pressure on development, but cutting inclusionary requirements can provide some relief to developers. According to the report, inclusionary fees could add $40,000 - $90,000 per unit. Reducing those fees, even by half, could move projects forward according to Bentley.\n\n\"That is a significant increase in feasibility\" he said in response to Supervisor Fielder, \"which means as other conditions, if they come into alignment, we will get to a point much sooner where the projects are able to be built\".\n\nThese reductions, as pointed out in the feasibility report, could be made up by expanding the housing trust fund. If passed by voters in November, the housing trust fund would eventually receive $125 million annually for affordable housing development. While the report recommended setting the inclusionary rates to 10% if the housing trust fund fails, the legislation doesn't require the housing trust fund to pass for the new, lower rates to go into effect.\n\nSupervisor Bilal Mahmood pressed Bentley on this issue. \"Is your office and the Mayor's Office supportive if the housing trust fund doesn't pass\" said Supervisor Mahmood \"that you will bring forth legislation to increase the inclusionary rate back up to 10%?\" Bentley made a verbal commitment, saying that he will work with the Board of Supervisors if the housing trust fund measure doesn't pass in November.",
+          "links": [
+            { "text": "feasibility report", "url": "https://media.api.sf.gov/documents/Triennial_Economic_Feasibilty_Report_2026.final.pdf" }
+          ]
+        },
+        {
+          "title": "A Higher Rate for the Mission",
+          "body": "At the full Board of Supervisors, the ordinance passed with an overwhelming majority. Supervisors Fielder and Chan's votes were contingent on increasing the inclusionary rate in the Mission from 5% to 8%. In committee, Fielder pointed out that the Mission has one of the highest rates of displacement in the city and lowering the rate of affordable housing will only make displacement worse, especially for the Latine residents. Fielder was successful in raising the rate, leading her and Chan to vote yes on the ordinance.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "landmark-designation-update-july",
+      "number": 4,
+      "date": "2026-07-28",
+      "title": "Landmark Designation Program Update",
+      "stats": [
+        { "value": "21", "label": "D8 Residential Designations (Phase 2)" },
+        { "value": "1", "label": "D11 Historical Designation (Phase 1)" }
+      ],
+      "sections": [
+        {
+          "title": "The Landmark Designation Program, Continued",
+          "body": "Last fall, Mayor Lurie passed his Family Zoning Plan (FZP) to build more housing in San Francisco. The plan clears the path for development with initiatives like raised city building height limits, incentives for developers, and less restriction on residential density. Not all land is open to development, however. The Family Zoning Plan has built in protections – under the Landmark Designation Program (LDP) - to preserve buildings of historical and architectural significance. Several districts have begun the LDP process since its creation, including Districts 3 and 8, whose LDP progress we reported on back in April.\n\nEach supervisor district individually enters the Landmark Designation Program's several phases. During phase 1, buildings of historical significance are recommended to be a part of the LDP. Then in the next phase, residential buildings of architectural significance are recommended.",
+          "links": [
+            { "text": "April", "url": "/post/monthly-roundup/2026-04" }
+          ]
+        },
+        {
+          "title": "District 8 and District 11's Progress",
+          "body": "Different districts are at different phases of the process. This month, District 8 entered phase 2 of the process, with 21 residential designations approved by the board. District 11 entered phase 1, and one historical designation was recommended and approved.",
+          "links": []
+        },
+        {
+          "title": "New Designations on the Map",
+          "body": "",
+          "landmarks_map_july_2026": true,
+          "links": []
+        }
+      ]
+    }
+  ]
+}

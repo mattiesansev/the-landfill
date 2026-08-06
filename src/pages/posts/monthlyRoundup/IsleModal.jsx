@@ -1,6 +1,7 @@
 import React, { useEffect, lazy, Suspense } from "react";
 
 const LandmarkMap = lazy(() => import("./LandmarkMap"));
+const LandmarkMapJuly2026 = lazy(() => import("./LandmarkMapJuly2026"));
 const HousingTrustFundMap = lazy(() => import("./HousingTrustFundMap"));
 
 function renderInlineLinks(text) {
@@ -90,6 +91,11 @@ const IsleModal = ({ isle, onClose }) => {
               {section.landmarks_map && (
                 <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
                   <LandmarkMap />
+                </Suspense>
+              )}
+              {section.landmarks_map_july_2026 && (
+                <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
+                  <LandmarkMapJuly2026 />
                 </Suspense>
               )}
               {section.housing_map && (
