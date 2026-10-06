@@ -1647,48 +1647,75 @@
     }
   }
 
-  .hbw-title {
+  .hbw-hero-text {
     position: absolute;
     top: 7%;
     left: 50%;
     transform: translateX(-50%);
     width: 68%;
+    pointer-events: none;
+
+    @media (max-width: 850px) {
+      top: 5%;
+      width: 88%;
+    }
+  }
+
+  .hbw-title {
     font-size: 58px;
     font-weight: 700;
     text-align: center;
     line-height: 1.1;
     color: #1a1a1a;
-    pointer-events: none;
 
     @media (max-width: 850px) {
       font-size: 34px;
-      width: 88%;
-      top: 5%;
     }
   }
 
   .hbw-overview {
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 62%;
-    pointer-events: none;
+    margin-top: 20px;
 
     p {
       font-size: 22px;
       line-height: 34px;
       text-align: center;
       color: #2d3748;
+      margin: 0;
     }
 
     @media (max-width: 850px) {
-      width: 88%;
-      top: 8%;
+      margin-top: 12px;
 
       p {
         font-size: 17px;
         line-height: 26px;
+      }
+    }
+  }
+
+  .hbw-fact-blurb {
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    text-align: center;
+    pointer-events: none;
+
+    p {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    @media (max-width: 850px) {
+      top: 20%;
+      width: 80%;
+
+      p {
+        font-size: 15px;
       }
     }
   }
@@ -1734,6 +1761,17 @@
         font-size: 8px;
       }
     }
+
+    .hbw-avatar-district {
+      font-size: 10px;
+      font-weight: 500;
+      color: #718096;
+      letter-spacing: 0.02em;
+
+      @media (max-width: 850px) {
+        font-size: 7px;
+      }
+    }
   }
 
   // Section 2: committee animation
@@ -1742,7 +1780,7 @@
     top: 6%;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
+    width: 74%;
     text-align: center;
     pointer-events: none;
 
@@ -1833,6 +1871,99 @@
       .hbw-committee-meeting {
         display: none;
       }
+    }
+  }
+
+  // Section 3: spotlight one committee at a time
+  .hbw-scrolly--spotlight {
+    height: 600vh;
+  }
+
+  .hbw-avatars--spotlight {
+    .hbw-avatar {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0.28;
+
+      img {
+        transition: border-color 0.25s ease, box-shadow 0.25s ease, border-width 0.25s ease;
+      }
+
+      &.hbw-avatar--active {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+
+        img {
+          border-width: 5px;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 0 4px rgba(138, 196, 212, 0.35);
+        }
+      }
+    }
+  }
+
+  .hbw-s3-panel {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    text-align: center;
+    pointer-events: none;
+
+    .hbw-s3-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #5a9eb8;
+      margin-bottom: 6px;
+    }
+
+    .hbw-s3-name {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .hbw-s3-meeting {
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 8px;
+    }
+
+    .hbw-s3-description {
+      font-size: 18px;
+      line-height: 28px;
+      color: #2d3748;
+      margin: 0;
+    }
+
+    @media (max-width: 850px) {
+      width: 88%;
+      top: 2%;
+
+      .hbw-s3-name {
+        font-size: 18px;
+      }
+
+      .hbw-s3-meeting {
+        font-size: 11px;
+      }
+
+      .hbw-s3-description {
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+  }
+
+  .hbw-committee-reference {
+    padding-left: 20px;
+    margin: 12px 0 24px;
+
+    li {
+      font-size: 16px;
+      line-height: 28px;
+      color: #2d3748;
     }
   }
 }
