@@ -3,6 +3,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 const LandmarkMap = lazy(() => import("./LandmarkMap"));
 const LandmarkMapJuly2026 = lazy(() => import("./LandmarkMapJuly2026"));
 const HousingTrustFundMap = lazy(() => import("./HousingTrustFundMap"));
+const AffordableHousingBondMap = lazy(() => import("./AffordableHousingBondMap"));
 
 function renderInlineLinks(text) {
   const tokenRegex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
@@ -141,6 +142,11 @@ const IsleModal = ({ isle, onClose }) => {
               {section.housing_map && (
                 <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
                   <HousingTrustFundMap />
+                </Suspense>
+              )}
+              {section.housing_bond_map && (
+                <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
+                  <AffordableHousingBondMap height={380} />
                 </Suspense>
               )}
             </div>

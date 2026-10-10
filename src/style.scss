@@ -2502,3 +2502,229 @@
     }
   }
 }
+
+// ── Affordable Housing Bond map (Sept 2026 roundup / supervisor pages) ──
+.ahb-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+
+  .ahb-page-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+  }
+
+  .ahb-page-dek {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0 0 20px;
+  }
+
+  .ahb-district-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+
+    button {
+      font-family: "Outfit", sans-serif;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid #c9c9c9;
+      border-radius: 999px;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+
+      &:hover {
+        background: #f4f4f4;
+      }
+
+      &.active {
+        background: #7a5646;
+        border-color: #7a5646;
+        color: #fff;
+      }
+    }
+  }
+
+  .ahb-page-summary {
+    margin: 12px 0 0;
+    font-size: 15px;
+    color: #333;
+  }
+
+  .ahb-page-source {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: #777;
+  }
+}
+
+.ahb-map-wrapper {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  position: relative;
+
+  .ahb-map {
+    width: 100%;
+    background: #c9dceb;
+  }
+
+  .ahb-zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    button {
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background: #f4f4f4;
+      }
+    }
+  }
+
+  .ahb-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+    padding: 10px 14px;
+    background: #f9f9f9;
+    border-top: 1px solid #e8e8e8;
+    font-size: 12px;
+    color: #444;
+
+    .ahb-legend-title {
+      font-weight: 700;
+      color: #222;
+      width: 100%;
+    }
+
+    .ahb-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ahb-legend-nbhd {
+      width: 14px;
+      height: 10px;
+      background: #d9b8a8;
+      border: 1px solid #7a5646;
+    }
+  }
+}
+
+.ahb-star-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+    transition: transform 0.15s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.25);
+  }
+}
+
+.leaflet-tooltip.ahb-nbhd-label {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  font-family: "Quattrocento Sans", sans-serif;
+  font-style: italic;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4a3a32;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+  white-space: nowrap;
+
+  &::before {
+    display: none;
+  }
+}
+
+.ahb-popup {
+  .leaflet-popup-content {
+    margin: 12px 14px;
+    min-width: 220px;
+  }
+
+  .ahb-popup-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #777;
+  }
+
+  .ahb-popup-swatch {
+    width: 9px;
+    height: 9px;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .ahb-popup-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 4px 0 6px;
+  }
+
+  .ahb-popup-blurb {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+
+    .ahb-hl-name {
+      color: #2f88b5;
+    }
+
+    .ahb-hl-num {
+      color: #8a2347;
+    }
+  }
+
+  .ahb-popup-meta {
+    font-size: 11px;
+    color: #777;
+    border-top: 1px solid #eee;
+    padding-top: 6px;
+  }
+}
