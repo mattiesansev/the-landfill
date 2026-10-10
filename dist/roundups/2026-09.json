@@ -1,0 +1,90 @@
+{
+  "month": "2026-09",
+  "display_month": "September 2026",
+  "authors": [
+    "destiny"
+  ],
+  "isles": [
+    {
+      "id": "opengov-permitting-contract",
+      "number": 1,
+      "date": "2026-09-22",
+      "title": "Lurie promised a new permitting system, but his administration's methods of getting there put his administration in hot water",
+      "stats": [],
+      "sections": [
+        {
+          "title": "Overview",
+          "body": "Reviewing and approving contracts is typically an unnewsworthy process. Assigned to the Supervisors on the Budget and Finance Committee, they review the cost and services, then ask the Board of Supervisors for approval.\n\nBefore reaching committee, the department seeking services typically asks for Request for Proposals (RFP) to find a vendor. The Airport Commission recently initiated a RFP process, known as a competitive bid, to find a vendor to manage ground transportation at San Francisco International Airport. Three vendors submitted RFP’s, which required them to submit past projects, qualifications, cost estimates, and other evaluation criteria. The Airport Commission reviewed the RFP’s, chose the best fit, and received approval from the Board.\n\nBypassing the RFP process is rare but it does happen.\n\nLast February, Mayor Daniel Lurie announced his initiative to overhaul San Francisco’s permitting system and gave a one-year timeline to get the project off the ground. With such a tight deadline, Permit SF and Mayor’s Office, the departments leading Lurie’s permitting effort, bypassed the RFP process. Instead, vendors were asked to submit requests for information (RFI), a tool used to gather data on vendors for future procurement.\n\nUnlike RFP’s, the RFI process doesn’t have safeguards in place to deter vendor favoritism and cannot ensure that the city is receiving the best price. This is because RFI’s don’t require vendors to submit past projects, qualifications, cost estimates, and other evaluation criteria; thus, they cannot be compared. As a result, the Mayor’s Office received a competitive bid waiver, which waives the competitive process if only one vendor can deliver a certain software.\n\nBy October OpenGov was awarded a one-year contract for $5.9 million to create a new permitting system and launch 15 permits. That same month, a [SF Standard article](https://sfstandard.com/2025/10/15/san-francisco-daniel-lurie-ned-segal-opengov-technology-contract/) revealed that not only was the process non-competitive, but OpenGov executives had ties to Mayor Daniel Lurie.\n\nScrutiny abounded, prompting Supervisor Jackie Fielder to call for a hearing and a policy analysis of the contract, prior to a multi-year contract renewal in October 2026. While no violations were found in relation to the RFI process or OpenGov’s ties to Mayor Lurie, the analysis did reveal red flags and risks. During an over four-hour hearing, Supervisor Fielder pressed Director of Permit SF Liz Watty on these issues.",
+          "links": []
+        },
+        {
+          "title": "Hearing",
+          "body": "One issue was cost. An average contract for new software that bypassed the competitive process cost the city $740,000 annually. Comparatively, OpenGov’s contract is $5.9 million a year, **eight times larger than the typical contract**. Elizabeth Watty, Director of Permit SF, said that the contract amount is below average when compared to similar contracts in Los Angeles, San Jose, and other cities. Watty also acknowledged that while large contracts don’t typically use waivers, it’s not illegal to do so.\n\n“As somebody who runs a regulatory agency legally permissible matters to me”, said Watty during the hearing, “but we were trying to do things fast, we were trying to do things differently.“",
+          "image": "/img/roundups/Liz_watty_screenshot_fullscreen.png",
+          "image_mobile": "/img/roundups/Liz_Watty_Screenshot_Vertical.png",
+          "links": []
+        },
+        {
+          "title": "",
+          "body": "A key to moving fast, according to Watty, is having leeway to define the contract as time goes on. Ideally, a scope of work, deliverables, and timeline are defined in a contract as accountability mechanisms to ensure OpenGov delivers accordingly. Without these mechanisms the city risks, according to the City Attorney, not receiving what was promised by OpenGov.\n\nFielder pressed Watty on why such an expensive contract would lack a scope and concrete deliverables. According to Watty, nimbleness is key since there are so many permit types, variables, and interconnected pieces across city departments. To account for this, Watty believes defining the scope and deliverables in six-to-nine-month intervals is the best way to stay nimble and implement quickly.\n\nWith intervals in mind, Fielder asked why the contract would need to be extended to five years when it could be reviewed yearly. “If we only have one year then who gets in this year?” asked Watty. Without a five-year contract there would be no certainty that the project would ever be completed and may cause infighting between departments over which permits get delivered. An extended contract, according to Watty, would ensure that 150 permits would be delivered over the five-year period.\n\nIn the first year of the contract, OpenGov was expected to implement a new permitting software and launch fifteen permits. Just five were digitized and made available to customers.",
+          "links": []
+        },
+        {
+          "title": "Outcome",
+          "body": "With the BLA’s recommendations in mind, Supervisor Cheyenne Chen was able to negotiate with the Mayor’s Office for a shorter contract. The contract was extended for only three years, totaling $7 million annually. Funds for the third year will also be held on reserve until budget season, when performance metrics will be reviewed to determine if the funds should be released. Additionally, a termination clause was added to the contract, allowing the city to exit the contract at will.\n\nThese amendments were received well at the full Board of Supervisors. Budget and Finance Chair Supervisor Matt Dorsey expressed that scrutiny on a contract like this, especially at the outset, bodes well for the project's success. He expressed enthusiastic support for the amendments to the contract, as did most Supervisors.\n\n“You gotta date a little bit before you get married”, mused Supervisor Bilal Mahmood, “this amended contract allows us to keep dating for a little bit longer before we enter into a strictly monogamous relationship with the vendor”.",
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "affordable-housing-go-bonds",
+      "number": 2,
+      "date": "2026-09-15",
+      "title": "Affordable Housing Projects see an injection of funds from recent bond sales",
+      "stats": [],
+      "sections": [
+        {
+          "title": "Bonds for Affordable Housing",
+          "body": "In September, the Board of Supervisors authorized the sale of General Obligation (GO) bonds to fund affordable housing across San Francisco. Issued from three different sources, the funds will be used to construct and preserve over 1,000 units of affordable housing.\n\nFunding for affordable housing in San Francisco comes from a disparate array of sources and is scarce. Projects compete for limited funds from the state and federal governments, which have only shrunk in recent years. This is where GO bonds come in. GO bonds are used to borrow money for projects that benefit residents but don’t raise revenue, like affordable housing programs. However, the city can only borrow the money if a bond measure is approved by two-thirds of voters and issue new bonds as past bonds are paid off. Once passed, the city can issue funds from a bond in phases to projects that meet the criteria of a bond measure, until all funds are depleted.",
+          "links": []
+        },
+        {
+          "title": "Funding Drives Production",
+          "body": "Over the last decade funding from GO bonds and the city has increased, leading to increased affordable housing production. The Mayor’s Office of Housing and Community Development (MOHCD) [estimates](https://sfgov.legistar.com/View.ashx?M=F&ID=15559825&GUID=E165C2A2-5EA4-4757-ABF8-82C0FCE807ED) that 400 – 500 more affordable housing units are built every year as a result. Simultaneously, the city has also dedicated bond funds to preserving housing and rental subsidies.",
+          "datawrapper": {
+            "id": "EsH6G",
+            "title": "Affordable Housing Funding Stack",
+            "src": "https://datawrapper.dwcdn.net/EsH6G/1/",
+            "height": 176
+          },
+          "links": []
+        },
+        {
+          "title": "Fourteen Projects",
+          "body": "The most recent infusion of nearly $200 million in bond funds will not only lead to the construction of new affordable housing, but fund housing preservation and rental subsidies. Use the map below to explore the fourteen different projects benefiting from the GO bonds.",
+          "links": []
+        },
+        {
+          "title": "Senior Housing in Chinatown",
+          "body": "From the Castro to Chinatown to Treasure Island, over half of the bond funds will be used to build senior housing. [New Asia](https://www.chinatowncdc.org/our-housing/in-development), a project based in the heart of Chinatown, will have 175 affordable units for extremely low-income seniors. Development of New Asia is expected to begin in early 2027, once all local, state, and federal funding is awarded to the project, totaling $165 million. Over 20%, or $35 million, is from the sale of bonds from 2019’s Affordable Housing Bond.",
+          "links": []
+        },
+        {
+          "title": "Family Housing on Treasure Island",
+          "body": "On Treasure Island, a low-income housing project for families known as [IC4.3](https://www.ptarc.com/housing/treasure-island-parcel-ic43-family-housing) is receiving $25 million in bond funds. To mitigate displacement, the project is reserving 75 of the 150 units for families already living on Treasure Island. However, the project has a financing gap, meaning there’s a gap between how much the project costs and the funds available. Without adequate funds the project could be stalled, and even ineligible for state and federal funding. Funds from 2024’s Affordable Housing Bond will provide gap financing to ensure the project can continue development as it awaits funding from the state.",
+          "links": []
+        },
+        {
+          "title": "Preserving AIDS Housing in Hayes Valley",
+          "body": "In Hayes Valley, affordable housing for low-income residents with HIV/AIDS is being preserved. Derek Silva Community, San Francisco’s largest AIDS housing facility, provides residents with affordable housing and wrap around services like counseling and case management. However, the building is need of repair. Funds from 2016’s PASS Bond will support unit improvements, a seismic retrofit, and address electrical, plumbing, and waterproofing issues. By preserving Derek Silva Community, residents don’t have to fear displacement or disrepair.",
+          "links": []
+        },
+        {
+          "title": "What's Next",
+          "body": "From construction to preservation, neighborhoods across San Francisco will be more affordable due to the recent sale of GO bonds. As funds are depleted, voters can expect to see affordable housing bonds on future ballots. In the meantime, fourteen affordable housing projects will leverage bond funds, all of which are expected to complete construction and preservation efforts by 2030.",
+          "links": []
+        }
+      ]
+    }
+  ]
+}

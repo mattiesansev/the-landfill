@@ -5,16 +5,20 @@ const LandmarkMapJuly2026 = lazy(() => import("./LandmarkMapJuly2026"));
 const HousingTrustFundMap = lazy(() => import("./HousingTrustFundMap"));
 
 function renderInlineLinks(text) {
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  if (!linkRegex.test(text)) return text;
-  linkRegex.lastIndex = 0;
+  const tokenRegex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+  if (!tokenRegex.test(text)) return text;
+  tokenRegex.lastIndex = 0;
   const parts = [];
   let lastIndex = 0;
   let match;
   let i = 0;
-  while ((match = linkRegex.exec(text)) !== null) {
+  while ((match = tokenRegex.exec(text)) !== null) {
     if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
-    parts.push(<a key={i++} href={match[2]} target="_blank" rel="noopener noreferrer">{match[1]}</a>);
+    if (match[3] !== undefined) {
+      parts.push(<strong key={i++}>{match[3]}</strong>);
+    } else {
+      parts.push(<a key={i++} href={match[2]} target="_blank" rel="noopener noreferrer">{match[1]}</a>);
+    }
     lastIndex = match.index + match[0].length;
   }
   if (lastIndex < text.length) parts.push(text.slice(lastIndex));
@@ -30,6 +34,22 @@ const IsleModal = ({ isle, onClose }) => {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [isle, onClose]);
+
+  // Datawrapper embeds post their rendered height; resize the matching iframe.
+  useEffect(() => {
+    const handler = (e) => {
+      const heights = e.data && e.data["datawrapper-height"];
+      if (!heights) return;
+      document.querySelectorAll(".isle-datawrapper iframe").forEach((iframe) => {
+        if (iframe.contentWindow === e.source) {
+          const h = Object.values(heights)[0];
+          if (h) iframe.style.height = `${h}px`;
+        }
+      });
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, []);
 
   if (!isle) return null;
 
@@ -55,7 +75,7 @@ const IsleModal = ({ isle, onClose }) => {
         {isle.sections &&
           isle.sections.map((section, i) => (
             <div key={i} className="isle-modal-section">
-              <div className="isle-modal-section-title">{section.title}</div>
+              {section.title && <div className="isle-modal-section-title">{section.title}</div>}
               {section.body && section.body.split("\n\n").map((para, k) => (
                 <p key={k}>{renderInlineLinks(para)}</p>
               ))}
@@ -86,7 +106,27 @@ const IsleModal = ({ isle, onClose }) => {
                 </ul>
               )}
               {section.image && (
-                <img src={section.image} alt="" className="isle-section-image" />
+                <picture>
+                  {section.image_mobile && (
+                    <source media="(max-width: 600px)" srcSet={section.image_mobile} />
+                  )}
+                  <img src={section.image} alt="" className="isle-section-image" />
+                </picture>
+              )}
+              {section.datawrapper && (
+                <div className="isle-datawrapper">
+                  <iframe
+                    title={section.datawrapper.title}
+                    aria-label={section.datawrapper.title}
+                    id={`datawrapper-chart-${section.datawrapper.id}`}
+                    src={section.datawrapper.src}
+                    scrolling="no"
+                    frameBorder="0"
+                    style={{ width: 0, minWidth: "100%", border: "none" }}
+                    height={section.datawrapper.height}
+                    data-external="1"
+                  />
+                </div>
               )}
               {section.landmarks_map && (
                 <Suspense fallback={<div className="landmark-map-loading">Loading map…</div>}>
