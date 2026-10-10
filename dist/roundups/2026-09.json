@@ -60,8 +60,9 @@
           "links": []
         },
         {
-          "title": "Fourteen Projects",
-          "body": "The most recent infusion of nearly $200 million in bond funds will not only lead to the construction of new affordable housing, but fund housing preservation and rental subsidies. Use the map below to explore the fourteen different projects benefiting from the GO bonds.",
+          "title": "Ten Projects",
+          "body": "The most recent infusion of $180 million in bond funds will not only lead to the construction of new affordable housing, but fund housing preservation and rental subsidies. Use the map below to explore the ten different projects benefiting from the GO bonds.",
+          "housing_bond_map": true,
           "links": []
         },
         {
@@ -81,7 +82,7 @@
         },
         {
           "title": "What's Next",
-          "body": "From construction to preservation, neighborhoods across San Francisco will be more affordable due to the recent sale of GO bonds. As funds are depleted, voters can expect to see affordable housing bonds on future ballots. In the meantime, fourteen affordable housing projects will leverage bond funds, all of which are expected to complete construction and preservation efforts by 2030.",
+          "body": "From construction to preservation, neighborhoods across San Francisco will be more affordable due to the recent sale of GO bonds. As funds are depleted, voters can expect to see affordable housing bonds on future ballots. In the meantime, ten affordable housing projects will leverage bond funds, all of which are expected to complete construction and preservation efforts by 2030.",
           "links": []
         }
       ]

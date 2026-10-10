@@ -12,6 +12,7 @@ import WeeklyReport from "./pages/posts/WeeklyReport"
 import UrbanForestryHistory from "./pages/posts/UrbanForestryHistory"
 import MonthlyRoundup from "./pages/posts/MonthlyRoundup"
 import HowBoardWorks from "./pages/posts/HowBoardWorks"
+import AffordableHousingBonds from "./pages/posts/AffordableHousingBonds"
 
 const Layout = () => {
   return (
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/post/how-board-works",
         element: <HowBoardWorks />
+      },
+      {
+        path: "/post/affordable-housing-bonds",
+        element: <AffordableHousingBonds />
       },
     ],
   },
