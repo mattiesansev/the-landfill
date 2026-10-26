@@ -1,5 +1,5 @@
 import React from "react";
-import GroupPhoto from "../img/group_cropped.jpg"
+import GroupPhoto from "../img/group.jpg"
 
 const Contact = () => {
   return (
