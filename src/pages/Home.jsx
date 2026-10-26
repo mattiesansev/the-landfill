@@ -4,7 +4,7 @@ import rentControlCover from "/src/rent_control.jpeg"
 import supervisorCover from "/src/img/RepsMap.png"
 import { authors } from "../authors/authors";
 import landfillCover from "/src/header.jpg"
-import aboutUsCover from "../img/group_photo.jpg"
+import aboutUsCover from "../img/group.jpg"
 import ReactGA from 'react-ga4';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -79,6 +79,7 @@ const Home = () => {
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
       img: aboutUsCover,
+      imgPosition: "50% 15%",
       authors: [],
       category: CATEGORIES.ALL
     },
@@ -103,7 +104,7 @@ const Home = () => {
             <div className="post" key={post.id}>
               <Link className="link" to={`/post/${post.id}`}>
                 <div className="img" style={post.imgFit ? { background: '#e2eef3' } : undefined}>
-                  <img src={post.img} alt="" style={post.imgFit ? { objectFit: post.imgFit } : undefined} />
+                  <img src={post.img} alt="" style={{ objectFit: post.imgFit, objectPosition: post.imgPosition }} />
                 </div>
                 <div className="content">
                   <div className="title">{post.title}</div>
