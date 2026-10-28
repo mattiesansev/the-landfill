@@ -2,6 +2,7 @@ import MattieImg from "../img/mattie.jpeg"
 import DestinyImg from "../img/destiny.jpeg"
 import NickImg from "../img/nick.jpeg"
 import MaggieImg from "../img/maggie.jpeg"
+import MeganImg from "../img/megan.jpeg"
 
 export const authors = {
   mattie: {
@@ -19,5 +20,9 @@ export const authors = {
   maggie: {
     name: "Maggie Carroll",
     photo: MaggieImg,
+  },
+  megan: {
+    name: "Megan Roche",
+    photo: MeganImg,
   },
 }

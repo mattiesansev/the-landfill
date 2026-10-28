@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { authors } from "../authors/authors"
-import groupPhoto from "../img/group_cropped.jpg"
+import groupPhoto from "../img/group.jpg"
 
 const AboutUs = () => {
   const people = [
@@ -17,8 +17,9 @@ const AboutUs = () => {
     },
     {
       name: "Nick Vargas",
-      desc: "Nick never wrote a bio.",
+      desc: "Nick still has not written a bio.",
       img: authors.nick.photo,
+      imgPosition: "50% 30%",
     },
     {
       name: "Maggie Carroll",
@@ -28,6 +29,7 @@ const AboutUs = () => {
     {
       name: "Megan Roche",
       desc: "Megan Roche is a software engineer with a degree in Physics from Carnegie Mellon, and this is her first time working on a non-work coding project since college! She has a passion for learning- whether by reading books, taking CCSF courses, or going to seminars. She's excited to learn more about the beautiful city of San Francisco through working on the Bay Area Data Dump!",
+      img: authors.megan.photo,
     }
   ]
   return (
@@ -48,7 +50,7 @@ const AboutUs = () => {
         {people.map((person) => (
           <div className="person" key={person.name}>
             <div className="img">
-              <img src={person.img} alt="" />
+              <img src={person.img} alt="" style={{ objectPosition: person.imgPosition }} />
             </div>
             <div className="content">
               <h1>{person.name}</h1>
