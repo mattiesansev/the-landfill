@@ -1628,7 +1628,212 @@
 }
 
 // HOW THE BOARD OF SUPERVISORS WORKS
+// Must match MOBILE_BREAKPOINT in HowBoardWorks.jsx.
+$hbw-mobile: 770px;
+
 .how-board-works {
+  // 10% gutter on each side of everything — text, photo grids, and animated stages.
+  padding: 0 10%;
+  color: #2d3748;
+
+  // ── Type: one body style (matches article body text), two headings, one label ──
+  .hbw-title {
+    font-size: 48px;
+    line-height: 1.15;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 24px;
+
+    @media (max-width: $hbw-mobile) {
+      font-size: 34px;
+    }
+  }
+
+  .hbw-heading {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 20px;
+
+    @media (max-width: $hbw-mobile) {
+      font-size: 26px;
+    }
+  }
+
+  .hbw-subheading {
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 20px 0 4px;
+  }
+
+  .hbw-body {
+    font-size: 20px;
+    line-height: 30px;
+    color: #2d3748;
+    margin: 0 0 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      word-break: break-word;
+    }
+  }
+
+  .hbw-meta {
+    font-size: 15px;
+    color: #718096;
+    margin-bottom: 16px;
+
+    @media (max-width: $hbw-mobile) {
+      font-size: 14px;
+    }
+  }
+
+  // ── Layout ──
+  // Same text inset as other articles (.single > .content: 80px + 10% of the
+  // rest, i.e. 10% + 64px) on top of the page's 10% gutter.
+  .hbw-column {
+    padding: 0 64px;
+
+    @media (max-width: $hbw-mobile) {
+      padding: 0;
+    }
+  }
+
+  .hbw-section {
+    padding: 64px 0;
+
+    @media (max-width: $hbw-mobile) {
+      padding: 40px 0;
+    }
+
+    &--divided {
+      border-top: 1px solid #e2e8f0;
+    }
+
+    // Text that introduces an animated stage sits right above it.
+    &--before-stage {
+      padding-bottom: 0;
+    }
+  }
+
+  // ── Supervisor photo ──
+  .hbw-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+
+    img {
+      width: var(--hbw-size, 72px);
+      height: var(--hbw-size, 72px);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid #8ac4d4;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+  }
+
+  .hbw-avatar-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    line-height: 20px;
+    white-space: nowrap;
+
+    @media (max-width: $hbw-mobile) {
+      font-size: 14px;
+    }
+  }
+
+  .hbw-avatar-name {
+    font-weight: 700;
+    color: #2d3748;
+  }
+
+  .hbw-avatar-district {
+    color: #718096;
+  }
+
+  // ── Full Board grid (6 + 5 desktop, 3 per row mobile) ──
+  .hbw-board-grid {
+    --hbw-size: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px 24px;
+    max-width: calc(6 * 104px + 5 * 24px);
+    margin: 48px auto 0;
+
+    .hbw-avatar {
+      width: 104px;
+    }
+
+    @media (max-width: $hbw-mobile) {
+      --hbw-size: 64px;
+      gap: 24px 12px;
+      max-width: calc(3 * 88px + 2 * 12px);
+      margin-top: 32px;
+
+      .hbw-avatar {
+        width: 88px;
+      }
+    }
+
+    // Grid that opens a section, above its text instead of below.
+    &--leading {
+      margin: 0 auto 48px;
+
+      @media (max-width: $hbw-mobile) {
+        margin-bottom: 32px;
+      }
+    }
+  }
+
+  // ── Per-committee blocks ──
+  .hbw-section--committees {
+    padding-top: 0;
+  }
+
+  .hbw-committee {
+    padding: 40px 0;
+    border-top: 1px solid #e2e8f0;
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  .hbw-committee-members {
+    --hbw-size: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 16px;
+
+    .hbw-avatar {
+      width: 96px;
+    }
+
+    @media (max-width: $hbw-mobile) {
+      --hbw-size: 56px;
+      gap: 16px 8px;
+
+      .hbw-avatar {
+        width: 84px;
+      }
+    }
+  }
+
+  // ── Animated stages ──
   .hbw-scrolly {
     height: 200vh;
     position: relative;
@@ -1638,332 +1843,90 @@
     position: sticky;
     top: 80px;
     height: calc(100vh - 80px);
-    overflow: hidden;
+    height: calc(100svh - 80px);
+    padding: 32px 0;
+    box-sizing: border-box;
     background: #fff;
 
+    // Matches the nav bar's own breakpoint, not the page's mobile layout.
     @media (max-width: 768px) {
       top: 120px;
       height: calc(100vh - 120px);
+      height: calc(100svh - 120px);
+      padding: 20px 0;
     }
   }
 
-  .hbw-hero-text {
-    position: absolute;
-    top: 7%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 68%;
+  .hbw-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
 
-    @media (max-width: 850px) {
-      top: 5%;
-      width: 88%;
+    // Photos are positioned by the center of the image; the name hangs below it.
+    .hbw-avatar {
+      position: absolute;
+      transform: translate(-50%, calc(var(--hbw-size) / -2));
+    }
+
+    .hbw-avatar-label {
+      line-height: 20px;
     }
   }
 
-  .hbw-title {
-    font-size: 58px;
+  .hbw-stage-label {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 150px;
+    max-width: calc(100% / 6 - 12px);
+    font-size: 15px;
+    line-height: 20px;
     font-weight: 700;
-    text-align: center;
-    line-height: 1.1;
     color: #1a1a1a;
-
-    @media (max-width: 850px) {
-      font-size: 34px;
-    }
-  }
-
-  .hbw-overview {
-    margin-top: 20px;
-
-    p {
-      font-size: 22px;
-      line-height: 34px;
-      text-align: center;
-      color: #2d3748;
-      margin: 0;
-    }
-
-    @media (max-width: 850px) {
-      margin-top: 12px;
-
-      p {
-        font-size: 17px;
-        line-height: 26px;
-      }
-    }
-  }
-
-  .hbw-fact-blurb {
-    position: absolute;
-    top: 26%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
     text-align: center;
-    pointer-events: none;
+    white-space: pre-line;
 
-    p {
-      font-size: 20px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin: 0;
-    }
-
-    @media (max-width: 850px) {
-      top: 20%;
-      width: 80%;
-
-      p {
-        font-size: 15px;
-      }
-    }
-  }
-
-  .hbw-avatars {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .hbw-avatar {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-
-    img {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: top center;
-      border: 3px solid #8ac4d4;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-
-      @media (max-width: 850px) {
-        width: 44px;
-        height: 44px;
-        border-width: 2px;
-      }
-    }
-
-    .hbw-avatar-name {
-      font-size: 11px;
-      font-weight: 600;
-      color: #4a5568;
-      white-space: nowrap;
-      letter-spacing: 0.02em;
-
-      @media (max-width: 850px) {
-        font-size: 8px;
-      }
-    }
-
-    .hbw-avatar-district {
-      font-size: 10px;
-      font-weight: 500;
-      color: #718096;
-      letter-spacing: 0.02em;
-
-      @media (max-width: 850px) {
-        font-size: 7px;
-      }
-    }
-  }
-
-  // Section 2: committee animation
-  .hbw-s2-header {
-    position: absolute;
-    top: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 74%;
-    text-align: center;
-    pointer-events: none;
-
-    .hbw-s2-title {
-      font-size: 46px;
-      font-weight: 700;
-      color: #1a1a1a;
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-
-    .hbw-s2-body {
-      font-size: 19px;
-      line-height: 30px;
-      color: #2d3748;
-      margin: 0;
-    }
-
-    @media (max-width: 850px) {
-      width: 88%;
-      top: 4%;
-
-      .hbw-s2-title {
-        font-size: 28px;
-        margin-bottom: 10px;
-      }
-
-      .hbw-s2-body {
-        font-size: 15px;
-        line-height: 23px;
-      }
-    }
-  }
-
-  .hbw-committee-labels {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .hbw-committee-label {
-    position: absolute;
-    top: 25%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    width: 130px;
-    text-align: center;
-
-    // subtle top border so each column reads as a group
     &::before {
       content: "";
       display: block;
       width: 32px;
       height: 3px;
+      margin: 0 auto 10px;
       background: #8ac4d4;
       border-radius: 2px;
-      margin-bottom: 6px;
+    }
+  }
+
+  .hbw-stage--rows .hbw-stage-label {
+    transform: none;
+    width: 100%;
+    max-width: none;
+    font-size: 14px;
+    text-align: left;
+    white-space: nowrap;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  // ── Byline ──
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 15px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
-    .hbw-committee-name {
-      font-size: 11px;
+    span {
       font-weight: 700;
-      color: #1a1a1a;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-      white-space: pre-line;
-    }
-
-    .hbw-committee-meeting {
-      font-size: 10px;
-      color: #718096;
-      line-height: 1.4;
-      margin-top: 2px;
-    }
-
-    @media (max-width: 850px) {
-      width: 64px;
-
-      .hbw-committee-name {
-        font-size: 7px;
-        letter-spacing: 0.02em;
-      }
-
-      .hbw-committee-meeting {
-        display: none;
-      }
-    }
-  }
-
-  // Section 3: spotlight one committee at a time
-  .hbw-scrolly--spotlight {
-    height: 600vh;
-  }
-
-  .hbw-avatars--spotlight {
-    .hbw-avatar {
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      opacity: 0.28;
-
-      img {
-        transition: border-color 0.25s ease, box-shadow 0.25s ease, border-width 0.25s ease;
-      }
-
-      &.hbw-avatar--active {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.12);
-
-        img {
-          border-width: 5px;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), 0 0 0 4px rgba(138, 196, 212, 0.35);
-        }
-      }
-    }
-  }
-
-  .hbw-s3-panel {
-    position: absolute;
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    text-align: center;
-    pointer-events: none;
-
-    .hbw-s3-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: #5a9eb8;
-      margin-bottom: 6px;
-    }
-
-    .hbw-s3-name {
-      font-size: 26px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-    }
-
-    .hbw-s3-meeting {
-      font-size: 13px;
-      color: #718096;
-      margin-bottom: 8px;
-    }
-
-    .hbw-s3-description {
-      font-size: 18px;
-      line-height: 28px;
-      color: #2d3748;
-      margin: 0;
-    }
-
-    @media (max-width: 850px) {
-      width: 88%;
-      top: 2%;
-
-      .hbw-s3-name {
-        font-size: 18px;
-      }
-
-      .hbw-s3-meeting {
-        font-size: 11px;
-      }
-
-      .hbw-s3-description {
-        font-size: 14px;
-        line-height: 21px;
-      }
-    }
-  }
-
-  .hbw-committee-reference {
-    padding-left: 20px;
-    margin: 12px 0 24px;
-
-    li {
-      font-size: 16px;
-      line-height: 28px;
-      color: #2d3748;
     }
   }
 }

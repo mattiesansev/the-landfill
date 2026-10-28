@@ -75,6 +75,15 @@ const Home = () => {
       category: CATEGORIES.POLITICS
     },
     {
+      id: "how-board-works",
+      title: "How the Board of Supervisors Works",
+      desc: "An interactive scroll through San Francisco's 11 supervisors and the committees they serve on.",
+      img: supervisorCover,
+      imgFit: "contain",
+      authors: [authors.mattie],
+      category: CATEGORIES.POLITICS
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
