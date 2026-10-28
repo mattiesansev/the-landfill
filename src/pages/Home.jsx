@@ -75,6 +75,15 @@ const Home = () => {
       category: CATEGORIES.POLITICS
     },
     {
+      id: "how-board-works",
+      title: "How the Board of Supervisors Works",
+      desc: "Dive into how the board of supervisors functions in San Francisco",
+      img: supervisorCover,
+      imgFit: "contain",
+      authors: [authors.mattie],
+      category: CATEGORIES.POLITICS
+    },
+    {
       id: "about",
       title: "Learn more about our team!",
       desc: "Curious to learn about the people who put this site together?",
