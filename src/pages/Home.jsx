@@ -77,7 +77,7 @@ const Home = () => {
     {
       id: "how-board-works",
       title: "How the Board of Supervisors Works",
-      desc: "An interactive scroll through San Francisco's 11 supervisors and the committees they serve on.",
+      desc: "Dive into how the board of supervisors functions in San Francisco",
       img: supervisorCover,
       imgFit: "contain",
       authors: [authors.mattie],
