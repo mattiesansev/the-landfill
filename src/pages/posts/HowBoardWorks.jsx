@@ -335,6 +335,16 @@ const CommitteeStage = ({ isMobile }) => {
 const HowBoardWorks = () => {
   const isMobile = useIsMobile();
 
+  // Always open at the top, even on reload or when arriving from a scrolled page.
+  useEffect(() => {
+    const prevRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    return () => {
+      window.history.scrollRestoration = prevRestoration;
+    };
+  }, []);
+
   return (
     <div className="how-board-works">
 
@@ -382,7 +392,7 @@ const HowBoardWorks = () => {
             there will not be another public hearing opportunity with the full Board.
           </p>
           <p className="hbw-body">
-            Take a deeper look at each committee and its members.
+            <em>Take a deeper look at each committee and its members.</em>
           </p>
         </div>
       </section>
