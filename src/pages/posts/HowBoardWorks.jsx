@@ -392,7 +392,7 @@ const HowBoardWorks = () => {
             there will not be another public hearing opportunity with the full Board.
           </p>
           <p className="hbw-body">
-            Take a deeper look at each committee and its members.
+            <em>Take a deeper look at each committee and its members.</em>
           </p>
         </div>
       </section>
