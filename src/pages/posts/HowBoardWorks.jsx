@@ -335,6 +335,16 @@ const CommitteeStage = ({ isMobile }) => {
 const HowBoardWorks = () => {
   const isMobile = useIsMobile();
 
+  // Always open at the top, even on reload or when arriving from a scrolled page.
+  useEffect(() => {
+    const prevRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    return () => {
+      window.history.scrollRestoration = prevRestoration;
+    };
+  }, []);
+
   return (
     <div className="how-board-works">
 
