@@ -1763,6 +1763,23 @@ $hbw-mobile: 770px;
     color: #718096;
   }
 
+  // Placeholder for a supervisor without a photo yet.
+  .hbw-avatar-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--hbw-size, 72px);
+    height: var(--hbw-size, 72px);
+    border-radius: 50%;
+    border: 3px solid #8ac4d4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background: #e2eef3;
+    color: #2d3748;
+    font-size: calc(var(--hbw-size, 72px) * 0.36);
+    font-weight: 700;
+  }
+
   // ── Full Board grid (6 + 5 desktop, 3 per row mobile) ──
   .hbw-board-grid {
     --hbw-size: 80px;
@@ -1830,6 +1847,68 @@ $hbw-mobile: 770px;
       .hbw-avatar {
         width: 84px;
       }
+    }
+  }
+
+  // ── November 2026 election: one row per district on the ballot ──
+  .hbw-election {
+    --hbw-size: 64px;
+    margin-top: 32px;
+
+    @media (max-width: $hbw-mobile) {
+      --hbw-size: 56px;
+    }
+  }
+
+  .hbw-election-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    padding: 20px 0;
+    border-top: 1px solid #e2e8f0;
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  .hbw-election-district {
+    width: 96px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #718096;
+  }
+
+  .hbw-election-faces {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .hbw-avatar {
+      width: 96px;
+    }
+  }
+
+  .hbw-avatar--outgoing img {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  .hbw-election-arrow {
+    font-size: 24px;
+    color: #718096;
+    padding-bottom: 26px; // line up with the photos, not the labels
+  }
+
+  .hbw-election-status {
+    font-size: 15px;
+    color: #718096;
+
+    &--new {
+      color: #2b6cb0;
+      font-weight: 700;
     }
   }
 

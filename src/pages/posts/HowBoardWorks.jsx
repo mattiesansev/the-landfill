@@ -19,6 +19,21 @@ const SUPERVISORS = [
 
 const findSupervisor = (lastName) => SUPERVISORS.find((s) => s.lastName === lastName);
 
+// Supervisors-elect from the November 2026 election, taking office in January 2027.
+// No official roster photos exist yet; drop one in public/img/supervisors/ and set
+// `image` to replace the initials placeholder.
+const INCOMING = {
+  8:  { district: 8,  lastName: "McCoy",    fullName: "Gary McCoy",    image: null },
+  10: { district: 10, lastName: "Ellington", fullName: "Theo Ellington", image: null },
+};
+
+// Even-numbered districts on the November 2026 ballot.
+const ELECTION_2026 = [2, 4, 6, 8, 10].map((district) => ({
+  district,
+  current: SUPERVISORS.find((s) => s.district === district),
+  incoming: INCOMING[district] || null,
+}));
+
 // All six standing committees with their full rosters, pulled from the Board's
 // current committee schedule (effective 1/12/2026) and Rules of Order (effective
 // 6/30/2026). A supervisor serving on multiple committees appears once per
@@ -245,7 +260,13 @@ function useScrollProgress(ref) {
 
 const Avatar = ({ sup, showName = true, showDistrict = true, hidden = false, labelOpacity, className = "", style }) => (
   <div className={`hbw-avatar ${className}`} style={style} aria-hidden={hidden || undefined}>
-    <img src={sup.image} alt={hidden ? "" : sup.fullName} title={showName ? undefined : sup.fullName} />
+    {sup.image ? (
+      <img src={sup.image} alt={hidden ? "" : sup.fullName} title={showName ? undefined : sup.fullName} />
+    ) : (
+      <div className="hbw-avatar-initials" role="img" aria-label={hidden ? undefined : sup.fullName}>
+        {sup.fullName.split(" ").map((part) => part[0]).join("")}
+      </div>
+    )}
     {showName && (
       <div className="hbw-avatar-label" style={labelOpacity === undefined ? undefined : { opacity: labelOpacity }}>
         <span className="hbw-avatar-name">{sup.lastName}</span>
@@ -435,6 +456,42 @@ const HowBoardWorks = () => {
             </a>, or in our{" "}
             <Link to="/post/monthly-roundup">monthly roundups</Link>.
           </p>
+        </div>
+      </section>
+
+      {/* ── November 2026 election ── */}
+      <section className="hbw-section hbw-section--divided">
+        <div className="hbw-column">
+          <h2 className="hbw-heading">Upcoming changes</h2>
+          <p className="hbw-body">
+            Supervisors in even numbered districts were up for election during the 2026
+            election. In January, Gary McCoy will take over as district 8 supervisor and Theo
+            Ellington will represent district 10. Following the full board changes, committee
+            members will also change.
+          </p>
+          <div className="hbw-election">
+            {ELECTION_2026.map(({ district, current, incoming }) => (
+              <div key={district} className="hbw-election-row">
+                <div className="hbw-election-district">District {district}</div>
+                <div className="hbw-election-faces">
+                  <Avatar
+                    sup={current}
+                    showDistrict={false}
+                    className={incoming ? "hbw-avatar--outgoing" : ""}
+                  />
+                  {incoming && (
+                    <>
+                      <span className="hbw-election-arrow" aria-label="replaced by">&rarr;</span>
+                      <Avatar sup={incoming} showDistrict={false} />
+                    </>
+                  )}
+                </div>
+                <div className={`hbw-election-status${incoming ? " hbw-election-status--new" : ""}`}>
+                  {incoming ? "New supervisor" : "Re-elected"}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
